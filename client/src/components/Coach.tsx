@@ -1,4 +1,6 @@
 import coachPhoto from "@assets/Gemini_Generated_Image_pyhkcmpyhkcmpyhk_copy_1768605875661.png";
+import issaLogo from "@assets/issa-logo_1768606213040.webp";
+import pnLogo from "@assets/PN_coach_logo_1768606213043.jpeg";
 
 export function Coach() {
   return (
@@ -43,9 +45,23 @@ export function Coach() {
             </p>
           </div>
 
-          <div className="mt-10 text-right">
+          <div className="mt-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="flex items-center gap-4" data-testid="container-certifications">
+              <img 
+                src={issaLogo} 
+                alt="ISSA Certified" 
+                className="h-16 md:h-20 w-auto"
+                data-testid="img-issa-logo"
+              />
+              <img 
+                src={pnLogo} 
+                alt="Precision Nutrition L1 Coach" 
+                className="h-16 md:h-20 w-auto rounded-md"
+                data-testid="img-pn-logo"
+              />
+            </div>
             <p 
-              className="text-3xl md:text-4xl text-foreground italic"
+              className="text-3xl md:text-4xl text-foreground italic text-right"
               style={{ fontFamily: "'Brush Script MT', 'Segoe Script', cursive" }}
               data-testid="text-coach-signature"
             >
