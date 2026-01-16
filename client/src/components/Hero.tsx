@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@assets/stock_images/modern_fitness_studi_27d96578.jpg";
+import heroImage from "@assets/alexander-red-qo1pyCD02t4-unsplash_1768606692957.jpg";
 
 export function Hero() {
   const scrollToContact = () => {
