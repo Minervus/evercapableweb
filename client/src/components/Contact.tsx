@@ -1,47 +1,63 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { MessageCircle, Phone, Send, Loader2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { MessageCircle, Phone, Send, Loader2, CheckCircle } from "lucide-react";
+
+const contactFormSchema = z.object({
+  fullName: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    message: "",
-  });
-  const { toast } = useToast();
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      fullName: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/contact", {
+      const formBody = new URLSearchParams({
+        "form-name": "contact",
+        ...data,
+      }).toString();
+
+      const response = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody,
       });
 
       if (response.ok) {
-        toast({
-          title: "Message sent!",
-          description: "Rachel will get back to you soon.",
-        });
-        setFormData({ fullName: "", email: "", message: "" });
-      } else {
-        throw new Error("Failed to send message");
+        setIsSubmitted(true);
+        form.reset();
       }
     } catch {
-      toast({
-        title: "Something went wrong",
-        description: "Please try again or email us directly.",
-        variant: "destructive",
-      });
+      setIsSubmitted(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -111,63 +127,117 @@ export function Contact() {
                 <h3 className="font-semibold text-foreground mb-6">
                   Send a Message
                 </h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="fullName">Full name</Label>
-                    <Input
-                      id="fullName"
-                      placeholder="Your name"
-                      value={formData.fullName}
-                      onChange={(e) =>
-                        setFormData({ ...formData, fullName: e.target.value })
-                      }
-                      required
-                      data-testid="input-fullname"
-                    />
+                
+                {isSubmitted ? (
+                  <div className="text-center py-8" data-testid="text-success-message">
+                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle className="w-8 h-8 text-primary" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">
+                      Message Sent!
+                    </h4>
+                    <p className="text-muted-foreground">
+                      Rachel will get back to you soon.
+                    </p>
+                    <Button
+                      variant="outline"
+                      className="mt-4"
+                      onClick={() => setIsSubmitted(false)}
+                      data-testid="button-send-another"
+                    >
+                      Send another message
+                    </Button>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="you@example.com"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      required
-                      data-testid="input-email"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      placeholder="How can Rachel help you?"
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      required
-                      className="resize-none"
-                      data-testid="input-message"
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full gap-2"
-                    disabled={isSubmitting}
-                    data-testid="button-send-message"
-                  >
-                    {isSubmitting ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <Send className="w-4 h-4" />
-                    )}
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
+                ) : (
+                  <Form {...form}>
+                    <form
+                      name="contact"
+                      method="POST"
+                      data-netlify="true"
+                      netlify-honeypot="bot-field"
+                      onSubmit={form.handleSubmit(onSubmit)}
+                      className="space-y-4"
+                    >
+                      <input type="hidden" name="form-name" value="contact" />
+                      <p className="hidden">
+                        <label>
+                          Don't fill this out if you're human: <input name="bot-field" />
+                        </label>
+                      </p>
+                      
+                      <FormField
+                        control={form.control}
+                        name="fullName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Full name</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Your name"
+                                data-testid="input-fullname"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="email"
+                                placeholder="you@example.com"
+                                data-testid="input-email"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <FormField
+                        control={form.control}
+                        name="message"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Message</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                placeholder="How can Rachel help you?"
+                                rows={4}
+                                className="resize-none"
+                                data-testid="input-message"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <Button
+                        type="submit"
+                        className="w-full gap-2"
+                        disabled={isSubmitting}
+                        data-testid="button-send-message"
+                      >
+                        {isSubmitting ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Send className="w-4 h-4" />
+                        )}
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </Button>
+                    </form>
+                  </Form>
+                )}
               </CardContent>
             </Card>
           </div>

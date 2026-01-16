@@ -42,7 +42,7 @@ export function Results() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="relative">
+            <div className="relative" data-testid="img-before">
               <div className="absolute top-4 left-4 bg-black/60 text-white text-sm font-medium px-3 py-1 rounded">
                 Before
               </div>
@@ -52,7 +52,7 @@ export function Results() {
                 className="w-full rounded-lg object-cover aspect-[3/4]"
               />
             </div>
-            <div className="relative">
+            <div className="relative" data-testid="img-after">
               <div className="absolute top-4 left-4 bg-primary text-primary-foreground text-sm font-medium px-3 py-1 rounded">
                 After
               </div>

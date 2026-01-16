@@ -83,11 +83,12 @@ export function Stats() {
             <div
               key={index}
               className="text-center relative"
+              data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, "-")}`}
             >
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2">
+              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2" data-testid={`text-stat-value-${index}`}>
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-base md:text-lg font-semibold text-foreground mb-1">
+              <div className="text-base md:text-lg font-semibold text-foreground mb-1" data-testid={`text-stat-label-${index}`}>
                 {stat.label}
               </div>
               <div className="text-sm text-muted-foreground">

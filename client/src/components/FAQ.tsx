@@ -50,13 +50,13 @@ export function FAQ() {
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="mb-8">
+        <Accordion type="single" collapsible className="mb-8" data-testid="accordion-faq">
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left font-medium text-foreground">
+            <AccordionItem key={index} value={`item-${index}`} data-testid={`faq-item-${index}`}>
+              <AccordionTrigger className="text-left font-medium text-foreground" data-testid={`button-faq-trigger-${index}`}>
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
+              <AccordionContent className="text-muted-foreground" data-testid={`text-faq-answer-${index}`}>
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>

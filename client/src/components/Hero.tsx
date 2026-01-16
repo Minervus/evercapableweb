@@ -43,7 +43,7 @@ export function Hero() {
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-6">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight mb-6" data-testid="text-hero-headline">
           Because your best self isn't behind you,{" "}
           <span className="text-primary">it's ahead</span>
         </h1>
@@ -63,12 +63,12 @@ export function Hero() {
         </Button>
 
         <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2" data-testid="text-trust-clients">
             <span className="text-white font-semibold">
               Trusted by 2,000+ clients worldwide
             </span>
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1" data-testid="text-trust-rating">
             <span className="text-white font-semibold">Rated</span>
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
