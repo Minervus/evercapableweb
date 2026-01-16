@@ -60,7 +60,7 @@ export function Services() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="flex items-start gap-4 p-5 rounded-xl bg-background"
+                className="flex items-start gap-4 p-5 rounded-xl bg-muted/50 dark:bg-zinc-800/80"
                 data-testid={`card-service-${index}`}
               >
                 <div className="w-12 h-12 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
