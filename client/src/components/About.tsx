@@ -1,17 +1,19 @@
+import { Flame, Zap, Crown } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import rachelImage from "@assets/stock_images/professional_woman_p_ddd82c22.jpg";
 
 const philosophyPoints = [
   {
     title: "Strength Over Comparison",
-    description: "Focus on your own journey, not others'",
+    icon: Flame,
   },
   {
     title: "Balance Over Extremes",
-    description: "Sustainable progress through moderation",
+    icon: Zap,
   },
   {
     title: "Habits Over Quick Fixes",
-    description: "Build lasting change through daily practice",
+    icon: Crown,
   },
 ];
 
@@ -46,17 +48,17 @@ export function About() {
             <p className="mt-6 font-semibold text-foreground">Rachel Stone</p>
 
             <div className="mt-8">
-              <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
+              <p className="text-lg font-semibold text-foreground mb-4">
                 My Philosophy
               </p>
-              <div className="space-y-4">
+              <div className="grid grid-cols-3 gap-3">
                 {philosophyPoints.map((point, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">{point.title}</p>
-                    </div>
-                  </div>
+                  <Card key={index} className="bg-secondary border-0">
+                    <CardContent className="p-4 flex flex-col items-center text-center">
+                      <point.icon className="w-6 h-6 text-foreground mb-3" strokeWidth={1.5} />
+                      <p className="text-sm font-medium text-foreground leading-tight">{point.title}</p>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
