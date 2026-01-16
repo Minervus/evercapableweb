@@ -36,11 +36,13 @@ export function Header() {
   return (
     <header className="fixed top-4 left-4 md:left-6 z-50">
       <div 
-        className={`bg-secondary/95 backdrop-blur-md transition-all duration-500 ease-out ${
-          isMenuOpen 
-            ? "rounded-2xl p-6 min-w-[280px]" 
-            : "rounded-full px-4 py-2"
-        }`}
+        className="bg-secondary/95 backdrop-blur-md overflow-hidden"
+        style={{
+          borderRadius: isMenuOpen ? '16px' : '9999px',
+          padding: isMenuOpen ? '24px' : '8px 16px',
+          minWidth: isMenuOpen ? '280px' : 'auto',
+          transition: 'border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), min-width 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+        }}
       >
         <div className="flex items-center justify-between gap-4">
           <a
