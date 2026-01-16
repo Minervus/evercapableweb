@@ -1,9 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Star, Calendar } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import heroImage from "@assets/stock_images/modern_fitness_studi_27d96578.jpg";
-import client1 from "@assets/stock_images/happy_woman_fitness__b34f9200.jpg";
-import client2 from "@assets/stock_images/happy_woman_fitness__d73688ea.jpg";
 
 export function Hero() {
   const scrollToContact = () => {
@@ -20,21 +17,6 @@ export function Hero() {
         style={{ backgroundImage: `url(${heroImage})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
-
-      <div className="absolute top-24 right-8 md:top-32 md:right-16 flex flex-col gap-4">
-        <div className="relative">
-          <Avatar className="w-16 h-16 md:w-20 md:h-20 border-2 border-white/30">
-            <AvatarImage src={client1} alt="Happy client" />
-            <AvatarFallback>SC</AvatarFallback>
-          </Avatar>
-        </div>
-        <div className="relative">
-          <Avatar className="w-16 h-16 md:w-20 md:h-20 border-2 border-white/30">
-            <AvatarImage src={client2} alt="Happy client" />
-            <AvatarFallback>JM</AvatarFallback>
-          </Avatar>
-        </div>
-      </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center pt-20">
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
