@@ -69,7 +69,7 @@ export function HowItWorks() {
 
           <div className="space-y-6">
             {steps.map((step, index) => (
-              <div key={index} className="relative pl-16">
+              <div key={index} className="relative pl-16" data-testid={`step-${index}`}>
                 <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <span className="text-sm font-bold text-primary">
                     {step.number}

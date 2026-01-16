@@ -72,6 +72,7 @@ export function Pricing() {
               className={`relative flex flex-col ${
                 program.popular ? "border-primary border-2" : ""
               }`}
+              data-testid={`card-pricing-${index}`}
             >
               {program.popular && (
                 <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -79,11 +80,11 @@ export function Pricing() {
                 </Badge>
               )}
               <CardHeader className="pb-4">
-                <h3 className="text-xl font-bold text-foreground">
+                <h3 className="text-xl font-bold text-foreground" data-testid={`text-program-name-${index}`}>
                   {program.name}
                 </h3>
                 <div className="flex items-baseline gap-1 mt-2">
-                  <span className="text-4xl font-bold text-foreground">
+                  <span className="text-4xl font-bold text-foreground" data-testid={`text-program-price-${index}`}>
                     ${program.price}
                   </span>
                   <span className="text-muted-foreground">/month</span>

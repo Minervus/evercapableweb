@@ -64,6 +64,7 @@ export function Services() {
                 <div
                   key={index}
                   className="flex items-start gap-4 p-4 rounded-lg hover-elevate bg-card border border-card-border"
+                  data-testid={`card-service-${index}`}
                 >
                   <div className="w-12 h-12 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
                     <service.icon className="w-6 h-6 text-accent-foreground" />
