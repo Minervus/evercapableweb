@@ -1,5 +1,5 @@
 import coachPhoto from "@assets/Gemini_Generated_Image_pyhkcmpyhkcmpyhk_copy_1768605875661.png";
-import issaLogo from "@assets/issa-logo_1768606213040.webp";
+import issaLogo from "@assets/images_1768606382552.png";
 import pnLogo from "@assets/PN_coach_logo_1768606213043.jpeg";
 
 export function Coach() {
