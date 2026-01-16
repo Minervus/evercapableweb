@@ -34,66 +34,56 @@ export function Header() {
   };
 
   return (
-    <>
-      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
-        <div className="bg-secondary/95 backdrop-blur-md rounded-full px-4 py-2 flex items-center gap-4">
+    <header className="fixed top-4 left-4 md:left-6 z-50">
+      <div 
+        className={`bg-secondary/95 backdrop-blur-md transition-all duration-500 ease-out ${
+          isMenuOpen 
+            ? "rounded-2xl p-6 min-w-[280px]" 
+            : "rounded-full px-4 py-2"
+        }`}
+      >
+        <div className="flex items-center justify-between gap-4">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              scrollToSection("#");
             }}
-            className="text-lg font-bold text-foreground tracking-tight pl-2"
+            className="text-lg font-bold text-foreground tracking-tight pl-1"
             data-testid="link-logo"
           >
             Rachel
           </a>
           
           <div className="flex items-center gap-1">
-            <ThemeToggle testId="button-theme-toggle" />
+            {!isMenuOpen && <ThemeToggle testId="button-theme-toggle" />}
             <button
-              className="p-2 rounded-full hover-elevate"
-              onClick={() => setIsMenuOpen(true)}
-              data-testid="button-menu-open"
-              aria-label="Open menu"
+              className={`p-2 transition-all ${isMenuOpen ? "rounded-md border border-border" : "rounded-full"} hover-elevate`}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              data-testid={isMenuOpen ? "button-menu-close" : "button-menu-open"}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
-              <Menu className="w-5 h-5 text-foreground" />
+              {isMenuOpen ? (
+                <X className="w-5 h-5 text-foreground" />
+              ) : (
+                <Menu className="w-5 h-5 text-foreground" />
+              )}
             </button>
           </div>
         </div>
-      </header>
 
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[100] bg-background/98 backdrop-blur-lg">
-          <div className="flex flex-col h-full">
-            <div className="flex items-center justify-between px-6 py-4">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("#");
-                }}
-                className="text-xl font-bold text-foreground tracking-tight"
-                data-testid="link-logo-menu"
-              >
-                Rachel
-              </a>
-              <button
-                onClick={() => setIsMenuOpen(false)}
-                className="p-2 rounded-md border border-border hover-elevate"
-                data-testid="button-menu-close"
-                aria-label="Close menu"
-              >
-                <X className="w-5 h-5 text-foreground" />
-              </button>
-            </div>
-
-            <nav className="flex-1 flex flex-col justify-center px-8 gap-6">
-              {navLinks.map((link) => (
+        {isMenuOpen && (
+          <>
+            <nav className="mt-6 flex flex-col gap-4">
+              {navLinks.map((link, index) => (
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-3xl md:text-4xl font-semibold text-foreground text-left hover:text-primary transition-colors"
+                  className="text-2xl font-semibold text-foreground text-left hover:text-primary transition-colors animate-fade-in-right"
+                  style={{ 
+                    animationDelay: `${index * 50}ms`,
+                    animationFillMode: 'both'
+                  }}
                   data-testid={`link-nav-${link.label.toLowerCase()}`}
                 >
                   {link.label}
@@ -101,24 +91,32 @@ export function Header() {
               ))}
             </nav>
 
-            <div className="px-8 pb-8">
-              <div className="flex items-center gap-4">
-                {socialLinks.map((social) => (
+            <div 
+              className="mt-6 pt-4 border-t border-border animate-fade-in-right"
+              style={{ animationDelay: `${navLinks.length * 50 + 50}ms`, animationFillMode: 'both' }}
+            >
+              <div className="flex items-center gap-3">
+                <ThemeToggle testId="button-theme-toggle-menu" />
+                {socialLinks.map((social, index) => (
                   <a
                     key={social.label}
                     href={social.href}
-                    className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover-elevate"
+                    className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover-elevate animate-fade-in-right"
+                    style={{ 
+                      animationDelay: `${(navLinks.length + index + 1) * 50 + 50}ms`,
+                      animationFillMode: 'both'
+                    }}
                     aria-label={social.label}
                     data-testid={`link-social-${social.label.toLowerCase()}`}
                   >
-                    <social.icon className="w-5 h-5 text-foreground" />
+                    <social.icon className="w-4 h-4 text-foreground" />
                   </a>
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      )}
-    </>
+          </>
+        )}
+      </div>
+    </header>
   );
 }
