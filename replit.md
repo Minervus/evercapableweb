@@ -79,3 +79,16 @@ shared/           # Shared code between client/server
 - Vite with React plugin
 - esbuild for production server bundling
 - TypeScript with strict mode
+
+### Static Site Deployment (Netlify)
+The project is configured for static site deployment:
+- **netlify.toml**: Build configuration and SPA routing
+- **Build command**: `npx vite build`
+- **Publish directory**: `dist/public`
+- **Contact Form**: Uses Netlify Forms for serverless form handling
+- **SPA Routing**: Catch-all redirect to index.html for client-side routing
+
+To deploy on Netlify:
+1. Connect your repository to Netlify
+2. Netlify will auto-detect the build settings from netlify.toml
+3. Deploy - the contact form will work automatically with Netlify Forms
