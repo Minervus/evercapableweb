@@ -2,32 +2,36 @@ import { useEffect, useState, useRef } from "react";
 
 const stats = [
   {
+    prefix: "+",
     value: 500,
-    suffix: "+",
+    suffix: "",
     label: "Women Coached",
     description: "From postpartum recovery to full transformations",
   },
   {
+    prefix: "",
     value: 94,
     suffix: "%",
     label: "Consistency Rate",
     description: "Clients report staying on track week after week",
   },
   {
+    prefix: "",
     value: 4.9,
     suffix: "",
     label: "Average Feedback",
     description: "Based on client satisfaction and progress surveys",
   },
   {
+    prefix: "",
     value: 3,
     suffix: "x",
     label: "Faster Progress",
-    description: "Compared to traditional training methods",
+    description: "From postpartum recovery to full transformations",
   },
 ];
 
-function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
+function AnimatedNumber({ prefix, value, suffix }: { prefix: string; value: number; suffix: string }) {
   const [displayValue, setDisplayValue] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
@@ -68,8 +72,7 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
 
   return (
     <span ref={ref}>
-      {displayValue}
-      {suffix}
+      {prefix}{displayValue}{suffix}
     </span>
   );
 }
@@ -86,7 +89,7 @@ export function Stats() {
               data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, "-")}`}
             >
               <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2" data-testid={`text-stat-value-${index}`}>
-                <AnimatedNumber value={stat.value} suffix={stat.suffix} />
+                <AnimatedNumber prefix={stat.prefix} value={stat.value} suffix={stat.suffix} />
               </div>
               <div className="text-base md:text-lg font-semibold text-foreground mb-1" data-testid={`text-stat-label-${index}`}>
                 {stat.label}
