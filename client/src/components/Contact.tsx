@@ -67,14 +67,14 @@ export function Contact() {
     <section id="contact" className="py-16 md:py-24 bg-card scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">
+          <p className="text-sm text-muted-foreground mb-2">
             Contact
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Let's build your plan together!
+            Ready to Start?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a question about training, nutrition, or which program fits you best? Reach out — we'll help you find your next step forward.
+            Have questions about our programs or want to apply for coaching? Reach out and let's discuss your goals.
           </p>
         </div>
 
@@ -83,7 +83,7 @@ export function Contact() {
             <Card className="hover-elevate bg-muted/50 dark:bg-zinc-800/80 border-0">
               <CardContent className="p-6">
                 <a
-                  href="mailto:hello@rachelstone.com"
+                  href="mailto:hello@evercapable.com"
                   className="flex items-start gap-4"
                   data-testid="link-contact-chat"
                 >
@@ -93,7 +93,7 @@ export function Contact() {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Chat</h3>
                     <p className="text-sm text-muted-foreground">
-                      Chat directly with coach Rachel
+                      Message us directly
                     </p>
                   </div>
                 </a>
@@ -125,7 +125,7 @@ export function Contact() {
             <Card>
               <CardContent className="p-6">
                 <h3 className="font-semibold text-foreground mb-6">
-                  Send a Message
+                  Apply for Coaching
                 </h3>
                 
                 {isSubmitted ? (
@@ -134,10 +134,10 @@ export function Contact() {
                       <CheckCircle className="w-8 h-8 text-primary" />
                     </div>
                     <h4 className="text-lg font-semibold text-foreground mb-2">
-                      Message Sent!
+                      Application Sent!
                     </h4>
                     <p className="text-muted-foreground">
-                      Rachel will get back to you soon.
+                      We'll get back to you within 24 hours.
                     </p>
                     <Button
                       variant="outline"
@@ -207,10 +207,10 @@ export function Contact() {
                         name="message"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Message</FormLabel>
+                            <FormLabel>Tell us about your goals</FormLabel>
                             <FormControl>
                               <Textarea
-                                placeholder="How can Rachel help you?"
+                                placeholder="What are you looking to achieve?"
                                 rows={4}
                                 className="resize-none"
                                 data-testid="input-message"
@@ -233,7 +233,7 @@ export function Contact() {
                         ) : (
                           <Send className="w-4 h-4" />
                         )}
-                        {isSubmitting ? "Sending..." : "Send Message"}
+                        {isSubmitting ? "Sending..." : "Submit Application"}
                       </Button>
                     </form>
                   </Form>

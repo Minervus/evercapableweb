@@ -3,12 +3,9 @@ import { Menu, X, Instagram, Youtube, Globe, Mail } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
-  { href: "#", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
+  { href: "#method", label: "The Method" },
   { href: "#programs", label: "Programs" },
   { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
 ];
 
 const socialLinks = [
@@ -29,6 +26,14 @@ export function Header() {
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
+    }
+    setIsMenuOpen(false);
+  };
+
+  const scrollToContact = () => {
+    const element = document.querySelector("#contact");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
     setIsMenuOpen(false);
   };
@@ -54,7 +59,7 @@ export function Header() {
             className="text-lg font-bold text-foreground tracking-tight pl-1"
             data-testid="link-logo"
           >
-            Rachel
+            EverCapable
           </a>
           
           <div className="flex items-center gap-1">
@@ -86,16 +91,27 @@ export function Header() {
                     animationDelay: `${index * 50}ms`,
                     animationFillMode: 'both'
                   }}
-                  data-testid={`link-nav-${link.label.toLowerCase()}`}
+                  data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   {link.label}
                 </button>
               ))}
+              <button
+                onClick={scrollToContact}
+                className="text-2xl font-semibold text-primary text-left hover:text-primary/80 transition-colors animate-fade-in-right"
+                style={{ 
+                  animationDelay: `${navLinks.length * 50}ms`,
+                  animationFillMode: 'both'
+                }}
+                data-testid="link-nav-apply"
+              >
+                Apply for Coaching
+              </button>
             </nav>
 
             <div 
               className="mt-6 pt-4 border-t border-border animate-fade-in-right"
-              style={{ animationDelay: `${navLinks.length * 50 + 50}ms`, animationFillMode: 'both' }}
+              style={{ animationDelay: `${(navLinks.length + 1) * 50 + 50}ms`, animationFillMode: 'both' }}
             >
               <div className="flex items-center gap-3">
                 <ThemeToggle testId="button-theme-toggle-menu" />
@@ -105,7 +121,7 @@ export function Header() {
                     href={social.href}
                     className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover-elevate animate-fade-in-right"
                     style={{ 
-                      animationDelay: `${(navLinks.length + index + 1) * 50 + 50}ms`,
+                      animationDelay: `${(navLinks.length + index + 2) * 50 + 50}ms`,
                       animationFillMode: 'both'
                     }}
                     aria-label={social.label}
