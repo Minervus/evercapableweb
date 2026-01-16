@@ -1,3 +1,5 @@
+import coachPhoto from "@assets/Gemini_Generated_Image_pyhkcmpyhkcmpyhk_copy_1768605875661.png";
+
 export function Coach() {
   return (
     <section id="coach" className="py-20 md:py-32 bg-background">
@@ -15,6 +17,14 @@ export function Coach() {
         </div>
 
         <div className="bg-card rounded-lg p-8 md:p-12 border border-border">
+          <div className="flex justify-center mb-8">
+            <img 
+              src={coachPhoto} 
+              alt="Tony Nguyen - EverCapable Coach" 
+              className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-primary/20"
+              data-testid="img-coach-photo"
+            />
+          </div>
           <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
             <p data-testid="text-coach-intro">
               I'm Tony. I'm a certified nutrition coach and PT, but more importantly, I'm a dad who spent two decades doing it wrong. I've tried it all: Keto, Paleo, Carnivore, Crossfit, and Powerlifting. I chased aesthetics and "three-plate squats" until I realized my priorities had shifted.
