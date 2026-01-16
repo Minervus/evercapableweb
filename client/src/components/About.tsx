@@ -30,7 +30,7 @@ export function About() {
             />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col h-full">
             <p className="text-sm text-muted-foreground mb-2">
               Meet your coach
             </p>
@@ -56,22 +56,22 @@ export function About() {
             >
               Rachel Stone
             </p>
-          </div>
-        </div>
 
-        <div className="mt-16">
-          <p className="text-lg font-semibold text-foreground mb-6">
-            My Philosophy
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {philosophyPoints.map((point, index) => (
-              <Card key={index} className="bg-secondary border-0">
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <point.icon className="w-7 h-7 text-foreground mb-4" strokeWidth={1.5} />
-                  <p className="text-sm font-medium text-foreground leading-tight">{point.title}</p>
-                </CardContent>
-              </Card>
-            ))}
+            <div className="mt-auto pt-10">
+              <p className="text-lg font-semibold text-foreground mb-4">
+                My Philosophy
+              </p>
+              <div className="grid grid-cols-3 gap-3">
+                {philosophyPoints.map((point, index) => (
+                  <Card key={index} className="bg-secondary border-0">
+                    <CardContent className="p-4 flex flex-col items-center text-center">
+                      <point.icon className="w-6 h-6 text-foreground mb-3" strokeWidth={1.5} />
+                      <p className="text-sm font-medium text-foreground leading-tight">{point.title}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
