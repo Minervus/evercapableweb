@@ -28,11 +28,11 @@ export function Hero() {
       <div className="relative z-10 min-h-screen flex flex-col justify-end pb-16 md:pb-24 px-6">
         <div className="max-w-4xl mx-auto w-full text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6" data-testid="text-hero-headline">
-            Stop the Cycle. Build a Body You Can Keep.
+            Stop the Sprint. Build a Body That Lasts.
           </h1>
           
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8" data-testid="text-hero-subheadline">
-            Science-backed nutrition coaching and habit layering for high-achievers. No crash diets. No metabolic damage. Just objective data and permanent results.
+            Data-driven nutrition and habit layering for dads who are done with "8-week cycles." Gain functional strength, avoid the "dad-bod" health risks, and become EverCapable for the people who need you most.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
