@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Menu, X, Instagram, Youtube, Globe, Mail } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import logoIconDark from "@assets/icon-on-black_1768604893518.png";
+import logoIconLight from "@assets/icon-on-white_1768604893518.png";
 
 const navLinks = [
   { href: "#method", label: "The Method" },
@@ -56,10 +58,22 @@ export function Header() {
               e.preventDefault();
               scrollToSection("#");
             }}
-            className="text-lg font-bold text-foreground tracking-tight pl-1"
+            className="flex items-center gap-2"
             data-testid="link-logo"
           >
-            EverCapable
+            <img 
+              src={logoIconDark} 
+              alt="EverCapable" 
+              className="h-6 w-auto hidden dark:block" 
+            />
+            <img 
+              src={logoIconLight} 
+              alt="EverCapable" 
+              className="h-6 w-auto block dark:hidden" 
+            />
+            <span className="text-lg font-bold text-foreground tracking-tight">
+              EverCapable
+            </span>
           </a>
           
           <div className="flex items-center gap-1">
