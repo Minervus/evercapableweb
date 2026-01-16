@@ -1,122 +1,124 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import { Menu, X, Instagram, Youtube, Globe, Mail } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
+  { href: "#", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
   { href: "#programs", label: "Programs" },
-  { href: "#results", label: "Results" },
   { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
 ];
 
-export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const socialLinks = [
+  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Youtube, href: "#", label: "YouTube" },
+  { icon: Globe, href: "#", label: "Website" },
+  { icon: Mail, href: "#", label: "Email" },
+];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
-    setIsMobileMenuOpen(false);
+    setIsMenuOpen(false);
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
+    <>
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
+        <div className="bg-secondary/95 backdrop-blur-md rounded-full px-4 py-2 flex items-center gap-4">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="text-xl md:text-2xl font-bold tracking-tight"
+            className="text-lg font-bold text-foreground tracking-tight pl-2"
             data-testid="link-logo"
           >
-            Rachel Stone
+            Rachel
           </a>
-
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                data-testid={`link-nav-${link.label.toLowerCase()}`}
-              >
-                {link.label}
-              </button>
-            ))}
-          </nav>
-
-          <div className="hidden md:flex items-center gap-2">
-            <ThemeToggle testId="button-theme-toggle-desktop" />
-            <Button
-              onClick={() => scrollToSection("#contact")}
-              data-testid="button-book-call-header"
-            >
-              Book a Call
-            </Button>
-          </div>
-
-          <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle testId="button-theme-toggle-mobile" />
+          
+          <div className="flex items-center gap-1">
+            <ThemeToggle testId="button-theme-toggle" />
             <button
-              className="p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              data-testid="button-mobile-menu"
+              className="p-2 rounded-full hover-elevate"
+              onClick={() => setIsMenuOpen(true)}
+              data-testid="button-menu-open"
+              aria-label="Open menu"
             >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              <Menu className="w-5 h-5 text-foreground" />
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md border-b border-border">
-          <nav className="flex flex-col px-6 py-4 gap-4">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="text-left text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
-                data-testid={`link-nav-mobile-${link.label.toLowerCase()}`}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[100] bg-background/98 backdrop-blur-lg">
+          <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between px-6 py-4">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("#");
+                }}
+                className="text-xl font-bold text-foreground tracking-tight"
+                data-testid="link-logo-menu"
               >
-                {link.label}
+                Rachel
+              </a>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="p-2 rounded-md border border-border hover-elevate"
+                data-testid="button-menu-close"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5 text-foreground" />
               </button>
-            ))}
-            <Button
-              onClick={() => scrollToSection("#contact")}
-              className="mt-2"
-              data-testid="button-book-call-mobile"
-            >
-              Book a Call
-            </Button>
-          </nav>
+            </div>
+
+            <nav className="flex-1 flex flex-col justify-center px-8 gap-6">
+              {navLinks.map((link) => (
+                <button
+                  key={link.href}
+                  onClick={() => scrollToSection(link.href)}
+                  className="text-3xl md:text-4xl font-semibold text-foreground text-left hover:text-primary transition-colors"
+                  data-testid={`link-nav-${link.label.toLowerCase()}`}
+                >
+                  {link.label}
+                </button>
+              ))}
+            </nav>
+
+            <div className="px-8 pb-8">
+              <div className="flex items-center gap-4">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover-elevate"
+                    aria-label={social.label}
+                    data-testid={`link-social-${social.label.toLowerCase()}`}
+                  >
+                    <social.icon className="w-5 h-5 text-foreground" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
