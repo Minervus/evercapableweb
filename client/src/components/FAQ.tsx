@@ -37,43 +37,42 @@ const faqs = [
 export function FAQ() {
   return (
     <section id="faq" className="py-16 md:py-24 bg-background scroll-mt-20">
-      <div className="max-w-3xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">
-            FAQ
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-muted-foreground">
-            If you're new here or wondering what to expect, these answers will guide you through how coaching works, what's included, and how we tailor every plan to your needs.
-          </p>
-        </div>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
+          <div>
+            <p className="text-sm text-muted-foreground mb-2">
+              FAQ
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              If you're new here or wondering what to expect, these answers will guide you through how coaching works, what's included, and how we tailor every plan to your needs.
+            </p>
+            <Button
+              variant="outline"
+              asChild
+              data-testid="button-faq-email"
+            >
+              <a href="mailto:hello@rachelstone.com" className="gap-2">
+                <Mail className="w-4 h-4" />
+                Send e-mail
+              </a>
+            </Button>
+          </div>
 
-        <Accordion type="single" collapsible className="mb-8" data-testid="accordion-faq">
-          {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`} data-testid={`faq-item-${index}`}>
-              <AccordionTrigger className="text-left font-medium text-foreground" data-testid={`button-faq-trigger-${index}`}>
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground" data-testid={`text-faq-answer-${index}`}>
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-
-        <div className="text-center">
-          <Button
-            variant="outline"
-            asChild
-            data-testid="button-faq-email"
-          >
-            <a href="mailto:hello@rachelstone.com" className="gap-2">
-              <Mail className="w-4 h-4" />
-              Send e-mail
-            </a>
-          </Button>
+          <Accordion type="single" collapsible data-testid="accordion-faq">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`} data-testid={`faq-item-${index}`}>
+                <AccordionTrigger className="text-left font-medium text-foreground" data-testid={`button-faq-trigger-${index}`}>
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground" data-testid={`text-faq-answer-${index}`}>
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </section>

@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import transformImage from "@assets/stock_images/woman_fitness_transf_e54a1f2d.jpg";
 
 const steps = [
@@ -54,27 +53,25 @@ export function HowItWorks() {
             </p>
             <Button
               onClick={scrollToContact}
-              variant="outline"
-              className="w-fit gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              className="w-fit"
               data-testid="button-how-it-works-cta"
             >
               Book Your Free Call
-              <ArrowRight className="w-4 h-4" />
             </Button>
 
             <div className="mt-8">
               <img
                 src={transformImage}
                 alt="Fitness transformation journey"
-                className="w-full rounded-lg object-cover aspect-[3/4] max-w-md"
+                className="w-full rounded-xl object-cover aspect-[3/4] max-w-md"
               />
             </div>
           </div>
 
-          <div className="flex flex-col justify-between h-full">
+          <div className="flex flex-col gap-8">
             {steps.map((step, index) => (
               <div key={index} data-testid={`step-${index}`}>
-                <p className="text-sm text-primary font-medium mb-1">
+                <p className="text-sm text-primary font-semibold mb-1">
                   {step.number}
                 </p>
                 <h3 className="font-bold text-xl md:text-2xl text-foreground mb-2">
