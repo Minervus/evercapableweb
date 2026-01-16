@@ -80,7 +80,7 @@ export function Contact() {
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           <div className="space-y-4">
-            <Card className="hover-elevate">
+            <Card className="hover-elevate bg-muted/50 dark:bg-zinc-800/80 border-0">
               <CardContent className="p-6">
                 <a
                   href="mailto:hello@rachelstone.com"
@@ -100,7 +100,7 @@ export function Contact() {
               </CardContent>
             </Card>
 
-            <Card className="hover-elevate">
+            <Card className="hover-elevate bg-muted/50 dark:bg-zinc-800/80 border-0">
               <CardContent className="p-6">
                 <a
                   href="tel:+12025550147"
