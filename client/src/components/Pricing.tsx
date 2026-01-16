@@ -1,34 +1,84 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check } from "lucide-react";
+import { Check, X, Star } from "lucide-react";
 
-const programs = [
+const features = [
   {
-    name: "The Self-Led Blueprint",
-    price: 99,
-    description: "Self-guided, no coach access",
-    features: [
-      "Custom Habit Roadmap",
-      "Tailored Workout Protocol",
-      "Everfit App Access",
-    ],
-    popular: false,
-    note: "Self-guided, no coach access",
+    name: "The Goal",
+    blueprint: "DIY access to the system.",
+    pro: "A guaranteed result.",
+    blueprintIncluded: "text",
+    proIncluded: "text",
   },
   {
-    name: "The Collaborative Pro",
-    price: 500,
-    description: "Full coaching experience with The Forever Guarantee",
-    features: [
-      "Everything in Blueprint",
-      "60-min Strategy Kickoff",
-      "Fortnightly Video Audits",
-      "Priority Messaging",
-      "The Forever Guarantee",
-    ],
-    popular: true,
-    note: null,
+    name: "Investment",
+    blueprint: "$99 / month",
+    pro: "$499 / month",
+    blueprintIncluded: "text",
+    proIncluded: "text",
+  },
+  {
+    name: "Commitment",
+    blueprint: "Month-to-month",
+    pro: "6-Month Partnership",
+    blueprintIncluded: "text",
+    proIncluded: "text",
+  },
+  {
+    name: "The Methodology",
+    blueprint: "Habit Layering Curriculum",
+    pro: "Habit Layering Curriculum",
+    blueprintIncluded: true,
+    proIncluded: true,
+  },
+  {
+    name: "The Training",
+    blueprint: "Custom Workout Protocol",
+    pro: "Custom Workout Protocol",
+    blueprintIncluded: true,
+    proIncluded: true,
+  },
+  {
+    name: "The Tech",
+    blueprint: "Progress Tracking App",
+    pro: "Progress Tracking App",
+    blueprintIncluded: true,
+    proIncluded: true,
+  },
+  {
+    name: "Onboarding",
+    blueprint: "Digital Setup Only",
+    pro: "60-Min Strategy Kickoff",
+    blueprintIncluded: false,
+    proIncluded: true,
+  },
+  {
+    name: "Data Analysis",
+    blueprint: "None",
+    pro: "Fortnightly Video Audits",
+    blueprintIncluded: false,
+    proIncluded: true,
+  },
+  {
+    name: "Adjustments",
+    blueprint: "Self-Adjusted",
+    pro: "Expert Plan Refinement",
+    blueprintIncluded: false,
+    proIncluded: true,
+  },
+  {
+    name: "Support",
+    blueprint: "No Coach Access",
+    pro: "Priority Private Messaging",
+    blueprintIncluded: false,
+    proIncluded: true,
+  },
+  {
+    name: "The Guarantee",
+    blueprint: "No Guarantee",
+    pro: "THE FOREVER GUARANTEE",
+    blueprintIncluded: false,
+    proIncluded: "star",
   },
 ];
 
@@ -40,9 +90,20 @@ export function Pricing() {
     }
   };
 
+  const renderIcon = (included: boolean | string) => {
+    if (included === "text") return null;
+    if (included === "star") {
+      return <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />;
+    }
+    if (included) {
+      return <Check className="w-4 h-4 text-green-500" />;
+    }
+    return <X className="w-4 h-4 text-red-500" />;
+  };
+
   return (
     <section id="programs" className="py-16 md:py-24 bg-background scroll-mt-20">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-sm text-muted-foreground mb-2">
             Programs
@@ -55,64 +116,91 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-          {programs.map((program, index) => (
-            <Card
-              key={index}
-              className={`relative flex flex-col ${
-                program.popular ? "border-primary border-2" : ""
-              }`}
-              data-testid={`card-pricing-${index}`}
-            >
-              {program.popular && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  Recommended
-                </Badge>
-              )}
-              <CardHeader className="pb-4">
-                <h3 className="text-xl font-bold text-foreground" data-testid={`text-program-name-${index}`}>
-                  {program.name}
-                </h3>
-                <div className="flex items-baseline gap-1 mt-2">
-                  <span className="text-4xl font-bold text-foreground" data-testid={`text-program-price-${index}`}>
-                    ${program.price}
-                  </span>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
-                <p className="text-sm text-muted-foreground mt-3">
-                  {program.description}
-                </p>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <p className="text-sm font-semibold text-foreground mb-4">
-                  What's included
-                </p>
-                <ul className="space-y-3 flex-1">
-                  {program.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-muted-foreground">
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                {program.note && (
-                  <p className="text-xs text-muted-foreground mt-4 italic">
-                    {program.note}
-                  </p>
-                )}
-                <Button
-                  className="mt-6 w-full"
-                  variant={program.popular ? "default" : "outline"}
-                  onClick={scrollToContact}
-                  data-testid={`button-program-${index}`}
-                >
-                  {program.popular ? "Apply Now" : "Get Started"}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="bg-card rounded-lg border border-border overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full" data-testid="table-pricing">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left p-4 text-sm font-medium text-muted-foreground">
+                    Feature
+                  </th>
+                  <th className="text-left p-4 text-sm font-semibold text-foreground">
+                    The Self-Led Blueprint
+                  </th>
+                  <th className="text-left p-4 relative">
+                    <Badge className="absolute -top-0 left-4 text-xs">
+                      Recommended
+                    </Badge>
+                    <span className="text-sm font-semibold text-primary">
+                      The Collaborative Pro
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {features.map((feature, index) => (
+                  <tr 
+                    key={index} 
+                    className={`border-b border-border last:border-b-0 ${
+                      feature.name === "The Guarantee" ? "bg-primary/5" : ""
+                    }`}
+                    data-testid={`row-feature-${index}`}
+                  >
+                    <td className="p-4 text-sm font-medium text-foreground">
+                      {feature.name}
+                    </td>
+                    <td className="p-4">
+                      <div className="flex items-center gap-2">
+                        {renderIcon(feature.blueprintIncluded)}
+                        <span className={`text-sm ${
+                          feature.blueprintIncluded === false 
+                            ? "text-muted-foreground" 
+                            : "text-foreground"
+                        }`}>
+                          {feature.blueprint}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div className="flex items-center gap-2">
+                        {renderIcon(feature.proIncluded)}
+                        <span className={`text-sm ${
+                          feature.proIncluded === "star" 
+                            ? "text-yellow-500 font-semibold" 
+                            : "text-foreground"
+                        }`}>
+                          {feature.pro}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="grid grid-cols-3 border-t border-border">
+            <div className="p-4"></div>
+            <div className="p-4">
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={scrollToContact}
+                data-testid="button-blueprint-cta"
+              >
+                Get the App
+              </Button>
+            </div>
+            <div className="p-4">
+              <Button
+                className="w-full"
+                onClick={scrollToContact}
+                data-testid="button-pro-cta"
+              >
+                Apply for Pro Coaching
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
