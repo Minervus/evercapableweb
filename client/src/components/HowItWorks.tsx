@@ -71,7 +71,7 @@ export function HowItWorks() {
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="flex flex-col justify-between h-full">
             {steps.map((step, index) => (
               <div key={index} data-testid={`step-${index}`}>
                 <p className="text-sm text-primary font-medium mb-1">
