@@ -1,0 +1,49 @@
+I need you to perform a bulk content update to transform the site into my brand, EverCapable. Please update the text in the following sections of the codebase while maintaining the current layout, styles, and animations:
+
+1. Brand & Header:
+
+Change all instances of 'Rachel Stone' or 'Rachel PT' to EverCapable.
+
+Update navigation links to: [The Method], [Programs], [FAQ].
+
+Change the header CTA button to 'Apply for Coaching'.
+
+2. Hero Section:
+
+Headline: 'Stop the Cycle. Build a Body You Can Keep.'
+
+Sub-headline: 'Science-backed nutrition coaching and habit layering for high-achievers. No crash diets. No metabolic damage. Just objective data and permanent results.'
+
+Primary CTA: 'Apply for Pro Coaching'
+
+Secondary CTA: 'View Programs'
+
+3. The 'EverCapable' Method (Bento Grid): Replace the current 'Philosophy' or 'How it Works' section with this 3-card grid:
+
+Card 1 (Objective Data): 'We don't guess. We analyze your metabolism, bio-feedback, and trends to build a map that actually works.'
+
+Card 2 (Habit Layering): 'We bridge the gap between knowing and doing by layering 1-2 sustainable skills into your life at a time.'
+
+Card 3 (Performance Mindset): 'Nutrition that supports your career, your training, and your life—not the other way around.'
+
+4. Pricing Section (Signature Programs): Update the cards to these two specific tiers:
+
+Tier 1 ($99/mo): 'The Self-Led Blueprint'.
+
+Included: Custom Habit Roadmap, Tailored Workout Protocol, Everfit App Access. (Add a note: 'Self-guided, no coach access').
+
+Tier 2 ($500/mo): 'The Collaborative Pro'.
+
+Included: Everything in Blueprint PLUS 60-min Strategy Kickoff, Fortnightly Video Audits, Priority Messaging, and The Forever Guarantee.
+
+5. The Guarantee Section: Add or update the guarantee card with this text:
+
+Heading: 'The Forever Guarantee'
+
+Body: 'If you follow your habit protocols with 90% consistency and don’t reach your 6-month milestone—I will coach you for free until you do. I’m putting my time on the line because the system works.'
+
+6. FAQ Section:
+
+Question: 'What is Habit Layering?' | Answer: 'It is the process of building one sustainable skill (like protein timing or sleep hygiene) until it becomes automatic, before adding the next. This prevents burnout and ensures permanent results.'
+
+Question: 'Is this a diet?' | Answer: 'No. We focus on objective data and metabolic health. You will eat real food and learn how to manage your own nutrition for life.'

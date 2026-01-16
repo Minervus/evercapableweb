@@ -1,8 +1,8 @@
-# Rachel Stone Personal Trainer Website
+# EverCapable Coaching Website
 
 ## Overview
 
-A personal trainer portfolio and booking website for Rachel Stone, targeting women seeking fitness coaching. The site features a modern, premium design with sections for services, pricing, testimonials, FAQ, and contact forms. Built as a full-stack TypeScript application with React frontend and Express backend.
+A nutrition coaching and habit layering website for EverCapable, targeting high-achievers seeking science-backed, sustainable body transformation. The site features a modern, premium design with sections for the method, pricing programs, guarantee, FAQ, and contact forms. Built as a full-stack TypeScript application with React frontend and Express backend.
 
 ## User Preferences
 
@@ -38,13 +38,14 @@ The project follows specific design guidelines (design_guidelines.md):
 - Typography: Plus Jakarta Sans, DM Sans from Google Fonts
 - Color scheme: Orange primary (#F97316), neutral backgrounds with HSL CSS variables
 - Spacing: Tailwind units with generous whitespace
-- Component patterns: Hero with overlays, stats grids, testimonial cards, accordion FAQs
+- Dark mode by default with light mode toggle
+- Floating pill navigation in top-left corner with smooth animations
 
 ### Project Structure
 ```
 client/           # React frontend
   src/
-    components/   # Page sections (Hero, About, Services, etc.)
+    components/   # Page sections (Hero, Method, Pricing, etc.)
     components/ui # shadcn/ui components
     pages/        # Route components
     hooks/        # Custom React hooks
@@ -58,11 +59,21 @@ shared/           # Shared code between client/server
   schema.ts       # Drizzle schema and Zod types
 ```
 
+### Key Components
+- **Header**: Floating pill navigation with The Method, Programs, FAQ links
+- **Hero**: Full-screen with headline "Stop the Cycle. Build a Body You Can Keep."
+- **Method**: 3-card bento grid (Objective Data, Habit Layering, Performance Mindset)
+- **Pricing**: 2 tiers - Self-Led Blueprint ($99/mo) and Collaborative Pro ($500/mo)
+- **Guarantee**: The Forever Guarantee section
+- **FAQ**: Accordion with habit layering and program questions
+- **Contact**: Application form for coaching
+
 ## External Dependencies
 
 ### UI Framework
 - Radix UI primitives (dialog, accordion, popover, etc.)
 - Lucide React icons
+- react-icons for brand logos (X/Twitter)
 - Embla Carousel for carousels
 - Vaul for drawer components
 

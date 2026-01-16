@@ -2,11 +2,9 @@ import { Instagram, Youtube, Globe, Mail } from "lucide-react";
 import { SiX } from "react-icons/si";
 
 const navLinks = [
-  { href: "#", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
+  { href: "#method", label: "The Method" },
   { href: "#programs", label: "Programs" },
-  { href: "#results", label: "Results" },
+  { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -43,7 +41,7 @@ export function Footer() {
             className="text-2xl font-bold text-foreground tracking-tight"
             data-testid="link-footer-logo"
           >
-            Rachel
+            EverCapable
           </a>
 
           <div className="flex flex-col items-start md:items-end gap-4">
@@ -53,7 +51,7 @@ export function Footer() {
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  data-testid={`link-footer-${link.label.toLowerCase()}`}
+                  data-testid={`link-footer-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   {link.label}
                 </button>
@@ -78,7 +76,7 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 pt-6 border-t border-border">
           <p className="text-sm text-muted-foreground" data-testid="text-copyright">
-            Copyright © 2025 – All Rights Reserved
+            Copyright © 2025 EverCapable – All Rights Reserved
           </p>
           <p className="text-sm text-muted-foreground">
             Built with care

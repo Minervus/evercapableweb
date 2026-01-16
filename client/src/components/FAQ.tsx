@@ -9,28 +9,28 @@ import { Mail } from "lucide-react";
 
 const faqs = [
   {
-    question: "What should I expect during my first session?",
-    answer: "Your first session is all about getting to know you — your goals, challenges, and lifestyle. We'll discuss your fitness history, current routine, and what you're hoping to achieve. From there, I'll create a personalized plan that fits your needs.",
+    question: "What is Habit Layering?",
+    answer: "It is the process of building one sustainable skill (like protein timing or sleep hygiene) until it becomes automatic, before adding the next. This prevents burnout and ensures permanent results.",
   },
   {
-    question: "Do I need a gym membership?",
-    answer: "Not necessarily! Many of my programs can be done at home with minimal equipment. If you prefer gym workouts, I'll design your plan around the equipment you have access to. We'll find what works best for your situation.",
+    question: "Is this a diet?",
+    answer: "No. We focus on objective data and metabolic health. You will eat real food and learn how to manage your own nutrition for life.",
   },
   {
-    question: "How often should I train each week?",
-    answer: "It depends on your goals and current fitness level, but most clients train 3-4 times per week. Quality matters more than quantity — I focus on sustainable routines that fit into your life rather than overwhelming schedules.",
+    question: "How is this different from other coaching programs?",
+    answer: "Most programs focus on meal plans and workouts. We focus on building the habits and mindset that make results permanent. Our approach uses objective data to customize everything to your metabolism and lifestyle.",
   },
   {
-    question: "Is nutrition coaching included?",
-    answer: "Yes! All my programs include nutrition guidance tailored to your training goals and lifestyle. I believe that nutrition and exercise work together for the best results. You'll receive personalized meal suggestions and strategies.",
+    question: "What if I've tried everything before?",
+    answer: "That's exactly who we work with. If traditional approaches haven't worked, it's usually because they weren't personalized to your data or they tried to change too much too fast. Our habit layering approach is designed for people who are done with quick fixes.",
   },
   {
-    question: "Can I cancel or pause my plan anytime?",
-    answer: "Absolutely. I understand life happens. You can pause or cancel your plan with 30 days notice. I also offer a 30-day money-back guarantee for new clients who feel the program isn't right for them.",
+    question: "How long until I see results?",
+    answer: "Most clients notice improved energy and better relationship with food within 2-3 weeks. Physical changes typically become visible around 6-8 weeks. But more importantly, you'll build skills that last a lifetime.",
   },
   {
-    question: "How long will it take to see results?",
-    answer: "Most clients start feeling stronger and more energized within the first 2-3 weeks. Visible physical changes typically appear around 6-8 weeks. Remember, sustainable transformation takes time — we're building lasting habits, not quick fixes.",
+    question: "What's included in The Forever Guarantee?",
+    answer: "If you follow your habit protocols with 90% consistency and don't reach your 6-month milestone, we'll continue coaching you for free until you do. We're that confident in the system.",
   },
 ];
 
@@ -47,14 +47,14 @@ export function FAQ() {
               Frequently Asked Questions
             </h2>
             <p className="text-muted-foreground mb-6">
-              If you're new here or wondering what to expect, these answers will guide you through how coaching works, what's included, and how we tailor every plan to your needs.
+              Everything you need to know about working with EverCapable and our approach to lasting transformation.
             </p>
             <Button
               variant="outline"
               asChild
               data-testid="button-faq-email"
             >
-              <a href="mailto:hello@rachelstone.com" className="gap-2">
+              <a href="mailto:hello@evercapable.com" className="gap-2">
                 <Mail className="w-4 h-4" />
                 Send e-mail
               </a>
