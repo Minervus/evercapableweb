@@ -4,6 +4,7 @@ import { Method } from "@/components/Method";
 import { Coach } from "@/components/Coach";
 import { Pricing } from "@/components/Pricing";
 import { Guarantee } from "@/components/Guarantee";
+import { Process } from "@/components/Process";
 import { FAQ } from "@/components/FAQ";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
@@ -18,6 +19,7 @@ export default function Home() {
         <Coach />
         <Pricing />
         <Guarantee />
+        <Process />
         <FAQ />
         <Contact />
       </main>
