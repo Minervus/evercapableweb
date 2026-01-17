@@ -29,19 +29,35 @@ export function Coach() {
           </div>
           <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
             <p data-testid="text-coach-intro">
-              I'm Tony. I'm a certified nutrition coach and PT, but more importantly, I'm a dad who spent two decades doing it wrong. I've tried it all: Keto, Paleo, Carnivore, Crossfit, and Powerlifting. I chased aesthetics and "three-plate squats" until I realized my priorities had shifted.
+              I'm Tony. I'm a certified nutrition coach and PT, but honestly? That's the least interesting thing about me. What matters is that I spent two decades as a human guinea pig, trying to "hack" my way to a body I could be proud of.
+            </p>
+            
+            <p data-testid="text-coach-experiments">
+              I've done it all. I've lived on nothing but meat (Carnivore), I've fasted until I was lightheaded, and I've cycled through Keto, Paleo, and Low-Carb. On the training side, I've beaten my joints to a pulp with Powerlifting, CrossFit, and traditional bodybuilding grinds.
+            </p>
+            
+            <p data-testid="text-coach-chase" className="text-foreground font-medium">
+              I chased the "3-plate squat" and the beach abs—and most of the time, I just ended up tired, hungry, and back where I started.
             </p>
             
             <p data-testid="text-coach-shift">
-              I stopped training for the beach and started training for longevity.
+              The shift happened when I started a family. Suddenly, my "Why" changed. I didn't care about looking ripped for strangers at the beach as much as I cared about being able to pick up my kids without my back seizing up. I realized that if I didn't find something more sustainable, I was headed straight for the same heart conditions and diabetes that took my grandparents and multiple family members before their time.
             </p>
             
-            <p data-testid="text-coach-change">
-              I traded the 2-hour daily grinds for small, compounding habits. The goal changed from looking good with my shirt off to being able to lift my kids without throwing my back out—and staying independent until I'm 95.
+            <p data-testid="text-coach-training" className="text-foreground font-medium">
+              I stopped training for the mirror and started training for the next 40 years.
+            </p>
+            
+            <p data-testid="text-coach-evercapable">
+              I realized that being <strong className="text-foreground">EverCapable</strong> meant more than being able to bench 2 plates; it meant being able to wipe my own ass when I'm 95. It's about functional strength and a nutritional approach that doesn't feel like a prison sentence.
             </p>
             
             <p data-testid="text-coach-mission">
-              Now, my mission is helping millennial dads get ahead of the curve. No crash diets. No burnout. Just the objective data and sustainable habits you need to be the best version of yourself for the people who depend on you.
+              Now, my mission is to help other millennials and dads stop the guesswork. No more 2-hour gym grinds or crash diets.
+            </p>
+            
+            <p data-testid="text-coach-goal">
+              No guesswork, just the habit layering required to stay healthy, stay strong, and stay present. The 8-week challenges fail because they have an end date; my goal is to make sure you don't.
             </p>
           </div>
 
