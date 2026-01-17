@@ -56,8 +56,8 @@ export function Coach() {
               Now, my mission is to help other millennials and dads stop the guesswork. No more 2-hour gym grinds or crash diets.
             </p>
             
-            <p data-testid="text-coach-goal">
-              No guesswork, just the habit layering required to stay healthy, stay strong, and stay present. The 8-week challenges fail because they have an end date; my goal is to make sure you don't.
+            <p data-testid="text-coach-goal" className="text-foreground font-medium">
+              No guesswork, just the habit layering required to stay healthy, stay strong, and stay present. The 30-day challenges fail because they have an end date; my goal is to make sure you don't.
             </p>
           </div>
 

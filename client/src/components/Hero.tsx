@@ -32,7 +32,7 @@ export function Hero() {
           </h1>
           
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8" data-testid="text-hero-subheadline">
-            Data-driven nutrition and habit layering for dads who are done with "8-week cycles." Gain functional strength, avoid the "dad-bod" health risks, and become EverCapable for the people who need you most.
+            Data-driven nutrition and habit layering for dads who are done with 30-day challenges. Gain functional strength, avoid generational health risks, and become EverCapable for the people who need you most.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
