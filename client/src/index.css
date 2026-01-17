@@ -26,7 +26,7 @@
   --popover: 0 0% 94%;
   --popover-foreground: 0 0% 9%;
   --popover-border: 0 0% 90%;
-  --primary: 24 95% 53%;
+  --primary: 0 0% 9%;
   --primary-foreground: 0 0% 98%;
   --secondary: 0 0% 92%;
   --secondary-foreground: 0 0% 9%;
@@ -43,7 +43,7 @@
   --chart-3: 142 71% 35%;
   --chart-4: 280 65% 45%;
   --chart-5: 47 90% 45%;
-  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Inter", sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: "JetBrains Mono", monospace;
   --radius: .5rem;
@@ -110,8 +110,8 @@
   --popover: 0 0% 13%;
   --popover-foreground: 0 0% 98%;
   --popover-border: 0 0% 16%;
-  --primary: 24 95% 53%;
-  --primary-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
   --secondary: 0 0% 15%;
   --secondary-foreground: 0 0% 98%;
   --muted: 0 0% 14%;
