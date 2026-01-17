@@ -86,15 +86,15 @@ export function Pricing() {
             </span>
             <button
               onClick={() => setIsAnnual(!isAnnual)}
-              className={`relative w-14 h-8 rounded-full transition-colors duration-300 ${
+              className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${
                 isAnnual ? 'bg-primary' : 'bg-muted'
               }`}
               data-testid="button-pricing-toggle"
               aria-label="Toggle pricing period"
             >
               <span
-                className={`absolute top-1 w-6 h-6 rounded-full bg-white shadow-md transition-transform duration-300 ${
-                  isAnnual ? 'translate-x-7' : 'translate-x-1'
+                className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow-md transition-transform duration-300 ${
+                  isAnnual ? 'translate-x-5' : 'translate-x-0'
                 }`}
               />
             </button>
