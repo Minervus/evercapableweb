@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,7 +7,9 @@ import { Check, X, Star } from "lucide-react";
 const programs = [
   {
     name: "The Self-Led Blueprint",
-    price: 99,
+    monthlyPrice: 99,
+    sixMonthPrice: 499,
+    sixMonthSavings: 95,
     goal: "DIY access to the system.",
     commitment: "Month-to-month",
     features: [
@@ -24,7 +27,9 @@ const programs = [
   },
   {
     name: "The Collaborative Pro",
-    price: 499,
+    monthlyPrice: 499,
+    sixMonthPrice: 2499,
+    sixMonthSavings: 495,
     goal: "A guaranteed result.",
     commitment: "6-Month Partnership",
     features: [
@@ -43,6 +48,7 @@ const programs = [
 ];
 
 export function Pricing() {
+  const [isAnnual, setIsAnnual] = useState(false);
   const scrollToContact = () => {
     const element = document.querySelector("#contact");
     if (element) {
@@ -73,9 +79,33 @@ export function Pricing() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Choose the level of support that fits your goals and lifestyle.
           </p>
+
+          <div className="flex items-center justify-center gap-4 mt-8" data-testid="pricing-toggle">
+            <span className={`text-sm font-medium transition-colors duration-300 ${!isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
+              Monthly
+            </span>
+            <button
+              onClick={() => setIsAnnual(!isAnnual)}
+              className={`relative w-14 h-8 rounded-full transition-colors duration-300 ${
+                isAnnual ? 'bg-primary' : 'bg-muted'
+              }`}
+              data-testid="button-pricing-toggle"
+              aria-label="Toggle pricing period"
+            >
+              <span
+                className={`absolute top-1 w-6 h-6 rounded-full bg-white shadow-md transition-transform duration-300 ${
+                  isAnnual ? 'translate-x-7' : 'translate-x-1'
+                }`}
+              />
+            </button>
+            <span className={`text-sm font-medium transition-colors duration-300 ${isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
+              6-Month Commitment
+              <Badge variant="secondary" className="ml-2 text-xs">Save 17%</Badge>
+            </span>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 mt-12">
           {programs.map((program, index) => (
             <Card
               key={index}
@@ -94,11 +124,21 @@ export function Pricing() {
                   {program.name}
                 </h3>
                 <div className="flex items-baseline gap-1 mt-2">
-                  <span className="text-4xl font-bold text-foreground" data-testid={`text-program-price-${index}`}>
-                    ${program.price}
+                  <span 
+                    className="text-4xl font-bold text-foreground transition-all duration-300" 
+                    data-testid={`text-program-price-${index}`}
+                  >
+                    ${isAnnual ? program.sixMonthPrice.toLocaleString() : program.monthlyPrice}
                   </span>
-                  <span className="text-muted-foreground">/month</span>
+                  <span className="text-muted-foreground transition-opacity duration-300">
+                    {isAnnual ? '/6 months' : '/month'}
+                  </span>
                 </div>
+                {isAnnual && (
+                  <p className="text-sm text-green-500 font-medium mt-1 animate-in fade-in duration-300">
+                    Save ${program.sixMonthSavings} upfront
+                  </p>
+                )}
                 <p className="text-sm text-primary font-medium mt-3">
                   {program.goal}
                 </p>
