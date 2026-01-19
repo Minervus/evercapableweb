@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Calendar, Send, Loader2, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 const contactFormSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -66,7 +67,13 @@ export function Contact() {
   return (
     <section id="contact" className="py-16 md:py-24 bg-card scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
           <p className="text-sm text-muted-foreground mb-2">
             Contact
           </p>
@@ -76,10 +83,16 @@ export function Contact() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Have questions about our programs or want to apply for coaching? Reach out and let's discuss your goals.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-          <div className="flex items-center justify-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center justify-center"
+          >
             <Card className="hover-elevate bg-primary/5 border-primary/20 w-full">
               <CardContent className="p-8">
                 <a
@@ -107,10 +120,15 @@ export function Contact() {
                 </a>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
-          <div>
-            <Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <Card className="h-full">
               <CardContent className="p-6">
                 <h3 className="font-semibold text-foreground mb-6">
                   Apply for Coaching
@@ -228,7 +246,7 @@ export function Contact() {
                 )}
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

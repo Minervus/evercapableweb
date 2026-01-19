@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import heroImage from "@assets/alexander-red-qo1pyCD02t4-unsplash_1768606692957.jpg";
 
 export function Hero() {
@@ -27,15 +28,32 @@ export function Hero() {
 
       <div className="relative z-10 min-h-screen flex flex-col justify-end pb-16 md:pb-24 px-6">
         <div className="max-w-4xl mx-auto w-full text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6" data-testid="text-hero-headline">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6" 
+            data-testid="text-hero-headline"
+          >
             Stop the Sprint. Build a Body That Lasts.
-          </h1>
+          </motion.h1>
           
-          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8" data-testid="text-hero-subheadline">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8" 
+            data-testid="text-hero-subheadline"
+          >
             Data-driven nutrition and habit layering for dads who are done with 30-day challenges. Gain functional strength, avoid generational health risks, and become EverCapable for the people who need you most.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
             <Button
               onClick={scrollToContact}
               size="lg"
@@ -55,7 +73,7 @@ export function Hero() {
             >
               View Programs
             </Button>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

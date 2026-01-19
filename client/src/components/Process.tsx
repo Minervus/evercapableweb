@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Download, Target, TrendingUp, Trophy, Video, Users, BarChart3, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 const blueprintSteps = [
   {
@@ -60,7 +61,13 @@ export function Process() {
   return (
     <section id="process" className="py-20 md:py-28 bg-background scroll-mt-20">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
           <p className="text-sm text-muted-foreground mb-2">
             How It Works
           </p>
@@ -70,10 +77,16 @@ export function Process() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Two programs. Two journeys. One destination: a body you can keep.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-10">
-          <Card className="rounded-3xl" data-testid="card-process-blueprint">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <Card className="rounded-3xl h-full" data-testid="card-process-blueprint">
             <CardHeader className="pb-6">
               <h3 className="text-xl font-bold text-foreground">
                 The Self-Led Blueprint
@@ -107,11 +120,18 @@ export function Process() {
               ))}
             </CardContent>
           </Card>
+          </motion.div>
 
-          <Card 
-            className="rounded-3xl border-primary/30 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.15)]" 
-            data-testid="card-process-pro"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
+            <Card 
+              className="rounded-3xl h-full border-primary/30 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.15)]" 
+              data-testid="card-process-pro"
+            >
             <CardHeader className="pb-6">
               <div className="flex items-center gap-3">
                 <h3 className="text-xl font-bold text-foreground">
@@ -149,7 +169,8 @@ export function Process() {
                 </div>
               ))}
             </CardContent>
-          </Card>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </section>

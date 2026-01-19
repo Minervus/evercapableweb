@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, X, Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const programs = [
   {
@@ -69,7 +70,13 @@ export function Pricing() {
   return (
     <section id="programs" className="py-16 md:py-24 bg-background scroll-mt-20">
       <div className="max-w-5xl mx-auto px-6">
-        <div className="text-center mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
           <p className="text-sm text-muted-foreground mb-2">
             Programs
           </p>
@@ -103,17 +110,23 @@ export function Pricing() {
               <Badge variant="secondary" className="ml-2 text-xs">Save 17%</Badge>
             </span>
           </div>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 mt-12">
           {programs.map((program, index) => (
-            <Card
+            <motion.div
               key={index}
-              className={`relative flex flex-col ${
-                program.popular ? "border-primary border-2" : ""
-              }`}
-              data-testid={`card-pricing-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
+              <Card
+                className={`relative flex flex-col h-full ${
+                  program.popular ? "border-primary border-2" : ""
+                }`}
+                data-testid={`card-pricing-${index}`}
+              >
               {program.popular && (
                 <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
                   Recommended
@@ -175,7 +188,8 @@ export function Pricing() {
                   {program.cta}
                 </Button>
               </CardContent>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
