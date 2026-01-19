@@ -14,7 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { MessageCircle, Phone, Send, Loader2, CheckCircle } from "lucide-react";
+import { Calendar, Send, Loader2, CheckCircle } from "lucide-react";
 
 const contactFormSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -79,42 +79,30 @@ export function Contact() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-          <div className="space-y-4">
-            <Card className="hover-elevate bg-muted/50 dark:bg-zinc-800/80 border-0">
-              <CardContent className="p-6">
+          <div className="flex items-center justify-center">
+            <Card className="hover-elevate bg-primary/5 border-primary/20 w-full">
+              <CardContent className="p-8">
                 <a
-                  href="mailto:hello@evercapable.com"
-                  className="flex items-start gap-4"
-                  data-testid="link-contact-chat"
+                  href="https://calendly.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center text-center gap-4"
+                  data-testid="link-book-discovery-call"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-6 h-6 text-accent-foreground" />
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Calendar className="w-8 h-8 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">Chat</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Message us directly
+                    <h3 className="text-xl font-bold text-foreground mb-2">
+                      Book a 30-Min Discovery Call
+                    </h3>
+                    <p className="text-muted-foreground mb-4">
+                      Let's discuss your goals and see if we're a good fit.
                     </p>
-                  </div>
-                </a>
-              </CardContent>
-            </Card>
-
-            <Card className="hover-elevate bg-muted/50 dark:bg-zinc-800/80 border-0">
-              <CardContent className="p-6">
-                <a
-                  href="tel:+12025550147"
-                  className="flex items-start gap-4"
-                  data-testid="link-contact-call"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-accent-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Call us</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Mon - Fri, 8:00 - 17:00 (EST)
-                    </p>
+                    <span className="inline-flex items-center gap-2 text-primary font-medium">
+                      Schedule Now
+                      <Calendar className="w-4 h-4" />
+                    </span>
                   </div>
                 </a>
               </CardContent>
