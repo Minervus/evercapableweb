@@ -96,8 +96,16 @@ export function Process() {
               </p>
             </CardHeader>
             <CardContent className="space-y-6">
-              {blueprintSteps.map((item) => (
-                <div key={item.step} className="flex gap-4" data-testid={`step-blueprint-${item.step}`}>
+              {blueprintSteps.map((item, index) => (
+                <motion.div 
+                  key={item.step} 
+                  className="flex gap-4" 
+                  data-testid={`step-blueprint-${item.step}`}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                >
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center">
                       <item.icon className="w-5 h-5 text-foreground" />
@@ -116,7 +124,7 @@ export function Process() {
                       {item.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </CardContent>
           </Card>
@@ -146,8 +154,16 @@ export function Process() {
               </p>
             </CardHeader>
             <CardContent className="space-y-6">
-              {proSteps.map((item) => (
-                <div key={item.step} className="flex gap-4" data-testid={`step-pro-${item.step}`}>
+              {proSteps.map((item, index) => (
+                <motion.div 
+                  key={item.step} 
+                  className="flex gap-4" 
+                  data-testid={`step-pro-${item.step}`}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                >
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                       <item.icon className="w-5 h-5 text-primary" />
@@ -166,7 +182,7 @@ export function Process() {
                       {item.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </CardContent>
             </Card>
