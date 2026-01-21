@@ -77,7 +77,7 @@ export function Pricing() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <p className="text-sm text-muted-foreground mb-2">
+          <p className="mb-2 text-[18px] font-medium text-[#f97015]">
             Programs
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
