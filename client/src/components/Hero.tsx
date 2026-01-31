@@ -41,9 +41,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8" 
             data-testid="text-hero-subheadline"
-          >
-            Data-driven nutrition and habit layering for dads who are done with 30-day challenges. Gain functional strength, avoid generational health risks, and become EverCapable for the people who need you most.
-          </motion.p>
+          >Data-driven nutrition and habit layering for those who are done with 30-day challenges. Gain functional strength, avoid generational health risks, and become EverCapable for the people who need you most.</motion.p>
 
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
