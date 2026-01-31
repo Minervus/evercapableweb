@@ -49,7 +49,7 @@ export function Coach() {
             </p>
             
             <p data-testid="text-coach-evercapable">
-              I realized that being <strong className="text-foreground">EverCapable</strong> meant more than being able to bench 2 plates; it meant being able to wipe my own ass when I'm 95. It's about functional strength and a nutritional approach that doesn't feel like a prison sentence.
+              I realized that being <strong className="text-foreground">EverCapable</strong> meant more than benching 3 plates; it meant being able to wipe my own ass when I'm 95. It's about functional strength and a nutritional approach that doesn't feel like a prison sentence.
             </p>
             
             <p data-testid="text-coach-mission">
