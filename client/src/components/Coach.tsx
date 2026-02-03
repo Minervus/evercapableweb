@@ -38,21 +38,17 @@ export function Coach() {
               to a body I could be proud of.
             </p>
 
-            <p data-testid="text-coach-experiments">
-              I've done it all. I've lived on nothing but meat (Carnivore), I've
-              fasted until I was lightheaded, and I've cycled through Keto,
-              Paleo, and Low-Carb. On the training side, I've beaten my joints
-              to a pulp with Powerlifting, CrossFit, and traditional
-              bodybuilding grinds.
-            </p>
-
-            <p
-              data-testid="text-coach-chase"
-              className="text-foreground font-medium"
-            >
-              I chased the "3-plate squat" and the beach abs—and most of the
-              time, I just ended up tired, hungry, and back where I started.
-            </p>
+            <ul className="space-y-4 list-disc pl-5 text-muted-foreground">
+              <li>
+                <strong className="text-foreground">Dietary Extremes:</strong> I've done it all. I've lived on nothing but meat, fasted until lightheaded, and cycled through Keto, Paleo, and Low-Carb.
+              </li>
+              <li>
+                <strong className="text-foreground">Training Overload:</strong> I've beaten my joints to a pulp with Powerlifting, CrossFit, and traditional bodybuilding grinds.
+              </li>
+              <li>
+                <strong className="text-foreground">The Result:</strong> I chased the "3-plate squat" and beach abs—and ended up tired, hungry, and back where I started.
+              </li>
+            </ul>
 
             <p data-testid="text-coach-shift">
               The shift happened when I started a family. Suddenly, my "Why"

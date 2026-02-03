@@ -24,50 +24,78 @@ export function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
-      <div className="relative z-10 min-h-screen flex flex-col justify-end pb-16 md:pb-24 px-6">
-        <div className="max-w-4xl mx-auto w-full text-center">
-          <motion.h1 
+      <div
+        className="absolute inset-0"
+        style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.2) 100%)' }}
+      />
+      <div className="relative z-10 min-h-screen flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-0">
+        <div className="w-full max-w-[600px] text-left md:ml-12 lg:ml-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-4"
+          >
+            <span className="font-mono text-orange-500 uppercase tracking-wider text-sm md:text-base font-medium block">
+              // PROTOCOL: SUSTAINABLE RECOMPOSITION
+            </span>
+          </motion.div>
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6" 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-[-0.02em] mb-6 drop-shadow-lg"
             data-testid="text-hero-headline"
           >Stop the Sprints. Build a Body That Lasts.</motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8" 
+            className="text-lg md:text-xl text-white/90 max-w-xl mb-8 drop-shadow-md"
             data-testid="text-hero-subheadline"
-          >Data-driven nutrition and habit layering for those who are done with 30-day challenges. Gain functional strength, avoid generational health risks, and become EverCapable for the people who need you most.</motion.p>
+          >Stop guessing. Get data-driven nutrition and habit layering designed for longevity. Gain functional strength and become the person your family needs you to be.</motion.p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col items-start gap-8"
           >
-            <Button
-              onClick={scrollToContact}
-              size="lg"
-              className="gap-2"
-              data-testid="button-hero-cta-primary"
-            >
-              Apply for Pro Coaching
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-            
-            <Button
-              onClick={scrollToPrograms}
-              variant="outline"
-              size="lg"
-              className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 hover:text-white"
-              data-testid="button-hero-cta-secondary"
-            >
-              View Programs
-            </Button>
+            <div className="flex flex-col sm:flex-row items-center sm:items-start justify-start gap-4 w-full sm:w-auto">
+              <Button
+                onClick={scrollToContact}
+                size="lg"
+                className="gap-2 bg-primary hover:bg-primary/90 text-white border-none w-full sm:w-auto min-w-[200px]"
+                data-testid="button-hero-cta-primary"
+              >
+                Apply for Pro Coaching
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+
+              <Button
+                onClick={scrollToPrograms}
+                variant="outline"
+                size="lg"
+                className="bg-transparent border border-white text-white hover:bg-white/10 w-full sm:w-auto min-w-[200px]"
+                data-testid="button-hero-cta-secondary"
+              >
+                View Programs
+              </Button>
+            </div>
+
+            <div className="flex flex-col items-start gap-3">
+              <p className="text-[10px] uppercase text-white/60 tracking-widest font-medium">
+                CERTIFIED AUTHORITY
+              </p>
+              <div className="flex items-center gap-6 opacity-70 grayscale">
+                {/* Placeholders for logos */}
+                <div className="text-white font-bold text-lg tracking-tight">ISSA</div>
+                <div className="h-4 w-px bg-white/30"></div>
+                <div className="text-white font-bold text-lg tracking-tight">Precision Nutrition</div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
