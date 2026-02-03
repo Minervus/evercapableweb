@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, Instagram, Youtube, Globe, Mail } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { AnimatePresence, motion } from "framer-motion";
 import logoIconDark from "@assets/icon-on-black_1768604893518.png";
 import logoIconLight from "@assets/icon-on-white_1768604893518.png";
 
@@ -93,62 +94,56 @@ export function Header() {
           </div>
         </div>
 
-        {isMenuOpen && (
-          <>
-            <nav className="mt-6 flex flex-col gap-4">
-              {navLinks.map((link, index) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-2xl font-semibold text-foreground text-left hover:text-primary transition-colors animate-fade-in-right"
-                  style={{ 
-                    animationDelay: `${index * 50}ms`,
-                    animationFillMode: 'both'
-                  }}
-                  data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                >
-                  {link.label}
-                </button>
-              ))}
-              <button
-                onClick={scrollToContact}
-                className="text-2xl font-semibold text-primary text-left hover:text-primary/80 transition-colors animate-fade-in-right"
-                style={{ 
-                  animationDelay: `${navLinks.length * 50}ms`,
-                  animationFillMode: 'both'
-                }}
-                data-testid="link-nav-apply"
-              >
-                Apply for Coaching
-              </button>
-            </nav>
-
-            <div 
-              className="mt-6 pt-4 border-t border-border animate-fade-in-right"
-              style={{ animationDelay: `${(navLinks.length + 1) * 50 + 50}ms`, animationFillMode: 'both' }}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
             >
-              <div className="flex items-center gap-3">
-                <ThemeToggle testId="button-theme-toggle-menu" />
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover-elevate animate-fade-in-right"
-                    style={{ 
-                      animationDelay: `${(navLinks.length + index + 2) * 50 + 50}ms`,
-                      animationFillMode: 'both'
-                    }}
-                    aria-label={social.label}
-                    data-testid={`link-social-${social.label.toLowerCase()}`}
+              <nav className="mt-6 flex flex-col gap-4">
+                {navLinks.map((link, index) => (
+                  <button
+                    key={link.href}
+                    onClick={() => scrollToSection(link.href)}
+                    className="text-2xl font-semibold text-foreground text-left hover:text-primary transition-colors"
+                    data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                   >
-                    <social.icon className="w-4 h-4 text-foreground" />
-                  </a>
+                    {link.label}
+                  </button>
                 ))}
+                <button
+                  onClick={scrollToContact}
+                  className="text-2xl font-semibold text-primary text-left hover:text-primary/80 transition-colors"
+                  data-testid="link-nav-apply"
+                >
+                  Apply for Coaching
+                </button>
+              </nav>
+
+              <div className="mt-6 pt-4 border-t border-border">
+                <div className="flex items-center gap-3">
+                  <ThemeToggle testId="button-theme-toggle-menu" />
+                  {socialLinks.map((social, index) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover-elevate"
+                      aria-label={social.label}
+                      data-testid={`link-social-${social.label.toLowerCase()}`}
+                    >
+                      <social.icon className="w-4 h-4 text-foreground" />
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
-          </>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
 }
+
