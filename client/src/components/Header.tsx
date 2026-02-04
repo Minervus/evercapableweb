@@ -15,11 +15,11 @@ const navLinks: NavLink[] = [
   {
     label: "Programs",
     submenu: [
-      { href: "#blueprint", label: "Self-Led Blueprint" },
-      { href: "#pro-coaching", label: "Pro Coaching" },
+      { href: "#blueprint", label: "The Blueprint Protocol" },
+      { href: "#pro-coaching", label: "Pro Coach" },
     ]
   },
-  { href: "#programs", label: "Pricing" },
+  { href: "#pricing", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -35,19 +35,31 @@ export function Header() {
   const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
 
   const scrollToSection = (href: string) => {
+    // Close menu first
+    setIsMenuOpen(false);
+    setExpandedSubmenu(null);
+    
     if (href === "#") {
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
+      return;
+    }
+    
+    // Wait for menu to close, then scroll
+    setTimeout(() => {
       const element = document.querySelector(href);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        const headerOffset = 100; // Account for fixed header + padding
+        const rect = element.getBoundingClientRect();
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const elementTop = rect.top + scrollTop;
+        const offsetPosition = elementTop - headerOffset;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: "smooth"
+        });
       }
-    }
-    // Close menu after a small delay to ensure scroll starts
-    setTimeout(() => {
-      setIsMenuOpen(false);
-      setExpandedSubmenu(null);
-    }, 100);
+    }, 150);
   };
 
   return (
