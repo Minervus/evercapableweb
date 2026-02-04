@@ -4,10 +4,9 @@ import logoIconDark from "@assets/icon-on-black_1768604893518.png";
 import logoIconLight from "@assets/icon-on-white_1768604893518.png";
 
 const navLinks = [
-  { href: "#method", label: "The Method" },
-  { href: "#programs", label: "Programs" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "#", label: "Privacy" },
+  { href: "#", label: "Terms" },
+  { href: "#", label: "App Login" },
 ];
 
 const socialLinks = [
@@ -31,7 +30,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-secondary py-12 md:py-16">
+    <footer className="bg-black py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8 mb-16 md:mb-24">
           <a
@@ -43,17 +42,17 @@ export function Footer() {
             className="flex items-center gap-3"
             data-testid="link-footer-logo"
           >
-            <img 
-              src={logoIconDark} 
-              alt="EverCapable" 
-              className="h-10 w-auto hidden dark:block" 
+            <img
+              src={logoIconDark}
+              alt="EverCapable"
+              className="h-10 w-auto hidden dark:block"
             />
-            <img 
-              src={logoIconLight} 
-              alt="EverCapable" 
-              className="h-10 w-auto block dark:hidden" 
+            <img
+              src={logoIconLight}
+              alt="EverCapable"
+              className="h-10 w-auto block dark:hidden"
             />
-            <span className="text-2xl font-bold text-foreground tracking-tight">
+            <span className="text-2xl font-bold text-zinc-400 tracking-tight">
               EverCapable
             </span>
           </a>
@@ -64,7 +63,7 @@ export function Footer() {
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
                   data-testid={`link-footer-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   {link.label}
@@ -77,22 +76,22 @@ export function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-8 h-8 rounded-full bg-muted/50 flex items-center justify-center hover:bg-muted transition-colors"
+                  className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-zinc-700 transition-colors"
                   aria-label={social.label}
                   data-testid={`link-footer-social-${social.label.toLowerCase()}`}
                 >
-                  <social.icon className="w-4 h-4 text-muted-foreground" />
+                  <social.icon className="w-4 h-4 text-zinc-400" />
                 </a>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 pt-6 border-t border-border">
-          <p className="text-sm text-muted-foreground" data-testid="text-copyright">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 pt-6 border-t border-zinc-800">
+          <p className="text-sm text-zinc-500" data-testid="text-copyright">
             Copyright © 2025 EverCapable – All Rights Reserved
           </p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-zinc-500">
             Built with care
           </p>
         </div>

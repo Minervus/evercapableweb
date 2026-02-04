@@ -32,6 +32,14 @@ const faqs = [
     question: "What's included in The Forever Guarantee?",
     answer: "If you follow your habit protocols with 90% consistency and don't reach your 6-month milestone, we'll continue coaching you for free until you do. We're that confident in the system.",
   },
+  {
+    question: "Do I need a wearable (Whoop/Oura/Apple Watch)?",
+    answer: "Not required, but highly encouraged for the Pro Tier. We leverage your existing heart rate variability (HRV) and sleep latency data to refine your recovery blocks. For the DIY Blueprint, our in-app telemetry covers the essential metrics.",
+  },
+  {
+    question: "What happens after the 6-month protocol ends?",
+    answer: "You can graduate to the Maintenance track or pivot to a new equipment-based protocol to continue driving skeletal density and lean mass.",
+  },
 ];
 
 export function FAQ() {
@@ -49,16 +57,6 @@ export function FAQ() {
             <p className="text-muted-foreground mb-6">
               Everything you need to know about working with EverCapable and our approach to lasting transformation.
             </p>
-            <Button
-              variant="outline"
-              asChild
-              data-testid="button-faq-email"
-            >
-              <a href="mailto:hello@evercapable.com" className="gap-2">
-                <Mail className="w-4 h-4" />
-                Send e-mail
-              </a>
-            </Button>
           </div>
 
           <Accordion type="single" collapsible data-testid="accordion-faq">

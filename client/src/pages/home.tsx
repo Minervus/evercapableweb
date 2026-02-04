@@ -3,6 +3,8 @@ import { Hero } from "@/components/Hero";
 import { Method } from "@/components/Method";
 import { DataSection } from "@/components/DataSection";
 import { Coach } from "@/components/Coach";
+import { BlueprintSection } from "@/components/BlueprintSection";
+import { ProCoachingSection } from "@/components/ProCoachingSection";
 import { Pricing } from "@/components/Pricing";
 import { Guarantee } from "@/components/Guarantee";
 import { Process } from "@/components/Process";
@@ -19,6 +21,8 @@ export default function Home() {
         <Method />
         <DataSection />
         <Coach />
+        <BlueprintSection />
+        <ProCoachingSection />
         <Pricing />
         <Guarantee />
         <Process />

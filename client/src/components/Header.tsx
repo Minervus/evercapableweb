@@ -1,13 +1,25 @@
 import { useState } from "react";
-import { Menu, X, Instagram, Youtube, Globe, Mail } from "lucide-react";
+import { Menu, X, Instagram, Youtube, Globe, Mail, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { AnimatePresence, motion } from "framer-motion";
 import logoIconDark from "@assets/icon-on-black_1768604893518.png";
 import logoIconLight from "@assets/icon-on-white_1768604893518.png";
 
-const navLinks = [
+type NavLink =
+  | { href: string; label: string; submenu?: never }
+  | { label: string; submenu: { href: string; label: string }[]; href?: never };
+
+const navLinks: NavLink[] = [
   { href: "#method", label: "The Method" },
-  { href: "#programs", label: "Programs" },
+  { href: "#coach", label: "About" },
+  {
+    label: "Programs",
+    submenu: [
+      { href: "#blueprint", label: "Self-Led Blueprint" },
+      { href: "#pro-coaching", label: "Pro Coaching" },
+    ]
+  },
+  { href: "#programs", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -20,6 +32,7 @@ const socialLinks = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
 
   const scrollToSection = (href: string) => {
     if (href === "#") {
@@ -30,21 +43,17 @@ export function Header() {
         element.scrollIntoView({ behavior: "smooth" });
       }
     }
-    setIsMenuOpen(false);
-  };
-
-  const scrollToContact = () => {
-    const element = document.querySelector("#contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMenuOpen(false);
+    // Close menu after a small delay to ensure scroll starts
+    setTimeout(() => {
+      setIsMenuOpen(false);
+      setExpandedSubmenu(null);
+    }, 100);
   };
 
   return (
     <header className="fixed top-4 left-4 md:left-6 z-50">
-      <div 
-        className="bg-secondary/95 backdrop-blur-md overflow-hidden"
+      <div
+        className="bg-white/95 dark:bg-black/95 backdrop-blur-md overflow-hidden"
         style={{
           borderRadius: isMenuOpen ? '16px' : '9999px',
           padding: isMenuOpen ? '24px' : '8px 16px',
@@ -62,21 +71,21 @@ export function Header() {
             className="flex items-center gap-2"
             data-testid="link-logo"
           >
-            <img 
-              src={logoIconDark} 
-              alt="EverCapable" 
-              className="h-6 w-auto hidden dark:block" 
+            <img
+              src={logoIconDark}
+              alt="EverCapable"
+              className="h-6 w-auto hidden dark:block"
             />
-            <img 
-              src={logoIconLight} 
-              alt="EverCapable" 
-              className="h-6 w-auto block dark:hidden" 
+            <img
+              src={logoIconLight}
+              alt="EverCapable"
+              className="h-6 w-auto block dark:hidden"
             />
-            <span className="text-lg font-bold text-foreground tracking-tight">
+            <span className="text-lg font-bold text-zinc-900 dark:text-white tracking-tight">
               EverCapable
             </span>
           </a>
-          
+
           <div className="flex items-center gap-1">
             {!isMenuOpen && <ThemeToggle testId="button-theme-toggle" />}
             <button
@@ -86,9 +95,9 @@ export function Header() {
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMenuOpen ? (
-                <X className="w-5 h-5 text-foreground" />
+                <X className="w-5 h-5 text-zinc-900 dark:text-white" />
               ) : (
-                <Menu className="w-5 h-5 text-foreground" />
+                <Menu className="w-5 h-5 text-zinc-900 dark:text-white" />
               )}
             </button>
           </div>
@@ -104,23 +113,44 @@ export function Header() {
               className="overflow-hidden"
             >
               <nav className="mt-6 flex flex-col gap-4">
-                {navLinks.map((link, index) => (
-                  <button
-                    key={link.href}
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-2xl font-semibold text-foreground text-left hover:text-primary transition-colors"
-                    data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    {link.label}
-                  </button>
+                {navLinks.map((link) => (
+                  <div key={link.label}>
+                    {link.submenu ? (
+                      <>
+                        <button
+                          onClick={() => setExpandedSubmenu(expandedSubmenu === link.label ? null : link.label)}
+                          className="text-2xl font-semibold text-zinc-900 dark:text-white text-left hover:text-orange-600 dark:hover:text-orange-500 transition-colors flex items-center gap-2 w-full"
+                          data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                        >
+                          {link.label}
+                          <ChevronDown className={`w-5 h-5 transition-transform ${expandedSubmenu === link.label ? 'rotate-180' : ''}`} />
+                        </button>
+                        {expandedSubmenu === link.label && (
+                          <div className="ml-4 mt-3 flex flex-col gap-3">
+                            {link.submenu.map((sublink) => (
+                              <button
+                                key={sublink.href}
+                                onClick={() => scrollToSection(sublink.href)}
+                                className="text-lg font-medium text-zinc-700 dark:text-zinc-300 text-left hover:text-orange-600 dark:hover:text-orange-500 transition-colors"
+                                data-testid={`link-nav-${sublink.label.toLowerCase().replace(/\s+/g, '-')}`}
+                              >
+                                {sublink.label}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    ) : link.href ? (
+                      <button
+                        onClick={() => scrollToSection(link.href)}
+                        className="text-2xl font-semibold text-zinc-900 dark:text-white text-left hover:text-orange-600 dark:hover:text-orange-500 transition-colors"
+                        data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                      >
+                        {link.label}
+                      </button>
+                    ) : null}
+                  </div>
                 ))}
-                <button
-                  onClick={scrollToContact}
-                  className="text-2xl font-semibold text-primary text-left hover:text-primary/80 transition-colors"
-                  data-testid="link-nav-apply"
-                >
-                  Apply for Coaching
-                </button>
               </nav>
 
               <div className="mt-6 pt-4 border-t border-border">
