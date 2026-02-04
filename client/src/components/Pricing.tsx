@@ -54,7 +54,14 @@ export function Pricing() {
   const scrollToContact = () => {
     const element = document.querySelector("#contact");
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const headerOffset = 100; // Account for fixed header + padding
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementTop - headerOffset;
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: "smooth"
+      });
     }
   };
 
@@ -69,7 +76,7 @@ export function Pricing() {
   };
 
   return (
-    <section id="programs" className="py-16 md:py-24 bg-background scroll-mt-20">
+    <section id="pricing" className="py-16 md:py-24 bg-background scroll-mt-20">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

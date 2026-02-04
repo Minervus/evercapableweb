@@ -24,7 +24,14 @@ export function Footer() {
     } else {
       const element = document.querySelector(href);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        const headerOffset = 100; // Account for fixed header + padding
+        const elementTop = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementTop - headerOffset;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: "smooth"
+        });
       }
     }
   };
