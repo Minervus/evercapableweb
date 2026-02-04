@@ -4,7 +4,7 @@ import pnLogo from "@assets/PN_coach_logo_1768606213043.jpeg";
 
 export function Coach() {
   return (
-    <section id="coach" className="py-20 md:py-32 bg-background">
+    <section id="coach" className="py-20 md:py-32 bg-background scroll-mt-20">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2
@@ -64,8 +64,9 @@ export function Coach() {
               data-testid="text-coach-training"
               className="text-foreground font-medium"
             >
-              I stopped training for the mirror and started training for the
-              next 40 years.
+              I stopped training for the mirror and started training for{" "}
+              <strong>Skeletal Loading</strong> and{" "}
+              <strong>Long-term Longevity</strong>—the next 40 years.
             </p>
 
             <p data-testid="text-coach-evercapable">
@@ -82,7 +83,9 @@ export function Coach() {
 
             <p data-testid="text-coach-mission">
               Now, my mission is to help other millennials and dads stop the
-              guesswork. No more 2-hour gym grinds or crash diets.
+              guesswork. No more 2-hour gym grinds or crash diets. This is about a{" "}
+              <strong>Data-Driven</strong> approach to your{" "}
+              <strong>Biological Trajectory</strong>.
             </p>
 
             <p
