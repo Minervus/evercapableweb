@@ -7,45 +7,42 @@ import { motion } from "framer-motion";
 
 const programs = [
   {
-    name: "The Self-Led Blueprint",
+    name: "The Blueprint Protocol",
     monthlyPrice: 99,
     sixMonthPrice: 499,
     sixMonthSavings: 95,
-    goal: "DIY access to the system.",
+    goal: "Full 6-Stage Autonomous Execution.",
     commitment: "Month-to-month",
-    scarcityBox: "COHORT 01: 80% CAPACITY",
+    scarcityBox: "STAGE_01_OPEN",
     features: [
-      { name: "Habit Layering Curriculum", included: true },
-      { name: "Custom Workout Protocol", included: true },
-      { name: "Progress Tracking App", included: true },
-      { name: "Digital Setup Only", included: false },
-      { name: "No Data Analysis", included: false },
-      { name: "Self-Adjusted", included: false },
-      { name: "No Coach Access", included: false },
-      { name: "No Guarantee", included: false },
+      { name: "24-Week / 6-Stage Progression Cycle", included: true },
+      { name: "Modular Training (Full Gym / Home / Bodyweight)", included: true },
+      { name: "Metabolic Nutrition & Fueling Protocols", included: true },
+      { name: "In-App Telemetry & Bio-Data Tracking", included: true },
+      { name: "Automated Monthly 'Promotion' Audits", included: true },
+      { name: "Lifetime Access to the EverCapable Community", included: true },
+      { name: "1-on-1 Data Audits (PRO ONLY)", included: "pro-only" },
     ],
     popular: false,
-    cta: "Get the App",
+    cta: "INITIATE_PROTOCOL",
   },
   {
-    name: "The Collaborative Pro",
+    name: "The Pro Protocol",
     monthlyPrice: 499,
     sixMonthPrice: 2499,
     sixMonthSavings: 495,
-    goal: "A guaranteed result.",
+    goal: "1-on-1 Strategic Bio-Data Partnership.",
     commitment: "6-Month Partnership",
     features: [
-      { name: "Habit Layering Curriculum", included: true },
-      { name: "Custom Workout Protocol", included: true },
-      { name: "Progress Tracking App", included: true },
-      { name: "60-Min Strategy Kickoff", included: true },
-      { name: "Fortnightly Video Audits", included: true },
-      { name: "Expert Plan Refinement", included: true },
-      { name: "Priority Private Messaging", included: true },
-      { name: "THE FOREVER GUARANTEE", included: "star" },
+      { name: "Everything in the Blueprint Protocol", included: true },
+      { name: "Fortnightly Technical Loom Briefings", included: true },
+      { name: "Full HRV & Wearable Data Integration", included: true },
+      { name: "Real-Time Protocol Calibration", included: true },
+      { name: "Priority Private Messaging (Direct Access)", included: true },
+      { name: "THE FOREVER GUARANTEE: WE HIT YOUR 6-MONTH GOAL OR I WORK FOR FREE UNTIL WE DO", included: "star" },
     ],
     popular: true,
-    cta: "Apply for Pro Coaching",
+    cta: "APPLY_FOR_PRO_PROTOCOL",
   },
 ];
 
@@ -69,10 +66,13 @@ export function Pricing() {
     if (included === "star") {
       return <Star className="w-5 h-5 text-yellow-500 fill-yellow-500 flex-shrink-0" />;
     }
+    if (included === "pro-only") {
+      return <div className="w-5 h-5 flex-shrink-0" />; // Empty space for alignment
+    }
     if (included) {
       return <Check className="w-5 h-5 text-green-500 flex-shrink-0" />;
     }
-    return <X className="w-5 h-5 text-red-500 flex-shrink-0" />;
+    return null; // Don't render X marks
   };
 
   return (
@@ -85,23 +85,23 @@ export function Pricing() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <p className="mb-2 text-[18px] font-medium text-[#f97015]">
-            Programs
+          <p className="mb-2 text-sm text-orange-500 font-mono uppercase tracking-wider">
+            // PROTOCOL_SELECTION
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Signature Programs
+            Protocol Selection
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Choose the level of support that fits your goals and lifestyle.
           </p>
 
           <div className="flex items-center justify-center gap-4 mt-8" data-testid="pricing-toggle">
-            <span className={`text-sm font-medium transition-colors duration-300 ${!isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
+            <span className={`text-sm font-mono transition-colors duration-300 ${!isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
               Monthly
             </span>
             <button
               onClick={() => setIsAnnual(!isAnnual)}
-              className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${isAnnual ? 'bg-primary' : 'bg-muted'
+              className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${isAnnual ? 'bg-orange-500' : 'bg-muted'
                 }`}
               data-testid="button-pricing-toggle"
               aria-label="Toggle pricing period"
@@ -111,7 +111,7 @@ export function Pricing() {
                   }`}
               />
             </button>
-            <span className={`text-sm font-medium transition-colors duration-300 ${isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
+            <span className={`text-sm font-mono transition-colors duration-300 ${isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
               6-Month Commitment
               <Badge variant="secondary" className="ml-2 text-xs">Save 17%</Badge>
             </span>
@@ -128,22 +128,22 @@ export function Pricing() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card
-                className={`relative flex flex-col h-full ${program.popular ? "border-primary border-2" : ""
+                className={`relative flex flex-col h-full ${program.popular ? "border-2 border-orange-500" : ""
                   }`}
                 data-testid={`card-pricing-${index}`}
               >
                 {program.popular && (
-                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 font-mono bg-orange-500">
                     Recommended
                   </Badge>
                 )}
                 {program.scarcityBox && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider whitespace-nowrap">
-                    Status: Beta Phase • {program.scarcityBox}
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider whitespace-nowrap font-mono">
+                    STATUS: ACTIVE // {program.scarcityBox}
                   </div>
                 )}
                 <CardHeader className="pb-4">
-                  <h3 className="text-xl font-bold text-foreground" data-testid={`text-program-name-${index}`}>
+                  <h3 className="text-xl font-bold text-foreground font-mono" data-testid={`text-program-name-${index}`}>
                     {program.name}
                   </h3>
                   <div className="flex items-baseline gap-1 mt-2">
@@ -170,26 +170,33 @@ export function Pricing() {
                   </p>
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col">
-                  <p className="text-sm font-semibold text-foreground mb-4">
-                    What's included
+                  <p className="text-sm font-semibold text-foreground mb-4 font-mono">
+                    // SPECS
                   </p>
                   <ul className="space-y-3 flex-1">
                     {program.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
                         {renderIcon(feature.included)}
-                        <span className={`text-sm ${feature.included === "star"
-                          ? "text-yellow-500 font-semibold"
-                          : feature.included
-                            ? "text-foreground"
-                            : "text-muted-foreground"
-                          }`}>
+                        <span className={`text-sm ${
+                          feature.included === "star"
+                            ? "text-yellow-500 font-semibold"
+                            : feature.included === "pro-only"
+                              ? "text-muted-foreground/60 line-through"
+                              : feature.included
+                                ? "text-foreground"
+                                : "text-muted-foreground"
+                        }`}>
                           {feature.name}
                         </span>
                       </li>
                     ))}
                   </ul>
                   <Button
-                    className="mt-6 w-full"
+                    className={`mt-6 w-full font-mono font-bold tracking-wider ${
+                      program.popular 
+                        ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500" 
+                        : "border-zinc-300"
+                    }`}
                     variant={program.popular ? "default" : "outline"}
                     onClick={scrollToContact}
                     data-testid={`button-program-${index}`}
