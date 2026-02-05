@@ -143,7 +143,7 @@ export function Process() {
               <CardHeader className="pb-6">
                 <div className="flex items-center gap-3">
                   <h3 className="text-xl font-bold text-foreground">
-                    The Collaborative Pro
+                    The Pro Protocol
                   </h3>
                   <Badge variant="secondary" className="text-xs">
                     High-Touch

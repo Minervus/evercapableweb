@@ -76,7 +76,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-black scroll-mt-20">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-[1000px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,8 +84,8 @@ export function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <p className="text-sm text-zinc-500 mb-2 font-mono uppercase tracking-wider">
-            // APPLICATION
+          <p className="text-sm text-orange-500 mb-2 font-mono uppercase tracking-wider">
+            // INITIATE_PRO_PROTOCOL_APPLICATION
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Apply for the Pro Protocol

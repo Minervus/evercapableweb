@@ -65,7 +65,7 @@ export function Header() {
   return (
     <header className="fixed top-4 left-4 md:left-6 z-50">
       <div
-        className="bg-white/95 dark:bg-black/95 backdrop-blur-md overflow-hidden"
+        className="bg-white/95 dark:bg-black backdrop-blur-md overflow-hidden"
         style={{
           borderRadius: isMenuOpen ? '16px' : '9999px',
           padding: isMenuOpen ? '24px' : '8px 16px',

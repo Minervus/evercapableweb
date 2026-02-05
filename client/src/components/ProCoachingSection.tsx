@@ -49,7 +49,7 @@ export function ProCoachingSection() {
                     >
                         <div className="mb-10">
                             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-6 leading-tight">
-                                The Pro Experience: <br />
+                                The Pro Protocol: <br />
                                 <span className="text-orange-600">Elite Partnership.</span>
                             </h2>
                             <p className="text-lg text-zinc-600 leading-relaxed font-medium">
@@ -83,9 +83,9 @@ export function ProCoachingSection() {
                             <Button
                                 onClick={scrollToContact}
                                 size="lg"
-                                className="bg-white hover:bg-zinc-50 text-zinc-900 border-2 border-zinc-900 font-bold px-10 py-7 text-lg w-full sm:w-auto rounded-none tracking-wide transition-all shadow-sm hover:shadow-md"
+                                className="bg-white hover:bg-zinc-50 text-zinc-900 border-2 border-zinc-900 font-bold px-10 py-7 text-lg w-full sm:w-auto rounded-none tracking-wide transition-all shadow-sm hover:shadow-md font-mono"
                             >
-                                APPLY_FOR_COACHING <ArrowRight className="ml-3 w-5 h-5" />
+                                APPLY_FOR_PRO_PROTOCOL <ArrowRight className="ml-3 w-5 h-5" />
                             </Button>
                             <span className="text-zinc-500 text-sm font-medium">
                                 Limited to 10 active clients to ensure maximum protocol fidelity.
