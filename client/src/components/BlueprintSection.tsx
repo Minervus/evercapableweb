@@ -76,7 +76,7 @@ export function BlueprintSection() {
         target: timelineRef,
         offset: ["start end", "end start"]
     });
-    
+
     const lineProgress = useTransform(scrollYProgress, [0, 1], [0, 100]);
     const lineProgressPercent = useTransform(lineProgress, (v) => `${v}%`);
 
@@ -149,10 +149,10 @@ export function BlueprintSection() {
                             The Blueprint Protocol
                         </h3>
                         <p className="text-orange-500/80 text-lg md:text-xl mb-6 font-mono">
-                            A 24-week, 6-stage biological promotion cycle. Move from Calibration to Mastery.
+                            A 24-week path to physical mastery. Move through 6 stages of progress, from your initial baseline to total autonomy.
                         </p>
                         <p className="text-zinc-400 text-lg leading-relaxed mb-4">
-                            Every 30 days, your telemetry is audited against the stage-gate requirements. Upon completion, you are automatically promoted to the next version of the Protocol, introducing higher-fidelity training stimulus and refined nutritional targets.
+                            Every 30 days, we audit your health data against clear performance milestones. Once you hit them, you’re promoted to the next stage, unlocking upgraded training and nutrition targets designed for your new level of fitness.
                         </p>
                     </motion.div>
                 </div>
@@ -175,13 +175,13 @@ export function BlueprintSection() {
                         {protocolStages.map((stage, i) => {
                             const isFirst = i === 0;
                             const isLast = i === protocolStages.length - 1;
-                            
+
                             return (
                                 <div key={i} className="relative">
                                     {/* 3D Flip Card Container */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true, margin: "-100px" }}
                                         transition={{ duration: 0.6, delay: i * 0.1 }}
                                         className={`card-container ${flippedCards.has(i) ? 'flipped' : ''}`}
@@ -192,7 +192,7 @@ export function BlueprintSection() {
                                         }}
                                     >
                                         {/* Card Inner - 3D Transform */}
-                                        <div 
+                                        <div
                                             className="card-inner relative w-full"
                                             style={{
                                                 transformStyle: 'preserve-3d',
@@ -200,12 +200,11 @@ export function BlueprintSection() {
                                             }}
                                         >
                                             {/* Card Front */}
-                                            <div 
-                                                className={`card-front w-full rounded ${
-                                                    isFirst 
-                                                        ? 'bg-zinc-950 border-2 border-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.3)]' 
-                                                        : 'bg-zinc-950/60 border border-zinc-800 opacity-60 grayscale'
-                                                } border-l-4 border-l-orange-500 p-6 md:p-8 relative`}
+                                            <div
+                                                className={`card-front w-full rounded ${isFirst
+                                                    ? 'bg-zinc-950 border-2 border-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.3)]'
+                                                    : 'bg-zinc-950/60 border border-zinc-800 opacity-60 grayscale'
+                                                    } border-l-4 border-l-orange-500 p-6 md:p-8 relative`}
                                                 style={{
                                                     backfaceVisibility: 'hidden',
                                                     WebkitBackfaceVisibility: 'hidden',
@@ -228,29 +227,27 @@ export function BlueprintSection() {
                                                 <div className="font-mono text-2xl md:text-3xl text-orange-500 mb-2 font-bold">
                                                     {stage.version}
                                                 </div>
-                                                
+
                                                 {/* Stage Number */}
                                                 <div className="font-mono text-sm text-zinc-400 mb-3">
                                                     {stage.stage}
                                                 </div>
-                                                
+
                                                 {/* Stage Title */}
-                                                <h4 className={`text-2xl md:text-3xl font-bold mb-3 ${
-                                                    isFirst ? 'text-white' : 'text-zinc-400'
-                                                }`}>
+                                                <h4 className={`text-2xl md:text-3xl font-bold mb-3 ${isFirst ? 'text-white' : 'text-zinc-400'
+                                                    }`}>
                                                     {stage.title}
                                                 </h4>
-                                                
+
                                                 {/* Technical Description */}
-                                                <p className={`text-sm md:text-base font-mono uppercase tracking-wider ${
-                                                    isFirst ? 'text-zinc-400' : 'text-zinc-600'
-                                                }`}>
+                                                <p className={`text-sm md:text-base font-mono uppercase tracking-wider ${isFirst ? 'text-zinc-400' : 'text-zinc-600'
+                                                    }`}>
                                                     {stage.desc}
                                                 </p>
                                             </div>
 
                                             {/* Card Back - Technical Objective */}
-                                            <div 
+                                            <div
                                                 className="card-back absolute inset-0 w-full bg-black border border-orange-500/50 border-l-4 border-l-orange-500 p-6 md:p-8 rounded"
                                                 style={{
                                                     backfaceVisibility: 'hidden',
@@ -260,12 +257,12 @@ export function BlueprintSection() {
                                             >
                                                 {/* Orange Pulse Glow on Flip */}
                                                 <div className="absolute inset-0 bg-orange-500/10 animate-pulse pointer-events-none rounded" />
-                                                
+
                                                 {/* Technical Objective Header */}
                                                 <div className="font-mono text-sm text-orange-500 mb-4 tracking-tight">
                                                     // TECHNICAL_OBJECTIVE
                                                 </div>
-                                                
+
                                                 {/* Technical Description */}
                                                 <p className="text-zinc-300 text-base md:text-lg leading-relaxed">
                                                     {stage.technicalObjective}
@@ -287,18 +284,18 @@ export function BlueprintSection() {
                                             <div className="relative z-10 flex flex-col items-center">
                                                 {/* Dot Node */}
                                                 <div className="w-3 h-3 rounded-full bg-orange-500 border-2 border-zinc-950" />
-                                                
+
                                                 {/* 45-degree Angled Connector Lines (Circuitry Trace) */}
                                                 <div className="absolute top-3 left-1/2 -translate-x-1/2 flex items-center">
                                                     <div className="w-4 h-0.5 bg-orange-500" />
                                                     <div className="w-3 h-3 bg-orange-500 transform rotate-45 -mx-1.5" />
                                                     <div className="w-4 h-0.5 bg-orange-500" />
                                                 </div>
-                                                
+
                                                 {/* Down Arrow / Flow Icon */}
                                                 <ChevronDown className="w-5 h-5 text-orange-500 mt-3 animate-pulse" />
                                             </div>
-                                </div>
+                                        </div>
                                     )}
                                 </div>
                             );
@@ -318,25 +315,25 @@ export function BlueprintSection() {
                         // THE_INFRASTRUCTURE
                     </h3>
                     <div className="grid md:grid-cols-3 gap-6">
-                    {features.map((feature, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.2 + (i * 0.1) }}
-                            className="bg-zinc-900/30 border border-orange-500/30 p-8 hover:bg-zinc-900/50 hover:border-orange-500/60 transition-all duration-300"
-                        >
-                            <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                                <span className="w-2 h-2 rounded-full bg-orange-500" />
-                                {feature.title}
-                            </h4>
-                            <p className="text-zinc-400 leading-relaxed">
-                                {feature.description}
-                            </p>
-                        </motion.div>
-                    ))}
-                </div>
+                        {features.map((feature, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.2 + (i * 0.1) }}
+                                className="bg-zinc-900/30 border border-orange-500/30 p-8 hover:bg-zinc-900/50 hover:border-orange-500/60 transition-all duration-300"
+                            >
+                                <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
+                                    <span className="w-2 h-2 rounded-full bg-orange-500" />
+                                    {feature.title}
+                                </h4>
+                                <p className="text-zinc-400 leading-relaxed">
+                                    {feature.description}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
                 </motion.div>
 
                 {/* CTA - At Bottom of Pipeline */}

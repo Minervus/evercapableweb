@@ -61,7 +61,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-[-0.02em] mb-6 drop-shadow-lg"
             data-testid="text-hero-headline"
-          >Stop the Sprints. Build a Body That Lasts.</motion.h1>
+          >Stop the Sprints. Build Sustainable Health.</motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}

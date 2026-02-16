@@ -54,8 +54,8 @@ export function DataSection() {
                                     <TrendingUp className="w-6 h-6 text-orange-500" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-white mb-1">Consistency Score</h3>
-                                    <p className="text-zinc-400">Gamify your habits to build streaks that last a lifetime.</p>
+                                    <h3 className="text-xl font-semibold text-white mb-1">Consistency Trends</h3>
+                                    <p className="text-zinc-400">Focus on trends and consistency to build sustainable habits.</p>
                                 </div>
                             </div>
                         </div>

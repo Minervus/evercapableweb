@@ -11,7 +11,7 @@ export function Coach() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4"
             data-testid="text-coach-headline"
           >
-            20 Years of Guessing. 6 Months of Science.
+            20 Years of Guessing vs. 6 Months of Science.
           </h2>
           <p
             className="text-lg text-primary font-medium"
@@ -65,7 +65,7 @@ export function Coach() {
               className="text-foreground font-medium"
             >
               I stopped training for the mirror and started training for{" "}
-              <strong>Skeletal Loading</strong> and{" "}
+              <strong>Sustainability</strong> and{" "}
               <strong>Long-term Longevity</strong>—the next 40 years.
             </p>
 
@@ -84,8 +84,8 @@ export function Coach() {
             <p data-testid="text-coach-mission">
               Now, my mission is to help other millennials and dads stop the
               guesswork. No more 2-hour gym grinds or crash diets. This is about a{" "}
-              <strong>Data-Driven</strong> approach to your{" "}
-              <strong>Biological Trajectory</strong>.
+              <strong>Sustainable Data-Driven</strong> approach to your{" "}
+              <strong>Best Self</strong>.
             </p>
 
             <p
