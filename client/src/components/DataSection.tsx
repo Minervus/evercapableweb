@@ -6,7 +6,7 @@ import mobileOverlay from "@assets/mobile_overlay.png";
 
 export function DataSection() {
     return (
-        <section className="py-20 md:py-28 bg-zinc-900 relative z-20">
+        <section className="py-20 md:py-28 bg-zinc-900 relative z-20 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 items-center">
                     {/* Left Column: Text Content */}
@@ -54,8 +54,8 @@ export function DataSection() {
                                     <TrendingUp className="w-6 h-6 text-orange-500" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-white mb-1">Consistency Score</h3>
-                                    <p className="text-zinc-400">Gamify your habits to build streaks that last a lifetime.</p>
+                                    <h3 className="text-xl font-semibold text-white mb-1">Consistency Trends</h3>
+                                    <p className="text-zinc-400">Focus on trends and consistency to build sustainable habits.</p>
                                 </div>
                             </div>
                         </div>
@@ -76,22 +76,22 @@ export function DataSection() {
                                 className="w-full h-auto object-cover relative z-10 rounded-2xl"
                             />
 
-                            {/* Data Overlay - Spills over Top-Right */}
+                            {/* Data Overlay */}
                             <motion.img
                                 src={dataOverlay}
                                 alt="Data Metrics"
-                                className="absolute -top-[30%] -right-[45%] w-[88%] md:w-[75%] shadow-2xl rounded-xl z-20"
+                                className="absolute -top-[15%] -right-[10%] w-[65%] sm:-right-[20%] md:-top-[30%] md:-right-[35%] lg:-right-[45%] md:w-[75%] shadow-2xl rounded-xl z-20"
                                 initial={{ opacity: 0, y: -40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                             />
 
-                            {/* Mobile Overlay - Spills over Bottom-Left */}
+                            {/* Mobile Overlay */}
                             <motion.img
                                 src={mobileOverlay}
                                 alt="Mobile Workout View"
-                                className="absolute -bottom-[30%] -left-[20%] w-[85%] md:w-[72%] shadow-2xl rounded-[2.5rem] z-30"
+                                className="absolute -bottom-[15%] -left-[5%] w-[55%] sm:-left-[10%] md:-bottom-[30%] md:-left-[15%] lg:-left-[20%] md:w-[72%] shadow-2xl rounded-[1.5rem] md:rounded-[2.5rem] z-30"
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}

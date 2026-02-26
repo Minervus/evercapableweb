@@ -1,22 +1,27 @@
-import { BarChart3, Layers, Brain } from "lucide-react";
+import { Activity, LayoutList, Utensils, ShieldCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 const methodCards = [
   {
-    icon: BarChart3,
-    title: "Objective Data",
-    description: "We don't guess. We analyze your metabolism, bio-feedback, and trends to build a map that actually works.",
+    icon: LayoutList,
+    title: "Habits That Stick",
+    description: "No more yo-yo plans—habits that stick around kids, deadlines, and weekends.",
   },
   {
-    icon: Layers,
-    title: "Habit Layering",
-    description: "We bridge the gap between knowing and doing by layering 1-2 sustainable skills into your life at a time.",
+    icon: Activity,
+    title: "Track What Matters",
+    description: "Track what matters: strength gains, joint health, bloodwork—not just scale weight.",
   },
   {
-    icon: Brain,
-    title: "Performance Mindset",
-    description: "Nutrition that supports your career, your training, and your life—not the other way around.",
+    icon: Utensils,
+    title: "Real-Life Nutrition",
+    description: "Real-life nutrition: travel, nights out, busy schedules.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Built For Longevity",
+    description: "Built for longevity: injury-proof training + recovery focus.",
   },
 ];
 
@@ -37,12 +42,12 @@ export function Method() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             The EverCapable Method
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A systematic approach to building lasting results through science, habits, and mindset.
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            The problem isn't you—it's the plan. Your 30s/40s need sustainable systems, not 6-week punishments.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {methodCards.map((card, index) => (
             <motion.div
               key={index}
@@ -52,12 +57,12 @@ export function Method() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card
-                className="bg-muted/50 dark:bg-zinc-800/80 border-0 h-full"
+                className="bg-muted/50 dark:bg-zinc-800/80 border-0 h-full hover:bg-zinc-800 transition-colors"
                 data-testid={`card-method-${index}`}
               >
                 <CardContent className="p-6 md:p-8">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
-                    <card.icon className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 rounded-lg bg-[#FF9500]/10 flex items-center justify-center mb-6">
+                    <card.icon className="w-6 h-6 text-[#FF9500]" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground mb-3">
                     {card.title}
