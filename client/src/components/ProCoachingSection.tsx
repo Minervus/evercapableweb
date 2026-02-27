@@ -37,8 +37,23 @@ export function ProCoachingSection() {
     };
 
     return (
-        <section id="pro-coaching" className="py-24 bg-white text-zinc-900 border-t border-zinc-100 scroll-mt-20">
-            <div className="max-w-7xl mx-auto px-6">
+        <section id="pro-coaching" className="pt-32 pb-24 bg-white text-zinc-900 relative scroll-mt-20 overflow-hidden">
+            {/* Technical Notch/Slant Divider */}
+            <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] z-0">
+                <svg
+                    className="relative block w-full h-[40px] md:h-[60px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 1200 120"
+                    preserveAspectRatio="none"
+                >
+                    <path
+                        d="M1200 0L0 0 0 120 1200 0z"
+                        className="fill-[#0A0A0B]"
+                    ></path>
+                </svg>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                     {/* Left Column: Content */}
                     <motion.div

@@ -70,15 +70,7 @@ const features = [
 ];
 
 export function BlueprintSection() {
-    const timelineRef = useRef<HTMLDivElement>(null);
     const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
-    const { scrollYProgress } = useScroll({
-        target: timelineRef,
-        offset: ["start end", "end start"]
-    });
-
-    const lineProgress = useTransform(scrollYProgress, [0, 1], [0, 100]);
-    const lineProgressPercent = useTransform(lineProgress, (v) => `${v}%`);
 
     const handleCardFlip = (index: number) => {
         setFlippedCards(prev => {
@@ -93,7 +85,7 @@ export function BlueprintSection() {
     };
 
     return (
-        <section id="blueprint" className="py-24 bg-zinc-950 text-white border-t border-zinc-900 scroll-mt-20 relative overflow-hidden">
+        <section id="blueprint" className="py-24 bg-[#0A0A0B] text-white scroll-mt-20 relative overflow-hidden">
             {/* 3D Flip Card Styles */}
             <style>{`
                 .card-container {
@@ -124,18 +116,18 @@ export function BlueprintSection() {
                 }
             `}</style>
 
-            {/* Subtle Grid Background */}
-            <div className="absolute inset-0 opacity-5" style={{
+            {/* Architectural Grid Background Overlay */}
+            <div className="absolute inset-0 z-0 pointer-events-none" style={{
                 backgroundImage: `
-                    linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
+                    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
                 `,
-                backgroundSize: '40px 40px'
+                backgroundSize: '100px 100px'
             }} />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 {/* Header */}
-                <div className="mb-16 md:mb-24 max-w-3xl">
+                <div className="mb-16 md:mb-24 max-w-3xl text-center md:text-left mx-auto md:mx-0">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -143,48 +135,47 @@ export function BlueprintSection() {
                         transition={{ duration: 0.5 }}
                     >
                         <h2 className="font-mono text-orange-500 text-lg md:text-xl mb-4 tracking-tight">
-              // THE_BLUEPRINT_PROTOCOL
+              // THE_BLUEPRINT_GRID
                         </h2>
                         <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
                             The Blueprint Protocol
                         </h3>
-                        <p className="text-orange-500/80 text-lg md:text-xl mb-6 font-mono">
-                            A 24-week path to physical mastery. Move through 6 stages of progress, from your initial baseline to total autonomy.
+                        <p className="text-orange-500/80 text-lg md:text-xl mb-4 font-mono">
+                            A 24-week, 6-stage path to physical mastery.
                         </p>
                         <p className="text-zinc-400 text-lg leading-relaxed mb-4">
-                            Every 30 days, we audit your health data against clear performance milestones. Once you hit them, you’re promoted to the next stage, unlocking upgraded training and nutrition targets designed for your new level of fitness.
+                            Every 30 days, we audit your stats against clear milestones. Hit your targets, and the system automatically upgrades your protocol—unlocking sharper training and refined fueling for the next level.
                         </p>
                     </motion.div>
                 </div>
 
-                {/* Vertical Technical Pipeline */}
-                <div ref={timelineRef} className="relative mb-24">
-                    {/* Vertical Pipeline Line (2px, orange) - Behind cards */}
-                    <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 z-0" style={{ width: '2px' }}>
-                        <div className="absolute inset-0 bg-zinc-800/30" />
-                        <motion.div
-                            className="absolute top-0 left-0 w-full h-full bg-orange-500 origin-top"
-                            style={{
-                                height: lineProgressPercent,
-                            }}
-                        />
-                    </div>
+                {/* Grid Execution Flow Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-8 font-mono text-zinc-400 uppercase tracking-widest text-sm text-center md:text-left"
+                >
+                    // SYSTEM_EXECUTION_FLOW
+                </motion.div>
 
-                    {/* Single Vertical Column - Centered */}
-                    <div className="max-w-2xl mx-auto space-y-8 relative z-10">
+                {/* 3x2 Grid Pipeline */}
+                <div className="relative mb-24 max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
                         {protocolStages.map((stage, i) => {
                             const isFirst = i === 0;
                             const isLast = i === protocolStages.length - 1;
+                            const isRowEnd = (i + 1) % 3 === 0;
 
                             return (
-                                <div key={i} className="relative">
+                                <div key={i} className="relative flex flex-col h-full">
                                     {/* 3D Flip Card Container */}
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: "-100px" }}
+                                        viewport={{ once: true, margin: "-50px" }}
                                         transition={{ duration: 0.6, delay: i * 0.1 }}
-                                        className={`card-container ${flippedCards.has(i) ? 'flipped' : ''}`}
+                                        className={`card-container h-full flex-grow ${flippedCards.has(i) ? 'flipped' : ''}`}
                                         onClick={() => handleCardFlip(i)}
                                         style={{
                                             perspective: '1000px',
@@ -193,7 +184,7 @@ export function BlueprintSection() {
                                     >
                                         {/* Card Inner - 3D Transform */}
                                         <div
-                                            className="card-inner relative w-full"
+                                            className="card-inner relative w-full h-full min-h-[280px]"
                                             style={{
                                                 transformStyle: 'preserve-3d',
                                                 transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -201,54 +192,39 @@ export function BlueprintSection() {
                                         >
                                             {/* Card Front */}
                                             <div
-                                                className={`card-front w-full rounded ${isFirst
-                                                    ? 'bg-zinc-950 border-2 border-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.3)]'
-                                                    : 'bg-zinc-950/60 border border-zinc-800 opacity-60 grayscale'
-                                                    } border-l-4 border-l-orange-500 p-6 md:p-8 relative`}
+                                                className={`card-front absolute inset-0 w-full h-full rounded ${isFirst
+                                                    ? 'bg-white/[0.03] border-2 border-orange-500 shadow-[0_20px_40px_rgba(0,0,0,0.6)]'
+                                                    : isLast ? 'bg-white/[0.03] border border-orange-500/50 shadow-[#FF9500]/20 shadow-[0_0_15px] animate-pulse-slow' : 'bg-white/[0.03] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.4)] backdrop-blur-sm'
+                                                    } p-6 relative flex flex-col`}
                                                 style={{
                                                     backfaceVisibility: 'hidden',
                                                     WebkitBackfaceVisibility: 'hidden',
                                                 }}
                                             >
-                                                {/* Locked Badge - Top Right */}
-                                                {!isFirst && (
-                                                    <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-zinc-900/80 border border-zinc-700 px-3 py-1.5 rounded z-20">
-                                                        <Lock className="w-3 h-3 text-zinc-500" />
-                                                        <span className="text-zinc-500 text-xs font-mono">LOCKED // REQUIRES_PREVIOUS_STAGE</span>
-                                                    </div>
-                                                )}
-
-                                                {/* Month Marker - At Top */}
-                                                <div className="font-mono text-sm md:text-base text-orange-500/80 mb-3 tracking-widest">
-                                                    {stage.month}
-                                                </div>
-
-                                                {/* Version Tag */}
-                                                <div className="font-mono text-2xl md:text-3xl text-orange-500 mb-2 font-bold">
+                                                {/* Version Tag (Top Right) */}
+                                                <div className={`absolute top-4 right-4 font-mono text-sm md:text-base font-bold px-2 py-1 rounded ${isFirst ? 'bg-orange-500 text-black' : 'bg-white/5 text-orange-500'}`}>
                                                     {stage.version}
                                                 </div>
 
-                                                {/* Stage Number */}
-                                                <div className="font-mono text-sm text-zinc-400 mb-3">
-                                                    {stage.stage}
+                                                {/* Month Marker */}
+                                                <div className="font-mono text-xs md:text-sm text-orange-500/80 mb-2 tracking-widest mt-1">
+                                                    {stage.month}
                                                 </div>
 
                                                 {/* Stage Title */}
-                                                <h4 className={`text-2xl md:text-3xl font-bold mb-3 ${isFirst ? 'text-white' : 'text-zinc-400'
-                                                    }`}>
+                                                <h4 className={`text-xl md:text-2xl font-bold mb-2 mt-auto ${isFirst || isLast ? 'text-white' : 'text-zinc-300'}`}>
                                                     {stage.title}
                                                 </h4>
 
                                                 {/* Technical Description */}
-                                                <p className={`text-sm md:text-base font-mono uppercase tracking-wider ${isFirst ? 'text-zinc-400' : 'text-zinc-600'
-                                                    }`}>
+                                                <p className={`text-xs md:text-sm font-mono uppercase tracking-wider leading-relaxed ${isFirst || isLast ? 'text-zinc-400' : 'text-zinc-500'}`}>
                                                     {stage.desc}
                                                 </p>
                                             </div>
 
                                             {/* Card Back - Technical Objective */}
                                             <div
-                                                className="card-back absolute inset-0 w-full bg-black border border-orange-500/50 border-l-4 border-l-orange-500 p-6 md:p-8 rounded"
+                                                className={`card-back absolute inset-0 w-full h-full bg-black border ${isLast ? 'border-orange-500 shadow-[#FF9500]/30 shadow-[0_0_20px]' : 'border-orange-500/50'} p-6 rounded flex flex-col`}
                                                 style={{
                                                     backfaceVisibility: 'hidden',
                                                     WebkitBackfaceVisibility: 'hidden',
@@ -256,44 +232,52 @@ export function BlueprintSection() {
                                                 }}
                                             >
                                                 {/* Orange Pulse Glow on Flip */}
-                                                <div className="absolute inset-0 bg-orange-500/10 animate-pulse pointer-events-none rounded" />
+                                                <div className="absolute inset-0 bg-orange-500/5 pointer-events-none rounded" />
 
                                                 {/* Technical Objective Header */}
-                                                <div className="font-mono text-sm text-orange-500 mb-4 tracking-tight">
+                                                <div className="font-mono text-xs text-orange-500 mb-3 tracking-tight">
                                                     // TECHNICAL_OBJECTIVE
                                                 </div>
 
                                                 {/* Technical Description */}
-                                                <p className="text-zinc-300 text-base md:text-lg leading-relaxed">
+                                                <p className="text-zinc-300 text-sm md:text-base leading-relaxed flex-grow overflow-y-auto pr-2 custom-scrollbar">
                                                     {stage.technicalObjective}
                                                 </p>
                                             </div>
                                         </div>
                                     </motion.div>
 
-                                    {/* Connector Line with Flow Icon */}
-                                    {!isLast && (
-                                        <div className="relative flex items-center justify-center py-4">
-                                            {/* Vertical Connector Line (2px width, orange) */}
-                                            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 z-0" style={{ width: '2px' }}>
-                                                <div className="absolute inset-0 bg-zinc-800/30" />
-                                                <div className="absolute top-0 left-0 w-full h-full bg-orange-500" />
-                                            </div>
+                                    {/* Desktop Snaking Connectors */}
+                                    {/* Horizontal Line to Right (Stages 1, 2, 4, 5) */}
+                                    {!isLast && !isRowEnd && (
+                                        <div className="hidden md:block absolute top-1/2 -right-4 md:-right-8 w-4 md:w-8 h-[2px] bg-orange-500/50 z-0">
+                                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 border-orange-500 transform rotate-45" />
+                                        </div>
+                                    )}
 
-                                            {/* Circuitry Trace Pattern - Dot and Line */}
-                                            <div className="relative z-10 flex flex-col items-center">
-                                                {/* Dot Node */}
-                                                <div className="w-3 h-3 rounded-full bg-orange-500 border-2 border-zinc-950" />
+                                    {/* Carriage Return Connector (Stage 3 to 4) */}
+                                    {i === 2 && (
+                                        <>
+                                            {/* Short drop down from Stage 3 */}
+                                            <div className="hidden md:block absolute -bottom-4 right-1/2 w-[2px] h-4 bg-orange-500/50 z-0" />
 
-                                                {/* 45-degree Angled Connector Lines (Circuitry Trace) */}
-                                                <div className="absolute top-3 left-1/2 -translate-x-1/2 flex items-center">
-                                                    <div className="w-4 h-0.5 bg-orange-500" />
-                                                    <div className="w-3 h-3 bg-orange-500 transform rotate-45 -mx-1.5" />
-                                                    <div className="w-4 h-0.5 bg-orange-500" />
+                                            {/* Long horizontal line from Stage 3 to Stage 4 */}
+                                            <div className="hidden md:block absolute -bottom-4 right-1/2 w-[calc(200%+4rem)] h-[2px] bg-orange-500/50 z-0" />
+
+                                            {/* Short drop down into Stage 4 */}
+                                            <div className="hidden md:block absolute -bottom-8 right-[calc(50%+200%+4rem)] w-[2px] h-4 bg-orange-500/50 z-0">
+                                                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center justify-center">
+                                                    <ChevronDown className="w-4 h-4 text-orange-500 translate-y-3/4" />
                                                 </div>
+                                            </div>
+                                        </>
+                                    )}
 
-                                                {/* Down Arrow / Flow Icon */}
-                                                <ChevronDown className="w-5 h-5 text-orange-500 mt-3 animate-pulse" />
+                                    {/* Mobile Vertical Connectors */}
+                                    {!isLast && (
+                                        <div className="md:hidden flex justify-center py-3">
+                                            <div className="w-[2px] h-6 bg-orange-500/50 flex items-end justify-center">
+                                                <ChevronDown className="w-4 h-4 text-orange-500 transform translate-y-2" />
                                             </div>
                                         </div>
                                     )}
