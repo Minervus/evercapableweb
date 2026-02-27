@@ -1,9 +1,35 @@
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import heroImage from "@assets/alexander-red-qo1pyCD02t4-unsplash_1768606692957.jpg";
 
+const BACKGROUND_VIDEOS = [
+  "https://evercapable-s3-bucket.s3.us-east-1.amazonaws.com/videos/6389831-uhd_3840_2160_25fps.mp4",
+  "https://evercapable-s3-bucket.s3.us-east-1.amazonaws.com/videos/6390166-uhd_3840_2160_25fps.mp4",
+  "https://evercapable-s3-bucket.s3.us-east-1.amazonaws.com/videos/5320001-uhd_3840_2160_25fps.mp4",
+  "https://evercapable-s3-bucket.s3.us-east-1.amazonaws.com/videos/4069096-uhd_3840_2160_30fps.mp4",
+];
+
 export function Hero() {
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const interval = setInterval(() => {
+      setActiveVideoIndex((prev) => (prev + 1) % BACKGROUND_VIDEOS.length);
+    }, 6000); // 6 seconds per video
+    return () => clearInterval(interval);
+  }, [prefersReducedMotion]);
   const scrollToContact = () => {
     const element = document.querySelector("#contact");
     if (element) {
@@ -33,15 +59,64 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[80vh] md:min-h-screen overflow-hidden flex flex-col justify-center items-center">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110 md:scale-105"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 100%)' }}
-      />
+    <section className="relative min-h-[80vh] md:min-h-screen overflow-hidden flex flex-col justify-center items-center bg-black">
+      <style>{`
+        .hero-video-container {
+          position: absolute;
+          top: 0; left: 0; width: 100%; height: 100%;
+          overflow: hidden;
+          background: #000; /* Fallback */
+          z-index: 0;
+        }
+        .hero-video-overlay {
+          position: absolute;
+          top: 0; left: 0; width: 100%; height: 100%;
+          z-index: 2;
+          background-image: 
+            radial-gradient(rgba(255, 102, 0, 0.08) 1px, transparent 1px),
+            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.95) 100%);
+          background-size: 40px 40px, 100% 4px, 100% 100%;
+          pointer-events: none;
+        }
+      `}</style>
+
+      {/* Background Video / Image Container */}
+      <div className="hero-video-container">
+        {!prefersReducedMotion ? (
+          <AnimatePresence initial={false}>
+            {BACKGROUND_VIDEOS.map((src, index) => (
+              index === activeVideoIndex && (
+                <motion.video
+                  key={src}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 2, ease: "easeInOut" }} // 2-second crossfade
+                  className="absolute inset-0 w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  poster={index === 0 ? heroImage : undefined}
+                >
+                  <source src={src} type="video/mp4" />
+                </motion.video>
+              )
+            ))}
+          </AnimatePresence>
+        ) : (
+          <div
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          />
+        )}
+      </div>
+
+      {/* The Technical HUD Overlay */}
+      <div className="hero-video-overlay" />
+
+      {/* Ensure text container uses relative z-10 so it stays above the z-index: 2 overlay */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full pt-28 pb-16 md:pb-24 px-6 md:px-0">
         <div className="w-full max-w-[800px] text-center mx-auto">
           <motion.div
@@ -81,7 +156,7 @@ export function Hero() {
               <Button
                 onClick={scrollToContact}
                 size="lg"
-                className="gap-2 bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none w-full sm:w-auto min-w-[250px] min-h-[56px] text-[20px] rounded-full shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all font-semibold"
+                className="gap-2 bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none w-full sm:w-auto min-w-[250px] min-h-[56px] text-[20px] rounded-full shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all font-semibold font-mono"
                 data-testid="button-hero-cta-primary"
               >
                 See If Coaching Fits You
