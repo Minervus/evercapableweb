@@ -44,8 +44,8 @@ export function Hero() {
     }
   };
 
-  const scrollToPrograms = () => {
-    const element = document.querySelector("#pricing");
+  const scrollToMethod = () => {
+    const element = document.querySelector("#method");
     if (element) {
       const headerOffset = 100; // Account for fixed header + padding
       const elementTop = element.getBoundingClientRect().top + window.scrollY;
@@ -144,7 +144,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 drop-shadow-md"
             data-testid="text-hero-subheadline"
-          >For millennial men 28-45 who've tried keto, carnivore, gym bros, and apps. Get lean, strong, and injury-free for the long haul.</motion.p>
+          >For millennials who've tried fasting, keto, carnivore, YouTube gurus, and apps. <br />Get lean, strong, and injury-free for the long haul.</motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -164,7 +164,7 @@ export function Hero() {
               </Button>
 
               <Button
-                onClick={scrollToPrograms}
+                onClick={scrollToMethod}
                 variant="outline"
                 size="lg"
                 className="bg-transparent border border-white text-white hover:bg-white/10 w-full sm:w-auto min-w-[200px] min-h-[56px] rounded-full text-lg"
