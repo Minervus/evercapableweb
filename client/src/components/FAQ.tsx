@@ -28,7 +28,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="py-16 md:py-24 bg-black scroll-mt-20">
+    <section id="faq" className="py-16 md:py-24 bg-black scroll-mt-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
           <div>
@@ -46,7 +46,7 @@ export function FAQ() {
           <Accordion type="single" collapsible data-testid="accordion-faq">
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`} data-testid={`faq-item-${index}`}>
-                <AccordionTrigger className="text-left font-mono font-medium text-white" data-testid={`button-faq-trigger-${index}`}>
+                <AccordionTrigger className="text-left font-mono font-medium text-white min-w-0 break-all" data-testid={`button-faq-trigger-${index}`}>
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-zinc-400" data-testid={`text-faq-answer-${index}`}>
