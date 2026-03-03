@@ -4,6 +4,7 @@ import { Familiar } from "@/components/Familiar";
 import { Method } from "@/components/Method";
 import { DataSection } from "@/components/DataSection";
 import { Coach } from "@/components/Coach";
+import { Testimonial } from "@/components/Testimonial";
 import { EngagementLevel } from "@/components/EngagementLevel";
 import { BlueprintSection } from "@/components/BlueprintSection";
 import { ProCoachingSection } from "@/components/ProCoachingSection";
@@ -24,6 +25,7 @@ export default function Home() {
         <Method />
         <DataSection />
         <Coach />
+        <Testimonial />
         <EngagementLevel />
         <BlueprintSection />
         <ProCoachingSection />
