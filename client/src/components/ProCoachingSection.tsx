@@ -111,7 +111,7 @@ export function ProCoachingSection() {
                         </p>
                     </motion.div>
 
-                    {/* Right Column: Social Proof */}
+                    {/* Right Column: Verified Client Review */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -119,30 +119,48 @@ export function ProCoachingSection() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="relative"
                     >
-                        <div className="bg-zinc-50 p-10 md:p-14 border-l-4 border-orange-500 relative">
-                            <Quote className="absolute top-6 left-6 text-orange-200 w-16 h-16 -z-10" />
+                        <div
+                            className="bg-[#0D0D0D] rounded-2xl overflow-hidden relative flex flex-col"
+                            style={{ border: "1px solid rgba(255, 255, 255, 0.1)" }}
+                        >
+                            {/* Decorative quote watermark */}
+                            <Quote className="absolute top-6 right-6 text-white/20 w-12 h-12" />
 
-                            <blockquote className="relative z-10">
-                                <p className="text-xl md:text-2xl font-medium text-zinc-800 leading-relaxed mb-8 italic">
-                                    "Tony didn’t just give me a workout; he gave me a decade of my life back. The data doesn't lie."
+                            {/* Card Header: Avatar + Client Info */}
+                            <div className="px-8 pt-8 pb-6 flex items-center gap-4 border-b border-white/[0.06]">
+                                <div className="w-11 h-11 rounded-full border border-white/10 overflow-hidden flex-shrink-0">
+                                    <img src="/gary.jpeg" alt="Verified Pro Protocol Member" className="w-full h-full object-cover" />
+                                </div>
+                                <div>
+                                    <p className="text-white font-semibold text-sm leading-none mb-1">Gary Y.</p>
+                                    <p className="font-mono text-xs text-zinc-500">// Software Engineering Lead</p>
+                                </div>
+                            </div>
+
+                            {/* Quote Body */}
+                            <div className="px-8 py-8 flex-1">
+                                <p className="text-zinc-300 text-base md:text-lg leading-[1.8]">
+                                    "Tony has a great{" "}
+                                    <span className="text-orange-500 font-medium">attention to detail</span>
+                                    , making him the perfect coach to help assess my overall health routine—from habits, to exercise, to nutrition—and find the best way for me to improve. Not only that, but he has a genuine interest in the subject matter and{" "}
+                                    <span className="text-orange-500 font-medium">nerds out about it</span>
+                                    . I couldn't have asked for a better coach to not only provide me guidance, but also educate me on the{" "}
+                                    <span className="text-orange-500 font-medium">underlying reasoning</span>
+                                    {" "}as well."
                                 </p>
-                                <footer className="flex items-center gap-4">
-                                    <div className="w-12 h-12 bg-zinc-200 rounded-full overflow-hidden">
-                                        {/* Placeholder for client avatar if needed */}
-                                        <div className="w-full h-full bg-zinc-300 flex items-center justify-center text-zinc-500 font-bold">
-                                            BC
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <cite className="not-italic font-bold text-zinc-900 block">Beta Client</cite>
-                                        <span className="text-orange-600 text-sm font-medium uppercase tracking-wider">Verified Result</span>
-                                    </div>
-                                </footer>
-                            </blockquote>
-                        </div>
+                            </div>
 
-                        {/* Decorative background element */}
-                        <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-zinc-100 -z-10" />
+                            {/* Signature */}
+                            <div className="px-8 pb-6 border-t border-white/[0.06] pt-5">
+                                <p className="text-zinc-500 text-sm italic">— Pro Protocol Member</p>
+                            </div>
+
+                            {/* File Info Footer */}
+                            <div className="px-8 py-4 bg-white/[0.03] border-t border-white/[0.06] flex items-center justify-between">
+                                <span className="font-mono text-xs text-zinc-600">PRTCL: PRO_v2.1</span>
+                                <span className="font-mono text-xs text-zinc-600">FOCUS: FULL_SYSTEM_AUDIT</span>
+                            </div>
+                        </div>
                     </motion.div>
                 </div>
             </div>

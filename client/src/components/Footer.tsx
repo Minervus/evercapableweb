@@ -10,11 +10,10 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: SiX, href: "#", label: "X" },
-  { icon: Youtube, href: "#", label: "YouTube" },
-  { icon: Globe, href: "#", label: "Website" },
-  { icon: Mail, href: "#", label: "Email" },
+  { icon: Instagram, href: "https://www.instagram.com/evercapable/", label: "Instagram" },
+  { icon: Youtube, href: "https://www.youtube.com/@evercapable", label: "YouTube" },
+  { icon: Globe, href: "https://evercapable.com", label: "Website" },
+  { icon: Mail, href: "mailto:[tony@evercapable.com]", label: "Email" },
 ];
 
 export function Footer() {
@@ -94,6 +93,8 @@ export function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-zinc-700 transition-colors"
                   aria-label={social.label}
                   data-testid={`link-footer-social-${social.label.toLowerCase()}`}

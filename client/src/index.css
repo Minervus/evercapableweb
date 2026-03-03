@@ -300,4 +300,12 @@
   .animate-fade-in-right {
     animation: fade-in-right 0.3s ease-out;
   }
+
+  .spotlight-quote {
+    font-style: italic;
+    color: #E0E0E0; /* Softer white for a more human feel */
+    line-height: 1.8;
+    border-left: 2px solid #FF6600; /* Subtle orange accent */
+    padding-left: 2rem;
+  }
 }

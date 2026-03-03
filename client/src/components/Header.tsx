@@ -24,10 +24,10 @@ const navLinks: NavLink[] = [
 ];
 
 const socialLinks = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Youtube, href: "#", label: "YouTube" },
-  { icon: Globe, href: "#", label: "Website" },
-  { icon: Mail, href: "#", label: "Email" },
+  { icon: Instagram, href: "https://www.instagram.com/evercapable/", label: "Instagram" },
+  { icon: Youtube, href: "https://www.youtube.com/@evercapable", label: "YouTube" },
+  { icon: Globe, href: "https://evercapable.com", label: "Website" },
+  { icon: Mail, href: "mailto:[tony@evercapable.com]", label: "Email" },
 ];
 
 export function Header() {
@@ -38,12 +38,12 @@ export function Header() {
     // Close menu first
     setIsMenuOpen(false);
     setExpandedSubmenu(null);
-    
+
     if (href === "#") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    
+
     // Wait for menu to close, then scroll
     setTimeout(() => {
       const element = document.querySelector(href);
@@ -172,6 +172,8 @@ export function Header() {
                     <a
                       key={social.label}
                       href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover-elevate"
                       aria-label={social.label}
                       data-testid={`link-social-${social.label.toLowerCase()}`}
