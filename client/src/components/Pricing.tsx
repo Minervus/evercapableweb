@@ -19,8 +19,8 @@ const programs = [
       { name: "Modular Training (Full Gym / Home / Bodyweight)", included: true },
       { name: "Metabolic Nutrition & Fueling Protocols", included: true },
       { name: "In-App Telemetry & Bio-Data Tracking", included: true },
-      { name: "Automated Monthly 'Promotion' Audits", included: true },
-      { name: "Lifetime Access to the EverCapable Community", included: true },
+      { name: "Monthly 'Promotion' Audits", included: true },
+      { name: "Access to the EverCapable Community", included: true },
       { name: "1-on-1 Data Audits (PRO ONLY)", included: "pro-only" },
     ],
     popular: false,
@@ -177,26 +177,24 @@ export function Pricing() {
                     {program.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
                         {renderIcon(feature.included)}
-                        <span className={`text-sm ${
-                          feature.included === "star"
-                            ? "text-yellow-500 font-semibold"
-                            : feature.included === "pro-only"
-                              ? "text-muted-foreground/60 line-through"
-                              : feature.included
-                                ? "text-foreground"
-                                : "text-muted-foreground"
-                        }`}>
+                        <span className={`text-sm ${feature.included === "star"
+                          ? "text-yellow-500 font-semibold"
+                          : feature.included === "pro-only"
+                            ? "text-muted-foreground/60 line-through"
+                            : feature.included
+                              ? "text-foreground"
+                              : "text-muted-foreground"
+                          }`}>
                           {feature.name}
                         </span>
                       </li>
                     ))}
                   </ul>
                   <Button
-                    className={`mt-6 w-full font-mono font-bold tracking-wider ${
-                      program.popular 
-                        ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500" 
-                        : "border-zinc-300"
-                    }`}
+                    className={`mt-6 w-full font-mono font-bold tracking-wider ${program.popular
+                      ? "bg-orange-500 hover:bg-orange-600 text-white border-orange-500"
+                      : "border-zinc-300"
+                      }`}
                     variant={program.popular ? "default" : "outline"}
                     onClick={scrollToContact}
                     data-testid={`button-program-${index}`}
