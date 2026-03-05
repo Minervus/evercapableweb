@@ -13,11 +13,11 @@ const valueStack = [
     },
     {
         title: "Video Form Analysis",
-        desc: "Upload your heavy lifts; I provide frame-by-frame corrections to ensure maximum skeletal loading with zero injury risk.",
+        desc: "Upload your heavy lifts; I provide frame-by-frame corrections to ensure maximum skeletal loading while reducing injury risk.",
     },
     {
-        title: "24/7 Priority Access",
-        desc: "Direct encrypted messaging for instant answers to your nutrition and training questions.",
+        title: "Priority Messaging Access",
+        desc: "Direct encrypted messaging with a guaranteed < 24-hour response time.",
     },
 ];
 
@@ -68,7 +68,7 @@ export function ProCoachingSection() {
                                 <span className="text-orange-600">Elite Partnership.</span>
                             </h2>
                             <p className="text-lg text-zinc-600 leading-relaxed font-medium">
-                                For the man who values time above all else. We don’t just give you the map; I drive the vehicle.
+                                For those that value results and time above all else. I don't just give you the map; I have one hand on the wheel.
                             </p>
                         </div>
 

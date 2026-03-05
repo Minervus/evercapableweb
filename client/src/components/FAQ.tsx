@@ -10,19 +10,19 @@ import { Mail } from "lucide-react";
 const faqs = [
   {
     question: "// WHAT_IS_THE_HABIT_LAYERING_CURRICULUM?",
-    answer: "It is our system for building sustainable biological habits. Instead of overwhelming you, we layer one technical habit every 2 weeks—syncing perfectly with your 6-stage protocol progression.",
+    answer: "It’s our way of making sure you actually stick to the plan when life gets chaotic. Instead of dumping a list of 'to-dos' on your desk, we introduce one specific habit every two weeks. This gives your brain and body time to adapt before we layer on the next piece, ensuring your progress is built on a foundation that doesn't crumble during a busy work week.",
   },
   {
     question: "// HOW_IS_THE_EVERCAPABLE_METHODOLOGY_DIFFERENT?",
-    answer: "Most programs guess; we audit. We use your real-time telemetry (Whoop, Oura, Apple) to drive the protocol. You don't just 'work out'—you execute a 24-week biological promotion cycle based on your data.",
+    answer: "Most programs rely on guesswork and 'trying harder.' We rely on objective data. By auditing your real-time telemetry (Whoop, Oura, or Apple Watch), we can see exactly how your body is responding to the stress of your career and your training. You aren't just following a generic PDF; you’re following a 24-week path that recalibrates based on what your body is actually telling us.",
   },
   {
     question: "// DO_I_NEED_A_WEARABLE?",
-    answer: "Yes. The system requires hardware (Whoop, Oura, or Apple Watch) to establish your 'Ground Truth' in Stage 01. We use this telemetry to automate your monthly promotion audits.",
+    answer: "Ideally, yes. To get the high-precision results we’re after, moving past opinions and looking at objective data is the most efficient path. However, if you aren't ready for a Whoop or Oura, we can start with basic step tracking via your phone. It makes the 'Ground Truth' a bit harder to calibrate and isn't the ideal technical setup, but it’s definitely doable to get the ball rolling.",
   },
   {
     question: "// WHAT_IS_THE_FOREVER_GUARANTEE?",
-    answer: "It is a performance-based commitment. During Stage 01 Calibration, we set a clear, data-backed 6-month goal. If you execute the protocol for the full 24 weeks and don't reach that target by the end of Stage 06, I will continue to coach you 1-on-1 for free until you do.",
+    answer: "It’s my way of putting skin in the game. I know how many times busy professionals have 'started over' only to fall off. When we start, we’ll set a clear, data-backed goal for your 6-month partnership. If you follow the protocol for the full 24 weeks and we haven't hit that target, I will continue to coach you 1-on-1 for free until we do. If the system doesn't deliver, the cost is on me, not you.",
   },
 ];
 
