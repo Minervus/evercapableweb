@@ -34,8 +34,7 @@ export function Coach() {
             <p data-testid="text-coach-intro">
               I'm Tony. I'm a certified nutrition coach and PT, but honestly?
               That's the least interesting thing about me. What matters is that
-              I spent two decades as a human guinea pig, trying to "hack" my way
-              to a body I could be proud of.
+              I spent two decades as a human guinea pig, trying to "hack" body toward what I thought was "healthy".
             </p>
 
             <ul className="space-y-4 list-disc pl-5 text-muted-foreground">

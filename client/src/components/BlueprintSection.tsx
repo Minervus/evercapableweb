@@ -34,7 +34,7 @@ const protocolStages = [
         month: "MONTH_04",
         title: "Strength Building",
         desc: "Focus on bone density and peak force production",
-        technicalObjective: "The Foundation. We move into heavy, effective lifting. This builds the 'Body of Armor' you need to stay athletic, avoid injury, and feel significantly more powerful.",
+        technicalObjective: "The Foundation. We move into heavy, effective lifting. This builds the 'Body of Armor' you need to stay athletic, avoid injury, and feel stronger.",
     },
     {
         version: "v5.0",

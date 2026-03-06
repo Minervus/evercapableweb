@@ -25,7 +25,7 @@ export function About() {
           <div>
             <img
               src={rachelImage}
-              alt="Rachel Stone, personal trainer"
+              alt="Tony Nguyen, personal trainer"
               className="w-full rounded-lg object-cover aspect-[3/4]"
             />
           </div>
@@ -50,7 +50,7 @@ export function About() {
               </p>
             </div>
 
-            <p 
+            <p
               className="mt-8 text-2xl text-foreground italic"
               style={{ fontFamily: "'Caveat', cursive" }}
             >
