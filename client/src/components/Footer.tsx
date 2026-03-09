@@ -48,12 +48,12 @@ export function Footer() {
           <div className="flex flex-col items-center gap-6 mb-20 md:mb-28 text-center bg-zinc-900 border border-zinc-800 rounded-3xl p-10 md:p-16">
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">Ready to take control?</h3>
             <button
-              onClick={() => scrollToSection("#contact")}
+              onClick={() => scrollToSection("#pricing")}
               className="bg-[#FF9500] hover:bg-[#FF9500]/90 text-white font-semibold text-xl rounded-full px-10 py-5 shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all w-full sm:w-auto"
             >
               See If Coaching Fits You
             </button>
-            <p className="text-[#FF9500] font-medium text-lg mt-2">Only 5 spots left for the Pro Protocol this month—claim yours.</p>
+            <p className="text-[#FF9500] font-medium text-lg mt-2">Only 4 spots left for The EverCapable Protocol this month—claim yours.</p>
           </div>
 
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8 mb-16 md:mb-24">
@@ -69,11 +69,15 @@ export function Footer() {
               <img
                 src={logoIconDark}
                 alt="EverCapable"
+                width={40}
+                height={40}
                 className="h-10 w-auto hidden dark:block"
               />
               <img
                 src={logoIconLight}
                 alt="EverCapable"
+                width={40}
+                height={40}
                 className="h-10 w-auto block dark:hidden"
               />
               <span className="text-2xl font-bold text-zinc-400 tracking-tight">

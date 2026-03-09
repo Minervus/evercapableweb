@@ -26,6 +26,8 @@ export function Coach() {
             <img
               src={coachPhoto}
               alt="Tony Nguyen - EverCapable Coach"
+              width={224}
+              height={224}
               className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-primary/20"
               data-testid="img-coach-photo"
             />
@@ -105,12 +107,16 @@ export function Coach() {
               <img
                 src={issaLogo}
                 alt="ISSA Certified"
+                width={120}
+                height={80}
                 className="h-16 md:h-20 w-auto"
                 data-testid="img-issa-logo"
               />
               <img
                 src={pnLogo}
                 alt="Precision Nutrition L1 Coach"
+                width={120}
+                height={80}
                 className="h-16 md:h-20 w-auto rounded-md"
                 data-testid="img-pn-logo"
               />

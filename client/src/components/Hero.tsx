@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import heroImage from "@assets/alexander-red-qo1pyCD02t4-unsplash_1768606692957.jpg";
+import heroImage from "@assets/hero-poster.jpg";
 
 const BACKGROUND_VIDEOS = [
   "https://evercapable-s3-bucket.s3.us-east-1.amazonaws.com/videos/6389831-uhd_3840_2160_25fps.mp4",
@@ -14,6 +14,28 @@ const BACKGROUND_VIDEOS = [
 export function Hero() {
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Lazy Load Videos via Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroVisible(entry.isIntersecting);
+      },
+      { rootMargin: "0px", threshold: 0.1 }
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -24,12 +46,13 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || !isHeroVisible) return;
     const interval = setInterval(() => {
       setActiveVideoIndex((prev) => (prev + 1) % BACKGROUND_VIDEOS.length);
     }, 6000); // 6 seconds per video
     return () => clearInterval(interval);
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, isHeroVisible]);
+
   const scrollToContact = () => {
     const element = document.querySelector("#contact");
     if (element) {
@@ -59,7 +82,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[80vh] md:min-h-screen overflow-hidden flex flex-col justify-center items-center bg-black">
+    <section ref={heroRef} className="relative min-h-[80vh] md:min-h-screen overflow-hidden flex flex-col justify-center items-center bg-black">
       <style>{`
         .hero-video-container {
           position: absolute;
@@ -83,7 +106,7 @@ export function Hero() {
 
       {/* Background Video / Image Container */}
       <div className="hero-video-container">
-        {!prefersReducedMotion ? (
+        {!prefersReducedMotion && isHeroVisible ? (
           <AnimatePresence initial={false}>
             {BACKGROUND_VIDEOS.map((src, index) => (
               index === activeVideoIndex && (
@@ -144,7 +167,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 drop-shadow-md"
             data-testid="text-hero-subheadline"
-          >For millennials who've tried fasting, keto, carnivore, YouTube gurus, and apps. <br />Get lean, strong, and injury-free for the long haul.</motion.p>
+          >Precision longevity engineering for high-performers. <br />One protocol. Six stages. Zero guesswork.</motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -156,10 +179,10 @@ export function Hero() {
               <Button
                 onClick={scrollToContact}
                 size="lg"
-                className="gap-2 bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none w-full sm:w-auto min-w-[250px] min-h-[56px] text-[20px] rounded-full shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all font-semibold font-mono"
+                className="gap-2 bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none w-full sm:w-auto min-w-[250px] min-h-[56px] text-[20px] rounded-full shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all font-semibold font-mono uppercase tracking-tight"
                 data-testid="button-hero-cta-primary"
               >
-                See If Coaching Fits You
+                INITIALIZE_CALIBRATION
                 <ArrowRight className="w-5 h-5" />
               </Button>
 
@@ -167,10 +190,10 @@ export function Hero() {
                 onClick={scrollToMethod}
                 variant="outline"
                 size="lg"
-                className="bg-transparent border border-white text-white hover:bg-white/10 w-full sm:w-auto min-w-[200px] min-h-[56px] rounded-full text-lg"
+                className="bg-transparent border border-white text-white hover:bg-white/10 w-full sm:w-auto min-w-[200px] min-h-[56px] rounded-full text-sm md:text-base font-mono uppercase tracking-widest"
                 data-testid="button-hero-cta-secondary"
               >
-                Learn More
+                VIEW_6_STAGE_ROADMAP
               </Button>
             </div>
 

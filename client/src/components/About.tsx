@@ -26,6 +26,8 @@ export function About() {
             <img
               src={rachelImage}
               alt="Tony Nguyen, personal trainer"
+              width={600}
+              height={800}
               className="w-full rounded-lg object-cover aspect-[3/4]"
             />
           </div>

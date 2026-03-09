@@ -70,6 +70,8 @@ export function HowItWorks() {
               <img
                 src={transformImage}
                 alt="Fitness transformation journey"
+                width={600}
+                height={800}
                 className="w-full rounded-xl object-cover aspect-[3/4] max-w-md"
               />
             </div>

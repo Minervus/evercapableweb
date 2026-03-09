@@ -85,10 +85,10 @@ export function Contact() {
           className="text-center mb-12"
         >
           <p className="text-sm text-orange-500 mb-2 font-mono uppercase tracking-wider">
-            // INITIATE_PRO_PROTOCOL_APPLICATION
+            // INITIATE_PROTOCOL_APPLICATION
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Apply for the Pro Protocol
+            Apply for The Protocol
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto">
             Selection is based on protocol alignment and current capacity.
@@ -207,16 +207,21 @@ export function Contact() {
                   name="biggestObstacle"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-zinc-300">Biggest Performance Obstacle</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="What is the #1 thing holding your biology back right now?"
-                          rows={4}
-                          className="resize-none bg-black border-zinc-700 text-white focus:border-orange-500 focus:ring-orange-500/20"
-                          data-testid="input-obstacle"
-                          {...field}
-                        />
-                      </FormControl>
+                      <FormLabel className="text-zinc-300">Select your primary system bottleneck:</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="bg-black border-zinc-700 text-white focus:border-orange-500 focus:ring-orange-500/20">
+                            <SelectValue placeholder="What is the #1 thing holding your biology back right now?" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="bg-zinc-900 border-zinc-700">
+                          <SelectItem value="recovery-sleep" className="text-white focus:bg-zinc-800">[01] Recovery & Sleep Quality</SelectItem>
+                          <SelectItem value="pain-movement" className="text-white focus:bg-zinc-800">[02] Pain-Free Movement & Mobility</SelectItem>
+                          <SelectItem value="energy-crash" className="text-white focus:bg-zinc-800">[03] Sustained Daily Energy (The 3PM Crash)</SelectItem>
+                          <SelectItem value="strength-muscle" className="text-white focus:bg-zinc-800">[04] Strength & Lean Muscle Foundation</SelectItem>
+                          <SelectItem value="travel-stress" className="text-white focus:bg-zinc-800">[05] Maintaining Progress During Travel/Stress</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
