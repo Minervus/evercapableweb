@@ -26,6 +26,8 @@ export function Coach() {
             <img
               src={coachPhoto}
               alt="Tony Nguyen - EverCapable Coach"
+              width={224}
+              height={224}
               className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-primary/20"
               data-testid="img-coach-photo"
             />
@@ -34,8 +36,7 @@ export function Coach() {
             <p data-testid="text-coach-intro">
               I'm Tony. I'm a certified nutrition coach and PT, but honestly?
               That's the least interesting thing about me. What matters is that
-              I spent two decades as a human guinea pig, trying to "hack" my way
-              to a body I could be proud of.
+              I spent two decades as a human guinea pig, trying to "hack" body toward what I thought was "healthy".
             </p>
 
             <ul className="space-y-4 list-disc pl-5 text-muted-foreground">
@@ -46,7 +47,7 @@ export function Coach() {
                 <strong className="text-foreground">Training Overload:</strong> I've beaten my joints to a pulp with Powerlifting, CrossFit, and traditional bodybuilding grinds.
               </li>
               <li>
-                <strong className="text-foreground">The Result:</strong> I chased the "3-plate squat" and beach abs—and ended up tired, hungry, and back where I started.
+                <strong className="text-foreground">The Result:</strong> I chased the "3-plate squat", getting "shredded", and ended up tired, hungry, and back where I started.
               </li>
             </ul>
 
@@ -94,7 +95,7 @@ export function Coach() {
             >
               No guesswork, just the habit layering required to stay healthy,
               stay strong, and stay present. The 30-day challenges fail because
-              they have an end date; my goal is to make sure <b>you</b> don't.
+              they have an end date; my goal is to make sure <b>you</b> stay capable for life.
             </p>
           </div>
 
@@ -106,12 +107,16 @@ export function Coach() {
               <img
                 src={issaLogo}
                 alt="ISSA Certified"
+                width={120}
+                height={80}
                 className="h-16 md:h-20 w-auto"
                 data-testid="img-issa-logo"
               />
               <img
                 src={pnLogo}
                 alt="Precision Nutrition L1 Coach"
+                width={120}
+                height={80}
                 className="h-16 md:h-20 w-auto rounded-md"
                 data-testid="img-pn-logo"
               />

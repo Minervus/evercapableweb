@@ -96,6 +96,8 @@ export function Services() {
             <img
               src={rachelImage}
               alt="Rachel Stone fitness coach"
+              width={600}
+              height={800}
               className="w-full rounded-xl object-cover aspect-[3/4]"
             />
           </div>

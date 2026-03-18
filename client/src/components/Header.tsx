@@ -12,14 +12,7 @@ type NavLink =
 const navLinks: NavLink[] = [
   { href: "#method", label: "The Method" },
   { href: "#coach", label: "About" },
-  {
-    label: "Programs",
-    submenu: [
-      { href: "#blueprint", label: "The Blueprint Protocol" },
-      { href: "#pro-coaching", label: "Pro Coach" },
-    ]
-  },
-  { href: "#pricing", label: "Pricing" },
+  { href: "#pricing", label: "The Protocol" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -86,11 +79,15 @@ export function Header() {
             <img
               src={logoIconDark}
               alt="EverCapable"
+              width={24}
+              height={24}
               className="h-6 w-auto hidden dark:block"
             />
             <img
               src={logoIconLight}
               alt="EverCapable"
+              width={24}
+              height={24}
               className="h-6 w-auto block dark:hidden"
             />
             <span className="text-lg font-bold text-zinc-900 dark:text-white tracking-tight">

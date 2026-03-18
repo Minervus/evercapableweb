@@ -11,12 +11,12 @@ const methodCards = [
   {
     icon: Activity,
     title: "Track What Matters",
-    description: "Track what matters: strength gains, joint health, bloodwork—not just scale weight.",
+    description: "Track what matters: strength gains, joint health, not just scale weight.",
   },
   {
     icon: Utensils,
     title: "Real-Life Nutrition",
-    description: "Real-life nutrition: travel, nights out, busy schedules.",
+    description: "Real-life nutrition: work travel, nights out, busy schedules.",
   },
   {
     icon: ShieldCheck,
@@ -43,7 +43,7 @@ export function Method() {
             The EverCapable Method
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            The problem isn't you—it's the plan. Your 30s/40s need sustainable systems, not 6-week punishments.
+            The problem isn't you—it's the plan. Your 30s/40s need sustainable systems, not 30-day punishments.
           </p>
         </motion.div>
 

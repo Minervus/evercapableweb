@@ -49,6 +49,8 @@ export function Results() {
               <img
                 src={beforeImage}
                 alt="Client before transformation"
+                width={600}
+                height={800}
                 className="w-full rounded-lg object-cover aspect-[3/4]"
               />
             </div>
@@ -59,6 +61,8 @@ export function Results() {
               <img
                 src={afterImage}
                 alt="Client after transformation"
+                width={600}
+                height={800}
                 className="w-full rounded-lg object-cover aspect-[3/4]"
               />
             </div>

@@ -26,6 +26,9 @@ export function DataSection() {
                             <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
                                 We track the metrics that actually matter. No more wondering if what you're doing is working. See your strength, consistency, and bio-feedback trends in real-time.
                             </p>
+                            <p className="font-mono text-zinc-500 text-xs tracking-[0.2em] mt-8 mb-8">
+                                COMPATIBLE_INTEGRATIONS: OURA // APPLE_HEALTH // GARMIN // GOOGLE_FIT // MORE_SOON
+                            </p>
                         </div>
 
                         <div className="space-y-6">
@@ -73,6 +76,8 @@ export function DataSection() {
                             <img
                                 src={dashboardImage}
                                 alt="EverCapable App Dashboard"
+                                width={800}
+                                height={600}
                                 className="w-full h-auto object-cover relative z-10 rounded-2xl"
                             />
 
@@ -80,6 +85,8 @@ export function DataSection() {
                             <motion.img
                                 src={dataOverlay}
                                 alt="Data Metrics"
+                                width={400}
+                                height={300}
                                 className="absolute -top-[15%] -right-[10%] w-[65%] sm:-right-[20%] md:-top-[30%] md:-right-[35%] lg:-right-[45%] md:w-[75%] shadow-2xl rounded-xl z-20"
                                 initial={{ opacity: 0, y: -40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -91,6 +98,8 @@ export function DataSection() {
                             <motion.img
                                 src={mobileOverlay}
                                 alt="Mobile Workout View"
+                                width={300}
+                                height={600}
                                 className="absolute -bottom-[15%] -left-[5%] w-[55%] sm:-left-[10%] md:-bottom-[30%] md:-left-[15%] lg:-left-[20%] md:w-[72%] shadow-2xl rounded-[1.5rem] md:rounded-[2.5rem] z-30"
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
