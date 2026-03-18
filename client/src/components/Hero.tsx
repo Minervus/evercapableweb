@@ -159,7 +159,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-[60px] font-bold text-white leading-tight tracking-tight mb-6 drop-shadow-lg"
             data-testid="text-hero-headline"
-          >Finally Build the Body and Health You Want—Without Another Failed Diet or Burnout Cycle.</motion.h1>
+          >Built for the Long Game.</motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -167,7 +167,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 drop-shadow-md"
             data-testid="text-hero-subheadline"
-          >Precision longevity engineering for high-performers. <br />One protocol. Six stages. Zero guesswork.</motion.p>
+          >Move beyond 30-day challenges. <br />Rebuild your metabolism and structural integrity through a progressive 6-stage system.</motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -182,7 +182,7 @@ export function Hero() {
                 className="gap-2 bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none w-full sm:w-auto min-w-[250px] min-h-[56px] text-[20px] rounded-full shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all font-semibold font-mono uppercase tracking-tight"
                 data-testid="button-hero-cta-primary"
               >
-                INITIALIZE_CALIBRATION
+                GET_STARTED
                 <ArrowRight className="w-5 h-5" />
               </Button>
 

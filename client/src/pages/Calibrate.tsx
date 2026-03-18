@@ -7,37 +7,38 @@ const questions = [
     // STEP 1
     [
         { id: "age", label: "AGE //", type: "text", required: true },
-        { id: "currentStats", label: "CURRENT WEIGHT & HEIGHT //", type: "text", required: true },
-        { id: "primaryConstraint", label: "PRIMARY CONSTRAINT // (Time, Knowledge, Consistency)", type: "text", required: true },
+        { id: "currentWeight", label: "CURRENT WEIGHT // (lbs)", type: "text", required: true },
+        { id: "currentHeight", label: "CURRENT HEIGHT // (ft/in)", type: "text", required: true },
+        { id: "primaryConstraint", label: "PRIMARY CONSTRAINT // (What's holding you back? Time, Knowledge, Consistency)", type: "text", required: true },
     ],
     // STEP 2
     [
-        { id: "yearsLifting", label: "YEARS CONSECUTIVE LIFTING //", type: "text", required: true },
-        { id: "currentSplit", label: "CURRENT WEEKLY TRAINING SPLIT //", type: "text", required: true },
-        { id: "failedDiets", label: "PREVIOUSLY CALIBRATED DIETS (AND WHY THEY FAILED) //", type: "textarea", required: true },
+        { id: "yearsLifting", label: "TRAINING HISTORY // (How many years of experience do you have with structured resistance training (Barbells, Dumbbells, etc)) //", type: "text", required: true },
+        { id: "currentSplit", label: "CURRENT WEEKLY TRAINING SPLIT (if applicable) //", type: "text", required: true },
+        { id: "failedDiets", label: "PREVIOUSLY ATTEMPTED DIETS (AND what worked and what didn't) //", type: "textarea", required: true },
     ],
     // STEP 3
     [
         { id: "proteinIntake", label: "EST. DAILY PROTEIN INTAKE (GRAMS) //", type: "text", required: true },
-        { id: "macroTracking", label: "CURRENT MACRO TRACKING PROFICIENCY (1-10) //", type: "text", required: true },
+        { id: "macroTracking", label: "CURRENT FOOD TRACKING PROFICIENCY (1-10 1=never, 10=daily) //", type: "text", required: true },
         { id: "dietaryRestrictions", label: "BIOLOGICAL/DIETARY RESTRICTIONS //", type: "textarea", required: true },
     ],
     // STEP 4
     [
-        { id: "primaryGoal", label: "PRIMARY SYSTEM OBJECTIVE // (Muscle Gain, Fat Loss, Recomp)", type: "text", required: true },
-        { id: "sixMonthMetric", label: "MANDATORY: 6-MONTH METRIC TO HIT //", type: "text", required: true },
-        { id: "idealPhysique", label: "DESCRIBE THE 'IDEAL' PHYSIQUE OUTCOME //", type: "textarea", required: true },
+        { id: "primaryGoal", label: "PRIMARY OBJECTIVE // (Muscle Gain, Fat Loss, Performance, Longevity, etc.)", type: "text", required: true },
+        { id: "sixMonthMetric", label: "MANDATORY: 6-MONTH METRIC TO HIT (What does success look like in 6 months?)//", type: "text", required: true },
+        { id: "idealPhysique", label: "DESCRIBE THE 'IDEAL' OUTCOME (How do you look and feel in 6 months?)//", type: "textarea", required: true },
     ],
     // STEP 5
     [
         { id: "injuries", label: "EXISTING HISTORICAL INJURIES/LIMITATIONS //", type: "textarea", required: true },
-        { id: "sleepQuality", label: "AVERAGE SLEEP QUALITY METRIC (1-10) //", type: "text", required: true },
-        { id: "lifeStressor", label: "PRIMARY CAREER/LIFE STRESSOR //", type: "text", required: true },
+        { id: "sleepQuality", label: "AVERAGE SLEEP QUALITY METRIC (1-10 1=terrible, 10=perfect) //", type: "text", required: true },
+        { id: "lifeStressor", label: "PRIMARY CAREER/LIFE STRESSOR (What's your biggest challenge right now?) //", type: "text", required: true },
     ],
     // STEP 6
     [
         { id: "dataLogging", label: "WILL YOU LOG BIOMETRICS DAILY? (Y/N) //", type: "text", required: true },
-        { id: "coachability", label: "COACHABILITY METRIC (1-10) //", type: "text", required: true },
+        { id: "coachability", label: "COACHABILITY METRIC (1-10 1=resistant, 10=coachable) //", type: "text", required: true },
     ],
 ];
 
@@ -76,7 +77,7 @@ export default function ProProtocol() {
         try {
             // PASTE FORMSPREE ID HERE
             // e.g. "https://formspree.io/f/xyzaqrwb"
-            const url = "https://formspree.io/f/YOUR_ID_HERE";
+            const url = "https://formspree.io/f/xdawwwqd";
 
             const payload = { ...formData, "80_Percent_Rule_Agreed": contractAgreed ? "YES" : "NO" };
 
@@ -119,13 +120,13 @@ export default function ProProtocol() {
                     </div>
 
                     <p className="mb-6 leading-relaxed">
-                        Your biological calibration is now in the queue. Lead Engineer Tony is personally auditing your goals and constraints.
+                        Your biological calibration is now in the queue. I am personally auditing your goals and constraints.
                     </p>
 
                     <div className="bg-orange-500/10 border border-orange-500/20 p-5 rounded-sm mb-10">
                         <p className="text-orange-500 text-xs font-bold uppercase tracking-wider mb-2">NEXT_STEP:</p>
                         <p className="text-sm">
-                            Check your inbox within 24 hours for your "System Validation" update. We will confirm your 6-month goal feasibility before initializing the partnership.
+                            Check your inbox within 24 hours for your "System Validation" update. I will confirm your 6-month goal feasibility before initializing the partnership.
                         </p>
                     </div>
 
@@ -227,7 +228,7 @@ export default function ProProtocol() {
                                             CRITICAL: THE 80% RULE
                                         </p>
                                         <p className="text-zinc-300 text-xs md:text-sm leading-relaxed mb-6">
-                                            By toggling this switch, you agree to the foundational system contract: If you execute your custom protocols with 80% or greater consistency over 24 weeks, and you do not hit your target, Lead Engineer Tony will coach you for free until you do. If you fail to maintain 80% compliance, the warranty is void.
+                                            By toggling this switch, you agree to the foundational system contract: If you execute your custom protocols with 80% or greater consistency over 24 weeks, and you do not hit your target, I will coach you for free until you do. If you fail to maintain 80% compliance, the warranty is void.
                                         </p>
 
                                         <div className="flex items-center justify-between">
@@ -292,7 +293,7 @@ export default function ProProtocol() {
                                         : 'bg-orange-500/20 text-orange-500/50 cursor-not-allowed'
                                     }`}
                             >
-                                {isSubmitting ? '[ TRANSMITTING... ]' : '[ TRANSMIT_DATA ]'}
+                                {isSubmitting ? '[ TRANSMITTING... ]' : '[ SUBMIT_DATA ]'}
                             </button>
                         )}
                     </div>

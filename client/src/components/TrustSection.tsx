@@ -28,7 +28,7 @@ export function TrustSection() {
                                 </div>
 
                                 <p className="font-mono text-[10px] text-orange-500 uppercase tracking-[0.2em] mb-4">
-                  // SYSTEM_INTEGRITY_v1.0
+                  // THE_FOREVER_GUARANTEE
                                 </p>
 
                                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
@@ -36,7 +36,7 @@ export function TrustSection() {
                                 </h2>
 
                                 <p className="text-zinc-400 leading-relaxed font-sans text-lg">
-                                    If you follow your habit protocols with 90% consistency and don't reach your biometric milestones in 24 weeks—I work with you for free until you do. No expiration. Total biological accountability.
+                                    If you maintain 90% protocol consistency and do not reach your 6-month primary milestone—established during your initial Stage 01 Calibration—I will coach you for free until the objective is met. My time is on the line because the system is engineered to work.
                                 </p>
                             </div>
                         </Card>

@@ -27,7 +27,7 @@ export function DataSection() {
                                 We track the metrics that actually matter. No more wondering if what you're doing is working. See your strength, consistency, and bio-feedback trends in real-time.
                             </p>
                             <p className="font-mono text-zinc-500 text-xs tracking-[0.2em] mt-8 mb-8">
-                                COMPATIBLE_TELEMETRY: WHOOP // OURA // APPLE_HEALTH // GARMIN
+                                COMPATIBLE_INTEGRATIONS: OURA // APPLE_HEALTH // GARMIN // GOOGLE_FIT // MORE_SOON
                             </p>
                         </div>
 
