@@ -10,10 +10,11 @@ type NavLink =
   | { label: string; submenu: { href: string; label: string }[]; href?: never };
 
 const navLinks: NavLink[] = [
-  { href: "#method", label: "The Method" },
+  { href: "#method", label: "The Protocol" },
   { href: "#coach", label: "About" },
-  { href: "#pricing", label: "The Protocol" },
+  { href: "#protocol-tiers", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
+  { href: "#contact", label: "Contact" },
 ];
 
 const socialLinks = [
