@@ -53,7 +53,7 @@ export function Footer() {
             >
               See If Coaching Fits You
             </button>
-            <p className="text-[#FF9500] font-medium text-lg mt-2">Only 4 spots left for The EverCapable Protocol this month—claim yours.</p>
+
           </div>
 
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8 mb-16 md:mb-24">

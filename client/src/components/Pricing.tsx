@@ -51,8 +51,8 @@ const TIERS: Tier[] = [
     subtitle: "The Industry Standard for Physical Autonomy.",
     scarcity: false,
     featured: true,
-    persona: "> \"I have the discipline to execute; I just need the blueprint and a periodic audit to ensure the system is trending toward the objective.\"",
-    personaBadge: "// SYSTEM_ROLE: AUTONOMOUS_OPERATOR",
+    persona: "> \"I have the discipline to execute; I just need a tailored roadmap and a periodic audit to ensure I'm moving in the right direction.\"",
+    personaBadge: "// IDEAL_FOR: THE_AUTONOMOUS_OPERATOR",
     differentiators: [
       "> ASYNCHRONOUS PRECISION (LOOM-BASED)",
       "> BI-WEEKLY VIDEO AUDITS",
@@ -72,7 +72,7 @@ const TIERS: Tier[] = [
     scarcity: true,
     featured: false,
     persona: "> \"My environment is volatile and my time is limited. I need a dedicated consultant for live calibration and real-time oversight.\"",
-    personaBadge: "// SYSTEM_ROLE: HIGH_STAKES_LEADER",
+    personaBadge: "// IDEAL_FOR: THE_HIGH_STAKES_LEADER",
     differentiators: [
       "> BI-WEEKLY LIVE VIDEO CALLS (30-MIN)",
       "> PRIORITY MESSAGING (< 12HR RESPONSE)",
@@ -160,13 +160,13 @@ export function Pricing() {
             // THE_EVERCAPABLE_METHOD
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-6 tracking-tight">
-            The EverCapable Method
+            The 6-Stage Autonomy Curriculum
           </h2>
           <p className="text-xl md:text-2xl text-orange-500 font-mono mb-6 max-w-2xl">
             Six stages to permanent autonomy.
           </p>
           <p className="text-base text-zinc-400 max-w-3xl leading-relaxed font-sans mb-6">
-            A systematic evolution from bio-data chaos to physical autonomy. Master the 6 stages of the EverCapable Method.
+            A systematic evolution from bio-data chaos to permanent physical autonomy. Master the 6 stages.
           </p>
           <p className="text-xl text-orange-500 font-mono mb-6 max-w-2xl">
             The Goal isn't just to get you in shape, it's to make you bulletproof for life.
@@ -228,6 +228,7 @@ export function Pricing() {
 
       {/* ── Pricing Cards ──────────────────────────────────────────────────── */}
       <motion.div
+        id="protocol-tiers"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}

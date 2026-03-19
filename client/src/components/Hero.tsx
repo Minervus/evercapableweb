@@ -54,30 +54,22 @@ export function Hero() {
   }, [prefersReducedMotion, isHeroVisible]);
 
   const scrollToContact = () => {
-    const element = document.querySelector("#contact");
+    const element = document.querySelector("#protocol-tiers");
     if (element) {
-      const headerOffset = 100; // Account for fixed header + padding
+      const headerOffset = 100;
       const elementTop = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementTop - headerOffset;
-
-      window.scrollTo({
-        top: Math.max(0, offsetPosition),
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: Math.max(0, offsetPosition), behavior: "smooth" });
     }
   };
 
   const scrollToMethod = () => {
-    const element = document.querySelector("#method");
+    const element = document.querySelector("#pricing");
     if (element) {
-      const headerOffset = 100; // Account for fixed header + padding
+      const headerOffset = 100;
       const elementTop = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementTop - headerOffset;
-
-      window.scrollTo({
-        top: Math.max(0, offsetPosition),
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: Math.max(0, offsetPosition), behavior: "smooth" });
     }
   };
 

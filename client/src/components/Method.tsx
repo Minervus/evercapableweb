@@ -37,10 +37,10 @@ export function Method() {
           className="text-center mb-12"
         >
           <p className="mb-2 text-sm md:text-base font-medium text-orange-500 font-mono uppercase tracking-wider">
-            // THE METHOD
+            // SYSTEM_ARCHITECTURE
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            The EverCapable Method
+            The 4 Pillars of Physical Autonomy
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             The problem isn't you—it's the plan. Your 30s/40s need sustainable systems, not 30-day punishments.
