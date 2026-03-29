@@ -9,6 +9,22 @@ import { Mail } from "lucide-react";
 
 const faqs = [
   {
+    question: "// HOW_MUCH_TIME_DO_I_NEED?",
+    answer: "Only 3 to 4 days a week, and about 45 minutes a session. We build the plan around the time you actually have, not the time you wish you had. No 2-hour workouts required.",
+  },
+  {
+    question: "// WHAT_IF_I_HAVEN_T_LIFTED_IN_YEARS?",
+    answer: "Perfect. Whether you haven't touched a barbell in 5 years or you currently train inconsistently, we adapt the plan to your exact starting level so you progress safely and with confidence.",
+  },
+  {
+    question: "// AM_I_GOING_TO_BE_STARVING?",
+    answer: "No starvation. No endless chicken and broccoli. You will learn how to eat foods you actually like, go out to dinner with your family or clients, and still shed fat.",
+  },
+  {
+    question: "// IS_$285_A_MONTH_WORTH_IT?",
+    answer: "It assumes you value your time. You can spend the next 12 months trying to guess your way to a result, or you can spend $285 a month to have an expert hand you the exact roadmap, hold you accountable, and guarantee the outcome.",
+  },
+  {
     question: "// WHAT_IS_THE_HABIT_LAYERING_CURRICULUM?",
     answer: "It’s my way of making sure you actually stick to the plan when life gets chaotic. Instead of dumping a list of 'to-dos' on your desk, I introduce one specific habit every two weeks. This gives your brain and body time to adapt before I layer on the next piece, ensuring your progress is built on a foundation that doesn't crumble during a busy work week.",
   },
@@ -21,12 +37,16 @@ const faqs = [
     answer: "Ideally, yes. To get the high-precision results we’re after, moving past opinions and looking at objective data is the most efficient path. However, if you aren't ready for a Whoop or Oura, we can start with basic step tracking via your phone. It makes the 'Ground Truth' a bit harder to calibrate and isn't the ideal technical setup, but it’s definitely doable to get the ball rolling.",
   },
   {
-    question: "// WHAT_IS_THE_FOREVER_GUARANTEE?",
-    answer: "It’s my way of putting skin in the game. I know how many times busy professionals have 'started over' only to fall off. Before we start, we’ll set a clear, data-backed goal for your 6-month partnership. If you follow the protocol with 80% adherence or better for the full 6 months and we haven't hit that target, I will continue to coach you 1-on-1 for free until we do. If the system doesn't deliver, the cost is on me, not you.",
+    question: "// WHAT_IS_THE_90-DAY_SYSTEM_GUARANTEE?",
+    answer: "It's my way of putting skin in the game. If you maintain 90% protocol consistency and we don't hit your primary Phase 1 milestones within the first 90 days, I coach you for FREE until we do. You risk the effort; I risk my time and reputation.",
   },
   {
     question: "// WHY_ARE_THERE_LIMITED_SEATS?",
     answer: "For each client, I build a customized roadmap to ensure that it fits their unique environment. With a limited number of seats, I can focus on delivering the best possible experience for each client.",
+  },
+  {
+    question: "// WHY_NOT_A_20_DOLLAR_APP?",
+    answer: "Generic apps provide templates; EverCapable provides an engineered result. For the cost of a daily latte, you get a dedicated consultant, manual data audits, and a system that actually sticks when life gets chaotic. This is for the person who is tired of \"cheap\" failing them.",
   },
 ];
 

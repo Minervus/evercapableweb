@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { RefreshCcw, ZapOff, BatteryLow } from "lucide-react";
+import { Clock, RefreshCcw, BatteryLow, FileX } from "lucide-react";
 
 export function Familiar() {
     return (
@@ -26,15 +26,18 @@ export function Familiar() {
                     {/* Header */}
                     <div className="mb-12 md:mb-16 text-center">
                         <p className="font-mono text-sm tracking-widest text-[#FF9500]/80 mb-4 uppercase">
-                            // THE_COMMON_FRICTION
+                            // THE_PROBLEM
                         </p>
-                        <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight tracking-tight">
-                            The cycle that's holding you back.
+                        <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight tracking-tight mb-6">
+                            Most men over 30 train wrong. Here's why.
                         </h2>
+                        <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-3xl mx-auto">
+                            If you are reading this, you probably feel like you are working harder than ever, but your body doesn’t show it. Sound familiar?
+                        </p>
                     </div>
 
-                    {/* The Three Themes Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    {/* The 4 Themes Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                         {/* Point 1 */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -45,14 +48,14 @@ export function Familiar() {
                         >
                             <div className="flex flex-col items-center mb-6 text-center relative">
                                 <div className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:border-[#FF6600]/30">
-                                    <RefreshCcw size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
+                                    <Clock size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
                                 </div>
-                                <span className="font-mono text-[#FF9500] text-sm font-medium tracking-wide">
-                                    [01] THE_REBOUND
+                                <span className="font-mono text-white text-base font-bold tracking-wide">
+                                    YOU LACK TIME
                                 </span>
                             </div>
-                            <p className="text-zinc-300 text-base md:text-lg leading-relaxed text-left flex-grow">
-                                You've seen progress before, only to watch it slip away months later—often leaving you worse off than when you started.
+                            <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
+                                Between work and family commitments, finding two hours a day for the gym feels completely impossible.
                             </p>
                         </motion.div>
 
@@ -66,14 +69,14 @@ export function Familiar() {
                         >
                             <div className="flex flex-col items-center mb-6 text-center relative">
                                 <div className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:border-[#FF6600]/30">
-                                    <ZapOff size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
+                                    <RefreshCcw size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
                                 </div>
-                                <span className="font-mono text-[#FF9500] text-sm font-medium tracking-wide">
-                                    [02] THE_FALLACY
+                                <span className="font-mono text-white text-base font-bold tracking-wide">
+                                    THE YO-YO EFFECT
                                 </span>
                             </div>
-                            <p className="text-zinc-300 text-base md:text-lg leading-relaxed text-left flex-grow">
-                                Generic plans fail because they don't account for real-life friction. If a plan requires 'perfect' conditions, it's a liability.
+                            <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
+                                You lose the same 10 pounds just to gain it right back the exact minute work or life gets stressful.
                             </p>
                         </motion.div>
 
@@ -89,12 +92,33 @@ export function Familiar() {
                                 <div className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:border-[#FF6600]/30">
                                     <BatteryLow size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
                                 </div>
-                                <span className="font-mono text-[#FF9500] text-sm font-medium tracking-wide">
-                                    [03] THE_TRAP
+                                <span className="font-mono text-white text-base font-bold tracking-wide">
+                                    ENERGY IS DEAD
                                 </span>
                             </div>
-                            <p className="text-zinc-300 text-base md:text-lg leading-relaxed text-left flex-grow">
-                                White-knuckling through intensity works for three weeks. But when motivation inevitably fades, you're back at square one.
+                            <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
+                                You crash hard at 3 PM and rely on three cups of coffee just to drag yourself to the finish line of the workday.
+                            </p>
+                        </motion.div>
+
+                        {/* Point 4 */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, delay: 0.4 }}
+                            className="bg-white/[0.02] border border-white/[0.05] p-6 hover:border-[#FF6600]/30 transition-colors duration-300 flex flex-col group"
+                        >
+                            <div className="flex flex-col items-center mb-6 text-center relative">
+                                <div className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:border-[#FF6600]/30">
+                                    <FileX size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
+                                </div>
+                                <span className="font-mono text-white text-base font-bold tracking-wide">
+                                    NOTHING STICKS
+                                </span>
+                            </div>
+                            <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
+                                You've tried it all. The generic apps, the keto diets, the extreme bootcamps. Nothing seems to last.
                             </p>
                         </motion.div>
                     </div>
@@ -105,10 +129,13 @@ export function Familiar() {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.5 }}
-                        className="mt-16 pt-8 border-t border-zinc-800/50 text-center"
+                        className="mt-16 pt-12 border-t border-zinc-800/50 text-center"
                     >
-                        <p className="text-zinc-500 text-base md:text-lg leading-relaxed italic max-w-2xl mx-auto">
-                            "I spent years in this cycle. I didn't need more motivation; I needed a better way to manage the reality of a high-performance life."
+                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                            It is not your fault.
+                        </h3>
+                        <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                            When life gets busy, your health is the first thing to break. You don't need another generic PDF template. You need a resilient system built for a busy, real-world life.
                         </p>
                     </motion.div>
                 </motion.div>

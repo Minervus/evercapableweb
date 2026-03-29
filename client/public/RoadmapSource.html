@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EverCapable System Architecture</title>
+    <!-- Use similar fonts as the main site -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0A0A0A;
+            --text-color: #E4E4E7;
+            --orange: #f97316;
+            --orange-dim: rgba(249, 115, 22, 0.1);
+            --green: #10b981;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        .tracking-wide {
+            letter-spacing: 0.1em;
+        }
+
+        .tracking-widest {
+            letter-spacing: 0.2em;
+        }
+
+        .text-orange {
+            color: var(--orange);
+        }
+
+        .text-green {
+            color: var(--green);
+        }
+
+        .bg-orange {
+            background-color: var(--orange);
+            color: #000;
+        }
+
+        .border-orange {
+            border: 1px solid var(--orange);
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            padding: 4rem;
+            box-sizing: border-box;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+        }
+
+        /* Terminal styling */
+        .terminal-block {
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .terminal-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--orange);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 2rem;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border);
+            padding: 1rem;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--orange);
+            font-weight: 700;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            color: var(--border);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .timeline-content {
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            flex: 1;
+        }
+
+        .footer-note {
+            position: absolute;
+            bottom: 2rem;
+            left: 4rem;
+            right: 4rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #71717a;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--orange);
+            color: #000;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            padding: 1.5rem 3rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            border: none;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            @page {
+                margin: 0;
+                size: letter portrait;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            .page {
+                min-height: 100vh;
+                height: 100vh;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PAGE 1: Title Page -->
+    <div class="page" style="justify-content: center; align-items: center; text-align: center;">
+        <div class="mono text-orange tracking-widest mb-4">// DECLASSIFIED_DOCUMENT_v1.0</div>
+        <h1 style="font-size: 4rem; margin: 0 0 1rem 0; line-height: 1.1;">EverCapable Protocol<br>Architecture</h1>
+        <p class="mono tracking-wide" style="color: #a1a1aa; max-w-2xl mt-6">
+            The 24-Week Systems Approach for Ambitious Operators in their 30s-40s.<br>
+            Strict adherence required. Print and retain for records.
+        </p>
+        <div class="footer-note">
+            // SYSTEM_NOTICE: The EverCapable Protocol is not medical advice. // THE_90-DAY_SYSTEM_GUARANTEE: IF 90% CONSISTENCY IS MAINTAINED AND STAGE 01 MILESTONES ARE NOT HIT IN 90 DAYS, I COACH YOU FOR FREE UNTIL SUCCESS.
+        </div>
+    </div>
+
+    <!-- PAGE 2: System Audit Matrix -->
+    <div class="page">
+        <div class="mono text-orange tracking-widest mb-8">// PHASE_00: THE_SYSTEM_AUDIT_MATRIX</div>
+        <h2 style="font-size: 2.5rem; margin-top: 0;">Manual Scoring Checklist</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>METRIC_ID</th>
+                    <th>DIAGNOSTIC QUESTION</th>
+                    <th>SCORE (0 = FAIL, 25 = PASS)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-orange">STRUCTURAL</td>
+                    <td>Do joint issues or 'nagging pain' dictate your workout intensity?</td>
+                    <td>[ ]</td>
+                </tr>
+                <tr>
+                    <td class="text-orange">METABOLIC</td>
+                    <td>Do you experience a '3 PM Crash' or reliance on caffeine?</td>
+                    <td>[ ]</td>
+                </tr>
+                <tr>
+                    <td class="text-orange">FORCE</td>
+                    <td>Could you carry 50lbs for a mile right now without a recovery day?</td>
+                    <td>[ ]</td>
+                </tr>
+                <tr>
+                    <td class="text-orange">CONSISTENCY</td>
+                    <td>Does your plan break during travel or high-stress deadlines?</td>
+                    <td>[ ]</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="terminal-block mono">
+            <h3 class="text-orange" style="margin-top: 0;">SCORING_ALGORITHM</h3>
+            <p>Score = [SUM] / 100</p>
+            <p class="text-green">> 75 : OPTIMIZED</p>
+            <p class="text-orange">> 50 : DEGRADED (Action Required)</p>
+            <p style="color: #ef4444;">> 25 : CRITICAL FAILURE (Immediate Intervention)</p>
+        </div>
+
+        <div class="footer-note">
+            // SYSTEM_NOTICE: The EverCapable Protocol is not medical advice. // THE_90-DAY_SYSTEM_GUARANTEE: IF 90% CONSISTENCY IS MAINTAINED AND STAGE 01 MILESTONES ARE NOT HIT IN 90 DAYS, I COACH YOU FOR FREE UNTIL SUCCESS.
+        </div>
+    </div>
+
+    <!-- PAGE 3: 6-Stage Roadmap -->
+    <div class="page">
+        <div class="mono text-orange tracking-widest mb-8">// PHASE_01: TARGET_ARCHITECTURE</div>
+        <h2 style="font-size: 2.5rem; margin-top: 0; margin-bottom: 2rem;">The 6-Stage Roadmap</h2>
+
+        <div class="timeline-item">
+            <div class="timeline-number">01</div>
+            <div class="timeline-content">
+                <h3 class="mono uppercase" style="margin-top: 0; color: white;">Calibration & Baselines</h3>
+                <p>System Hack: Implement the 30g Protein Rule within 30 minutes of waking.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-number">02</div>
+            <div class="timeline-content">
+                <h3 class="mono uppercase" style="margin-top: 0; color: white;">Structural Integrity</h3>
+                <p>System Hack: Daily Dead Hangs (2 mins total) to decompress spine.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-number">03</div>
+            <div class="timeline-content">
+                <h3 class="mono uppercase" style="margin-top: 0; color: white;">Metabolic Efficiency</h3>
+                <p>System Hack: Map your circadian rhythm to eliminate the 3 PM crash.</p>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            // SYSTEM_NOTICE: The EverCapable Protocol is not medical advice. // THE_90-DAY_SYSTEM_GUARANTEE: IF 90% CONSISTENCY IS MAINTAINED AND STAGE 01 MILESTONES ARE NOT HIT IN 90 DAYS, I COACH YOU FOR FREE UNTIL SUCCESS.
+        </div>
+    </div>
+
+    <!-- PAGE 3B (Continued Roadmap) -->
+    <div class="page">
+        <div class="mono text-orange tracking-widest mb-8">// PHASE_01_CONT: TARGET_ARCHITECTURE</div>
+        <h2 style="font-size: 2.5rem; margin-top: 0; margin-bottom: 2rem;">The 6-Stage Roadmap (Cont.)</h2>
+
+        <div class="timeline-item">
+            <div class="timeline-number">04</div>
+            <div class="timeline-content">
+                <h3 class="mono uppercase" style="margin-top: 0; color: white;">Force Production</h3>
+                <p>System Hack: Add heavy 60-second loaded carries to primary sessions.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-number">05</div>
+            <div class="timeline-content">
+                <h3 class="mono uppercase" style="margin-top: 0; color: white;">Engine Durability</h3>
+                <p>System Hack: Zone 2 cardiac output development (45 min continuous).</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-number">06</div>
+            <div class="timeline-content">
+                <h3 class="mono uppercase" style="margin-top: 0; color: white;">Physical Autonomy</h3>
+                <p>System Hack: Execute the 5-Minute Minimum on chaotic travel days.</p>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            // SYSTEM_NOTICE: The EverCapable Protocol is not medical advice. // THE_90-DAY_SYSTEM_GUARANTEE: IF 90% CONSISTENCY IS MAINTAINED AND STAGE 01 MILESTONES ARE NOT HIT IN 90 DAYS, I COACH YOU FOR FREE UNTIL SUCCESS.
+        </div>
+    </div>
+
+    <!-- PAGE 4: The Telemetry Bridge -->
+    <div class="page">
+        <div class="mono text-orange tracking-widest mb-8">// PHASE_02: THE_TELEMETRY_BRIDGE</div>
+        <h2 style="font-size: 2.5rem; margin-top: 0;">Loom Video Audits</h2>
+
+        <div class="terminal-block">
+            <h3 class="mono uppercase text-white" style="margin-top: 0;">How Data Calibration Works</h3>
+            <p style="line-height: 1.6; color: #a1a1aa;">
+                We do not guess. We measure. Bi-weekly, you submit training footage and biometric data to the central
+                server.
+            </p>
+            <ul style="line-height: 1.8; color: #a1a1aa; font-family: 'JetBrains Mono', monospace;" class="mt-6">
+                <li><span class="text-orange">[1]</span> Capture execution of primary compound lifts.</li>
+                <li><span class="text-orange">[2]</span> Upload the data to the Notion portal.</li>
+                <li><span class="text-orange">[3]</span> I record a Loom Video Telemetry Audit breaking down joint
+                    mechanics, velocity, and effort.</li>
+                <li><span class="text-orange">[4]</span> Adjust the algorithm for the next microcycle.</li>
+            </ul>
+        </div>
+
+        <div class="footer-note">
+            // SYSTEM_NOTICE: The EverCapable Protocol is not medical advice. // THE_90-DAY_SYSTEM_GUARANTEE: IF 90% CONSISTENCY IS MAINTAINED AND STAGE 01 MILESTONES ARE NOT HIT IN 90 DAYS, I COACH YOU FOR FREE UNTIL SUCCESS.
+        </div>
+    </div>
+
+    <!-- PAGE 5: Call to Action -->
+    <div class="page" style="justify-content: center; align-items: center; text-align: center;">
+        <div class="mono text-orange tracking-widest mb-4">// END_OF_TRANSMISSION</div>
+        <h2 style="font-size: 3rem; margin-top: 0; margin-bottom: 2rem;">Your System Repair Manual:<br>From Diagnostic
+            to Autonomy</h2>
+
+        <p class="mono mb-12" style="color: #a1a1aa; max-w-lg">
+            Stop guessing. Start executing. Go to EverCapable.com/initialize to submit your target data, get your
+            personalized system calibrations, and begin the Protocol.
+        </p>
+
+        <a href="https://evercapable.com/initialize" class="btn">
+            [ APPLY_FOR_STAGE_1 ]
+        </a>
+
+        <div class="footer-note">
+            // SYSTEM_NOTICE: The EverCapable Protocol is not medical advice. // THE_90-DAY_SYSTEM_GUARANTEE: IF 90% CONSISTENCY IS MAINTAINED AND STAGE 01 MILESTONES ARE NOT HIT IN 90 DAYS, I COACH YOU FOR FREE UNTIL SUCCESS.
+        </div>
+    </div>
+
+</body>
+
+</html>

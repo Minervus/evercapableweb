@@ -119,10 +119,12 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
                         {/* Section 02 */}
                         <div className="space-y-3">
                             <p className="font-mono text-orange-500 text-xs tracking-widest uppercase">
-                                {"[02] THE_PERFORMANCE_WARRANTY (GUARANTEE)"}
+                                {"[02] THE_90-DAY_SYSTEM_GUARANTEE"}
                             </p>
                             <p>
-                                My "Skin in the Game" commitment is simple: If we do not hit your data-backed target by the end of Stage 06, I work for free until we do. To validate this warranty, the following "Ground Truth" conditions must be met:
+                                If you maintain 90% protocol consistency and we don't hit your primary Stage 01 milestones within the first 90 days,{" "}
+                                <span className="text-white font-bold">I coach you for FREE</span>{" "}
+                                until we do. To validate this warranty, the following "Ground Truth" conditions must be met:
                             </p>
                             <ul className="space-y-2 pl-4 border-l border-orange-500/15">
                                 <li>
@@ -139,7 +141,7 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
                                 </li>
                             </ul>
                             <p className="text-white/60 border border-orange-500/10 rounded-sm p-3 bg-orange-500/[0.03] text-xs font-mono">
-                                The guarantee is a warranty on the system's efficacy, provided the system is actually run.
+                                You risk the effort; I risk my time and reputation.
                             </p>
                         </div>
 

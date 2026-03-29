@@ -45,16 +45,7 @@ export function Footer() {
     <>
       <footer className="bg-black py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col items-center gap-6 mb-20 md:mb-28 text-center bg-zinc-900 border border-zinc-800 rounded-3xl p-10 md:p-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">Ready to take control?</h3>
-            <button
-              onClick={() => scrollToSection("#pricing")}
-              className="bg-[#FF9500] hover:bg-[#FF9500]/90 text-white font-semibold text-xl rounded-full px-10 py-5 shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all w-full sm:w-auto"
-            >
-              See If Coaching Fits You
-            </button>
 
-          </div>
 
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8 mb-16 md:mb-24">
             <a
@@ -125,13 +116,23 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 pt-6 border-t border-zinc-800">
-            <p className="text-sm text-zinc-500" data-testid="text-copyright">
-              Copyright © 2025 EverCapable – All Rights Reserved
-            </p>
-            <p className="text-sm text-zinc-500">
-              Built with care
-            </p>
+          <div className="flex flex-col gap-8 pt-8 border-t border-zinc-800">
+            {/* System Disclaimer */}
+            <div className="bg-[#111111] border border-zinc-800 p-6">
+              <p className="text-[10px] md:text-xs text-zinc-500 font-mono leading-relaxed uppercase tracking-wide text-center">
+                <span className="text-orange-500 font-bold mr-2 tracking-widest">// SYSTEM_NOTICE:</span>
+                The EverCapable Protocol is engineered for high-performing professionals. It is not medical advice. Consult your physician before initiating any rigorous structural or metabolic reprogramming.
+              </p>
+            </div>
+
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+              <p className="text-sm text-zinc-500" data-testid="text-copyright">
+                Copyright © 2025 EverCapable – All Rights Reserved
+              </p>
+              <p className="text-sm text-zinc-500">
+                Built with care
+              </p>
+            </div>
           </div>
         </div>
       </footer>
