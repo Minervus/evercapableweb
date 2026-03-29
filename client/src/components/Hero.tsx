@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "wouter";
 import heroImage from "@assets/hero-poster.jpg";
 
 const BACKGROUND_VIDEOS = [
@@ -64,7 +65,17 @@ export function Hero() {
   };
 
   const scrollToMethod = () => {
-    const element = document.querySelector("#pricing");
+    const element = document.querySelector("#evercapable-method");
+    if (element) {
+      const headerOffset = 100;
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementTop - headerOffset;
+      window.scrollTo({ top: Math.max(0, offsetPosition), behavior: "smooth" });
+    }
+  };
+
+  const scrollToIntegrityTest = () => {
+    const element = document.querySelector("#system-integrity-test");
     if (element) {
       const headerOffset = 100;
       const elementTop = element.getBoundingClientRect().top + window.scrollY;
@@ -151,7 +162,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-[60px] font-bold text-white leading-tight tracking-tight mb-6 drop-shadow-lg"
             data-testid="text-hero-headline"
-          >Built for the Long Game.</motion.h1>
+          >Build a Body that Scales with Your Life — Without Living in the Gym.</motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -159,7 +170,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 drop-shadow-md"
             data-testid="text-hero-subheadline"
-          >Move beyond 30-day challenges. <br />Rebuild your metabolism and structural integrity through a progressive 6-stage system.</motion.p>
+          >For busy dads and professionals in their 30s and 40s who want to lose weight and build functional strength. Even if you travel, work 50+ hours a week, and have failed at every diet before.</motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -169,12 +180,12 @@ export function Hero() {
           >
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
               <Button
-                onClick={scrollToContact}
+                onClick={scrollToIntegrityTest}
                 size="lg"
-                className="gap-2 bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none w-full sm:w-auto min-w-[250px] min-h-[56px] text-[20px] rounded-full shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all font-semibold font-mono uppercase tracking-tight"
+                className="gap-2 bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none w-full sm:w-auto min-w-[250px] min-h-[56px] text-sm md:text-lg rounded-full shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all font-bold font-mono uppercase tracking-tight"
                 data-testid="button-hero-cta-primary"
               >
-                GET_STARTED
+                Take the 2-Minute Fitness Audit
                 <ArrowRight className="w-5 h-5" />
               </Button>
 
@@ -182,10 +193,10 @@ export function Hero() {
                 onClick={scrollToMethod}
                 variant="outline"
                 size="lg"
-                className="bg-transparent border border-white text-white hover:bg-white/10 w-full sm:w-auto min-w-[200px] min-h-[56px] rounded-full text-sm md:text-base font-mono uppercase tracking-widest"
+                className="bg-transparent border border-white text-white hover:bg-white/10 w-full sm:w-auto min-w-[200px] min-h-[56px] rounded-full text-xs md:text-sm font-mono uppercase tracking-widest"
                 data-testid="button-hero-cta-secondary"
               >
-                VIEW_6_STAGE_ROADMAP
+                See How It Works
               </Button>
             </div>
 
