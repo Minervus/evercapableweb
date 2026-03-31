@@ -14,9 +14,21 @@ export function LatestArticles() {
   const { data: articles, isLoading, isError } = useQuery<FeedItem[]>({
     queryKey: ['latestArticles'],
     queryFn: async () => {
-      const res = await fetch('/api/articles');
+      // Use a public RSS to JSON proxy to bypass CORS on static hosting environments (like Netlify)
+      const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://evercapable.substack.com/feed');
       if (!res.ok) throw new Error('Failed to fetch articles');
-      return res.json();
+      
+      const data = await res.json();
+      if (data.status !== 'ok') throw new Error('Feed parsing error');
+
+      // Map proxy data to our local type
+      return data.items.slice(0, 3).map((item: any) => ({
+        title: item.title,
+        link: item.link,
+        pubDate: item.pubDate,
+        // The description often contains HTML, so we strip it to create a clean snippet
+        contentSnippet: item.description ? item.description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...' : ''
+      }));
     },
     staleTime: 3600 * 1000, // Cache on the client side for 1 hour
   });
