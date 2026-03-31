@@ -12,6 +12,7 @@ const Pricing = lazy(() => import("@/components/Pricing").then(m => ({ default: 
 const DataSection = lazy(() => import("@/components/DataSection").then(m => ({ default: m.DataSection })));
 const Coach = lazy(() => import("@/components/Coach").then(m => ({ default: m.Coach })));
 const FAQ = lazy(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })));
+const LatestArticles = lazy(() => import("@/components/LatestArticles").then(m => ({ default: m.LatestArticles })));
 const Contact = lazy(() => import("@/components/Contact").then(m => ({ default: m.Contact })));
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 
@@ -31,6 +32,7 @@ export default function Home() {
           <DataSection />
           <Coach />
           <FAQ />
+          <LatestArticles />
           <Contact />
         </Suspense>
       </main>
