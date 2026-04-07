@@ -98,8 +98,8 @@ const questions: Question[][] = [
     // ── STEP 2 ────────────────────────────────────────────────────────────────
     [
         { id: "age", label: "AGE //", type: "text", required: true },
-        { id: "currentWeight", label: "CURRENT WEIGHT // (lbs)", type: "text", required: true },
-        { id: "currentHeight", label: "CURRENT HEIGHT // (ft/in)", type: "text", required: true },
+        { id: "currentWeight", label: "CURRENT WEIGHT // (lbs or kgs)", type: "text", required: true },
+        { id: "currentHeight", label: "CURRENT HEIGHT // (ft/in or cms)", type: "text", required: true },
         { id: "primaryConstraint", label: "PRIMARY CONSTRAINT // (What's holding you back? Time, Knowledge, Consistency)", type: "text", required: true },
     ],
     // ── STEP 3 ────────────────────────────────────────────────────────────────
@@ -110,14 +110,15 @@ const questions: Question[][] = [
     ],
     // ── STEP 4 ────────────────────────────────────────────────────────────────
     [
-        { id: "proteinIntake", label: "EST. DAILY PROTEIN INTAKE (GRAMS) //", type: "text", required: true },
-        { id: "macroTracking", label: "CURRENT FOOD TRACKING PROFICIENCY (1-10 — 1=never, 10=daily) //", type: "text", required: true },
+        { id: "foodTracking", label: "DO YOU CURRENTLY TRACK YOUR FOOD? (Yes/No) //", type: "text", required: true },
+        { id: "macroTracking", label: "IF SO, HOW PROFICIENT ARE YOU? (1-10 — 1=never, 10=daily) //", type: "text", required: true },
         { id: "dietaryRestrictions", label: "BIOLOGICAL/DIETARY RESTRICTIONS //", type: "textarea", required: true },
     ],
     // ── STEP 5 ────────────────────────────────────────────────────────────────
     [
         { id: "primaryGoal", label: "PRIMARY OBJECTIVE // (Muscle Gain, Fat Loss, Performance, Longevity, etc.)", type: "text", required: true },
-        { id: "sixMonthMetric", label: "MANDATORY: 6-MONTH METRIC TO HIT (What does success look like in 6 months?) //", type: "text", required: true },
+        { id: "ninetyDayObjective", label: "90-DAY OBJECTIVE // (What's your primary goal for the next 90 days?) //", type: "text", required: true },
+        { id: "sixMonthMetric", label: "6-MONTH OBJECTIVE // (What does success look like in 6 months?) //", type: "text", required: true },
         { id: "idealPhysique", label: "DESCRIBE THE 'IDEAL' OUTCOME (How do you look and feel in 6 months?) //", type: "textarea", required: true },
     ],
     // ── STEP 6 ────────────────────────────────────────────────────────────────
@@ -128,7 +129,7 @@ const questions: Question[][] = [
     ],
     // ── STEP 7 (Contract) ─────────────────────────────────────────────────────
     [
-        { id: "dataLogging", label: "WILL YOU LOG BIOMETRICS DAILY? (Y/N) //", type: "text", required: true },
+        { id: "healthMetrics", label: "DO YOU CURRENTLY TRACK YOUR HEALTH METRICS? // (e.g. steps via a watch or phone, HRV, sleep data, etc.) //", type: "text", required: true },
         { id: "coachability", label: "COACHABILITY METRIC (1-10 — 1=resistant, 10=coachable) //", type: "text", required: true },
     ],
 ];
@@ -190,7 +191,7 @@ export default function Initialize() {
             const payload = {
                 ...formData,
                 selected_plan: planLabel,
-                "80_Percent_Rule_Agreed": contractAgreed ? "YES" : "NO",
+                "90_Day_System_Guarantee_Agreed": contractAgreed ? "YES" : "NO",
             };
 
             await fetch(url, {
@@ -335,7 +336,7 @@ export default function Initialize() {
                                                 className="w-full bg-transparent border-0 border-b border-white/20 focus:ring-0 focus:outline-none focus:border-orange-500 text-white md:text-base transition-colors pb-2 appearance-none cursor-pointer"
                                             >
                                                 <option value="" disabled className="bg-[#0A0A0A] text-zinc-500">
-                                                    [ SELECT_TIMEZONE... ]
+                                                    {q.id === "timezone" ? "[ SELECT_TIMEZONE... ]" : "[ SELECT_OPTION... ]"}
                                                 </option>
                                                 {q.options?.map((tz) => (
                                                     <option key={tz} value={tz} className="bg-[#0A0A0A] text-white">
@@ -389,10 +390,10 @@ export default function Initialize() {
                                 <div className="mt-16 pt-8 border-t border-white/5">
                                     <div className="bg-orange-500/5 p-6 border border-orange-500/20 rounded-sm">
                                         <p className="text-orange-500 text-sm font-bold tracking-wider mb-4 uppercase">
-                                            CRITICAL: THE 80% RULE
+                                            THE 90-DAY SYSTEM GUARANTEE
                                         </p>
                                         <p className="text-zinc-300 text-xs md:text-sm leading-relaxed mb-6">
-                                            By toggling this switch, you agree to the foundational system contract: If you execute your custom protocols with 80% or greater consistency over 24 weeks, and you do not hit your target, I will coach you for free until you do. If you fail to maintain 80% compliance, the warranty is void.
+                                            By toggling this switch, you agree to the foundational system contract: If you execute your custom protocols with 90% or greater consistency over 90 days, and you do not hit your target, I will coach you for free until you do. If you fail to maintain 90% compliance, the guarantee is void.
                                         </p>
                                         <div className="flex items-center justify-between">
                                             <span className="text-xs uppercase tracking-widest text-zinc-400">
