@@ -1,119 +1,98 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { CheckCircle2 } from "lucide-react";
 
-// ---------------------------------------------------------------------------
-// Scarcity — update manually to reflect real seat counts
-// ---------------------------------------------------------------------------
-const VANGUARD_SEATS_REMAINING = 8;
-const VANGUARD_SEAT_LIMIT = 10;
-
-// ---------------------------------------------------------------------------
 interface Tier {
   id: string;
   header: string;
   subtitle: string;
-  anchor: string | null;
-  scarcity: boolean;
   featured: boolean;
   persona: string;
-  personaBadge: string;
   price: string;
-  cadence: string;
+  ctaText: string;
   href: string;
   differentiators: string[];
 }
 
 const TIERS: Tier[] = [
-  // ── Standard ──────────────────────────────────────────────────────────────
   {
-    id: "standard",
-    header: "Standard Protocol",
-    subtitle: "[ STATUS: MOST_POPULAR_FOR_OPERATORS ]",
-    anchor: "TOTAL_INVESTMENT: ~$1,710",
-    scarcity: false,
-    featured: true,
-    persona: "Ideal for: Ambitious operators who need a tailored roadmap and audit loops.",
-    personaBadge: "// THE_AUTONOMOUS_OPERATOR",
-    price: "$285",
-    cadence: "USD",
-    href: "/initialize?plan=monthly&tier=standard",
-    differentiators: [
-      "> Custom 24-Week Architecture",
-      "> Bi-Weekly Video Telemetry (Loom)",
-      "> Automated System Calibration",
-      "> 24/7 Priority Messaging",
-    ],
-  },
-  // ── Vanguard ──────────────────────────────────────────────────────────────
-  {
-    id: "vanguard",
-    header: "Vanguard Performance",
-    subtitle: "[ STATUS: 2/10 SEATS REMAINING ]",
-    anchor: "TOTAL_INVESTMENT: ~$3,570",
-    scarcity: true,
+    id: "blueprint",
+    header: "The Blueprint",
+    subtitle: "The Plan",
     featured: false,
-    persona: "Ideal for: High-Stakes Leaders with Volatile Schedules",
-    personaBadge: "// THE_HIGH_STAKES_LEADER",
-    price: "$595",
-    cadence: "USD",
-    href: "/initialize?plan=monthly&tier=vanguard",
+    persona: "Self-starters who want the Map (The Plan) to execute independently.",
+    price: "$349",
+    ctaText: "Get Started",
+    href: "/initialize?tier=1",
     differentiators: [
-      "> [ PRIORITY ] 30-MIN LIVE SYSTEM CALIBRATIONS (BI-WEEKLY)",
-      "> < 12HR DIRECT RESPONSE TIME",
-      "> ALL STANDARD PROTOCOL FEATURES INCLUDED",
+      "90-Day Customized Nutrition & Workout Plan",
+      "Tailored to your goals, body composition, and equipment",
+      "Automated Data Tracking & Community Access",
+    ],
+  },
+  {
+    id: "signature",
+    header: "Signature Experience",
+    subtitle: "Most Popular",
+    featured: true,
+    persona: "Dads who want the Map AND the Guide (Bi-Weekly Loom Reviews).",
+    price: "$899",
+    ctaText: "Apply for Coaching",
+    href: "/initialize?tier=2",
+    differentiators: [
+      "Everything in The Blueprint",
+      "Bi-Weekly Asynchronous Video Reviews (Loom)",
+      "Ongoing Nutrition Strategy Adjustments",
+      "Guaranteed Testimonial Interview",
+    ],
+  },
+  {
+    id: "elite",
+    header: "Elite Mastery",
+    subtitle: "Full Access",
+    featured: false,
+    persona: "High-stakes leaders needing intensive 1-on-1 coaching.",
+    price: "$1,900",
+    ctaText: "Apply for Coaching",
+    href: "/initialize?tier=3",
+    differentiators: [
+      "Everything in Signature Experience",
+      "Weekly 1:1 Check-Ins",
+      "Biomarker / VO2 Max Analysis",
+      "Monthly Strategy Calls",
     ],
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Shared features — foundation for BOTH tiers
-// ---------------------------------------------------------------------------
-const sharedSpecs = [
+const resultMarkers = [
   {
-    title: "The Smarter Way",
-    description: "Built for busy professionals. 3–4 days a week. No wasted effort.",
+    title: "Weight Mastery",
+    description: "Total control over your weight without the guesswork.",
   },
   {
-    title: "No B.S. Nutrition",
-    description: "Eat real food, go to restaurants, and still drop fat without Tupperware.",
+    title: "Peak Strength",
+    description: "Feeling stronger than you ever have before.",
   },
   {
-    title: "Video Telemetry",
-    description: "Bi-weekly video audits of your lifting form so you never wonder if you're doing it right.",
+    title: "Endless Energy",
+    description: "More daily energy to tackle your career and your passions.",
   },
   {
-    title: "Risk-Free Execution",
-    description: "If you do your part and don't see progress, I work with you for free.",
+    title: "Family Vitality",
+    description: "The stamina and strength to play with your kids without getting winded.",
+  },
+  {
+    title: "Complete Autonomy",
+    description: "The knowledge and tools to take the reigns on your health, nutrition, and longevity for the long haul.",
   },
 ];
-
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
-type BillingCycle = "monthly" | "upfront";
-
-const PRICING_DATA: Record<string, { monthly: string; upfront: string; monthlyTotal: string; upfrontSaving: string; saving: string }> = {
-  standard: { monthly: "$285", upfront: "$1,540", monthlyTotal: "$1,710", upfrontSaving: "$1,540", saving: "-$170" },
-  vanguard: { monthly: "$595", upfront: "$3,210", monthlyTotal: "$3,570", upfrontSaving: "$3,210", saving: "-$360" },
-};
 
 export function Pricing() {
-  const [billingCycles, setBillingCycles] = useState<Record<string, BillingCycle>>(
-    Object.fromEntries(TIERS.map((t) => [t.id, "upfront" as BillingCycle]))
-  );
-
-  const setTierCycle = (tierId: string, cycle: BillingCycle) => {
-    setBillingCycles((prev) => ({ ...prev, [tierId]: cycle }));
-  };
-
-
   return (
     <section id="pricing" className="py-16 md:py-24 bg-background scroll-mt-20 relative border-t border-white/10">
 
-      {/* ── Pricing Cards ──────────────────────────────────────────────────── */}
       <motion.div
         id="protocol-tiers"
         initial={{ opacity: 0, y: 20 }}
@@ -122,34 +101,76 @@ export function Pricing() {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="max-w-[1200px] mx-auto px-6"
       >
-        <div className="mb-4 text-center">
+        <div className="mb-10 text-center">
           <p className="text-xs text-zinc-500 font-mono uppercase tracking-widest">
-            // SELECT_PROTOCOL_TIER — CHOOSE_YOUR_COMMUNICATION_BANDWIDTH.
+            Choose Your Coaching Plan
           </p>
         </div>
 
-        {/* Global System Standard Header */}
-        <div className="mb-12 border-l-2 border-orange-500/30 pl-6 py-4 max-w-2xl">
-          <h4 className="text-[10px] font-mono text-zinc-500 tracking-widest uppercase mb-4">
-            // SYSTEM_STANDARD_INCLUSIONS
-          </h4>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {sharedSpecs.map((spec, i) => (
-              <div key={i} className="space-y-1">
-                <h5 className="font-mono text-orange-500/80 text-[10px] uppercase tracking-wider font-bold">
-                  {spec.title}
-                </h5>
-                <p className="text-zinc-500 font-sans text-[10px] leading-tight">
-                  {spec.description}
-                </p>
+        {/* Case Study Callout - Moved above pricing table */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mb-12 max-w-4xl mx-auto border border-dashed border-orange-500/50 bg-orange-500/5 p-8 md:p-10 relative overflow-hidden"
+        >
+           <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+             <span className="font-mono text-[80px] text-orange-500 font-bold select-none leading-none">10</span>
+           </div>
+           
+           <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+             <div className="flex-1">
+               <h4 className="text-orange-500 font-mono font-bold uppercase tracking-widest text-sm md:text-base mb-3">
+                 Limited Founding Member Spots
+               </h4>
+               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">Looking for 10 Transformations</h3>
+               <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-6">
+                 We are actively recruiting 10 founding members for our Case Study (Signature & Elite tiers). If you are accepted, you get priority access and a tailored 90-day roadmap. In return, you agree to document your progress and share your before and after metrics as a public case study.
+               </p>
+               <Link href="/initialize?tier=2">
+                 <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-mono uppercase tracking-widest rounded-none">
+                   Apply for Case Study
+                 </Button>
+               </Link>
+             </div>
+           </div>
+        </motion.div>
+
+        {/* The 12-Week Result */}
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mb-16 max-w-4xl mx-auto"
+        >
+          <div className="border-l-2 border-orange-500/30 pl-6 py-2 mb-8">
+            <h4 className="text-[12px] font-mono text-orange-500 tracking-widest uppercase mb-2">
+              What You Will Achieve
+            </h4>
+            <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">You will have:</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+            {resultMarkers.map((marker, i) => (
+              <div key={i} className="flex items-start gap-4">
+                <CheckCircle2 className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                <div>
+                  <h5 className="font-bold text-white text-base md:text-lg mb-1">
+                    {marker.title}
+                  </h5>
+                  <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
+                    {marker.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-
-        {/* Two-card grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        {/* Three-card grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start mb-16">
           {TIERS.map((tier, tierIdx) => {
             return (
               <motion.div
@@ -157,12 +178,12 @@ export function Pricing() {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: tierIdx * 0.1 }}
+                transition={{ duration: 0.4, delay: 0.4 + tierIdx * 0.1 }}
                 className="h-full"
               >
                 <Card
                   className={`flex flex-col h-full bg-[#0A0A0A] rounded-none border-t-4 transition-all duration-500
-                    ${tier.id === "standard"
+                    ${tier.featured
                       ? "border-orange-500"
                       : "border-slate-400"
                     } shadow-none`}
@@ -178,19 +199,18 @@ export function Pricing() {
                     <div className="relative z-10 w-full space-y-6">
                       {/* Tier name & status */}
                       <div className="space-y-1">
-                        <h3 className="text-xl md:text-2xl font-bold tracking-tighter text-white uppercase italic">
+                        <h3 className={`text-xl md:text-2xl font-bold tracking-tighter uppercase italic ${tier.featured ? "text-orange-500" : "text-white"}`}>
                           {tier.header}
                         </h3>
-                        <p className={`text-[10px] font-mono tracking-widest uppercase font-bold ${tier.id === "standard" ? "text-orange-500" : "text-slate-400"}`}>
+                        <p className={`text-[10px] font-mono tracking-widest uppercase font-bold ${tier.featured ? "text-orange-500" : "text-slate-400"}`}>
                           {tier.subtitle}
                         </p>
                       </div>
 
-
                       {/* User Profile callout */}
-                      <div className={`p-4 ${tier.id === "standard" ? "bg-orange-500/10 border-l-2 border-orange-500" : "bg-white/5 border-l-2 border-slate-400"}`}>
+                      <div className={`p-4 ${tier.featured ? "bg-orange-500/10 border-l-2 border-orange-500" : "bg-white/5 border-l-2 border-slate-400"}`}>
                         <p className="text-[11px] font-mono leading-relaxed text-white text-left">
-                          <span className="text-zinc-500 mr-2 uppercase tracking-tighter font-bold">[ IDEAL_FOR ]</span>
+                          <span className="text-zinc-500 mr-2 uppercase tracking-tighter font-bold">Best for:</span>
                           {tier.persona}
                         </p>
                       </div>
@@ -206,7 +226,7 @@ export function Pricing() {
                           const isPriority = d.includes("[ PRIORITY ]");
                           return (
                             <div key={i} className="flex items-start gap-3">
-                              <span className={`mt-1 font-mono text-xs ${tier.id === "standard" ? "text-orange-500" : "text-slate-400"}`}>
+                              <span className={`mt-1 font-mono text-xs ${tier.featured ? "text-orange-500" : "text-slate-400"}`}>
                                 &gt;
                               </span>
                               <p className={`text-xs md:text-sm font-mono tracking-wide ${isPriority ? "text-white font-bold" : "text-zinc-300"}`}>
@@ -218,91 +238,27 @@ export function Pricing() {
                       </div>
                     </div>
 
-                    {/* Billing Cycle Selector + Pricing */}
-                    <div className="pt-8 border-t border-slate-800 space-y-3">
-                      <p className="text-[9px] font-mono text-zinc-600 uppercase tracking-widest mb-3">// SELECT_DEPLOYMENT_MODE</p>
-
-                      {/* Monthly row */}
-                      {(() => {
-                        const pd = PRICING_DATA[tier.id];
-                        const cycle = billingCycles[tier.id];
-                        const isMonthly = cycle === "monthly";
-                        const isUpfront = cycle === "upfront";
-                        const accentCls = tier.id === "standard" ? "border-orange-500 bg-orange-500/5" : "border-slate-400 bg-white/5";
-                        const accentText = tier.id === "standard" ? "text-orange-500" : "text-slate-300";
-                        return (
-                          <>
-                            {/* Monthly Option */}
-                            <button
-                              onClick={() => setTierCycle(tier.id, "monthly")}
-                              className={`w-full text-left px-4 py-3 border transition-all duration-200 cursor-pointer ${isMonthly ? accentCls : "border-white/5 bg-transparent hover:border-white/10"
-                                }`}
-                              data-testid={`billing-monthly-${tier.id}`}
-                            >
-                              <div className="flex items-center justify-between">
-                                <div>
-                                  <div className="flex items-baseline gap-2">
-                                    <span className={`text-4xl md:text-5xl font-bold font-mono tracking-tighter ${isMonthly ? "text-white" : "text-zinc-500"}`} data-testid={isMonthly ? `price-${tier.id}` : undefined}>
-                                      {pd.monthly}
-                                    </span>
-                                    <span className="text-zinc-500 font-mono text-xs">/mo USD</span>
-                                  </div>
-                                  <p className="text-[10px] text-zinc-600 font-mono uppercase tracking-widest mt-1">
-                                    6 Monthly Installments [ Total: {pd.monthlyTotal} ]
-                                  </p>
-                                </div>
-                                <span className={`font-mono text-sm font-bold ${isMonthly ? accentText : "text-zinc-700"}`}>
-                                  {isMonthly ? "[X]" : "[ ]"}
-                                </span>
-                              </div>
-                            </button>
-
-                            {/* Upfront Option */}
-                            <button
-                              onClick={() => setTierCycle(tier.id, "upfront")}
-                              className={`w-full text-left px-4 py-3 border transition-all duration-200 cursor-pointer ${isUpfront ? accentCls : "border-white/5 bg-transparent hover:border-white/10"
-                                }`}
-                              data-testid={`billing-upfront-${tier.id}`}
-                            >
-                              <div className="flex items-center justify-between">
-                                <div>
-                                  <div className="flex items-baseline gap-2">
-                                    <span className={`text-4xl md:text-5xl font-bold font-mono tracking-tighter ${isUpfront ? "text-white" : "text-zinc-500"}`} data-testid={isUpfront ? `price-${tier.id}` : undefined}>
-                                      {pd.upfront}
-                                    </span>
-                                    <span className="text-zinc-500 font-mono text-xs">upfront USD</span>
-                                  </div>
-                                  <p className="text-[10px] font-mono uppercase tracking-widest mt-1">
-                                    <span className="text-[#f97316] font-bold">[ SAVE 10% / {pd.saving} ]</span>
-                                    <span className="text-zinc-600 ml-2">— Full Deployment</span>
-                                  </p>
-                                </div>
-                                <span className={`font-mono text-sm font-bold ${isUpfront ? accentText : "text-zinc-700"}`}>
-                                  {isUpfront ? "[X]" : "[ ]"}
-                                </span>
-                              </div>
-                            </button>
-                          </>
-                        );
-                      })()}
-
-                      {/* Commitment Callout — always visible */}
-                      <p className="text-[10px] text-center text-zinc-500 font-mono tracking-tight leading-tight pt-1">
-                        {">"}  [ SYSTEM_NOTE ]: 70% of members choose &apos;Full Deployment&apos; to maximize commitment and efficiency.
-                      </p>
+                    {/* Pricing */}
+                    <div className="pt-8 border-t border-slate-800 space-y-6">
+                      <div className="flex items-baseline justify-center gap-2">
+                        <span className={`text-4xl md:text-5xl font-bold font-mono tracking-tighter text-white`} data-testid={`price-${tier.id}`}>
+                          {tier.price}<span className="text-xl md:text-2xl text-zinc-400 ml-1">USD</span>
+                        </span>
+                        <span className="text-zinc-500 font-mono text-xs">/ 90 days</span>
+                      </div>
 
                       {/* Final CTA — dynamic URL */}
                       <div>
-                        <Link href={`/initialize?protocol=${tier.id}&billing=${billingCycles[tier.id]}`}>
+                        <Link href={tier.href}>
                           <Button
                             className={`w-full h-16 font-mono font-bold tracking-[0.2em] uppercase text-sm rounded-none transition-all duration-300
-                            ${tier.id === "standard"
+                            ${tier.featured
                                 ? "bg-orange-500 text-black hover:bg-orange-600 shadow-[0_0_20px_rgba(249,115,22,0.3)]"
                                 : "bg-transparent border-2 border-slate-600 text-white hover:bg-white/5"
                               }`}
                             data-testid={`cta-${tier.id}`}
                           >
-                            [ APPLY_FOR_STAGE_1 ]
+                            {tier.ctaText}
                           </Button>
                         </Link>
                       </div>
@@ -314,81 +270,21 @@ export function Pricing() {
           })}
         </div>
 
-        {/* ── Value Calibration Section ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-24 max-w-4xl mx-auto border border-zinc-900 bg-[#060606] p-8 md:p-12 relative overflow-hidden"
-        >
-          {/* Subtle decoration */}
-          <div className="absolute top-0 right-0 p-4 opacity-10">
-            <span className="font-mono text-[60px] text-zinc-500 select-none">VAL</span>
-          </div>
-
-          <p className="text-xs text-orange-500 font-mono uppercase tracking-widest mb-8">
-            // PRICE_VS_VALUE_CALIBRATION
-          </p>
-
-          <div className="space-y-6 mb-12">
-            <div className="flex items-center justify-between border-b border-white/5 pb-4">
-              <span className="text-sm font-mono text-zinc-400 uppercase tracking-wider">Traditional Personal Training (3x/wk)</span>
-              <span className="text-sm font-mono text-zinc-500 font-bold">$1,200/mo</span>
-            </div>
-            <div className="flex items-center justify-between border-b border-white/5 pb-4">
-              <span className="text-sm font-mono text-zinc-400 uppercase tracking-wider">Generic Meal Prep Apps</span>
-              <span className="text-sm font-mono text-zinc-500 font-bold">$300/mo</span>
-            </div>
-            <div className="flex items-center justify-between border-b border-white/5 pb-4">
-              <span className="text-sm font-mono text-zinc-400 uppercase tracking-wider">Trial & Error Cycle</span>
-              <span className="text-sm font-orange-500 font-mono font-bold uppercase tracking-widest">[ INFINITE_COST ]</span>
-            </div>
-
-            {/* Totaling the "Pains" */}
-            <div className="flex items-center justify-between border-t border-dashed border-white/10 pt-6 mt-6">
-              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest font-bold">TOTAL_LEGACY_MAINTENANCE_COST</span>
-              <span className="text-sm font-mono text-slate-400 font-bold">$1,500/mo +</span>
-            </div>
-          </div>
-
-          <div className="bg-slate-900/40 border-l-4 border-orange-500 p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
-            <div className="absolute -top-1 -right-1 p-4">
-              <span className="text-[9px] font-mono text-orange-500/40 uppercase tracking-tighter">
-                [ {">"}80%_SYSTEM_EFFICIENCY_GAIN ]
-              </span>
-            </div>
-            <div>
-              <p className="text-xs text-orange-500 font-mono uppercase tracking-[0.2em] mb-1 font-bold">THE_EFFICIENT_CHOICE</p>
-              <h4 className="text-2xl md:text-3xl font-bold text-white tracking-tighter uppercase italic">EverCapable Protocol</h4>
-            </div>
-            <div className="text-right relative">
-              <span className="text-5xl md:text-6xl font-bold text-orange-500 font-mono tracking-tighter drop-shadow-[0_0_20px_rgba(249,115,22,0.3)]">$285</span>
-              <span className="text-zinc-500 font-mono text-base ml-2">/mo</span>
-            </div>
-          </div>
-        </motion.div>
-
         {/* ── Weaponized Guarantee ── */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 max-w-3xl mx-auto border-2 border-orange-500/30 bg-orange-500/5 p-6 md:p-8"
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="max-w-4xl mx-auto border-2 border-slate-800 bg-slate-900/30 p-6 md:p-8"
         >
-          <div className="flex flex-col md:flex-row gap-6 items-start">
-            <div className="bg-orange-600 text-black font-mono font-bold text-xl px-3 py-1 flex-shrink-0">
-              [ ! ]
-            </div>
-            <div>
-              <h4 className="text-orange-500 font-mono font-bold uppercase tracking-widest text-sm md:text-base mb-2">
-                [ ! ] THE_90-DAY_SYSTEM_GUARANTEE
-              </h4>
-              <p className="text-zinc-300 font-sans leading-relaxed text-sm md:text-base">
-                If you maintain 90% protocol consistency and we don't hit your primary Phase 1 milestones within the first 90 days, <span className="text-white font-bold text-lg md:text-xl">I coach you for FREE</span> until we do. <span className="text-white font-bold">You risk the effort; I risk my time and reputation.</span>
-              </p>
-            </div>
+          <div className="space-y-3">
+            <h4 className="text-white font-bold text-lg md:text-xl">
+              Our Guarantee
+            </h4>
+            <p className="text-zinc-400 font-sans leading-relaxed text-sm md:text-base">
+              Follow the plan with 90% consistency. If you don't hit your goals in 90 days, I coach you for free until you do. <span className="text-white font-bold">You risk the effort. I risk my time.</span>
+            </p>
           </div>
         </motion.div>
 
@@ -397,7 +293,7 @@ export function Pricing() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
           className="mt-32 text-center pb-12"
         >
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">

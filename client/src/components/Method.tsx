@@ -6,23 +6,23 @@ const phases = [
   {
     icon: Zap,
     title: "Phase 1: The Reset",
-    timeframe: "Weeks 1–4",
-    outcome: "Drop your first 5–10 lbs of stubborn fat and water weight.",
-    benefit: "Double your morning energy, sleep better, and completely eliminate the 3 PM afternoon crash.",
+    timeframe: "Days 1-30",
+    outcome: "Drop your first 5 to 10 lbs of stubborn fat and water weight.",
+    benefit: "Wake up with more energy, sleep better, and significantly reduce the 3 PM afternoon crash.",
   },
   {
     icon: Dumbbell,
     title: "Phase 2: The Build",
-    timeframe: "Weeks 5–12",
+    timeframe: "Days 31-60",
     outcome: "Start to add lean, visible muscle.",
-    benefit: "Notice your shirts fitting better. Your nagging joint pain fades away as your real strength returns.",
+    benefit: "Notice your shirts fitting better. Your nagging joint pain fades as your real strength returns.",
   },
   {
     icon: ShieldCheck,
-    title: "Phase 3: The Autopilot",
-    timeframe: "Weeks 13–24",
-    outcome: "Lock in your new body so you never rebound.",
-    benefit: "Effortlessly maintain your results and habits, even while traveling for work or taking clients out to dinner.",
+    title: "Phase 3: The Lock-In",
+    timeframe: "Days 61-90",
+    outcome: "Lock in your results so they stick long after the 90 days.",
+    benefit: "Maintain your results and habits with confidence, even while traveling for work or taking clients out to dinner.",
   },
 ];
 
@@ -39,7 +39,7 @@ export function Method() {
           className="text-center mb-16 md:mb-24"
         >
           <p className="mb-4 text-sm md:text-base font-medium text-orange-500 font-mono uppercase tracking-wider">
-            // THE_SMARTER_WAY
+            How It Works
           </p>
           <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-foreground mb-8 tracking-tight">
             The Smarter Way To Build Muscle & Burn Fat
@@ -49,7 +49,7 @@ export function Method() {
               Traditional fitness fails men in their 30s and 40s because it thrives on extremes. It expects you to eat out of Tupperware, train 6 days a week, and have zero stress. <strong className="text-white">That is a recipe for failure.</strong>
             </p>
             <p>
-              We built a totally different approach. We focus on building a resilient body that burns fat automatically, handles stress like a machine, and only takes 3–4 focused days a week.
+              We built a totally different approach. We focus on building a resilient body that supports steady fat loss, handles stress, and only takes 3 to 4 focused days a week.
             </p>
             <p className="text-orange-500 font-medium pt-4">
               No fluff. No wasted time in the gym. Just measurable daily progress.
@@ -69,7 +69,7 @@ export function Method() {
             The 3-Phase Transformation System
           </h2>
           <p className="text-zinc-500 text-base md:text-lg">
-            Here is exactly how we rebuild your body in 24 weeks.
+            Here is how we get you results in 90 days.
           </p>
         </motion.div>
 
@@ -106,7 +106,7 @@ export function Method() {
                   <div className="space-y-4">
                     <div>
                       <p className="text-xs text-orange-500 font-mono tracking-widest uppercase mb-1">
-                        [ OUTCOME ]
+                        What happens
                       </p>
                       <p className="text-zinc-300 leading-relaxed font-semibold">
                         {phase.outcome}
@@ -114,7 +114,7 @@ export function Method() {
                     </div>
                     <div className="pt-2 border-t border-white/5">
                       <p className="text-xs text-zinc-500 font-mono tracking-widest uppercase mb-1">
-                        [ BENEFIT ]
+                        How it feels
                       </p>
                       <p className="text-zinc-400 text-sm leading-relaxed">
                         {phase.benefit}

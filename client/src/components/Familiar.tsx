@@ -26,13 +26,13 @@ export function Familiar() {
                     {/* Header */}
                     <div className="mb-12 md:mb-16 text-center">
                         <p className="font-mono text-sm tracking-widest text-[#FF9500]/80 mb-4 uppercase">
-                            // THE_PROBLEM
+                            Sound Familiar?
                         </p>
                         <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight tracking-tight mb-6">
-                            Most men over 30 train wrong. Here's why.
+                            You're working harder than ever. Your body doesn't show it.
                         </h2>
                         <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-3xl mx-auto">
-                            If you are reading this, you probably feel like you are working harder than ever, but your body doesn’t show it. Sound familiar?
+                            You've got the drive. But between the job, the kids, and the travel, your health keeps slipping. Here's what we hear most.
                         </p>
                     </div>
 
@@ -51,7 +51,7 @@ export function Familiar() {
                                     <Clock size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
                                 </div>
                                 <span className="font-mono text-white text-base font-bold tracking-wide">
-                                    YOU LACK TIME
+                                    Never Enough Time
                                 </span>
                             </div>
                             <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
@@ -72,7 +72,7 @@ export function Familiar() {
                                     <RefreshCcw size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
                                 </div>
                                 <span className="font-mono text-white text-base font-bold tracking-wide">
-                                    THE YO-YO EFFECT
+                                    The Same 10 lbs, Over and Over
                                 </span>
                             </div>
                             <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
@@ -93,7 +93,7 @@ export function Familiar() {
                                     <BatteryLow size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
                                 </div>
                                 <span className="font-mono text-white text-base font-bold tracking-wide">
-                                    ENERGY IS DEAD
+                                    Running on Empty
                                 </span>
                             </div>
                             <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
@@ -114,11 +114,11 @@ export function Familiar() {
                                     <FileX size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
                                 </div>
                                 <span className="font-mono text-white text-base font-bold tracking-wide">
-                                    NOTHING STICKS
+                                    Nothing Has Lasted
                                 </span>
                             </div>
                             <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
-                                You've tried it all. The generic apps, the keto diets, the extreme bootcamps. Nothing seems to last.
+                                You've tried the apps, the keto diets, the bootcamps. Nothing sticks. And the thought of ending up with the same health problems as your dad or grandfather keeps nagging at you.
                             </p>
                         </motion.div>
                     </div>
@@ -135,7 +135,7 @@ export function Familiar() {
                             It is not your fault.
                         </h3>
                         <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                            When life gets busy, your health is the first thing to break. You don't need another generic PDF template. You need a resilient system built for a busy, real-world life.
+                            You don't need another generic plan. You need a system built for your actual life.
                         </p>
                     </motion.div>
                 </motion.div>

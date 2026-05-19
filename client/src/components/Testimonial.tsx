@@ -10,7 +10,7 @@ export function Testimonial() {
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF6600]/5 blur-[120px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/3 group-hover:bg-[#FF6600]/10 transition-colors duration-700"></div>
 
           <p className="font-mono text-xs md:text-sm tracking-[0.2em] text-[#FF6600] uppercase mb-12">
-            // SYSTEM_CASE_STUDY
+            Client Results
           </p>
 
           <div className="grid md:grid-cols-[40%_1fr] gap-12 md:gap-20 items-start relative z-10">
@@ -44,7 +44,7 @@ export function Testimonial() {
               <div className="relative pl-0 md:pl-6">
                 <h3 className="font-mono text-[10px] md:text-xs text-zinc-500 tracking-[0.2em] uppercase mb-3 flex items-center gap-3">
                   <span className="w-2 h-2 rounded-full bg-red-500/50"></span>
-                  [ BEFORE_PROTOCOL ]
+                  [ BEFORE ]
                 </h3>
                 <p className="text-zinc-400 text-lg md:text-2xl leading-relaxed italic">
                   "Weight fluctuations, 3 PM energy crashes, low control."
@@ -54,7 +54,7 @@ export function Testimonial() {
               <div className="relative pl-0 md:pl-6">
                 <h3 className="font-mono text-[10px] md:text-xs text-green-500 tracking-[0.2em] uppercase mb-3 flex items-center gap-3">
                   <span className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
-                  [ AFTER_90_DAYS ]
+                  [ AFTER 90 DAYS ]
                 </h3>
                 <p className="text-white text-lg md:text-2xl leading-relaxed font-medium">
                   12 lbs down, maintaining weight, consistent energy despite 60+ hour weeks.
@@ -66,7 +66,7 @@ export function Testimonial() {
           {/* Engineer's Note */}
           <div className="mt-16 md:mt-24 pt-8 border-t border-zinc-800/50">
             <p className="text-sm text-zinc-500 max-w-3xl leading-relaxed">
-              <span className="text-zinc-300 font-medium">Note:</span> 12 pounds is the byproduct. The 'control' is the result of building habits that don't break when life gets busy. This is why we commit to 24 weeks.
+              <span className="text-zinc-300 font-medium">Note:</span> 12 pounds is the byproduct. The real result is building habits that don't break when life gets busy. This is what 90 days of consistent habits can do.
             </p>
           </div>
         </div>

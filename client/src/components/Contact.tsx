@@ -20,7 +20,7 @@ export function Contact() {
             Ready to Build Permanent Autonomy?
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-12 text-lg md:text-xl font-light leading-relaxed">
-            Stop guessing. Stop running 30-day programs. Start building a physiological system that scales with your life.
+            Stop guessing. Stop running 30-day programs. Start building habits that actually last.
           </p>
           
           {/* 90-Day Guarantee Box */}
