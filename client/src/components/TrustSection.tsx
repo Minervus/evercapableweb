@@ -16,7 +16,7 @@ export function TrustSection() {
                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF6600]/5 blur-[120px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/3 group-hover:bg-[#FF6600]/10 transition-colors duration-700"></div>
 
                     <p className="font-mono text-xs md:text-sm tracking-[0.2em] text-[#FF6600] uppercase mb-12">
-                        // MEMBER_PERSPECTIVE
+                        Client Feedback
                     </p>
 
                     <div className="grid md:grid-cols-[40%_1fr] gap-12 md:gap-20 items-start relative z-10">
@@ -33,14 +33,7 @@ export function TrustSection() {
                                 </p>
                             </div>
 
-                            <div className="mt-6 flex gap-6 opacity-40">
-                                <span className="font-mono text-[9px] text-zinc-500 tracking-[0.2em] uppercase">
-                                    PRTCL: PRO_v2.1
-                                </span>
-                                <span className="font-mono text-[9px] text-zinc-500 tracking-[0.2em] uppercase">
-                                    AUDIT: FULL_SYSTEM
-                                </span>
-                            </div>
+
                         </div>
 
                         {/* Right Column: Quote */}
@@ -51,7 +44,7 @@ export function TrustSection() {
                             <div className="relative pl-0 md:pl-6">
                                 <h3 className="font-mono text-[10px] md:text-xs text-zinc-500 tracking-[0.2em] uppercase mb-5 flex items-center gap-3">
                                     <span className="w-2 h-2 rounded-full bg-orange-500/50"></span>
-                                    [ METHODOLOGY_REVIEW ]
+                                    What he said
                                 </h3>
 
                                 <div className="relative pl-6">

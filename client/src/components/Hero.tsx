@@ -152,7 +152,7 @@ export function Hero() {
             className="mb-4"
           >
             <span className="font-mono text-orange-500 uppercase tracking-wider text-sm md:text-base font-medium block">
-              // SUSTAINABLE HEALTH & LONGEVITY
+              Customized Coaching for Busy Dads
             </span>
           </motion.div>
 
@@ -162,7 +162,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-[60px] font-bold text-white leading-tight tracking-tight mb-6 drop-shadow-lg"
             data-testid="text-hero-headline"
-          >Build a Body that Scales with Your Life — Without Living in the Gym.</motion.h1>
+          >Lose 10 to 20 lbs in 90 Days Without Living in the Gym</motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -170,7 +170,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 drop-shadow-md"
             data-testid="text-hero-subheadline"
-          >For busy dads and professionals in their 30s and 40s who want to lose weight and build functional strength. Even if you travel, work 50+ hours a week, and have failed at every diet before.</motion.p>
+          >Get a customized plan that works with work, travel, and kids while helping lower your risk of diabetes and cardiovascular disease.</motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

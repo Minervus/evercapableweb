@@ -11,7 +11,7 @@ export function Coach() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4"
             data-testid="text-coach-headline"
           >
-            20 Years of Guessing vs. 6 Months of Science.
+            20 Years of Guessing vs. 90 Days of Doing It Right.
           </h2>
           <p
             className="text-lg text-primary font-medium"
@@ -36,7 +36,7 @@ export function Coach() {
             <p data-testid="text-coach-intro">
               I'm Tony. I'm a certified nutrition coach and PT, but honestly?
               That's the least interesting thing about me. What matters is that
-              I spent two decades as a human guinea pig, trying to "hack" body toward what I thought was "healthy".
+              I spent two decades as a human guinea pig, trying to "hack" my body toward what I thought was "healthy".
             </p>
 
             <ul className="space-y-4 list-disc pl-5 text-muted-foreground">
@@ -67,7 +67,7 @@ export function Coach() {
             >
               I stopped training for the mirror and started training for{" "}
               <strong>Sustainability</strong> and{" "}
-              <strong>Long-term Longevity</strong>—the next 40 years.
+              <strong>Long-term Longevity</strong>, the next 40 years.
             </p>
 
             <p data-testid="text-coach-evercapable">
@@ -84,9 +84,9 @@ export function Coach() {
 
             <p data-testid="text-coach-mission">
               Now, my mission is to help other millennials and dads stop the
-              guesswork. No more 2-hour gym grinds or crash diets. This is about a{" "}
-              <strong>Sustainable Data-Driven</strong> approach to your{" "}
-              <strong>Best Self</strong>.
+              guesswork. No more 2-hour gym sessions or crash diets. This is a{" "}
+              <strong>sustainable, data-informed</strong> approach to becoming your{" "}
+              <strong>best self</strong>.
             </p>
 
             <p

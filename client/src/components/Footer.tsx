@@ -121,7 +121,7 @@ export function Footer() {
             <div className="bg-[#111111] border border-zinc-800 p-6">
               <p className="text-[10px] md:text-xs text-zinc-500 font-mono leading-relaxed uppercase tracking-wide text-center">
                 <span className="text-orange-500 font-bold mr-2 tracking-widest">// SYSTEM_NOTICE:</span>
-                The EverCapable Protocol is engineered for high-performing professionals. It is not medical advice. Consult your physician before initiating any rigorous structural or metabolic reprogramming.
+                The EverCapable program is designed for motivated professionals. It is not medical advice. Consult your physician before starting any new fitness or nutrition program.
               </p>
             </div>
 
