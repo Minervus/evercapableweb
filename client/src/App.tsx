@@ -7,6 +7,8 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Home from "@/pages/home";
 import Initialize from "@/pages/Initialize";
 import NotFound from "@/pages/not-found";
+import Journal from "@/pages/Journal";
+import Article from "@/pages/Article";
 
 function Router() {
   return (
@@ -15,6 +17,8 @@ function Router() {
       <Route path="/initialize" component={Initialize} />
       {/* Legacy alias — keeps old /calibrate links working */}
       <Route path="/calibrate">{() => <Redirect to="/initialize" />}</Route>
+      <Route path="/journal" component={Journal} />
+      <Route path="/journal/:slug" component={Article} />
       <Route component={NotFound} />
     </Switch>
   );
