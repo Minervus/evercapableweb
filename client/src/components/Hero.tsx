@@ -162,7 +162,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-[60px] font-bold text-white leading-tight tracking-tight mb-6 drop-shadow-lg"
             data-testid="text-hero-headline"
-          >Lose 10 to 20 lbs in 90 Days Without Living in the Gym</motion.h1>
+          >Lock in for 90 days and lose 10–20 lbs. <br /> More importantly, <span className="text-orange-500">learn how to maintain it</span>.</motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
