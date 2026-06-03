@@ -5,12 +5,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import logoIconDark from "@assets/icon-on-black_1768604893518.png";
 import logoIconLight from "@assets/icon-on-white_1768604893518.png";
 
+import { useLocation } from "wouter";
+
 type NavLink =
   | { href: string; label: string; submenu?: never }
   | { label: string; submenu: { href: string; label: string }[]; href?: never };
 
 const navLinks: NavLink[] = [
   { href: "#evercapable-method", label: "The Protocol" },
+  { href: "/journal", label: "Journal" },
   { href: "#coach", label: "About" },
   { href: "#protocol-tiers", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
@@ -27,11 +30,23 @@ const socialLinks = [
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
+  const [location, setLocation] = useLocation();
 
   const scrollToSection = (href: string) => {
     // Close menu first
     setIsMenuOpen(false);
     setExpandedSubmenu(null);
+
+    if (href.startsWith("/")) {
+      setLocation(href);
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    if (location !== "/") {
+      window.location.href = `/${href}`;
+      return;
+    }
 
     if (href === "#") {
       window.scrollTo({ top: 0, behavior: "smooth" });
