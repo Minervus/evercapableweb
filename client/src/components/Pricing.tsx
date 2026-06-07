@@ -4,68 +4,6 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { CheckCircle2 } from "lucide-react";
 
-interface Tier {
-  id: string;
-  header: string;
-  subtitle: string;
-  featured: boolean;
-  persona: string;
-  price: string;
-  ctaText: string;
-  href: string;
-  differentiators: string[];
-}
-
-const TIERS: Tier[] = [
-  {
-    id: "blueprint",
-    header: "The Blueprint",
-    subtitle: "The Plan",
-    featured: false,
-    persona: "Self-starters who want the Map (The Plan) to execute independently.",
-    price: "$349",
-    ctaText: "Get Started",
-    href: "/initialize?tier=1",
-    differentiators: [
-      "90-Day Customized Nutrition & Workout Plan",
-      "Tailored to your goals, body composition, and equipment",
-      "Automated Data Tracking & Community Access",
-    ],
-  },
-  {
-    id: "signature",
-    header: "Signature Experience",
-    subtitle: "Most Popular",
-    featured: true,
-    persona: "Dads who want the Map AND the Guide (Bi-Weekly Loom Reviews).",
-    price: "$899",
-    ctaText: "Apply for Coaching",
-    href: "/initialize?tier=2",
-    differentiators: [
-      "Everything in The Blueprint",
-      "Bi-Weekly Asynchronous Video Reviews (Loom)",
-      "Ongoing Nutrition Strategy Adjustments",
-      "Guaranteed Testimonial Interview",
-    ],
-  },
-  {
-    id: "elite",
-    header: "Elite Mastery",
-    subtitle: "Full Access",
-    featured: false,
-    persona: "High-stakes leaders needing intensive 1-on-1 coaching.",
-    price: "$1,900",
-    ctaText: "Apply for Coaching",
-    href: "/initialize?tier=3",
-    differentiators: [
-      "Everything in Signature Experience",
-      "Weekly 1:1 Check-Ins",
-      "Biomarker / VO2 Max Analysis",
-      "Monthly Strategy Calls",
-    ],
-  },
-];
-
 const resultMarkers = [
   {
     title: "Weight Mastery",
@@ -126,11 +64,11 @@ export function Pricing() {
                </h4>
                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">Looking for 10 Transformations</h3>
                <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-6">
-                 We are actively recruiting 10 founding members for our Case Study (Signature & Elite tiers). If you are accepted, you get priority access and a tailored 90-day roadmap. In return, you agree to document your progress and share your before and after metrics as a public case study.
+                 We are actively recruiting 10 founding members for our Case Study. If you are accepted, you get priority access and a tailored 90-day roadmap. In return, you agree to document your progress and share your before and after metrics as a public case study.
                </p>
-               <Link href="/initialize?tier=2">
+               <Link href="/initialize">
                  <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-mono uppercase tracking-widest rounded-none">
-                   Apply for Case Study
+                   Apply for Coaching
                  </Button>
                </Link>
              </div>
@@ -169,105 +107,100 @@ export function Pricing() {
           </div>
         </motion.div>
 
-        {/* Three-card grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start mb-16">
-          {TIERS.map((tier, tierIdx) => {
-            return (
-              <motion.div
-                key={tier.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.4 + tierIdx * 0.1 }}
-                className="h-full"
-              >
-                <Card
-                  className={`flex flex-col h-full bg-[#0A0A0A] rounded-none border-t-4 transition-all duration-500
-                    ${tier.featured
-                      ? "border-orange-500"
-                      : "border-slate-400"
-                    } shadow-none`}
-                  data-testid={`card-tier-${tier.id}`}
-                >
-                  <CardHeader className="pt-10 pb-8 px-8 flex flex-col items-center text-center relative overflow-hidden">
-                    {/* Grid bg */}
-                    <div className="absolute inset-0 z-0 pointer-events-none opacity-5" style={{
-                      backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-                      backgroundSize: "30px 30px",
-                    }} />
+        {/* Single centered card */}
+        <div className="max-w-xl mx-auto mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="h-full"
+          >
+            <Card
+              className="flex flex-col h-full bg-[#0A0A0A] rounded-none border-t-4 border-orange-500 transition-all duration-500 shadow-[0_0_30px_rgba(255,149,0,0.1)]"
+              data-testid="card-tier-coaching"
+            >
+              <CardHeader className="pt-10 pb-8 px-8 flex flex-col items-center text-center relative overflow-hidden">
+                {/* Grid bg */}
+                <div className="absolute inset-0 z-0 pointer-events-none opacity-5" style={{
+                  backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+                  backgroundSize: "30px 30px",
+                }} />
 
-                    <div className="relative z-10 w-full space-y-6">
-                      {/* Tier name & status */}
-                      <div className="space-y-1">
-                        <h3 className={`text-xl md:text-2xl font-bold tracking-tighter uppercase italic ${tier.featured ? "text-orange-500" : "text-white"}`}>
-                          {tier.header}
-                        </h3>
-                        <p className={`text-[10px] font-mono tracking-widest uppercase font-bold ${tier.featured ? "text-orange-500" : "text-slate-400"}`}>
-                          {tier.subtitle}
-                        </p>
-                      </div>
+                <div className="relative z-10 w-full space-y-6">
+                  {/* Tier name & status */}
+                  <div className="space-y-1">
+                    <h3 className="text-2xl md:text-3xl font-bold tracking-tighter uppercase italic text-orange-500">
+                      EverCapable Coaching
+                    </h3>
+                    <p className="text-[10px] font-mono tracking-widest uppercase font-bold text-orange-500">
+                      FOUNDATION & SUSTAINABILITY SYSTEM
+                    </p>
+                  </div>
 
-                      {/* User Profile callout */}
-                      <div className={`p-4 ${tier.featured ? "bg-orange-500/10 border-l-2 border-orange-500" : "bg-white/5 border-l-2 border-slate-400"}`}>
-                        <p className="text-[11px] font-mono leading-relaxed text-white text-left">
-                          <span className="text-zinc-500 mr-2 uppercase tracking-tighter font-bold">Best for:</span>
-                          {tier.persona}
-                        </p>
-                      </div>
+                  {/* User Profile callout */}
+                  <div className="p-4 bg-orange-500/10 border-l-2 border-orange-500">
+                    <p className="text-[11px] font-mono leading-relaxed text-white text-left">
+                      <span className="text-zinc-500 mr-2 uppercase tracking-tighter font-bold">Best for:</span>
+                      Busy dads who want a customized nutrition and training plan that actually works with work, travel, and kids.
+                    </p>
+                  </div>
+                </div>
+              </CardHeader>
 
-                    </div>
-                  </CardHeader>
-
-                  <CardContent className="flex-1 flex flex-col px-8 pb-10 relative z-10">
-                    {/* Features list */}
-                    <div className="flex-1 pt-4 pb-8">
-                      <div className="space-y-4">
-                        {tier.differentiators.map((d, i) => {
-                          const isPriority = d.includes("[ PRIORITY ]");
-                          return (
-                            <div key={i} className="flex items-start gap-3">
-                              <span className={`mt-1 font-mono text-xs ${tier.featured ? "text-orange-500" : "text-slate-400"}`}>
-                                &gt;
-                              </span>
-                              <p className={`text-xs md:text-sm font-mono tracking-wide ${isPriority ? "text-white font-bold" : "text-zinc-300"}`}>
-                                {d}
-                              </p>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* Pricing */}
-                    <div className="pt-8 border-t border-slate-800 space-y-6">
-                      <div className="flex items-baseline justify-center gap-2">
-                        <span className={`text-4xl md:text-5xl font-bold font-mono tracking-tighter text-white`} data-testid={`price-${tier.id}`}>
-                          {tier.price}<span className="text-xl md:text-2xl text-zinc-400 ml-1">USD</span>
+              <CardContent className="flex-1 flex flex-col px-8 pb-10 relative z-10">
+                {/* Features list */}
+                <div className="flex-1 pt-4 pb-8">
+                  <div className="space-y-4">
+                    {[
+                      "90-Day Customized Nutrition & Workout Plan",
+                      "Tailored to your goals, body composition, and equipment",
+                      "Bi-Weekly Asynchronous Video Reviews (Loom)",
+                      "Ongoing Nutrition Strategy Adjustments",
+                      "Automated Data Tracking & Community Access",
+                      "Direct Messaging Access to Coach",
+                    ].map((d, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <span className="mt-1 font-mono text-xs text-orange-500">
+                          &gt;
                         </span>
-                        <span className="text-zinc-500 font-mono text-xs">/ 90 days</span>
+                        <p className="text-xs md:text-sm font-mono tracking-wide text-zinc-300">
+                          {d}
+                        </p>
                       </div>
+                    ))}
+                  </div>
+                </div>
 
-                      {/* Final CTA — dynamic URL */}
-                      <div>
-                        <Link href={tier.href}>
-                          <Button
-                            className={`w-full h-16 font-mono font-bold tracking-[0.2em] uppercase text-sm rounded-none transition-all duration-300
-                            ${tier.featured
-                                ? "bg-orange-500 text-black hover:bg-orange-600 shadow-[0_0_20px_rgba(249,115,22,0.3)]"
-                                : "bg-transparent border-2 border-slate-600 text-white hover:bg-white/5"
-                              }`}
-                            data-testid={`cta-${tier.id}`}
-                          >
-                            {tier.ctaText}
-                          </Button>
-                        </Link>
-                      </div>
+                {/* Pricing */}
+                <div className="pt-8 border-t border-slate-800 space-y-6">
+                  <div className="text-center space-y-2">
+                    <div className="flex items-baseline justify-center gap-2">
+                      <span className="text-4xl md:text-5xl font-bold font-mono tracking-tighter text-white" data-testid="price-coaching">
+                        $300<span className="text-xl md:text-2xl text-zinc-400 ml-1">USD</span>
+                      </span>
+                      <span className="text-zinc-500 font-mono text-xs">/ Month</span>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+                    <p className="text-zinc-400 font-sans text-xs italic">
+                      (Requires a 90-day initial commitment to build your foundation. Month-to-month afterward.)
+                    </p>
+                  </div>
+
+                  {/* Final CTA */}
+                  <div>
+                    <Link href="/initialize">
+                      <Button
+                        className="w-full h-16 font-mono font-bold tracking-[0.2em] uppercase text-sm rounded-none transition-all duration-300 bg-orange-500 text-black hover:bg-orange-600 shadow-[0_0_20px_rgba(249,115,22,0.3)]"
+                        data-testid="cta-coaching"
+                      >
+                        Apply for Coaching
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
 
         {/* ── Weaponized Guarantee ── */}
@@ -300,18 +233,16 @@ export function Pricing() {
             Ready to Get Your Edge Back?
           </h2>
           <p className="text-zinc-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
-            Stop guessing. Start executing. Find out exactly what is holding your body back right now.
+            Stop guessing. Start executing.
           </p>
-          <Button
-            onClick={() => {
-              const el = document.querySelector("#system-integrity-test");
-              el?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
-            size="lg"
-            className="bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none min-w-[300px] min-h-[64px] text-lg rounded-full font-bold font-mono uppercase tracking-widest shadow-[0_0_20px_rgba(255,149,0,0.3)]"
-          >
-            Take the 2-Minute Fitness Audit
-          </Button>
+          <Link href="/initialize">
+            <Button
+              size="lg"
+              className="bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none min-w-[300px] min-h-[64px] text-lg rounded-full font-bold font-mono uppercase tracking-widest shadow-[0_0_20px_rgba(255,149,0,0.3)]"
+            >
+              Apply for Coaching
+            </Button>
+          </Link>
         </motion.div>
 
       </motion.div >

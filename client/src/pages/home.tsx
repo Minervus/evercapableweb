@@ -7,7 +7,6 @@ const Familiar = lazy(() => import("@/components/Familiar").then(m => ({ default
 const Method = lazy(() => import("@/components/Method").then(m => ({ default: m.Method })));
 const Testimonial = lazy(() => import("@/components/Testimonial").then(m => ({ default: m.Testimonial })));
 const TrustSection = lazy(() => import("@/components/TrustSection").then(m => ({ default: m.TrustSection })));
-const SystemIntegrityTest = lazy(() => import("@/components/SystemIntegrityTest").then(m => ({ default: m.SystemIntegrityTest })));
 const Pricing = lazy(() => import("@/components/Pricing").then(m => ({ default: m.Pricing })));
 const DataSection = lazy(() => import("@/components/DataSection").then(m => ({ default: m.DataSection })));
 const Coach = lazy(() => import("@/components/Coach").then(m => ({ default: m.Coach })));
@@ -27,7 +26,6 @@ export default function Home() {
           <Method />
           <Testimonial />
           <TrustSection />
-          <SystemIntegrityTest />
           <Pricing />
           <DataSection />
           <Coach />

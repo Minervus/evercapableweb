@@ -127,7 +127,7 @@ export function Footer() {
 
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
               <p className="text-sm text-zinc-500" data-testid="text-copyright">
-                Copyright © 2025 EverCapable – All Rights Reserved
+                Copyright © 2026 EverCapable - All Rights Reserved
               </p>
               <p className="text-sm text-zinc-500">
                 Built with care
