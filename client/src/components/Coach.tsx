@@ -104,22 +104,36 @@ export function Coach() {
               className="flex items-center gap-4"
               data-testid="container-certifications"
             >
-              <img
-                src={issaLogo}
-                alt="ISSA Certified"
-                width={120}
-                height={80}
-                className="h-16 md:h-20 w-auto"
-                data-testid="img-issa-logo"
-              />
-              <img
-                src={pnLogo}
-                alt="Precision Nutrition L1 Coach"
-                width={120}
-                height={80}
-                className="h-16 md:h-20 w-auto rounded-md"
-                data-testid="img-pn-logo"
-              />
+              <a
+                href="https://www.issaonline.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img
+                  src={issaLogo}
+                  alt="ISSA Certified"
+                  width={120}
+                  height={80}
+                  className="h-16 md:h-20 w-auto"
+                  data-testid="img-issa-logo"
+                />
+              </a>
+              <a
+                href="https://www.precisionnutrition.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img
+                  src={pnLogo}
+                  alt="Precision Nutrition L1 Coach"
+                  width={120}
+                  height={80}
+                  className="h-16 md:h-20 w-auto rounded-md"
+                  data-testid="img-pn-logo"
+                />
+              </a>
             </div>
             <p
               className="text-3xl md:text-4xl text-foreground italic text-right"

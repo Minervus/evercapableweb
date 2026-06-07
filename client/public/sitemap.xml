@@ -2,17 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://evercapable.com</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://evercapable.com/journal</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://evercapable.com/journal/how-busy-dads-can-exercise-without-a-gym</loc>
     <lastmod>2026-06-03</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://evercapable.com/journal/why-busy-dads-overeat-at-night</loc>
+    <lastmod>2026-06-04</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -27,7 +32,7 @@
   </url>
   <url>
     <loc>https://evercapable.com/journal/weight-loss-for-busy-dads</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
