@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Menu, X, Instagram, Youtube, Globe, Mail, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { AnimatePresence, motion } from "framer-motion";
-import logoIconDark from "@assets/icon-on-black_1768604893518.png";
-import logoIconLight from "@assets/icon-on-white_1768604893518.png";
+import logoIconDark from "@assets/tn-logo-on-black.png";
+import logoIconLight from "@assets/tn-logo-on-white.png";
 
 import { useLocation } from "wouter";
 
@@ -94,20 +94,20 @@ export function Header() {
           >
             <img
               src={logoIconDark}
-              alt="EverCapable"
+              alt="Tony Nguyen Fit"
               width={24}
               height={24}
               className="h-6 w-auto hidden dark:block"
             />
             <img
               src={logoIconLight}
-              alt="EverCapable"
+              alt="Tony Nguyen Fit"
               width={24}
               height={24}
               className="h-6 w-auto block dark:hidden"
             />
             <span className="text-lg font-bold text-zinc-900 dark:text-white tracking-tight">
-              EverCapable
+              Tony Nguyen Fit
             </span>
           </a>
 

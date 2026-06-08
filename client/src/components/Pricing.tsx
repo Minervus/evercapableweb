@@ -131,7 +131,7 @@ export function Pricing() {
                   {/* Tier name & status */}
                   <div className="space-y-1">
                     <h3 className="text-2xl md:text-3xl font-bold tracking-tighter uppercase italic text-orange-500">
-                      EverCapable Coaching
+                      Tony Nguyen Fit Coaching
                     </h3>
                     <p className="text-[10px] font-mono tracking-widest uppercase font-bold text-orange-500">
                       FOUNDATION & SUSTAINABILITY SYSTEM

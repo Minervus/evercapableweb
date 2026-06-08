@@ -46,7 +46,7 @@ const faqs = [
   },
   {
     question: "Why not a $20 app?",
-    answer: "Generic apps provide templates. EverCapable provides an engineered result. For the cost of a daily latte, you get a dedicated coach, real data analysis, and a system that actually sticks when life gets chaotic. This is for the person who is tired of cheap solutions failing them.",
+    answer: "Generic apps provide templates. Tony Nguyen Fit provides an engineered result. For the cost of a daily latte, you get a dedicated coach, real data analysis, and a system that actually sticks when life gets chaotic. This is for the person who is tired of cheap solutions failing them.",
   },
 ];
 
@@ -63,7 +63,7 @@ export function FAQ() {
               Frequently Asked Questions
             </h2>
             <p className="text-zinc-400 mb-6">
-              Everything you need to know about working with EverCapable and our approach to lasting transformation.
+              Everything you need to know about working with Tony and the approach to lasting transformation.
             </p>
           </div>
 
