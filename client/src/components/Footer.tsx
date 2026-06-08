@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Instagram, Youtube, Globe, Mail } from "lucide-react";
 import { SiX } from "react-icons/si";
-import logoIconDark from "@assets/icon-on-black_1768604893518.png";
-import logoIconLight from "@assets/icon-on-white_1768604893518.png";
+import logoIconDark from "@assets/tn-logo-on-black.png";
+import logoIconLight from "@assets/tn-logo-on-white.png";
 import { PrivacyModal } from "@/components/PrivacyModal";
 import { TermsModal } from "@/components/TermsModal";
 
@@ -59,20 +59,20 @@ export function Footer() {
             >
               <img
                 src={logoIconDark}
-                alt="EverCapable"
+                alt="Tony Nguyen Fit"
                 width={40}
                 height={40}
                 className="h-10 w-auto hidden dark:block"
               />
               <img
                 src={logoIconLight}
-                alt="EverCapable"
+                alt="Tony Nguyen Fit"
                 width={40}
                 height={40}
                 className="h-10 w-auto block dark:hidden"
               />
               <span className="text-2xl font-bold text-zinc-400 tracking-tight">
-                EverCapable
+                Tony Nguyen Fit
               </span>
             </a>
 
@@ -121,13 +121,13 @@ export function Footer() {
             <div className="bg-[#111111] border border-zinc-800 p-6">
               <p className="text-[10px] md:text-xs text-zinc-500 font-mono leading-relaxed uppercase tracking-wide text-center">
                 <span className="text-orange-500 font-bold mr-2 tracking-widest">// SYSTEM_NOTICE:</span>
-                The EverCapable program is designed for motivated professionals. It is not medical advice. Consult your physician before starting any new fitness or nutrition program.
+                The Tony Nguyen Fit program is designed for motivated professionals. It is not medical advice. Consult your physician before starting any new fitness or nutrition program.
               </p>
             </div>
 
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
               <p className="text-sm text-zinc-500" data-testid="text-copyright">
-                Copyright © 2026 EverCapable - All Rights Reserved
+                Copyright © 2026 Tony Nguyen Fit - All Rights Reserved
               </p>
               <p className="text-sm text-zinc-500">
                 Built with care

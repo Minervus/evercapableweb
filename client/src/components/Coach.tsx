@@ -72,7 +72,7 @@ export function Coach() {
 
             <p data-testid="text-coach-evercapable">
               I realized that being{" "}
-              <strong className="text-foreground">EverCapable</strong> meant
+              <strong className="text-foreground">truly capable</strong> meant
               more than benching 3 plates; it meant being 95 or 100 years old
               and being able to wipe my own butt.{" "}
             </p>
