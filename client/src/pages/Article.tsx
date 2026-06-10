@@ -5,6 +5,8 @@ import { format } from 'date-fns';
 import { useRoute, Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft } from 'lucide-react';
+import { ARTICLE_SEO_GROQ } from '@shared/articleSeo';
+import { ArticleSeo } from '@/components/ArticleSeo';
 
 // Custom components for rendering Portable Text from Sanity
 const portableTextComponents = {
@@ -58,7 +60,7 @@ export default function Article() {
       if (!slug) throw new Error('No slug provided');
       return client.fetch(`
         *[_type == "post" && slug.current == $slug][0] {
-          title,
+          ${ARTICLE_SEO_GROQ},
           publishedAt,
           mainImage,
           body,
@@ -90,6 +92,7 @@ export default function Article() {
 
   return (
     <article className="min-h-screen bg-background pt-24 pb-24">
+      <ArticleSeo article={article} />
       <div className="max-w-3xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
