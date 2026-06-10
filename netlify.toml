@@ -2,6 +2,13 @@
   command = "npx tsx script/build-static.ts"
   publish = "dist/public"
 
+# Trailing-slash URLs redirect to the canonical non-trailing-slash destination
+[[redirects]]
+  from = "/journal/:slug/"
+  to = "/journal/:slug"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

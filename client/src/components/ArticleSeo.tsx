@@ -1,5 +1,9 @@
 import { Helmet } from "react-helmet-async";
-import { buildArticleMetadata, type ArticleSeoFields } from "@shared/articleSeo";
+import {
+  buildArticleCanonicalUrl,
+  buildArticleMetadata,
+  type ArticleSeoFields,
+} from "@shared/articleSeo";
 
 interface ArticleSeoProps {
   article: ArticleSeoFields & { slug: string };
@@ -7,7 +11,7 @@ interface ArticleSeoProps {
 
 export function ArticleSeo({ article }: ArticleSeoProps) {
   const { title, description } = buildArticleMetadata(article);
-  const url = `https://evercapable.com/journal/${article.slug}`;
+  const url = buildArticleCanonicalUrl(article.slug);
 
   return (
     <Helmet>

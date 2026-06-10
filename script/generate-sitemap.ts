@@ -1,6 +1,7 @@
 import { createClient } from "@sanity/client";
 import { writeFileSync } from "fs";
 import { resolve } from "path";
+import { buildArticleCanonicalUrl, normalizeCanonicalUrl, SITE_BASE_URL } from "../shared/articleSeo";
 
 const client = createClient({
   projectId: "49ykafev",
@@ -8,8 +9,6 @@ const client = createClient({
   useCdn: false,
   apiVersion: "2024-01-01",
 });
-
-const BASE_URL = "https://evercapable.com";
 
 export async function generateSitemap() {
   console.log("Generating sitemap...");
@@ -20,12 +19,12 @@ export async function generateSitemap() {
   
   const urls = [
     ...staticPages.map(page => ({
-      url: `${BASE_URL}${page}`,
+      url: normalizeCanonicalUrl(`${SITE_BASE_URL}${page}`),
       lastmod: new Date().toISOString().split("T")[0],
       priority: page === "" ? "1.0" : "0.8"
     })),
     ...posts.map((post: any) => ({
-      url: `${BASE_URL}/journal/${post.slug}`,
+      url: buildArticleCanonicalUrl(post.slug),
       lastmod: post._updatedAt ? post._updatedAt.split("T")[0] : new Date().toISOString().split("T")[0],
       priority: "0.6"
     }))
