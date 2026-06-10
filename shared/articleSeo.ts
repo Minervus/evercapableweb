@@ -1,3 +1,5 @@
+export const SITE_BASE_URL = "https://evercapable.com";
+
 export interface ArticleSeoFields {
   title: string;
   snippet?: string | null;
@@ -11,6 +13,23 @@ export interface ArticleSeoFields {
 export interface ArticleMetadata {
   title: string;
   description: string;
+}
+
+/** Strip trailing slashes so canonical matches the non-trailing-slash 301 destination. */
+export function normalizeCanonicalUrl(url: string): string {
+  const parsed = new URL(url.trim());
+  if (parsed.pathname !== "/" && parsed.pathname.endsWith("/")) {
+    parsed.pathname = parsed.pathname.replace(/\/+$/, "");
+  }
+  return parsed.pathname === "/" ? parsed.origin + "/" : parsed.href.replace(/\/+$/, "");
+}
+
+export function buildArticleCanonicalUrl(
+  slug: string,
+  baseUrl = SITE_BASE_URL,
+): string {
+  const cleanSlug = slug.replace(/^\/+|\/+$/g, "");
+  return normalizeCanonicalUrl(`${baseUrl}/journal/${cleanSlug}`);
 }
 
 export function buildArticleMetadata(article: ArticleSeoFields): ArticleMetadata {
@@ -34,10 +53,10 @@ function escapeHtmlAttribute(value: string): string {
 export function injectArticleMetadata(
   html: string,
   article: ArticleSeoFields & { slug: string },
-  baseUrl = "https://evercapable.com",
+  baseUrl = SITE_BASE_URL,
 ): string {
   const { title, description } = buildArticleMetadata(article);
-  const url = `${baseUrl}/journal/${article.slug}`;
+  const url = buildArticleCanonicalUrl(article.slug, baseUrl);
   const safeTitle = escapeHtmlAttribute(title);
   const safeDescription = escapeHtmlAttribute(description);
 
