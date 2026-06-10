@@ -47,6 +47,27 @@ export const post = {
       validation: (Rule: any) => Rule.max(200),
     },
     {
+      name: 'seo',
+      title: 'SEO',
+      type: 'object',
+      fields: [
+        {
+          name: 'metaTitle',
+          title: 'Meta Title',
+          type: 'string',
+          description: 'Overrides the post title in search results and social previews',
+        },
+        {
+          name: 'metaDescription',
+          title: 'Meta Description',
+          type: 'text',
+          rows: 3,
+          description: 'Overrides the snippet in search results and social previews',
+          validation: (Rule: any) => Rule.max(160),
+        },
+      ],
+    },
+    {
       name: 'body',
       title: 'Body',
       type: 'array',
