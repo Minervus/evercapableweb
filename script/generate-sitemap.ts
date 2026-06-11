@@ -2,6 +2,7 @@ import { createClient } from "@sanity/client";
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 import { buildArticleCanonicalUrl, normalizeCanonicalUrl, SITE_BASE_URL } from "../shared/articleSeo";
+import { buildJournalRedirectRules } from "../shared/journalRedirects";
 
 const client = createClient({
   projectId: "49ykafev",
@@ -40,5 +41,11 @@ ${urls.map(({ url, lastmod, priority }) => `  <url>
 </urlset>`;
 
   writeFileSync(resolve(process.cwd(), "client/public/sitemap.xml"), sitemapContent, "utf-8");
-  console.log("Sitemap generated successfully!");
+
+  const redirectRules = buildJournalRedirectRules(
+    posts.map((post: { slug: string }) => post.slug),
+  );
+  writeFileSync(resolve(process.cwd(), "client/public/_redirects"), redirectRules, "utf-8");
+
+  console.log("Sitemap and _redirects generated successfully!");
 }
