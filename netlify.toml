@@ -9,16 +9,13 @@
   status = 301
   force = true
 
-# Serve prerendered article HTML at clean URLs (no redirect)
-[[redirects]]
-  from = "/journal/:slug"
-  to = "/journal/:slug.html"
-  status = 200
-
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+[build.processing.html]
+  pretty_urls = false
 
 [build.environment]
   NODE_VERSION = "20"
