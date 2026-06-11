@@ -11,5 +11,9 @@ export function buildJournalRedirectRules(slugs: string[]): string {
     );
   }
 
+  // SPA fallback must live in _redirects (after journal rules) so netlify.toml
+  // catch-all does not take precedence over the journal rewrites above.
+  rules.push("/* /index.html 200");
+
   return `${rules.join("\n")}\n`;
 }
