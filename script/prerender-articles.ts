@@ -23,7 +23,7 @@ export async function prerenderArticles() {
   for (const post of posts) {
     const html = injectArticleMetadata(indexHtml, post);
     const cleanSlug = post.slug.replace(/^\/+|\/+$/g, "");
-    const outPath = resolve(process.cwd(), `dist/public/journal/${cleanSlug}.html`);
+    const outPath = resolve(process.cwd(), `dist/public/journal/${cleanSlug}`);
     mkdirSync(dirname(outPath), { recursive: true });
     writeFileSync(outPath, html, "utf-8");
   }
