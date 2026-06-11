@@ -1,14 +1,15 @@
-# Prerendered journal article routes (exact paths avoid :slug matching .html)
-/journal/how-busy-dads-can-exercise-without-a-gym/ /journal/how-busy-dads-can-exercise-without-a-gym 301!
+# Serve prerendered articles at clean and trailing-slash URLs (200 rewrite, not 301)
+# Netlify treats /path and /path/ as equivalent, so 301 trailing-slash rules loop.
 /journal/how-busy-dads-can-exercise-without-a-gym /journal/how-busy-dads-can-exercise-without-a-gym.html 200!
-/journal/why-busy-dads-overeat-at-night/ /journal/why-busy-dads-overeat-at-night 301!
+/journal/how-busy-dads-can-exercise-without-a-gym/ /journal/how-busy-dads-can-exercise-without-a-gym.html 200!
 /journal/why-busy-dads-overeat-at-night /journal/why-busy-dads-overeat-at-night.html 200!
-/journal/how-to-handle-weekend-eating/ /journal/how-to-handle-weekend-eating 301!
+/journal/why-busy-dads-overeat-at-night/ /journal/why-busy-dads-overeat-at-night.html 200!
 /journal/how-to-handle-weekend-eating /journal/how-to-handle-weekend-eating.html 200!
-/journal/how-busy-dads-can-eat-enough-protein/ /journal/how-busy-dads-can-eat-enough-protein 301!
+/journal/how-to-handle-weekend-eating/ /journal/how-to-handle-weekend-eating.html 200!
 /journal/how-busy-dads-can-eat-enough-protein /journal/how-busy-dads-can-eat-enough-protein.html 200!
-/journal/weight-loss-for-busy-dads/ /journal/weight-loss-for-busy-dads 301!
+/journal/how-busy-dads-can-eat-enough-protein/ /journal/how-busy-dads-can-eat-enough-protein.html 200!
 /journal/weight-loss-for-busy-dads /journal/weight-loss-for-busy-dads.html 200!
-/journal/how-to-stop-snacking-after-work/ /journal/how-to-stop-snacking-after-work 301!
+/journal/weight-loss-for-busy-dads/ /journal/weight-loss-for-busy-dads.html 200!
 /journal/how-to-stop-snacking-after-work /journal/how-to-stop-snacking-after-work.html 200!
+/journal/how-to-stop-snacking-after-work/ /journal/how-to-stop-snacking-after-work.html 200!
 /* /index.html 200
