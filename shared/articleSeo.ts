@@ -42,7 +42,7 @@ export function buildArticleMetadata(article: ArticleSeoFields): ArticleMetadata
   return { title, description };
 }
 
-function escapeHtmlAttribute(value: string): string {
+export function escapeHtmlAttribute(value: string): string {
   return value
     .replace(/&/g, "&amp;")
     .replace(/"/g, "&quot;")
@@ -50,15 +50,22 @@ function escapeHtmlAttribute(value: string): string {
     .replace(/>/g, "&gt;");
 }
 
-export function injectArticleMetadata(
+export function escapeHtmlText(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+/** Replace the head meta/title/canonical tags for any prerendered page. */
+export function injectPageMetadata(
   html: string,
-  article: ArticleSeoFields & { slug: string },
-  baseUrl = SITE_BASE_URL,
+  meta: { title: string; description: string; url: string; ogType?: string },
 ): string {
-  const { title, description } = buildArticleMetadata(article);
-  const url = buildArticleCanonicalUrl(article.slug, baseUrl);
-  const safeTitle = escapeHtmlAttribute(title);
-  const safeDescription = escapeHtmlAttribute(description);
+  const safeTitle = escapeHtmlAttribute(meta.title);
+  const safeDescription = escapeHtmlAttribute(meta.description);
+  const safeUrl = escapeHtmlAttribute(meta.url);
+  const ogType = meta.ogType ?? "website";
 
   return html
     .replace(/<title>.*?<\/title>/, `<title>${safeTitle}</title>`)
@@ -76,12 +83,31 @@ export function injectArticleMetadata(
     )
     .replace(
       /<meta property="og:type" content="[^"]*"\s*\/?>/,
-      `<meta property="og:type" content="article" />`,
+      `<meta property="og:type" content="${ogType}" />`,
     )
     .replace(
       /<\/head>/,
-      `    <meta property="og:url" content="${escapeHtmlAttribute(url)}" />\n    <link rel="canonical" href="${escapeHtmlAttribute(url)}" />\n  </head>`,
+      `    <meta property="og:url" content="${safeUrl}" />\n    <link rel="canonical" href="${safeUrl}" />\n  </head>`,
     );
+}
+
+/** Inject server-rendered, crawlable content into the empty SPA root container. */
+export function injectRootContent(html: string, contentHtml: string): string {
+  return html.replace(
+    /<div id="root">\s*<\/div>/,
+    `<div id="root">${contentHtml}</div>`,
+  );
+}
+
+export function injectArticleMetadata(
+  html: string,
+  article: ArticleSeoFields & { slug: string },
+  baseUrl = SITE_BASE_URL,
+): string {
+  const { title, description } = buildArticleMetadata(article);
+  const url = buildArticleCanonicalUrl(article.slug, baseUrl);
+
+  return injectPageMetadata(html, { title, description, url, ogType: "article" });
 }
 
 export const ARTICLE_SEO_GROQ = `
