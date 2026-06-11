@@ -1,5 +1,5 @@
 import { createClient } from "@sanity/client";
-import { mkdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { ARTICLE_SEO_GROQ, injectArticleMetadata } from "../shared/articleSeo";
 
@@ -19,6 +19,13 @@ export async function prerenderArticles() {
 
   const indexPath = resolve(process.cwd(), "dist/public/index.html");
   const indexHtml = readFileSync(indexPath, "utf-8");
+  const journalDir = resolve(process.cwd(), "dist/public/journal");
+
+  // Remove stale journal/{slug}/index.html folders from prior deploys
+  if (existsSync(journalDir)) {
+    rmSync(journalDir, { recursive: true, force: true });
+  }
+  mkdirSync(journalDir, { recursive: true });
 
   for (const post of posts) {
     const html = injectArticleMetadata(indexHtml, post);
