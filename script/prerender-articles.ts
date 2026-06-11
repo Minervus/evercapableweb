@@ -27,13 +27,28 @@ export async function prerenderArticles() {
   }
   mkdirSync(journalDir, { recursive: true });
 
+  const redirectRules: string[] = [
+    "# Prerendered journal article routes (exact paths avoid :slug matching .html)",
+  ];
+
   for (const post of posts) {
     const html = injectArticleMetadata(indexHtml, post);
     const cleanSlug = post.slug.replace(/^\/+|\/+$/g, "");
     const outPath = resolve(process.cwd(), `dist/public/journal/${cleanSlug}.html`);
     mkdirSync(dirname(outPath), { recursive: true });
     writeFileSync(outPath, html, "utf-8");
+
+    redirectRules.push(
+      `/journal/${cleanSlug}/ /journal/${cleanSlug} 301!`,
+      `/journal/${cleanSlug} /journal/${cleanSlug}.html 200!`,
+    );
   }
+
+  writeFileSync(
+    resolve(process.cwd(), "dist/public/_redirects"),
+    redirectRules.join("\n") + "\n",
+    "utf-8",
+  );
 
   console.log(`Prerendered ${posts.length} article page(s).`);
 }
