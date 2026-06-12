@@ -10,6 +10,7 @@ import Initialize from "@/pages/Initialize";
 import NotFound from "@/pages/not-found";
 import Journal from "@/pages/Journal";
 import Article from "@/pages/Article";
+import Audit from "@/pages/Audit";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/calibrate">{() => <Redirect to="/initialize" />}</Route>
       <Route path="/journal" component={Journal} />
       <Route path="/journal/:slug" component={Article} />
+      <Route path="/audit" component={Audit} />
       <Route component={NotFound} />
     </Switch>
   );

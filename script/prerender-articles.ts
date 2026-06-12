@@ -174,7 +174,28 @@ export async function prerenderArticles() {
   const homeHtml = injectRootContent(template, renderHomeArticlesNav(posts));
   writeFileSync(indexPath, homeHtml, "utf-8");
 
-  // Redirects (article rewrites + journal index + SPA fallback)
+  // /audit landing page: static crawlable shell with SEO meta
+  const auditUrl = `${SITE_BASE_URL}/audit`;
+  let auditHtml = injectPageMetadata(template, {
+    title: "The Millennial Vitality Audit & Roadmap — Tony Nguyen Fit",
+    description:
+      "A 60-minute data-backed strategy session ($149) for 35–45 year-old professionals ready to build a health system that fits their real life.",
+    url: auditUrl,
+  });
+  auditHtml = injectRootContent(
+    auditHtml,
+    [
+      `<main>`,
+      `<nav aria-label="Site"><a href="/">Home</a> <a href="/journal">Journal</a></nav>`,
+      `<h1>The Millennial Vitality Audit &amp; Roadmap</h1>`,
+      `<p>A 60-minute data-backed strategy session ($149) for 35–45 year-old professionals who are done guessing and ready to build a health system that fits their real life.</p>`,
+      `<p><a href="/journal">Read the Journal</a></p>`,
+      `</main>`,
+    ].join(""),
+  );
+  writeFileSync(resolve(publicDir, "audit.html"), auditHtml, "utf-8");
+
+  // Redirects (article rewrites + journal index + /audit + SPA fallback)
   writeFileSync(
     resolve(publicDir, "_redirects"),
     buildJournalRedirectRules(posts.map((p) => p.slug)),
