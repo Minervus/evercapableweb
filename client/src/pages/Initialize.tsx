@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 // ---------------------------------------------------------------------------
 const PLAN_LABELS: Record<string, string> = {
     coaching: "COACHING ($300 / Month)",
+    audit: "MILLENNIAL VITALITY AUDIT ($149)",
 };
 
 const TIMEZONES = [

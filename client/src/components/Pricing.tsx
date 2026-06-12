@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { CheckCircle2 } from "lucide-react";
@@ -67,9 +65,9 @@ export function Pricing() {
                  We are actively recruiting 10 founding members for our Case Study. If you are accepted, you get priority access and a tailored 90-day roadmap. In return, you agree to document your progress and share your before and after metrics as a public case study.
                </p>
                <Link href="/initialize">
-                 <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-mono uppercase tracking-widest rounded-none">
+                 <button className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-mono uppercase tracking-widest px-6 py-2.5 text-sm transition-colors duration-200">
                    Apply for Coaching
-                 </Button>
+                 </button>
                </Link>
              </div>
            </div>
@@ -107,141 +105,166 @@ export function Pricing() {
           </div>
         </motion.div>
 
-        {/* Single centered card */}
-        <div className="max-w-xl mx-auto mb-16">
+        {/* ── Pricing cards ── */}
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
+
+          {/* ── Audit card ── */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="h-full"
+            className="flex flex-col rounded-xl border border-zinc-700/60 bg-zinc-900/60 overflow-hidden shadow-xl shadow-black/30"
           >
-            <Card
-              className="flex flex-col h-full bg-[#0A0A0A] rounded-none border-t-4 border-orange-500 transition-all duration-500 shadow-[0_0_30px_rgba(255,149,0,0.1)]"
-              data-testid="card-tier-coaching"
-            >
-              <CardHeader className="pt-10 pb-8 px-8 flex flex-col items-center text-center relative overflow-hidden">
-                {/* Grid bg */}
-                <div className="absolute inset-0 z-0 pointer-events-none opacity-5" style={{
-                  backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-                  backgroundSize: "30px 30px",
-                }} />
+            {/* Header band */}
+            <div className="bg-zinc-800/80 border-b border-zinc-700/60 px-7 py-6 flex items-start justify-between gap-4">
+              <div>
+                <p className="text-orange-500 font-mono text-[10px] uppercase tracking-[0.25em] mb-1">
+                  One-time investment
+                </p>
+                <h3 className="text-white font-bold text-lg leading-snug">
+                  Millennial Vitality Audit &amp; Roadmap
+                </h3>
+              </div>
+              <div className="shrink-0 text-right">
+                <span className="text-3xl font-bold text-white tracking-tight">$149</span>
+                <p className="text-zinc-500 text-[10px] mt-0.5">one session</p>
+              </div>
+            </div>
 
-                <div className="relative z-10 w-full space-y-6">
-                  {/* Tier name & status */}
-                  <div className="space-y-1">
-                    <h3 className="text-2xl md:text-3xl font-bold tracking-tighter uppercase italic text-orange-500">
-                      Tony Nguyen Fit Coaching
-                    </h3>
-                    <p className="text-[10px] font-mono tracking-widest uppercase font-bold text-orange-500">
-                      FOUNDATION & SUSTAINABILITY SYSTEM
-                    </p>
-                  </div>
+            {/* Features */}
+            <div className="px-7 py-7 flex flex-col flex-1">
+              <ul className="space-y-3 mb-7 flex-1">
+                {[
+                  "60-minute deep-dive consultation",
+                  "Personalized 90-day execution roadmap",
+                  "Data-backed bottleneck analysis",
+                ].map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-zinc-200 text-sm leading-relaxed">
+                    <span className="w-5 h-5 rounded-full bg-orange-500/15 border border-orange-500/30 flex items-center justify-center shrink-0">
+                      <svg className="w-2.5 h-2.5 text-orange-400" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
 
-                  {/* User Profile callout */}
-                  <div className="p-4 bg-orange-500/10 border-l-2 border-orange-500">
-                    <p className="text-[11px] font-mono leading-relaxed text-white text-left">
-                      <span className="text-zinc-500 mr-2 uppercase tracking-tighter font-bold">Best for:</span>
-                      Busy dads who want a customized nutrition and training plan that actually works with work, travel, and kids.
-                    </p>
-                  </div>
-                </div>
-              </CardHeader>
+              {/* Incentive */}
+              <div className="rounded-md bg-zinc-800/60 border border-zinc-700/50 px-4 py-3 mb-7">
+                <p className="text-zinc-400 text-xs leading-[1.75]">
+                  <span className="text-zinc-200 font-semibold">Credit guarantee — </span>
+                  If you join 1-on-1 coaching within 48 hours, the $149 is applied as a credit toward your first month.
+                </p>
+              </div>
 
-              <CardContent className="flex-1 flex flex-col px-8 pb-10 relative z-10">
-                {/* Features list */}
-                <div className="flex-1 pt-4 pb-8">
-                  <div className="space-y-4">
-                    {[
-                      "90-Day Customized Nutrition & Workout Plan",
-                      "Tailored to your goals, body composition, and equipment",
-                      "Bi-Weekly Asynchronous Video Reviews (Loom)",
-                      "Ongoing Nutrition Strategy Adjustments",
-                      "Automated Data Tracking & Community Access",
-                      "Direct Messaging Access to Coach",
-                    ].map((d, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <span className="mt-1 font-mono text-xs text-orange-500">
-                          &gt;
-                        </span>
-                        <p className="text-xs md:text-sm font-mono tracking-wide text-zinc-300">
-                          {d}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <Link href="/initialize?plan=audit">
+                <button className="w-full py-4 bg-orange-500 hover:bg-orange-400 active:scale-[0.98] text-white font-bold tracking-widest text-xs uppercase rounded-sm transition-all duration-200 shadow-lg shadow-orange-500/20">
+                  Apply for Your Audit
+                </button>
+              </Link>
+              <p className="mt-3 text-zinc-600 text-[10px] text-center leading-relaxed">
+                Applications are reviewed personally to ensure this is the right fit.
+              </p>
+            </div>
+          </motion.div>
 
-                {/* Pricing */}
-                <div className="pt-8 border-t border-slate-800 space-y-6">
-                  <div className="text-center space-y-2">
-                    <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-4xl md:text-5xl font-bold font-mono tracking-tighter text-white" data-testid="price-coaching">
-                        $300<span className="text-xl md:text-2xl text-zinc-400 ml-1">USD</span>
-                      </span>
-                      <span className="text-zinc-500 font-mono text-xs">/ Month</span>
-                    </div>
-                    <p className="text-zinc-400 font-sans text-xs italic">
-                      (Requires a 90-day initial commitment to build your foundation. Month-to-month afterward.)
-                    </p>
-                  </div>
+          {/* ── 1:1 Coaching card ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="flex flex-col rounded-xl border border-zinc-700/60 bg-zinc-900/60 overflow-hidden shadow-xl shadow-black/30"
+          >
+            {/* Header band */}
+            <div className="bg-zinc-800/80 border-b border-zinc-700/60 px-7 py-6 flex items-start justify-between gap-4">
+              <div>
+                <p className="text-orange-500 font-mono text-[10px] uppercase tracking-[0.25em] mb-1">
+                  Ongoing coaching
+                </p>
+                <h3 className="text-white font-bold text-lg leading-snug">
+                  1:1 Coaching
+                </h3>
+              </div>
+              <div className="shrink-0 text-right">
+                <span className="text-3xl font-bold text-white tracking-tight">$300</span>
+                <p className="text-zinc-500 text-[10px] mt-0.5">/ month</p>
+              </div>
+            </div>
 
-                  {/* Final CTA */}
-                  <div>
-                    <Link href="/initialize">
-                      <Button
-                        className="w-full h-16 font-mono font-bold tracking-[0.2em] uppercase text-sm rounded-none transition-all duration-300 bg-orange-500 text-black hover:bg-orange-600 shadow-[0_0_20px_rgba(249,115,22,0.3)]"
-                        data-testid="cta-coaching"
-                      >
-                        Apply for Coaching
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Features */}
+            <div className="px-7 py-7 flex flex-col flex-1">
+              <ul className="space-y-3 mb-7 flex-1">
+                {[
+                  "90-Day Customized Nutrition & Workout Plan",
+                  "Tailored to your goals, body composition, and equipment",
+                  "Bi-Weekly Asynchronous Video Reviews (Loom)",
+                  "Ongoing Nutrition Strategy Adjustments",
+                  "Automated Data Tracking & Community Access",
+                  "Direct Messaging Access to Coach",
+                ].map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-zinc-200 text-sm leading-relaxed">
+                    <span className="w-5 h-5 rounded-full bg-orange-500/15 border border-orange-500/30 flex items-center justify-center shrink-0">
+                      <svg className="w-2.5 h-2.5 text-orange-400" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Commitment note */}
+              <div className="rounded-md bg-zinc-800/60 border border-zinc-700/50 px-4 py-3 mb-7">
+                <p className="text-zinc-400 text-xs leading-[1.75]">
+                  Requires a 90-day initial commitment to build your foundation. Month-to-month afterward.
+                </p>
+              </div>
+
+              <Link href="/initialize?plan=coaching">
+                <button className="w-full py-4 bg-orange-500 hover:bg-orange-400 active:scale-[0.98] text-white font-bold tracking-widest text-xs uppercase rounded-sm transition-all duration-200 shadow-lg shadow-orange-500/20">
+                  Apply for Coaching
+                </button>
+              </Link>
+            </div>
           </motion.div>
         </div>
 
-        {/* ── Weaponized Guarantee ── */}
+        {/* ── Guarantee ── */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="max-w-4xl mx-auto border-2 border-slate-800 bg-slate-900/30 p-6 md:p-8"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="max-w-4xl mx-auto border border-zinc-800 bg-zinc-900/40 rounded-xl p-6 md:p-8"
         >
-          <div className="space-y-3">
-            <h4 className="text-white font-bold text-lg md:text-xl">
-              Our Guarantee
-            </h4>
-            <p className="text-zinc-400 font-sans leading-relaxed text-sm md:text-base">
-              Follow the plan with 90% consistency. If you don't hit your goals in 90 days, I coach you for free until you do. <span className="text-white font-bold">You risk the effort. I risk my time.</span>
-            </p>
-          </div>
+          <h4 className="text-white font-bold text-lg md:text-xl mb-2">Our Guarantee</h4>
+          <p className="text-zinc-400 leading-relaxed text-sm md:text-base">
+            Follow the plan with 90% consistency. If you don't hit your goals in 90 days, I coach you for free until you do.{" "}
+            <span className="text-white font-bold">You risk the effort. I risk my time.</span>
+          </p>
         </motion.div>
 
-        {/* ── Ready to Get Your Edge Back? ── */}
+        {/* ── Bottom CTA ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-32 text-center pb-12"
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-28 text-center pb-12"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
             Ready to Get Your Edge Back?
           </h2>
-          <p className="text-zinc-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+          <p className="text-zinc-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
             Stop guessing. Start executing.
           </p>
           <Link href="/initialize">
-            <Button
-              size="lg"
-              className="bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none min-w-[300px] min-h-[64px] text-lg rounded-full font-bold font-mono uppercase tracking-widest shadow-[0_0_20px_rgba(255,149,0,0.3)]"
-            >
+            <button className="inline-block bg-orange-500 hover:bg-orange-400 text-white font-bold tracking-widest text-sm uppercase px-12 py-5 rounded-sm transition-all duration-200 shadow-xl shadow-orange-500/20">
               Apply for Coaching
-            </Button>
+            </button>
           </Link>
         </motion.div>
 
