@@ -5,6 +5,9 @@ export function buildJournalRedirectRules(slugs: string[]): string {
     "# Prerendered journal index (crawlable list of all articles)",
     "/journal /journal.html 200!",
     "/journal/ /journal.html 200!",
+    "# Prerendered audit landing page",
+    "/audit /audit.html 200!",
+    "/audit/ /audit.html 200!",
   ];
 
   for (const slug of slugs) {
