@@ -12,6 +12,8 @@ import Journal from "@/pages/Journal";
 import Article from "@/pages/Article";
 import Audit from "@/pages/Audit";
 
+import TDEE from "@/pages/TDEE";
+
 function Router() {
   return (
     <Switch>
@@ -22,6 +24,7 @@ function Router() {
       <Route path="/journal" component={Journal} />
       <Route path="/journal/:slug" component={Article} />
       <Route path="/audit" component={Audit} />
+      <Route path="/tdee" component={TDEE} />
       <Route component={NotFound} />
     </Switch>
   );
