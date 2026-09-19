@@ -24,7 +24,7 @@ export function DataSection() {
                                 A simple picture of food, energy, and consistency
                             </h2>
                             <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
-                                Weekly coaching works better when we can see the week. Track the habits that matter — meals, energy, sleep, and (if you want) strength — so adjustments aren't a guessing game.
+                                Weekly coaching works better when we can see the week. You track food in the coaching app; I review it and send a Loom with specific adjustments. Wearables can add sleep and energy context if you have them.
                             </p>
                             <p className="font-mono text-zinc-500 text-xs tracking-[0.2em] mt-8 mb-8">
                                 COMPATIBLE_INTEGRATIONS: OURA // APPLE_HEALTH // GARMIN // GOOGLE_FIT // MORE_SOON

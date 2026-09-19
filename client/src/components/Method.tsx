@@ -14,7 +14,7 @@ const phases = [
     icon: Dumbbell,
     title: "Check in every week",
     timeframe: "Weekly",
-    outcome: "You send a simple check-in: meals, energy, hunger, and what got in the way. I send back practical adjustments.",
+    outcome: "You track food in the coaching app. I review your inputs and send a Loom video with specific adjustments for the week ahead.",
     benefit: "The plan moves with your week. No waiting a month to find out something isn't working.",
   },
   {
@@ -49,7 +49,7 @@ export function Method() {
               Most coaching leads with workouts and treats food as a PDF on the side. That falls apart the first week you're tired, travelling, or just cooking for other people.
             </p>
             <p>
-              I start with nutrition: a food strategy that fits your life, then weekly check-ins so we can tweak portions, timing, and habits as we go. Strength work is there when you want more energy and a body that lasts — not as a second job.
+              I start with nutrition: a food strategy that fits your life, then a weekly loop — you track food in the coaching app, I review it, and I send a Loom with specific adjustments. Strength work is there when you want more energy and a body that lasts — not as a second job.
             </p>
             <p className="text-orange-500 font-medium pt-4">
               No extreme diets. No two-hour gym sessions. Just practical adjustments you can keep.

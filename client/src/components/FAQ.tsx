@@ -10,11 +10,11 @@ import { Mail } from "lucide-react";
 const faqs = [
   {
     question: "What's the difference between the three offers?",
-    answer: "Audit + Roadmap ($150 NZD) is a one-off diagnostic and a 4–6 week plan — no ongoing chat. Nutrition Habits ($129 NZD/month) is a weekly structured check-in with template-based tweaks and limited messaging. 1:1 Nutrition Coaching ($279 NZD/month) is weekly check-ins with personal adjustments, priority messaging, and optional training support. Spots for 1:1 are capped.",
+    answer: "Audit + Roadmap ($150 NZD) is a one-off diagnostic and a 4–6 week plan — no ongoing chat, and no weekly app/Loom loop. Nutrition Habits ($129 NZD/month) is weekly food tracking in the coaching app, a Loom from me with specific adjustments, and limited messaging. 1:1 Nutrition Coaching ($279 NZD/month) uses the same app + Loom loop, with more personalization, priority messaging, fuller roadmap updates, and optional training support. Spots for 1:1 are capped.",
   },
   {
     question: "What do I send each week?",
-    answer: "A short check-in: what you ate, hunger, energy, and what got in the way. On Habits I reply with template-based adjustments. On 1:1 I rewrite the week with you and update the roadmap if life has changed.",
+    answer: "On Habits and 1:1, you track food in the coaching app. I review your inputs and send a Loom video with specific adjustments for the week ahead. Habits keeps messaging limited. 1:1 adds priority chat and fuller roadmap updates when life changes. The audit is one-off — no weekly app loop.",
   },
   {
     question: "Do I have to train?",
@@ -38,15 +38,15 @@ const faqs = [
   },
   {
     question: "Do I need a wearable?",
-    answer: "No. A watch or ring can add useful context, but a honest weekly check-in about food, energy, and sleep is enough to start.",
+    answer: "No. A watch or ring can add useful context, but honest food tracking in the coaching app is enough for me to send a useful Loom.",
   },
   {
     question: "Why are 1:1 spots capped?",
-    answer: "1:1 includes personal weekly adjustments and priority messaging. I keep the roster small so those replies stay thoughtful. Habits is built for more people, with a more structured weekly format.",
+    answer: "1:1 includes a deeper Loom, priority messaging, and fuller roadmap updates. I keep that roster small so those replies stay thoughtful. Habits uses the same app + Loom loop with less bandwidth — still me, just a lighter tier.",
   },
   {
-    question: "Why not just use an app?",
-    answer: "Apps give you a template. I give you a weekly reply based on the week you actually had. That's the difference when work, travel, or family blows up the plan.",
+    question: "Why not just use a generic tracker?",
+    answer: "A generic tracker is just a log. In the coaching app you track food, I actually review it, and you get a Loom with specific adjustments for your week — not a leftover meal plan sitting in a PDF.",
   },
 ];
 

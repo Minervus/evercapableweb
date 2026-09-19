@@ -9,7 +9,7 @@ const resultMarkers = [
   },
   {
     title: "Weekly course-correction",
-    description: "You send a check-in. I send back practical adjustments for the week ahead.",
+    description: "You track food in the coaching app. I review it and send a Loom with specific adjustments for the week ahead.",
   },
   {
     title: "Energy that lasts the day",
@@ -70,21 +70,21 @@ const offers: Offer[] = [
   },
   {
     id: "habits",
-    eyebrow: "Lighter · more automated",
+    eyebrow: "Lighter · higher capacity",
     name: "Nutrition Habits",
     price: "$129",
     cadence: "NZD / month",
-    summary: "Weekly structured check-ins with template-based adjustments. Limited messaging. Training optional and light. Built for higher capacity.",
+    summary: "Track food in the coaching app each week. I review your inputs and send a Loom video with clear adjustments. Limited messaging. Training optional and light.",
     features: [
-      { text: "Weekly structured nutrition check-in", included: true },
-      { text: "You submit meals, hunger, energy, and what got in the way", included: true },
-      { text: "Template-based adjustments for the week ahead", included: true },
+      { text: "Weekly check-in in the coaching app (food tracking / inputs)", included: true },
+      { text: "I review your week and send a Loom with specific adjustments", included: true },
+      { text: "Clear next steps for the week ahead", included: true },
       { text: "Limited messaging between check-ins", included: true },
       { text: "Optional light training support", included: true },
-      { text: "Priority chat or fully custom weekly tweaks", included: false },
+      { text: "Priority messaging or fuller personal roadmap updates", included: false },
     ],
-    cadenceNote: "Each week you fill a short check-in. I reply with template-based tweaks — portions, swaps, and the next habit to lock in. Messaging stays limited so the rhythm stays simple.",
-    footnote: "A lighter monthly option if you want a weekly nudge without full 1:1 bandwidth.",
+    cadenceNote: "Each week you track food in the coaching app. I watch the week you actually had and send a Loom — specific tweaks, not a leftover meal plan. Messaging stays limited so the rhythm stays simple.",
+    footnote: "A lighter monthly option if you want a weekly Loom from me without the full 1:1 bandwidth.",
     cta: "Start weekly habits",
     href: "/initialize?plan=habits",
     testId: "button-offer-habits",
@@ -95,16 +95,16 @@ const offers: Offer[] = [
     name: "1:1 Nutrition Coaching",
     price: "$279",
     cadence: "NZD / month",
-    summary: "Weekly check-in plus real, personal adjustments. Priority messaging and roadmap updates. Optional training support.",
+    summary: "Same app + Loom loop as Habits, with more of my time: priority messaging, fuller roadmap updates, and optional training support.",
     features: [
-      { text: "Weekly check-in with personal adjustments (not just a template)", included: true },
-      { text: "You submit meals, metrics, and context — I rewrite the week with you", included: true },
+      { text: "Weekly food tracking in the coaching app", included: true },
+      { text: "Loom video with deeper, more personal adjustments", included: true },
       { text: "Priority messaging between check-ins", included: true },
       { text: "Personal roadmap updates as life changes", included: true },
       { text: "Optional training support for strength, energy, and longevity", included: true },
       { text: "Audit $150 NZD credited to month one", included: true },
     ],
-    cadenceNote: "Same weekly check-in habit as Nutrition Habits — more of my time on the reply. I adjust your food strategy (and training, if you want it) to the week you actually had.",
+    cadenceNote: "Same weekly loop as Habits — you track in the app, I reply with a Loom. 1:1 just goes deeper: more personalization, priority chat, and a roadmap that gets rewritten when life changes.",
     footnote: "A soft 90-day stretch is recommended so the habits have time to stick. Month-to-month after that. Spots are capped.",
     cta: "Apply for coaching",
     href: "/initialize?plan=coaching",
@@ -304,7 +304,7 @@ export function Pricing() {
         >
           <h4 className="text-white font-bold text-lg md:text-xl mb-2">A fair start</h4>
           <p className="text-zinc-400 leading-relaxed text-sm md:text-base">
-            For 1:1, I recommend giving it about 90 days so the weekly rhythm has time to stick. Show up for the check-ins and we'll keep adjusting the food strategy until it fits.{" "}
+            For 1:1, I recommend giving it about 90 days so the weekly rhythm has time to stick. Track in the app, watch the Loom, and we'll keep adjusting the food strategy until it fits.{" "}
             <span className="text-white font-bold">You bring the week. I bring the next adjustment.</span>
           </p>
         </motion.div>
