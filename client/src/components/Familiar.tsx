@@ -29,10 +29,10 @@ export function Familiar() {
                             Sound Familiar?
                         </p>
                         <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight tracking-tight mb-6">
-                            You're working harder than ever. Your body doesn't show it.
+                            You already know food matters. The week still wins.
                         </h2>
                         <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-3xl mx-auto">
-                            You've got the drive. But between the job, the kids, and the travel, your health keeps slipping. Here's what we hear most.
+                            Most people don't need another workout plan. They need a food strategy that survives busy weeks — and someone to help adjust it when life gets messy.
                         </p>
                     </div>
 
@@ -55,7 +55,7 @@ export function Familiar() {
                                 </span>
                             </div>
                             <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
-                                Between work and family commitments, finding two hours a day for the gym feels completely impossible.
+                                Between work and family, cooking well all week feels impossible — so dinners, snacks, and takeaways quietly take over.
                             </p>
                         </motion.div>
 
@@ -97,7 +97,7 @@ export function Familiar() {
                                 </span>
                             </div>
                             <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
-                                You crash hard at 3 PM and rely on three cups of coffee just to drag yourself to the finish line of the workday.
+                                You crash hard at 3 PM. Food, sleep, and stress are all part of it — more coffee isn't the plan.
                             </p>
                         </motion.div>
 
@@ -118,7 +118,7 @@ export function Familiar() {
                                 </span>
                             </div>
                             <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
-                                You've tried the apps, the keto diets, the bootcamps. Nothing sticks. And the thought of ending up with the same health problems as your dad or grandfather keeps nagging at you.
+                                You've tried the apps, the strict diets, the 30-day resets. Nothing lasts. You want weight change that stays — without living on a meal plan.
                             </p>
                         </motion.div>
                     </div>
@@ -135,7 +135,7 @@ export function Familiar() {
                             It is not your fault.
                         </h3>
                         <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                            You don't need another generic plan. You need a system built for your actual life.
+                            You don't need another generic plan. You need a food strategy built for your actual week — and a coach who adjusts it with you.
                         </p>
                     </motion.div>
                 </motion.div>

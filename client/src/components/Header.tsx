@@ -12,7 +12,7 @@ type NavLink =
   | { label: string; submenu: { href: string; label: string }[]; href?: never };
 
 const navLinks: NavLink[] = [
-  { href: "#evercapable-method", label: "The Protocol" },
+  { href: "#evercapable-method", label: "How it works" },
   { href: "/journal", label: "Journal" },
   { href: "#coach", label: "About" },
   { href: "#protocol-tiers", label: "Pricing" },
@@ -24,7 +24,7 @@ const socialLinks = [
   { icon: Instagram, href: "https://www.instagram.com/evercapable/", label: "Instagram" },
   { icon: Youtube, href: "https://www.youtube.com/@evercapable", label: "YouTube" },
   { icon: Globe, href: "https://evercapable.com", label: "Website" },
-  { icon: Mail, href: "mailto:[tony@evercapable.com]", label: "Email" },
+  { icon: Mail, href: "mailto:tony@tonynguyenfit.com", label: "Email" },
 ];
 
 export function Header() {

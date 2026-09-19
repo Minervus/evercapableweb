@@ -5,24 +5,24 @@ import { motion } from "framer-motion";
 const phases = [
   {
     icon: Zap,
-    title: "Phase 1: The Reset",
-    timeframe: "Days 1-30",
-    outcome: "Drop your first 5 to 10 lbs of stubborn fat and water weight.",
-    benefit: "Wake up with more energy, sleep better, and significantly reduce the 3 PM afternoon crash.",
+    title: "See what's actually going on",
+    timeframe: "Week 1",
+    outcome: "We look at how you eat now — not a perfect week, a real one — and sketch a 4–6 week food roadmap you can actually follow.",
+    benefit: "You leave with a clear next step instead of another pile of rules.",
   },
   {
     icon: Dumbbell,
-    title: "Phase 2: The Build",
-    timeframe: "Days 31-60",
-    outcome: "Start to add lean, visible muscle.",
-    benefit: "Notice your shirts fitting better. Your nagging joint pain fades as your real strength returns.",
+    title: "Check in every week",
+    timeframe: "Weekly",
+    outcome: "You send a simple check-in: meals, energy, hunger, and what got in the way. I send back practical adjustments.",
+    benefit: "The plan moves with your week. No waiting a month to find out something isn't working.",
   },
   {
     icon: ShieldCheck,
-    title: "Phase 3: The Lock-In",
-    timeframe: "Days 61-90",
-    outcome: "Lock in your results so they stick long after the 90 days.",
-    benefit: "Maintain your results and habits with confidence, even while traveling for work or taking clients out to dinner.",
+    title: "Keep the change",
+    timeframe: "Ongoing",
+    outcome: "We build habits that survive travel, kids, and late dinners — so the weight change doesn't bounce back.",
+    benefit: "Training stays optional support for strength, energy, and longevity. Food does the heavy lifting.",
   },
 ];
 
@@ -42,17 +42,17 @@ export function Method() {
             How It Works
           </p>
           <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-foreground mb-8 tracking-tight">
-            The Smarter Way To Build Muscle & Burn Fat
+            Food first. Training as backup.
           </h2>
           <div className="max-w-3xl mx-auto space-y-6 text-lg md:text-xl text-zinc-400 leading-relaxed">
             <p>
-              Traditional fitness fails men in their 30s and 40s because it thrives on extremes. It expects you to eat out of Tupperware, train 6 days a week, and have zero stress. <strong className="text-white">That is a recipe for failure.</strong>
+              Most coaching leads with workouts and treats food as a PDF on the side. That falls apart the first week you're tired, travelling, or just cooking for other people.
             </p>
             <p>
-              We built a totally different approach. We focus on building a resilient body that supports steady fat loss, handles stress, and only takes 3 to 4 focused days a week.
+              I start with nutrition: a food strategy that fits your life, then weekly check-ins so we can tweak portions, timing, and habits as we go. Strength work is there when you want more energy and a body that lasts — not as a second job.
             </p>
             <p className="text-orange-500 font-medium pt-4">
-              No fluff. No wasted time in the gym. Just measurable daily progress.
+              No extreme diets. No two-hour gym sessions. Just practical adjustments you can keep.
             </p>
           </div>
         </motion.div>
@@ -66,10 +66,10 @@ export function Method() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            The 3-Phase Transformation System
+            A simple weekly rhythm
           </h2>
           <p className="text-zinc-500 text-base md:text-lg">
-            Here is how we get you results in 90 days.
+            Here's how we work together from Matakana, NZ — online, week by week.
           </p>
         </motion.div>
 

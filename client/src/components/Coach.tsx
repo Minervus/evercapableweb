@@ -11,7 +11,7 @@ export function Coach() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4"
             data-testid="text-coach-headline"
           >
-            20 Years of Guessing vs. 90 Days of Doing It Right.
+            Twenty years of guessing. Now I coach the food first.
           </h2>
           <p
             className="text-lg text-primary font-medium"
@@ -25,7 +25,7 @@ export function Coach() {
           <div className="flex justify-center mb-8">
             <img
               src={coachPhoto}
-              alt="Tony Nguyen - EverCapable Coach"
+              alt="Tony Nguyen — nutrition coach in Matakana, New Zealand"
               width={224}
               height={224}
               className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-primary/20"
@@ -83,19 +83,20 @@ export function Coach() {
             </p>
 
             <p data-testid="text-coach-mission">
-              Now, my mission is to help other millennials and dads stop the
-              guesswork. No more 2-hour gym sessions or crash diets. This is a{" "}
-              <strong>sustainable, data-informed</strong> approach to becoming your{" "}
-              <strong>best self</strong>.
+              I coach from Matakana, New Zealand. The front door is nutrition:
+              weekly check-ins, a food strategy that fits real life, and practical
+              adjustments. Strength training and ISSA credentials stay in the mix
+              as support — not the headline. No more 2-hour gym sessions or crash
+              diets.
             </p>
 
             <p
               data-testid="text-coach-goal"
               className="text-foreground font-medium"
             >
-              No guesswork, just the habit layering required to stay healthy,
-              stay strong, and stay present. The 30-day challenges fail because
-              they have an end date; my goal is to make sure <b>you</b> stay capable for life.
+              No guesswork — just weekly habits that help you stay healthy,
+              stay strong, and stay present. Short challenges fail because they
+              have an end date. My goal is to help <b>you</b> stay capable for life.
             </p>
           </div>
 

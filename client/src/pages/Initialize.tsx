@@ -7,8 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 // Plan label map
 // ---------------------------------------------------------------------------
 const PLAN_LABELS: Record<string, string> = {
-    coaching: "COACHING ($300 / Month)",
-    audit: "MILLENNIAL VITALITY AUDIT ($149)",
+    audit: "AUDIT + ROADMAP ($150 NZD)",
+    habits: "NUTRITION HABITS ($129 NZD / Month)",
+    coaching: "1:1 NUTRITION COACHING ($279 NZD / Month)",
 };
 
 const TIMEZONES = [
@@ -148,8 +149,8 @@ function isValidEmail(value: string) {
 export default function Initialize() {
     const searchString = useSearch();
     const params = new URLSearchParams(searchString);
-    const planKey = params.get("plan") ?? "coaching";
-    const planLabel = PLAN_LABELS[planKey] ?? "COACHING ($300 / Month)";
+    const planKey = params.get("plan") ?? "audit";
+    const planLabel = PLAN_LABELS[planKey] ?? PLAN_LABELS.audit;
 
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState<Record<string, string>>({});

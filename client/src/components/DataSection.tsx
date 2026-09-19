@@ -18,13 +18,13 @@ export function DataSection() {
                     >
                         <div className="mb-6">
                             <span className="font-mono text-orange-500 uppercase tracking-wider text-sm font-medium block mb-2">
-                // DATA: VISUALIZING YOUR PROGRESS
+                                See how the week is going
                             </span>
                             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                                Your Dashboard: Zero Guesswork
+                                A simple picture of food, energy, and consistency
                             </h2>
                             <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
-                                We track the metrics that actually matter. No more wondering if what you're doing is working. See your strength, consistency, and bio-feedback trends in real-time.
+                                Weekly coaching works better when we can see the week. Track the habits that matter — meals, energy, sleep, and (if you want) strength — so adjustments aren't a guessing game.
                             </p>
                             <p className="font-mono text-zinc-500 text-xs tracking-[0.2em] mt-8 mb-8">
                                 COMPATIBLE_INTEGRATIONS: OURA // APPLE_HEALTH // GARMIN // GOOGLE_FIT // MORE_SOON
@@ -37,8 +37,8 @@ export function DataSection() {
                                     <Activity className="w-6 h-6 text-orange-500" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-white mb-1">Bio-Feedback Tracking</h3>
-                                    <p className="text-zinc-400">Monitor sleep, stress, and energy levels to optimize your performance.</p>
+                                    <h3 className="text-xl font-semibold text-white mb-1">Sleep, stress, and energy</h3>
+                                    <p className="text-zinc-400">Useful context for why a week of eating felt easy or hard — not a performance lab.</p>
                                 </div>
                             </div>
 
@@ -47,8 +47,8 @@ export function DataSection() {
                                     <Zap className="w-6 h-6 text-orange-500" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-white mb-1">Strength Milestones</h3>
-                                    <p className="text-zinc-400">Clear visuals of your lifting progress and personal bests.</p>
+                                    <h3 className="text-xl font-semibold text-white mb-1">Strength if you want it</h3>
+                                    <p className="text-zinc-400">Optional lifting progress, so training can support energy and longevity without becoming the whole program.</p>
                                 </div>
                             </div>
 
