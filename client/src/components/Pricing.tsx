@@ -154,7 +154,7 @@ export function Pricing() {
             Start with a roadmap. Stay for weekly coaching.
           </h2>
           <p className="mt-4 text-zinc-400 text-base md:text-lg max-w-2xl mx-auto">
-            {currency ? `All prices in ${currency}. ` : ""}Audit is the soft front door. Habits is the lighter weekly rhythm. 1:1 is the capped, hands-on option.
+            Audit is the soft front door. Habits is the lighter weekly rhythm. 1:1 is the capped, hands-on option.
           </p>
         </div>
 
