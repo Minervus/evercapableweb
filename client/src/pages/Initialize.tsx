@@ -7,8 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 // Plan label map
 // ---------------------------------------------------------------------------
 const PLAN_LABELS: Record<string, string> = {
-    audit: "AUDIT + ROADMAP ($150 NZD)",
-    habits: "NUTRITION HABITS ($129 NZD / Month)",
+    audit: "AUDIT + ROADMAP ($149 NZD)",
+    habits: "NUTRITION HABITS ($149 NZD / Month)",
     coaching: "1:1 NUTRITION COACHING ($279 NZD / Month)",
 };
 

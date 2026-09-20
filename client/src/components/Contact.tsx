@@ -20,7 +20,7 @@ export function Contact() {
             Get a 4–6 week roadmap before you commit to monthly coaching.
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-12 text-lg md:text-xl font-light leading-relaxed">
-            One nutrition session. A plan you can use. If you join Habits or 1:1 within 14 days, the $150 NZD comes off month one.
+            One nutrition session. A plan you can use. Start Habits within 14 days and the audit covers your first month. Start 1:1 and you get $149 NZD off month one.
           </p>
 
           <Link href="/initialize?plan=audit">

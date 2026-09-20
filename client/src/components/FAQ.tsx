@@ -10,7 +10,7 @@ import { Mail } from "lucide-react";
 const faqs = [
   {
     question: "What's the difference between the three offers?",
-    answer: "Audit + Roadmap ($150 NZD) is a one-off diagnostic and a 4–6 week plan — no ongoing chat, and no weekly app loop. Nutrition Habits ($129 NZD/month) is weekly food tracking in the coaching app, written adjustments from me, and limited messaging — no video deep dives. 1:1 Nutrition Coaching ($279 NZD/month) uses the same app tracking, plus video deep dives with specific adjustments, priority messaging, fuller roadmap updates, and optional training support. Spots for 1:1 are capped.",
+    answer: "Audit + Roadmap ($149 NZD) is a one-off diagnostic and a 4–6 week plan — no ongoing chat, and no weekly app loop. Nutrition Habits ($149 NZD/month) is weekly food tracking in the coaching app, written adjustments from me, and limited messaging — no video deep dives. 1:1 Nutrition Coaching ($279 NZD/month) uses the same app tracking, plus video deep dives with specific adjustments, priority messaging, fuller roadmap updates, and optional training support. Spots for 1:1 are capped.",
   },
   {
     question: "What do I send each week?",
@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     question: "If I start with the audit, can I join a monthly offer later?",
-    answer: "Yes. If you join Nutrition Habits or 1:1 within 14 days, the $150 NZD audit is credited toward your first month. After 14 days the audit still stands on its own — there's just no credit.",
+    answer: "Yes. If you start Nutrition Habits within 14 days of the audit, the audit covers your first month — then it's $149 NZD/month. If you start 1:1 within 14 days, you get $149 NZD off month one (you pay the rest toward $279). After 14 days the audit still stands on its own — there's just no first-month deal.",
   },
   {
     question: "Is there a 90-day lock-in?",

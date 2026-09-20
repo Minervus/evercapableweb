@@ -57,13 +57,13 @@ export default function Audit() {
   return (
     <>
       <Helmet>
-        <title>Audit + Roadmap — $150 NZD | Tony Nguyen Fit</title>
+        <title>Audit + Roadmap — $149 NZD | Tony Nguyen Fit</title>
         <meta
           name="description"
-          content="A one-off nutrition and lifestyle diagnostic plus a 4–6 week roadmap ($150 NZD). Credited toward Habits or 1:1 if you join within 14 days. Coaching from Matakana, New Zealand."
+          content="A one-off nutrition and lifestyle diagnostic plus a 4–6 week roadmap ($149 NZD). Start Habits within 14 days and the first month is covered; start 1:1 and get $149 off month one. Coaching from Matakana, New Zealand."
         />
-        <meta property="og:title" content="Audit + Roadmap — $150 NZD | Tony Nguyen Fit" />
-        <meta property="og:description" content="One session. A 4–6 week food and habit roadmap. $150 NZD credited toward monthly coaching if you join within 14 days." />
+        <meta property="og:title" content="Audit + Roadmap — $149 NZD | Tony Nguyen Fit" />
+        <meta property="og:description" content="One session. A 4–6 week food and habit roadmap. Start Habits within 14 days and the first month is covered; start 1:1 and get $149 NZD off month one." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://evercapable.com/audit" />
         <meta property="og:image" content="https://evercapable.com/tony-harbor.png" />
@@ -95,7 +95,7 @@ export default function Audit() {
 
             {/* Copy */}
             <motion.div {...fadeUp}>
-              <EyebrowLabel>Audit + Roadmap — $150 NZD</EyebrowLabel>
+              <EyebrowLabel>Audit + Roadmap — $149 NZD</EyebrowLabel>
 
               <h1 className="text-[2.6rem] md:text-[3.5rem] font-bold leading-[1.06] tracking-tight text-white mb-7">
                 Stop Searching for the{" "}
@@ -112,7 +112,7 @@ export default function Audit() {
 
               <ApplyButton />
               <p className="mt-4 text-zinc-500 text-xs tracking-wide">
-                One session · 4–6 week roadmap · $150 NZD credited if you join Habits or 1:1 within 14 days
+                One session · 4–6 week roadmap · start Habits within 14 days and month one is covered; start 1:1 and get $149 off month one
               </p>
             </motion.div>
 
@@ -449,7 +449,7 @@ export default function Audit() {
                 </h3>
               </div>
               <div className="shrink-0 text-right">
-                <span className="text-4xl font-bold text-white tracking-tight">$150</span>
+                <span className="text-4xl font-bold text-white tracking-tight">$149</span>
                 <p className="text-zinc-500 text-xs mt-1">NZD · one session</p>
               </div>
             </div>
@@ -477,7 +477,7 @@ export default function Audit() {
               <div className="rounded-md bg-zinc-800/60 border border-zinc-700/50 px-5 py-4 mb-8">
                 <p className="text-zinc-400 text-xs leading-[1.75]">
                   <span className="text-zinc-200 font-semibold">Credit guarantee — </span>
-                  If you join Nutrition Habits or 1:1 Coaching within 14 days of your session, the $150 NZD audit fee is applied as a credit toward your first month.
+                  Start Nutrition Habits within 14 days and the audit covers your first month (then $149 NZD/month). Start 1:1 within 14 days and you get $149 NZD off month one.
                 </p>
               </div>
 
