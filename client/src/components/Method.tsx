@@ -14,7 +14,7 @@ const phases = [
     icon: Dumbbell,
     title: "Check in every week",
     timeframe: "Weekly",
-    outcome: "You track food in the coaching app. I review your inputs and send written adjustments. On 1:1, I also send a video deep dive for the week ahead.",
+    outcome: "You track food in the coaching app and can ask questions in the weekly check-in. I review your inputs and send written adjustments. On 1:1, I also send a video deep dive for the week ahead.",
     benefit: "The plan moves with your week. No waiting a month to find out something isn't working.",
   },
   {
@@ -42,14 +42,14 @@ export function Method() {
             How It Works
           </p>
           <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-foreground mb-8 tracking-tight">
-            Food first. Training as backup.
+            Nutrition First
           </h2>
           <div className="max-w-3xl mx-auto space-y-6 text-lg md:text-xl text-zinc-400 leading-relaxed">
             <p>
               Most coaching leads with workouts and treats food as a PDF on the side. That falls apart the first week you're tired, travelling, or just cooking for other people.
             </p>
             <p>
-              I start with nutrition: a food strategy that fits your life, then a weekly loop — you track food in the coaching app, I review it, and I send written adjustments. On 1:1, I add video deep dives. Strength work is there when you want more energy and a body that lasts — not as a second job.
+              I start with nutrition: a food strategy that fits your life, then a weekly loop — you track food in the coaching app, ask questions in the check-in, and I send written adjustments. On 1:1, I add video deep dives. Strength work is there when you want more energy and a body that lasts — not as a second job.
             </p>
             <p className="text-orange-500 font-medium pt-4">
               No extreme diets. No two-hour gym sessions. Just practical adjustments you can keep.

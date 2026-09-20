@@ -10,11 +10,11 @@ import { Mail } from "lucide-react";
 const faqs = [
   {
     question: "What's the difference between the three offers?",
-    answer: "Audit + Roadmap ($149 NZD) is a one-off diagnostic and a 4–6 week plan — no ongoing chat, and no weekly app loop. Nutrition Habits ($149 NZD/month) is weekly food tracking in the coaching app, written adjustments from me, and limited messaging — no video deep dives. 1:1 Nutrition Coaching ($279 NZD/month) uses the same app tracking, plus video deep dives with specific adjustments, priority messaging, fuller roadmap updates, and optional training support. Spots for 1:1 are capped.",
+    answer: "Audit + Roadmap ($149 NZD) is a one-off diagnostic and a 4–6 week plan — no ongoing chat, and no weekly app loop. Nutrition Habits ($149 NZD/month) is weekly food tracking in the coaching app, Q&A in the check-in, and written adjustments from me. 1:1 Nutrition Coaching ($279 NZD/month) uses the same app tracking, plus video deep dives with specific adjustments, priority messaging, fuller roadmap updates, and optional training support. Spots for 1:1 are capped.",
   },
   {
     question: "What do I send each week?",
-    answer: "On Habits and 1:1, you track food in the coaching app. I review your inputs and send written adjustments. Habits keeps messaging limited and does not include video deep dives. 1:1 adds video deep dives, priority chat, and fuller roadmap updates when life changes. The audit is one-off — no weekly app loop.",
+    answer: "On Habits and 1:1, you track food in the coaching app and can ask questions in the weekly check-in. I review your inputs and send written adjustments. 1:1 adds video deep dives, priority chat, and fuller roadmap updates when life changes. The audit is one-off — no weekly app loop.",
   },
   {
     question: "Do I have to train?",
@@ -42,7 +42,7 @@ const faqs = [
   },
   {
     question: "Why are 1:1 spots capped?",
-    answer: "1:1 includes video deep dives, priority messaging, and fuller roadmap updates. I keep that roster small so those replies stay thoughtful. Habits uses the same app tracking with written adjustments and limited messaging — still me, just a lighter tier.",
+    answer: "1:1 includes video deep dives, priority messaging, and fuller roadmap updates. I keep that roster small so those replies stay thoughtful. Habits uses the same app tracking with written adjustments and Q&A in the weekly check-in — still me, just a lighter tier.",
   },
   {
     question: "Why not just use a generic tracker?",
