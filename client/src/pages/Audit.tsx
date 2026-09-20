@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { SlidersHorizontal, FlaskConical, GitMerge } from "lucide-react";
 import { Link } from "wouter";
 import logoIcon from "@assets/tn-logo-on-black.png";
+import { money, useDisplayCurrency } from "@/lib/displayCurrency";
 
 const APPLY_URL = "/initialize?plan=audit";
 
@@ -25,7 +26,7 @@ const fadeIn = {
 };
 
 /* ─── Shared primitives ──────────────────────────────────────────────────── */
-function ApplyButton({ label = "Apply for Your Audit" }: { label?: string }) {
+function ApplyButton({ label = "Get your roadmap" }: { label?: string }) {
   return (
     <Link href={APPLY_URL}>
       <a className="
@@ -54,16 +55,18 @@ function SectionDivider() {
 
 /* ─── Page ───────────────────────────────────────────────────────────────── */
 export default function Audit() {
+  const currency = useDisplayCurrency();
+
   return (
     <>
       <Helmet>
-        <title>The Millennial Vitality Audit & Roadmap — Tony Nguyen Fit</title>
+        <title>Audit + Roadmap — $149 | Tony Nguyen Fit</title>
         <meta
           name="description"
-          content="A 60-minute data-backed strategy session ($149) for 35–45 year-old professionals who are done guessing and ready to build a health system that actually fits their life."
+          content="A one-off nutrition and lifestyle diagnostic plus a 4–6 week roadmap ($149). Start Habits within 14 days and the first month is covered; start 1:1 and get $149 off month one."
         />
-        <meta property="og:title" content="The Millennial Vitality Audit & Roadmap — Tony Nguyen Fit" />
-        <meta property="og:description" content="Stop searching for the magic secret. There isn't one. Apply for your personalised 60-minute Vitality Audit with Tony Nguyen." />
+        <meta property="og:title" content="Audit + Roadmap — $149 | Tony Nguyen Fit" />
+        <meta property="og:description" content="One session. A 4–6 week food and habit roadmap. Start Habits within 14 days and the first month is covered; start 1:1 and get $149 off month one." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://evercapable.com/audit" />
         <meta property="og:image" content="https://evercapable.com/tony-harbor.png" />
@@ -95,7 +98,7 @@ export default function Audit() {
 
             {/* Copy */}
             <motion.div {...fadeUp}>
-              <EyebrowLabel>The Millennial Vitality Audit &amp; Roadmap — $149</EyebrowLabel>
+              <EyebrowLabel>Audit + Roadmap — {money(149, currency)}</EyebrowLabel>
 
               <h1 className="text-[2.6rem] md:text-[3.5rem] font-bold leading-[1.06] tracking-tight text-white mb-7">
                 Stop Searching for the{" "}
@@ -112,7 +115,7 @@ export default function Audit() {
 
               <ApplyButton />
               <p className="mt-4 text-zinc-500 text-xs tracking-wide">
-                60 minutes · Personalised roadmap · $149 applied as credit if you join coaching
+                One session · 4–6 week roadmap · start Habits within 14 days and month one is covered; start 1:1 and get $149 off month one
               </p>
             </motion.div>
 
@@ -171,7 +174,7 @@ export default function Audit() {
                   You need a <strong className="text-white">data-backed system</strong> that identifies how your body responds to your unique lifestyle. Not a template. A roadmap built around your biology, your schedule, and your actual goals.
                 </p>
                 <p>
-                  I help you filter the noise and build the custom protocol that makes high-level health <strong className="text-white">sustainable</strong> — for your life, long-term.
+                  I help you filter the noise and build a food strategy that makes health <strong className="text-white">sustainable</strong> — for your life, long-term.
                 </p>
               </div>
 
@@ -190,7 +193,7 @@ export default function Audit() {
           <motion.div {...fadeUp} className="mb-14">
             <EyebrowLabel>What We Do in 60 Minutes</EyebrowLabel>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-              The Millennial Vitality Audit
+              Audit + Roadmap
             </h2>
           </motion.div>
 
@@ -204,14 +207,14 @@ export default function Audit() {
               },
               {
                 number: "02",
-                title: "Define Your Protocol",
-                body: "Based on your biometrics, lifestyle, and goals, we map your minimum effective dose — the precise inputs required to produce the results you're after.",
+                title: "Sketch the food strategy",
+                body: "Based on how you eat now, your week, and your goals, we map a simple nutrition plan — meals, portions, and habits you can actually keep.",
                 Icon: FlaskConical,
               },
               {
                 number: "03",
                 title: "Bridge the Gap",
-                body: "We build a 90-day execution roadmap that closes the distance between where you are and where you need to be — with clear checkpoints so nothing falls through the cracks.",
+                body: "We build a 4–6 week roadmap that closes the distance between where you are and where you want to be — with clear next steps, not a pile of rules.",
                 Icon: GitMerge,
               },
             ].map((item) => (
@@ -395,7 +398,7 @@ export default function Audit() {
                   {/* With column */}
                   <div className="rounded-lg bg-emerald-950/20 border border-emerald-900/30 px-6 py-5">
                     <p className="text-emerald-400 font-mono text-[10px] uppercase tracking-widest mb-4 font-bold">
-                      With the Vitality Roadmap
+                      With the roadmap
                     </p>
                     <ul className="space-y-3">
                       {[
@@ -427,7 +430,7 @@ export default function Audit() {
               Ready to stop guessing?
             </h2>
             <p className="text-zinc-400 text-lg leading-[1.8]">
-              Apply for your Vitality Audit. The application takes 3 minutes. If it's a fit, we'll schedule your 60-minute session.
+              Apply for your Audit + Roadmap. The application takes a few minutes. If it's a fit, we'll book the session.
             </p>
           </motion.div>
         </section>
@@ -445,12 +448,12 @@ export default function Audit() {
                   One-time investment
                 </p>
                 <h3 className="text-white font-bold text-xl leading-tight">
-                  The Millennial Vitality Audit &amp; Roadmap
+                  Audit + Roadmap
                 </h3>
               </div>
               <div className="shrink-0 text-right">
                 <span className="text-4xl font-bold text-white tracking-tight">$149</span>
-                <p className="text-zinc-500 text-xs mt-1">one session</p>
+                <p className="text-zinc-500 text-xs mt-1">{currency ? `${currency} · one session` : "one session"}</p>
               </div>
             </div>
 
@@ -458,9 +461,9 @@ export default function Audit() {
             <div className="px-8 py-8">
               <ul className="space-y-4 mb-8">
                 {[
-                  "60-minute deep-dive consultation",
-                  "Personalized 90-day execution roadmap",
-                  "Data-backed bottleneck analysis",
+                  "One-off nutrition and lifestyle diagnostic",
+                  "Personal 4–6 week food and habit roadmap",
+                  "No ongoing chat — a clear plan you can use",
                 ].map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-zinc-200 text-sm leading-relaxed">
                     <span className="w-5 h-5 rounded-full bg-orange-500/15 border border-orange-500/30 flex items-center justify-center shrink-0">
@@ -477,13 +480,13 @@ export default function Audit() {
               <div className="rounded-md bg-zinc-800/60 border border-zinc-700/50 px-5 py-4 mb-8">
                 <p className="text-zinc-400 text-xs leading-[1.75]">
                   <span className="text-zinc-200 font-semibold">Credit guarantee — </span>
-                  If you join 1-on-1 coaching within 48 hours of your session, the $149 audit fee is applied as a credit toward your first month.
+                  Start Nutrition Habits within 14 days and the audit covers your first month (then {money(149, currency)}/month). Start 1:1 within 14 days and you get {money(149, currency)} off month one.
                 </p>
               </div>
 
               {/* CTA */}
               <div className="flex flex-col items-center gap-4 text-center">
-                <ApplyButton label="Apply for Your Audit" />
+                <ApplyButton label="Get your roadmap" />
                 <p className="text-zinc-600 text-xs max-w-xs leading-relaxed">
                   Applications are reviewed personally to ensure this is the right fit for your goals.
                 </p>

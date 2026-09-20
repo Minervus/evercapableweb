@@ -2,14 +2,15 @@ import { useState } from "react";
 import { Link, useSearch } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 
-// ---------------------------------------------------------------------------
-// Plan label map
-// ---------------------------------------------------------------------------
-const PLAN_LABELS: Record<string, string> = {
-    coaching: "COACHING ($300 / Month)",
-    audit: "MILLENNIAL VITALITY AUDIT ($149)",
-};
+function planLabels(currency: DisplayCurrency | null): Record<string, string> {
+    return {
+        audit: `AUDIT + ROADMAP (${money(149, currency)})`,
+        habits: `NUTRITION HABITS (${money(149, currency)} / Month)`,
+        coaching: `1:1 NUTRITION COACHING (${money(279, currency)} / Month)`,
+    };
+}
 
 const TIMEZONES = [
     // Americas
@@ -148,8 +149,10 @@ function isValidEmail(value: string) {
 export default function Initialize() {
     const searchString = useSearch();
     const params = new URLSearchParams(searchString);
-    const planKey = params.get("plan") ?? "coaching";
-    const planLabel = PLAN_LABELS[planKey] ?? "COACHING ($300 / Month)";
+    const planKey = params.get("plan") ?? "audit";
+    const currency = useDisplayCurrency();
+    const labels = planLabels(currency);
+    const planLabel = labels[planKey] ?? labels.audit;
 
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState<Record<string, string>>({});

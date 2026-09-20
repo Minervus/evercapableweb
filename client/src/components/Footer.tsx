@@ -16,7 +16,7 @@ const socialLinks = [
   { icon: Instagram, href: "https://www.instagram.com/evercapable/", label: "Instagram" },
   { icon: Youtube, href: "https://www.youtube.com/@evercapable", label: "YouTube" },
   { icon: Globe, href: "https://evercapable.com", label: "Website" },
-  { icon: Mail, href: "mailto:[tony@evercapable.com]", label: "Email" },
+  { icon: Mail, href: "mailto:tony@tonynguyenfit.com", label: "Email" },
 ];
 
 export function Footer() {
@@ -120,8 +120,8 @@ export function Footer() {
             {/* System Disclaimer */}
             <div className="bg-[#111111] border border-zinc-800 p-6">
               <p className="text-[10px] md:text-xs text-zinc-500 font-mono leading-relaxed uppercase tracking-wide text-center">
-                <span className="text-orange-500 font-bold mr-2 tracking-widest">// SYSTEM_NOTICE:</span>
-                The Tony Nguyen Fit program is designed for motivated professionals. It is not medical advice. Consult your physician before starting any new fitness or nutrition program.
+                <span className="text-orange-500 font-bold mr-2 tracking-widest">A quick note:</span>
+                Tony Nguyen Fit offers nutrition-led coaching. This is not medical advice. Check with your doctor before changing how you eat or train.
               </p>
             </div>
 

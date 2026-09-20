@@ -1,56 +1,57 @@
-import { Button } from "@/components/ui/button";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Mail } from "lucide-react";
+import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 
-const faqs = [
+const faqs = (currency: DisplayCurrency | null) => [
   {
-    question: "How much time do I need?",
-    answer: "Only 3 to 4 days a week, about 45 minutes a session. We build the plan around the time you actually have, not the time you wish you had. No 2-hour workouts required.",
+    question: "What's the difference between the three offers?",
+    answer: `Audit + Roadmap (${money(149, currency)}) is a one-off diagnostic and a 4–6 week plan — no ongoing chat, and no weekly app loop. Nutrition Habits (${money(149, currency)}/month) is weekly food tracking in the coaching app, Q&A in the check-in, and written adjustments from me. 1:1 Nutrition Coaching (${money(279, currency)}/month) uses the same app tracking, plus video deep dives with specific adjustments, priority messaging, fuller roadmap updates, and optional training support. Spots for 1:1 are capped.`,
   },
   {
-    question: "What if I haven't lifted in years?",
-    answer: "Perfect. Whether you haven't touched a barbell in 5 years or you currently train inconsistently, we adapt the plan to your exact starting level so you progress safely and with confidence.",
+    question: "What do I send each week?",
+    answer: "On Habits and 1:1, you track food in the coaching app and can ask questions in the weekly check-in. I review your inputs and send written adjustments. 1:1 adds video deep dives, priority chat, and fuller roadmap updates when life changes. The audit is one-off — no weekly app loop.",
+  },
+  {
+    question: "Do I have to train?",
+    answer: "No. Food is the front door. Training is optional support for strength, energy, and longevity. On Habits it's light if you want it. On 1:1 we can add more if it helps — it isn't the headline.",
   },
   {
     question: "Am I going to be starving?",
-    answer: "No starvation. No endless chicken and broccoli. You will learn how to eat foods you actually like, go out to dinner with your family or clients, and still lose fat.",
+    answer: "No starvation. No endless chicken and broccoli. We'll work with foods you actually like, including family dinners and eating out, and still move weight in a sustainable way.",
   },
   {
-    question: "Is it worth the investment?",
-    answer: "It depends on how you value your time. You can spend the next 12 months guessing your way to a result, or you can invest in a proven plan with a dedicated coach, real accountability, and a guaranteed outcome.",
+    question: "If I start with the audit, can I join a monthly offer later?",
+    answer: `Yes. If you start Nutrition Habits within 14 days of the audit, the audit covers your first month — then it's ${money(149, currency)}/month. If you start 1:1 within 14 days, you get ${money(149, currency)} off month one (you pay the rest toward ${money(279, currency)}). After 14 days the audit still stands on its own — there's just no first-month deal.`,
   },
   {
-    question: "What is habit layering?",
-    answer: "It's how we make sure you actually stick to the plan when life gets chaotic. Instead of dumping a list of tasks on you, we introduce one specific habit every two weeks. This gives your brain and body time to adapt before we layer on the next piece, so your progress is built on a foundation that doesn't crumble during a busy work week.",
+    question: "Is there a 90-day lock-in?",
+    answer: "Not a hard contract. For 1:1 I recommend about 90 days so the weekly rhythm has time to stick. After that it's month-to-month. The audit is one-off with no ongoing commitment.",
   },
   {
-    question: "How is this different from other programs?",
-    answer: "Most programs rely on guesswork and willpower. We look at objective data and your feedback. By reviewing your real-time metrics (from a Whoop, Oura, or Apple Watch), we can see exactly how your body is responding to both your career stress and your training. You're not following a generic PDF. You're following a tailored roadmap that adjusts based on what your body is actually telling us.",
+    question: "Is coaching online?",
+    answer: "Yes. Coaching is online, so we can work together wherever you are. Weekly check-ins work across timezones.",
   },
   {
     question: "Do I need a wearable?",
-    answer: "Ideally, yes. To get the best results, we want to move past guessing and look at objective data. However, if you don't have a Whoop or Oura yet, we can start with basic step tracking on your phone. It's not the ideal setup, but it's absolutely doable to get started.",
+    answer: "No. A watch or ring can add useful context, but honest food tracking in the coaching app is enough for useful written adjustments — and, on 1:1, a video deep dive.",
   },
   {
-    question: "What is the 90-day guarantee?",
-    answer: "Follow the plan with 90% consistency. If you don't hit your goals in 90 days, I coach you for free until you do. You risk the effort. I risk my time.",
+    question: "Why are 1:1 spots capped?",
+    answer: "1:1 includes video deep dives, priority messaging, and fuller roadmap updates. I keep that roster small so those replies stay thoughtful. Habits uses the same app tracking with written adjustments and Q&A in the weekly check-in — still me, just a lighter tier.",
   },
   {
-    question: "Why are there limited spots?",
-    answer: "For each client, I build a customized roadmap to ensure it fits their unique situation. With a limited number of spots, I can focus on delivering the best possible experience for each person.",
-  },
-  {
-    question: "Why not a $20 app?",
-    answer: "Generic apps provide templates. Tony Nguyen Fit provides an engineered result. For the cost of a daily latte, you get a dedicated coach, real data analysis, and a system that actually sticks when life gets chaotic. This is for the person who is tired of cheap solutions failing them.",
+    question: "Why not just use a generic tracker?",
+    answer: "A generic tracker is just a log. In the coaching app you track food, I actually review it, and you get written adjustments for your week — plus video deep dives on 1:1. Not a leftover meal plan sitting in a PDF.",
   },
 ];
 
 export function FAQ() {
+  const currency = useDisplayCurrency();
+
   return (
     <section id="faq" className="py-16 md:py-24 bg-black scroll-mt-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -63,12 +64,12 @@ export function FAQ() {
               Frequently Asked Questions
             </h2>
             <p className="text-zinc-400 mb-6">
-              Everything you need to know about working with Tony and the approach to lasting transformation.
+              Straight answers about the offers, weekly check-ins, and how we work together.
             </p>
           </div>
 
           <Accordion type="single" collapsible data-testid="accordion-faq">
-            {faqs.map((faq, index) => (
+            {faqs(currency).map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`} data-testid={`faq-item-${index}`}>
                 <AccordionTrigger className="text-left font-mono font-medium text-white min-w-0 break-all" data-testid={`button-faq-trigger-${index}`}>
                   {faq.question}

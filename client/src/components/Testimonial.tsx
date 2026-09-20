@@ -66,7 +66,7 @@ export function Testimonial() {
           {/* Engineer's Note */}
           <div className="mt-16 md:mt-24 pt-8 border-t border-zinc-800/50">
             <p className="text-sm text-zinc-500 max-w-3xl leading-relaxed">
-              <span className="text-zinc-300 font-medium">Note:</span> 12 pounds is the byproduct. The real result is building habits that don't break when life gets busy. This is what 90 days of consistent habits can do.
+              <span className="text-zinc-300 font-medium">Note:</span> 12 pounds is the byproduct. The real result is a food and habit rhythm that doesn't break when the week gets busy.
             </p>
           </div>
         </div>
