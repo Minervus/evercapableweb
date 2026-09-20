@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { CheckCircle2, Minus } from "lucide-react";
+import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 
 const resultMarkers = [
   {
@@ -46,13 +47,13 @@ type Offer = {
   testId: string;
 };
 
-const offers: Offer[] = [
+const offers = (currency: DisplayCurrency | null): Offer[] => [
   {
     id: "audit",
     eyebrow: "Front door · one-off",
     name: "Audit + Roadmap",
     price: "$149",
-    cadence: "NZD · one session",
+    cadence: currency ? `${currency} · one session` : "one session",
     badge: "Start here",
     summary: "A nutrition and lifestyle diagnostic plus a 4–6 week roadmap. No ongoing chat — just a clear plan you can use.",
     features: [
@@ -60,11 +61,11 @@ const offers: Offer[] = [
       { text: "Personal 4–6 week food and habit roadmap", included: true },
       { text: "Practical next steps for meals, portions, and weekly rhythm", included: true },
       { text: "Start Habits within 14 days: first month covered", included: true },
-      { text: "Start 1:1 within 14 days: $149 off month one", included: true },
+      { text: `Start 1:1 within 14 days: ${money(149, currency)} off month one`, included: true },
       { text: "Weekly check-ins or ongoing messaging", included: false },
     ],
     cadenceNote: "One session. You walk away with the roadmap. I don't stay in your inbox after that unless you join a monthly offer.",
-    footnote: "Join Habits within 14 days and the audit covers your first month (then $149 NZD/month). Join 1:1 within 14 days and you get $149 NZD off month one.",
+    footnote: `Join Habits within 14 days and the audit covers your first month (then ${money(149, currency)}/month). Join 1:1 within 14 days and you get ${money(149, currency)} off month one.`,
     cta: "Get your roadmap",
     href: "/initialize?plan=audit",
     testId: "button-offer-audit",
@@ -74,7 +75,7 @@ const offers: Offer[] = [
     eyebrow: "Lighter · higher capacity",
     name: "Nutrition Habits",
     price: "$149",
-    cadence: "NZD / month",
+    cadence: currency ? `${currency} / month` : "/ month",
     summary: "Track food in the coaching app each week, ask questions in the check-in, and get written adjustments. Training optional and light.",
     features: [
       { text: "Weekly check-in in the coaching app (food tracking / inputs)", included: true },
@@ -84,7 +85,7 @@ const offers: Offer[] = [
       { text: "First month covered if you start within 14 days of the audit", included: true },
     ],
     cadenceNote: "Each week you track food in the coaching app and can ask questions in that check-in. I review the week you actually had and send written adjustments — specific tweaks, not a leftover meal plan.",
-    footnote: "Start within 14 days of the audit and your first month is covered. After that it's $149 NZD/month.",
+    footnote: `Start within 14 days of the audit and your first month is covered. After that it's ${money(149, currency)}/month.`,
     cta: "Start weekly habits",
     href: "/initialize?plan=habits",
     testId: "button-offer-habits",
@@ -94,7 +95,7 @@ const offers: Offer[] = [
     eyebrow: "Premium · capped",
     name: "1:1 Nutrition Coaching",
     price: "$279",
-    cadence: "NZD / month",
+    cadence: currency ? `${currency} / month` : "/ month",
     summary: "Same coaching-app tracking as Habits, plus video deep dives with specific adjustments. Priority messaging, fuller roadmap updates, and optional training support.",
     features: [
       { text: "Weekly food tracking in the coaching app", included: true },
@@ -102,10 +103,10 @@ const offers: Offer[] = [
       { text: "Priority messaging between check-ins", included: true },
       { text: "Personal roadmap updates as life changes", included: true },
       { text: "Optional training support for strength, energy, and longevity", included: true },
-      { text: "Audit: $149 NZD off month one if you start within 14 days", included: true },
+      { text: `Audit: ${money(149, currency)} off month one if you start within 14 days`, included: true },
     ],
     cadenceNote: "Same weekly tracking as Habits — you log food in the app, I review it. 1:1 adds video deep dives, more personalization, priority chat, and a roadmap that gets rewritten when life changes.",
-    footnote: "Start within 14 days of the audit and you get $149 NZD off month one — you pay the rest toward $279. A soft 90-day stretch is recommended so the habits have time to stick. Month-to-month after that. Spots are capped.",
+    footnote: `Start within 14 days of the audit and you get ${money(149, currency)} off month one — you pay the rest toward ${money(279, currency)}. A soft 90-day stretch is recommended so the habits have time to stick. Month-to-month after that. Spots are capped.`,
     cta: "Apply for coaching",
     href: "/initialize?plan=coaching",
     testId: "button-offer-coaching",
@@ -131,6 +132,9 @@ function FeatureIcon({ included }: { included: boolean }) {
 }
 
 export function Pricing() {
+  const currency = useDisplayCurrency();
+  const offerCards = offers(currency);
+
   return (
     <section id="pricing" className="py-16 md:py-24 bg-background scroll-mt-20 relative border-t border-white/10">
 
@@ -150,7 +154,7 @@ export function Pricing() {
             Start with a roadmap. Stay for weekly coaching.
           </h2>
           <p className="mt-4 text-zinc-400 text-base md:text-lg max-w-2xl mx-auto">
-            All prices in NZD. Audit is the soft front door. Habits is the lighter weekly rhythm. 1:1 is the capped, hands-on option.
+            {currency ? `All prices in ${currency}. ` : ""}Audit is the soft front door. Habits is the lighter weekly rhythm. 1:1 is the capped, hands-on option.
           </p>
         </div>
 
@@ -172,7 +176,7 @@ export function Pricing() {
               </h4>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">Not sure which one yet?</h3>
               <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-6">
-                Start with the Audit + Roadmap. You'll get a 4–6 week plan without a monthly commitment. Join Habits within 14 days and the audit covers your first month. Join 1:1 within 14 days and you get $149 NZD off month one.
+                Start with the Audit + Roadmap. You'll get a 4–6 week plan without a monthly commitment. Join Habits within 14 days and the audit covers your first month. Join 1:1 within 14 days and you get {money(149, currency)} off month one.
               </p>
               <Link href="/initialize?plan=audit">
                 <button className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-mono uppercase tracking-widest px-6 py-2.5 text-sm transition-colors duration-200">
@@ -215,7 +219,7 @@ export function Pricing() {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-[1200px] mx-auto mb-16">
-          {offers.map((offer, index) => (
+          {offerCards.map((offer, index) => (
             <motion.div
               key={offer.id}
               initial={{ opacity: 0, y: 16 }}
@@ -320,7 +324,7 @@ export function Pricing() {
             Start with the roadmap
           </h2>
           <p className="text-zinc-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-            One session. A 4–6 week plan. Start Habits within 14 days and the first month is covered; start 1:1 and you get $149 off month one.
+            One session. A 4–6 week plan. Start Habits within 14 days and the first month is covered; start 1:1 and you get {money(149, currency)} off month one.
           </p>
           <Link href="/initialize?plan=audit">
             <button className="inline-block bg-orange-500 hover:bg-orange-400 text-white font-bold tracking-widest text-sm uppercase px-12 py-5 rounded-sm transition-all duration-200 shadow-xl shadow-orange-500/20">

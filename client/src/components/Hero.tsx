@@ -122,7 +122,7 @@ export function Hero() {
             className="mb-4"
           >
             <span className="font-mono text-orange-500 uppercase tracking-wider text-sm md:text-base font-medium block">
-              Nutrition coaching from Matakana, New Zealand
+              Nutrition-led coaching
             </span>
           </motion.div>
 

@@ -1,16 +1,15 @@
-import { Button } from "@/components/ui/button";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Mail } from "lucide-react";
+import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 
-const faqs = [
+const faqs = (currency: DisplayCurrency | null) => [
   {
     question: "What's the difference between the three offers?",
-    answer: "Audit + Roadmap ($149 NZD) is a one-off diagnostic and a 4–6 week plan — no ongoing chat, and no weekly app loop. Nutrition Habits ($149 NZD/month) is weekly food tracking in the coaching app, Q&A in the check-in, and written adjustments from me. 1:1 Nutrition Coaching ($279 NZD/month) uses the same app tracking, plus video deep dives with specific adjustments, priority messaging, fuller roadmap updates, and optional training support. Spots for 1:1 are capped.",
+    answer: `Audit + Roadmap (${money(149, currency)}) is a one-off diagnostic and a 4–6 week plan — no ongoing chat, and no weekly app loop. Nutrition Habits (${money(149, currency)}/month) is weekly food tracking in the coaching app, Q&A in the check-in, and written adjustments from me. 1:1 Nutrition Coaching (${money(279, currency)}/month) uses the same app tracking, plus video deep dives with specific adjustments, priority messaging, fuller roadmap updates, and optional training support. Spots for 1:1 are capped.`,
   },
   {
     question: "What do I send each week?",
@@ -26,15 +25,15 @@ const faqs = [
   },
   {
     question: "If I start with the audit, can I join a monthly offer later?",
-    answer: "Yes. If you start Nutrition Habits within 14 days of the audit, the audit covers your first month — then it's $149 NZD/month. If you start 1:1 within 14 days, you get $149 NZD off month one (you pay the rest toward $279). After 14 days the audit still stands on its own — there's just no first-month deal.",
+    answer: `Yes. If you start Nutrition Habits within 14 days of the audit, the audit covers your first month — then it's ${money(149, currency)}/month. If you start 1:1 within 14 days, you get ${money(149, currency)} off month one (you pay the rest toward ${money(279, currency)}). After 14 days the audit still stands on its own — there's just no first-month deal.`,
   },
   {
     question: "Is there a 90-day lock-in?",
     answer: "Not a hard contract. For 1:1 I recommend about 90 days so the weekly rhythm has time to stick. After that it's month-to-month. The audit is one-off with no ongoing commitment.",
   },
   {
-    question: "Where are you based?",
-    answer: "Matakana, New Zealand. Coaching is online, with prices in NZD. If you're in NZ or nearby timezones, weekly check-ins are especially easy — and remote clients are welcome too.",
+    question: "Is coaching online?",
+    answer: "Yes. Coaching is online, so we can work together wherever you are. Weekly check-ins work across timezones.",
   },
   {
     question: "Do I need a wearable?",
@@ -51,6 +50,8 @@ const faqs = [
 ];
 
 export function FAQ() {
+  const currency = useDisplayCurrency();
+
   return (
     <section id="faq" className="py-16 md:py-24 bg-black scroll-mt-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -63,12 +64,12 @@ export function FAQ() {
               Frequently Asked Questions
             </h2>
             <p className="text-zinc-400 mb-6">
-              Straight answers about the offers, weekly check-ins, and how we work from Matakana, NZ.
+              Straight answers about the offers, weekly check-ins, and how we work together.
             </p>
           </div>
 
           <Accordion type="single" collapsible data-testid="accordion-faq">
-            {faqs.map((faq, index) => (
+            {faqs(currency).map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`} data-testid={`faq-item-${index}`}>
                 <AccordionTrigger className="text-left font-mono font-medium text-white min-w-0 break-all" data-testid={`button-faq-trigger-${index}`}>
                   {faq.question}

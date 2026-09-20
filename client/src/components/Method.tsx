@@ -69,7 +69,7 @@ export function Method() {
             A simple weekly rhythm
           </h2>
           <p className="text-zinc-500 text-base md:text-lg">
-            Here's how we work together from Matakana, NZ — online, week by week.
+            Here's how we work together — online, week by week.
           </p>
         </motion.div>
 

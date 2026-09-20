@@ -25,7 +25,7 @@ export function Coach() {
           <div className="flex justify-center mb-8">
             <img
               src={coachPhoto}
-              alt="Tony Nguyen — nutrition coach in Matakana, New Zealand"
+              alt="Tony Nguyen — nutrition coach"
               width={224}
               height={224}
               className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-primary/20"
@@ -83,7 +83,7 @@ export function Coach() {
             </p>
 
             <p data-testid="text-coach-mission">
-              I coach from Matakana, New Zealand. The front door is nutrition:
+              I coach online. The front door is nutrition:
               weekly check-ins, a food strategy that fits real life, and practical
               adjustments. Strength training and ISSA credentials stay in the mix
               as support — not the headline. No more 2-hour gym sessions or crash

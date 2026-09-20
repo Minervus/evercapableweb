@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { SlidersHorizontal, FlaskConical, GitMerge } from "lucide-react";
 import { Link } from "wouter";
 import logoIcon from "@assets/tn-logo-on-black.png";
+import { money, useDisplayCurrency } from "@/lib/displayCurrency";
 
 const APPLY_URL = "/initialize?plan=audit";
 
@@ -54,16 +55,18 @@ function SectionDivider() {
 
 /* ─── Page ───────────────────────────────────────────────────────────────── */
 export default function Audit() {
+  const currency = useDisplayCurrency();
+
   return (
     <>
       <Helmet>
-        <title>Audit + Roadmap — $149 NZD | Tony Nguyen Fit</title>
+        <title>Audit + Roadmap — $149 | Tony Nguyen Fit</title>
         <meta
           name="description"
-          content="A one-off nutrition and lifestyle diagnostic plus a 4–6 week roadmap ($149 NZD). Start Habits within 14 days and the first month is covered; start 1:1 and get $149 off month one. Coaching from Matakana, New Zealand."
+          content="A one-off nutrition and lifestyle diagnostic plus a 4–6 week roadmap ($149). Start Habits within 14 days and the first month is covered; start 1:1 and get $149 off month one."
         />
-        <meta property="og:title" content="Audit + Roadmap — $149 NZD | Tony Nguyen Fit" />
-        <meta property="og:description" content="One session. A 4–6 week food and habit roadmap. Start Habits within 14 days and the first month is covered; start 1:1 and get $149 NZD off month one." />
+        <meta property="og:title" content="Audit + Roadmap — $149 | Tony Nguyen Fit" />
+        <meta property="og:description" content="One session. A 4–6 week food and habit roadmap. Start Habits within 14 days and the first month is covered; start 1:1 and get $149 off month one." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://evercapable.com/audit" />
         <meta property="og:image" content="https://evercapable.com/tony-harbor.png" />
@@ -95,7 +98,7 @@ export default function Audit() {
 
             {/* Copy */}
             <motion.div {...fadeUp}>
-              <EyebrowLabel>Audit + Roadmap — $149 NZD</EyebrowLabel>
+              <EyebrowLabel>Audit + Roadmap — {money(149, currency)}</EyebrowLabel>
 
               <h1 className="text-[2.6rem] md:text-[3.5rem] font-bold leading-[1.06] tracking-tight text-white mb-7">
                 Stop Searching for the{" "}
@@ -450,7 +453,7 @@ export default function Audit() {
               </div>
               <div className="shrink-0 text-right">
                 <span className="text-4xl font-bold text-white tracking-tight">$149</span>
-                <p className="text-zinc-500 text-xs mt-1">NZD · one session</p>
+                <p className="text-zinc-500 text-xs mt-1">{currency ? `${currency} · one session` : "one session"}</p>
               </div>
             </div>
 
@@ -477,7 +480,7 @@ export default function Audit() {
               <div className="rounded-md bg-zinc-800/60 border border-zinc-700/50 px-5 py-4 mb-8">
                 <p className="text-zinc-400 text-xs leading-[1.75]">
                   <span className="text-zinc-200 font-semibold">Credit guarantee — </span>
-                  Start Nutrition Habits within 14 days and the audit covers your first month (then $149 NZD/month). Start 1:1 within 14 days and you get $149 NZD off month one.
+                  Start Nutrition Habits within 14 days and the audit covers your first month (then {money(149, currency)}/month). Start 1:1 within 14 days and you get {money(149, currency)} off month one.
                 </p>
               </div>
 

@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { money, useDisplayCurrency } from "@/lib/displayCurrency";
 
 export function Contact() {
+  const currency = useDisplayCurrency();
+
   return (
     <section id="contact" className="py-20 md:py-32 bg-black scroll-mt-20 border-t border-white/5">
       <div className="max-w-[800px] mx-auto px-6 text-center">
@@ -20,7 +23,7 @@ export function Contact() {
             Get a 4–6 week roadmap before you commit to monthly coaching.
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-12 text-lg md:text-xl font-light leading-relaxed">
-            One nutrition session. A plan you can use. Start Habits within 14 days and the audit covers your first month. Start 1:1 and you get $149 NZD off month one.
+            One nutrition session. A plan you can use. Start Habits within 14 days and the audit covers your first month. Start 1:1 and you get {money(149, currency)} off month one.
           </p>
 
           <Link href="/initialize?plan=audit">

@@ -121,7 +121,7 @@ export function Footer() {
             <div className="bg-[#111111] border border-zinc-800 p-6">
               <p className="text-[10px] md:text-xs text-zinc-500 font-mono leading-relaxed uppercase tracking-wide text-center">
                 <span className="text-orange-500 font-bold mr-2 tracking-widest">A quick note:</span>
-                Tony Nguyen Fit offers nutrition-led coaching from Matakana, New Zealand. This is not medical advice. Check with your doctor before changing how you eat or train.
+                Tony Nguyen Fit offers nutrition-led coaching. This is not medical advice. Check with your doctor before changing how you eat or train.
               </p>
             </div>
 
