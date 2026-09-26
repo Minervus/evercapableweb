@@ -14,7 +14,7 @@ const client = createClient({
 export async function generateSitemap() {
   console.log("Generating sitemap...");
   
-  const staticPages = ["", "/journal"];
+  const staticPages = ["", "/journal", "/kickstarter"];
   
   const posts = await client.fetch(`*[_type == "post" && defined(slug.current)]{ "slug": slug.current, "_updatedAt": _updatedAt }`);
   
