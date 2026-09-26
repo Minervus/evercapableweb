@@ -13,6 +13,7 @@ const Coach = lazy(() => import("@/components/Coach").then(m => ({ default: m.Co
 const FAQ = lazy(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })));
 const LatestArticles = lazy(() => import("@/components/LatestArticles").then(m => ({ default: m.LatestArticles })));
 const Contact = lazy(() => import("@/components/Contact").then(m => ({ default: m.Contact })));
+const KickstarterSignup = lazy(() => import("@/components/KickstarterSignup").then(m => ({ default: m.KickstarterSignup })));
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 
 export default function Home() {
@@ -32,6 +33,7 @@ export default function Home() {
           <FAQ />
           <LatestArticles />
           <Contact />
+          <KickstarterSignup />
         </Suspense>
       </main>
       <Suspense fallback={<div className="h-64 bg-black" />}>
