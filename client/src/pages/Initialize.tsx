@@ -70,9 +70,14 @@ const TIMEZONES = [
 ] as const;
 
 // ---------------------------------------------------------------------------
-// Question steps — Step 1 is the new contact details page
+// Nutrition-first intake — 7 stages. Payload is Formspree form data only.
 // ---------------------------------------------------------------------------
 type FieldType = "text" | "email" | "textarea" | "select";
+
+interface ShowIf {
+    id: string;
+    values: readonly string[];
+}
 
 interface Question {
     id: string;
@@ -80,61 +85,159 @@ interface Question {
     type: FieldType;
     required: boolean;
     options?: readonly string[];
+    placeholder?: string;
+    /** Render (and require, if required) only when another answer matches. */
+    showIf?: ShowIf;
 }
 
+const FOOD_TRACKING_OPTIONS = ["Yes", "No", "Sometimes"] as const;
+
+const STAGE_TITLES = [
+    "Contact",
+    "Basics",
+    "How you eat now",
+    "Tracking & restrictions",
+    "Goals",
+    "Life context",
+    "Fit & tools",
+] as const;
+
 const questions: Question[][] = [
-    // ── STEP 1: Contact Details (NEW) ─────────────────────────────────────────
+    // ── Stage 1: Contact ──────────────────────────────────────────────────────
     [
-        { id: "fullName", label: "FULL NAME //", type: "text", required: true },
-        { id: "emailAddress", label: "EMAIL ADDRESS //", type: "email", required: true },
+        { id: "fullName", label: "Full name", type: "text", required: true },
+        { id: "emailAddress", label: "Email", type: "email", required: true },
         {
             id: "timezone",
-            label: "TIMEZONE //",
+            label: "Timezone",
             type: "select",
             required: true,
             options: TIMEZONES,
         },
     ],
-    // ── STEP 2 ────────────────────────────────────────────────────────────────
+    // ── Stage 2: Basics ───────────────────────────────────────────────────────
     [
-        { id: "age", label: "AGE //", type: "text", required: true },
-        { id: "currentWeight", label: "CURRENT WEIGHT // (lbs or kgs)", type: "text", required: true },
-        { id: "currentHeight", label: "CURRENT HEIGHT // (ft/in or cms)", type: "text", required: true },
-        { id: "primaryConstraint", label: "PRIMARY CONSTRAINT // (What's holding you back? Time, Knowledge, Consistency)", type: "text", required: true },
+        { id: "age", label: "Age", type: "text", required: true },
+        { id: "currentWeight", label: "Current weight (lbs or kg)", type: "text", required: true },
+        { id: "currentHeight", label: "Current height (ft/in or cm)", type: "text", required: true },
+        {
+            id: "primaryConstraint",
+            label: "What's holding you back most right now?",
+            type: "select",
+            required: true,
+            options: ["Time", "Knowledge", "Consistency", "Motivation", "Environment (home/work)"],
+        },
     ],
-    // ── STEP 3 ────────────────────────────────────────────────────────────────
+    // ── Stage 3: How you eat now ──────────────────────────────────────────────
     [
-        { id: "yearsLifting", label: "TRAINING HISTORY // (How many years of experience do you have with structured resistance training (Barbells, Dumbbells, etc)) //", type: "text", required: true },
-        { id: "currentSplit", label: "CURRENT LOAD (Average weekly training frequency over the last 90 days?) //", type: "select", required: true, options: ["0 Days", "1-2 Days", "3-4 Days", "5+ Days"] },
-        { id: "failedDiets", label: "PREVIOUSLY ATTEMPTED DIETS (AND what worked and what didn't) //", type: "textarea", required: true },
+        {
+            id: "weekdayEating",
+            label: "Walk me through a typical weekday of eating — meals, snacks, drinks",
+            type: "textarea",
+            required: true,
+        },
+        {
+            id: "mealSource",
+            label: "Where do most meals come from?",
+            type: "select",
+            required: true,
+            options: ["Cooked at home", "Takeout or cafes", "Partner/family cooks", "Mix"],
+        },
+        {
+            id: "eatingHabitToFix",
+            label: "Is there an eating habit that you think you need to fix?",
+            type: "text",
+            required: false,
+            placeholder: "night snacking, skipping lunch, weekends, not enough protein, portions",
+        },
     ],
-    // ── STEP 4 ────────────────────────────────────────────────────────────────
+    // ── Stage 4: Tracking & restrictions ──────────────────────────────────────
     [
-        { id: "foodTracking", label: "DO YOU CURRENTLY TRACK YOUR FOOD? (Yes/No) //", type: "text", required: true },
-        { id: "macroTracking", label: "IF SO, HOW PROFICIENT ARE YOU? (1-10 — 1=never, 10=daily) //", type: "text", required: true },
-        { id: "dietaryRestrictions", label: "BIOLOGICAL/DIETARY RESTRICTIONS //", type: "textarea", required: true },
+        {
+            id: "foodTracking",
+            label: "Do you currently track your food?",
+            type: "select",
+            required: true,
+            options: FOOD_TRACKING_OPTIONS,
+        },
+        {
+            id: "trackingConsistency",
+            label: "If yes or sometimes, how consistent are you? (1–10)",
+            type: "text",
+            required: true,
+            showIf: { id: "foodTracking", values: ["Yes", "Sometimes"] },
+        },
+        {
+            id: "dietaryRestrictions",
+            label: "Any dietary restrictions, allergies, or foods you won't eat?",
+            type: "textarea",
+            required: true,
+        },
+        {
+            id: "dietsTried",
+            label: "Diets or nutrition approaches you've tried — and what worked / didn't",
+            type: "textarea",
+            required: true,
+        },
     ],
-    // ── STEP 5 ────────────────────────────────────────────────────────────────
+    // ── Stage 5: Goals ────────────────────────────────────────────────────────
     [
-        { id: "primaryGoal", label: "PRIMARY OBJECTIVE // (Muscle Gain, Fat Loss, Performance, Longevity, etc.)", type: "text", required: true },
-        { id: "ninetyDayObjective", label: "90-DAY OBJECTIVE // (What's your primary goal for the next 90 days?) //", type: "text", required: true },
-        { id: "sixMonthMetric", label: "6-MONTH OBJECTIVE // (What does success look like in 6 months?) //", type: "text", required: true },
-        { id: "idealPhysique", label: "DESCRIBE THE 'IDEAL' OUTCOME (How do you look and feel in 6 months?) //", type: "textarea", required: true },
+        {
+            id: "primaryGoal",
+            label: "Primary goal",
+            type: "select",
+            required: true,
+            options: ["Fat loss", "Better energy", "Build healthier habits", "Performance", "Longevity", "Other"],
+        },
+        { id: "ninetyDayObjective", label: "What does success look like in 90 days?", type: "text", required: true },
+        { id: "sixMonthMetric", label: "What does success look like in 6 months?", type: "text", required: true },
+        {
+            id: "feelAndFunction",
+            label: "How do you want to feel and function then?",
+            type: "textarea",
+            required: true,
+        },
     ],
-    // ── STEP 6 ────────────────────────────────────────────────────────────────
+    // ── Stage 6: Life context ─────────────────────────────────────────────────
     [
-        { id: "injuries", label: "EXISTING HISTORICAL INJURIES/LIMITATIONS //", type: "textarea", required: true },
-        { id: "sleepQuality", label: "AVERAGE SLEEP QUALITY METRIC (1-10 — 1=terrible, 10=perfect) //", type: "text", required: true },
-        { id: "lifeStressor", label: "PRIMARY CAREER/LIFE STRESSOR (What's your biggest challenge right now?) //", type: "text", required: true },
+        { id: "sleepQuality", label: "Sleep quality lately (1–10)", type: "text", required: true },
+        { id: "lifeStressor", label: "Biggest career / life stressor right now", type: "text", required: true },
+        {
+            id: "movementEatingLimits",
+            label: "Anything that limits how you move or eat? (injuries, meds, schedule, travel)",
+            type: "textarea",
+            required: false,
+        },
     ],
-    // ── STEP 7 (Contract) ─────────────────────────────────────────────────────
+    // ── Stage 7: Fit & tools ──────────────────────────────────────────────────
     [
-        { id: "healthMetrics", label: "DO YOU CURRENTLY TRACK YOUR HEALTH METRICS? // (e.g. steps via a watch or phone, HRV, sleep data, etc.) //", type: "text", required: true },
-        { id: "coachability", label: "COACHABILITY METRIC (1-10 — 1=resistant, 10=coachable) //", type: "text", required: true },
+        {
+            id: "healthMetrics",
+            label: "Do you track any health metrics? (steps, sleep, HRV, watch, etc.)",
+            type: "text",
+            required: true,
+        },
+        {
+            id: "planReadiness",
+            label: "How ready are you to follow a simple weekly plan and check in? (1–10)",
+            type: "text",
+            required: true,
+        },
+        {
+            id: "currentTraining",
+            label: "Do you currently lift or train? If yes, how many days/week on average?",
+            type: "text",
+            required: false,
+        },
     ],
 ];
 
 const TOTAL_STEPS = questions.length; // 7
+
+function isQuestionVisible(question: Question, data: Record<string, string>) {
+    if (!question.showIf) return true;
+    return question.showIf.values.includes(data[question.showIf.id] ?? "");
+}
 
 // ---------------------------------------------------------------------------
 // Email validator
@@ -161,8 +264,9 @@ export default function Initialize() {
     const [contractAgreed, setContractAgreed] = useState(false);
 
     const currentStepQuestions = questions[currentStep - 1];
+    const visibleStepQuestions = currentStepQuestions.filter((q) => isQuestionVisible(q, formData));
 
-    const isStepValid = currentStepQuestions.every((q) => {
+    const isStepValid = visibleStepQuestions.every((q) => {
         if (!q.required) return true;
         const val = (formData[q.id] ?? "").trim();
         if (!val) return false;
@@ -173,7 +277,13 @@ export default function Initialize() {
     const canProceed = isStepValid && (currentStep !== TOTAL_STEPS || contractAgreed);
 
     const handleInputChange = (id: string, value: string) => {
-        setFormData((prev) => ({ ...prev, [id]: value }));
+        setFormData((prev) => {
+            const next = { ...prev, [id]: value };
+            if (id === "foodTracking" && value !== "Yes" && value !== "Sometimes") {
+                delete next.trackingConsistency;
+            }
+            return next;
+        });
     };
 
     const handleNext = () => {
@@ -190,8 +300,13 @@ export default function Initialize() {
 
         try {
             const url = "https://formspree.io/f/xdawwwqd";
+            const answers = { ...formData };
+            if (answers.foodTracking !== "Yes" && answers.foodTracking !== "Sometimes") {
+                delete answers.trackingConsistency;
+            }
+
             const payload = {
-                ...formData,
+                ...answers,
                 selected_plan: planLabel,
                 "90_Day_System_Guarantee_Agreed": contractAgreed ? "YES" : "NO",
             };
@@ -223,22 +338,17 @@ export default function Initialize() {
                     className="max-w-xl w-full"
                 >
                     <div className="text-orange-500 mb-6 font-bold tracking-widest uppercase">
-                        {">"} UPLOADING_BIO_DATA... SUCCESS.<br />
+                        {">"} APPLICATION_RECEIVED<br />
                         {">"} // DATA_RECEIVED
                     </div>
-
-                    <p className="mb-4 leading-relaxed">
-                        Your biological calibration is now in the queue. I am personally auditing your goals and constraints.
-                    </p>
 
                     <div className="bg-white/5 border border-white/10 text-zinc-500 text-[10px] px-4 py-2 font-mono uppercase tracking-widest mb-6">
                         SELECTED_PLAN: {planLabel}
                     </div>
 
                     <div className="bg-orange-500/10 border border-orange-500/20 p-5 rounded-sm mb-10">
-                        <p className="text-orange-500 text-xs font-bold uppercase tracking-wider mb-2">NEXT_STEP:</p>
-                        <p className="text-sm">
-                            Check your inbox within 24 hours for your "System Validation" update. I will confirm your 6-month goal feasibility before initializing the partnership.
+                        <p className="text-sm leading-relaxed">
+                            Got it — I'm reviewing your goals and how you eat. I'll follow up on next steps for your Audit + Roadmap.
                         </p>
                     </div>
 
@@ -264,7 +374,7 @@ export default function Initialize() {
                 <div className="max-w-3xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
                     <div className="flex flex-col gap-1">
                         <span className="text-[10px] md:text-xs text-orange-500 tracking-widest uppercase">
-              // INITIALIZING_PROTOCOL_CALIBRATION...
+              // APPLICATION
                         </span>
                         <span className="text-[9px] text-zinc-600 tracking-widest uppercase">
                             PLAN: {planLabel}
@@ -288,12 +398,12 @@ export default function Initialize() {
             <div className="max-w-3xl mx-auto px-6 pt-32 pb-16 relative z-10">
                 <div className="mb-12">
                     <h1 className="text-2xl md:text-4xl text-white font-bold tracking-tight mb-2 uppercase">
-                        {currentStep === 1 ? "Contact Details" : "System Deep-Dive"}
+                        {STAGE_TITLES[currentStep - 1]}
                     </h1>
                     <p className="text-zinc-500 text-xs md:text-sm tracking-wide">
                         {currentStep === 1
                             ? "Confirm your details so I can follow up directly."
-                            : "Provide precise, objective data. No estimates."}
+                            : "Answer in your own words."}
                     </p>
                 </div>
 
@@ -313,7 +423,7 @@ export default function Initialize() {
                             transition={{ duration: 0.3 }}
                             className="space-y-10"
                         >
-                            {currentStepQuestions.map((q) => {
+                            {visibleStepQuestions.map((q) => {
                                 const emailInvalid =
                                     q.type === "email" &&
                                     !!formData[q.id] &&
@@ -321,12 +431,19 @@ export default function Initialize() {
 
                                 return (
                                     <div key={q.id} className="group relative">
-                                        <label
-                                            htmlFor={q.id}
-                                            className="block text-xs md:text-sm text-zinc-400 mb-3 tracking-widest uppercase transition-colors group-focus-within:text-orange-500"
-                                        >
-                                            {q.label}
-                                        </label>
+                                        <div className="flex items-baseline justify-between gap-4 mb-3">
+                                            <label
+                                                htmlFor={q.id}
+                                                className="block text-xs md:text-sm text-zinc-400 tracking-widest uppercase transition-colors group-focus-within:text-orange-500"
+                                            >
+                                                {q.label}
+                                            </label>
+                                            {!q.required && (
+                                                <span className="shrink-0 text-[10px] text-zinc-600 tracking-widest uppercase">
+                                                    Optional
+                                                </span>
+                                            )}
+                                        </div>
 
                                         {/* ── SELECT ── */}
                                         {q.type === "select" && (
@@ -356,8 +473,8 @@ export default function Initialize() {
                                                 rows={4}
                                                 value={formData[q.id] || ""}
                                                 onChange={(e) => handleInputChange(q.id, e.target.value)}
-                                                className="w-full bg-transparent border-0 border-b border-white/20 focus:ring-0 focus:outline-none focus:border-orange-500 text-white md:text-lg transition-colors resize-none pb-2 placeholder:text-zinc-800"
-                                                placeholder="[ INPUT_DATA... ]"
+                                                className={`w-full bg-transparent border-0 border-b border-white/20 focus:ring-0 focus:outline-none focus:border-orange-500 text-white md:text-lg transition-colors resize-none pb-2 ${q.placeholder ? "placeholder:text-zinc-500" : "placeholder:text-zinc-800"}`}
+                                                placeholder={q.placeholder ?? "[ INPUT_DATA... ]"}
                                             />
                                         )}
 
@@ -370,11 +487,11 @@ export default function Initialize() {
                                                     required={q.required}
                                                     value={formData[q.id] || ""}
                                                     onChange={(e) => handleInputChange(q.id, e.target.value)}
-                                                    className={`w-full bg-transparent border-0 border-b focus:ring-0 focus:outline-none text-white md:text-lg transition-colors pb-2 placeholder:text-zinc-800 ${emailInvalid
+                                                    className={`w-full bg-transparent border-0 border-b focus:ring-0 focus:outline-none text-white md:text-lg transition-colors pb-2 ${q.placeholder ? "placeholder:text-zinc-500" : "placeholder:text-zinc-800"} ${emailInvalid
                                                         ? "border-red-500/60 focus:border-red-500"
                                                         : "border-white/20 focus:border-orange-500"
                                                         }`}
-                                                    placeholder="[ INPUT_DATA... ]"
+                                                    placeholder={q.placeholder ?? "[ INPUT_DATA... ]"}
                                                 />
                                                 {emailInvalid && (
                                                     <p className="text-red-500 text-[10px] mt-2 tracking-widest uppercase">
@@ -446,7 +563,7 @@ export default function Initialize() {
                                     : "bg-white/10 text-zinc-500 cursor-not-allowed"
                                     }`}
                             >
-                                {currentStep === 1 ? "Begin Deep-Dive" : `Proceed to Stage 0${currentStep}`}
+                                {currentStep === 1 ? "Begin application" : "Continue"}
                                 <ArrowRight className="w-4 h-4" />
                             </button>
                         ) : (
