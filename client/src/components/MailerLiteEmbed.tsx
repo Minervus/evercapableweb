@@ -44,7 +44,109 @@ function requestEmbeddedForm() {
   document.body.appendChild(script);
 }
 
-export function MailerLiteEmbed({ className = "" }: { className?: string }) {
+function siteFormCss(id: string): string {
+  const root = `#${CSS.escape(id)}.ml-form-embedContainer`;
+  return `
+    ${root} .ml-form-embedWrapper.embedForm {
+      background-color: #111111 !important;
+      border: 1px solid #3f3f46 !important;
+      border-radius: 2px !important;
+      box-shadow: none !important;
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    ${root} .ml-form-embedWrapper .ml-form-embedBody,
+    ${root} .ml-form-embedWrapper .ml-form-successBody {
+      padding: 28px 24px 8px !important;
+    }
+    ${root} .ml-form-embedContent h4,
+    ${root} .ml-form-successContent h4 {
+      color: #ffffff !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 1.35rem !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.02em !important;
+      line-height: 1.25 !important;
+      text-align: left !important;
+      margin: 0 0 10px !important;
+    }
+    ${root} .ml-form-embedContent p,
+    ${root} .ml-form-successContent p {
+      color: #a1a1aa !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 0.95rem !important;
+      font-weight: 400 !important;
+      line-height: 1.6 !important;
+      text-align: left !important;
+      margin: 0 0 18px !important;
+    }
+    ${root} .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input.form-control {
+      background-color: #18181b !important;
+      color: #ffffff !important;
+      border: 1px solid #52525b !important;
+      border-radius: 2px !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 15px !important;
+      line-height: 1.4 !important;
+      padding: 12px 14px !important;
+      height: auto !important;
+      box-shadow: none !important;
+    }
+    ${root} .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input.form-control::placeholder {
+      color: #71717a !important;
+    }
+    ${root} .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input.form-control:focus {
+      outline: 2px solid #f97316 !important;
+      border-color: #f97316 !important;
+    }
+    ${root} .ml-form-fieldRow {
+      margin-bottom: 12px !important;
+    }
+    ${root} .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button.primary {
+      background-color: #f97316 !important;
+      border-color: #f97316 !important;
+      color: #ffffff !important;
+      border-radius: 2px !important;
+      box-shadow: none !important;
+      font-family: Inter, sans-serif !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.14em !important;
+      text-transform: uppercase !important;
+      padding: 14px 16px !important;
+      margin-top: 4px !important;
+      cursor: pointer !important;
+    }
+    ${root} .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button.primary:hover {
+      background-color: #fb923c !important;
+      border-color: #fb923c !important;
+    }
+  `;
+}
+
+function applySiteFormTheme(root: HTMLElement) {
+  const container = root.querySelector<HTMLElement>(".ml-form-embedContainer");
+  if (!container?.id) return;
+  const existing = root.querySelector<HTMLStyleElement>("style[data-kickstarter-theme]");
+  const css = siteFormCss(container.id);
+  if (existing) {
+    if (existing.textContent !== css) existing.textContent = css;
+    return;
+  }
+  const style = document.createElement("style");
+  style.dataset.kickstarterTheme = "true";
+  style.textContent = css;
+  root.appendChild(style);
+}
+
+export function MailerLiteEmbed({
+  className = "",
+  appearance = "default",
+}: {
+  className?: string;
+  appearance?: "default" | "site";
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -53,10 +155,21 @@ export function MailerLiteEmbed({ className = "" }: { className?: string }) {
 
     ensureUniversalScript();
 
+    const themeObserver =
+      appearance === "site"
+        ? new MutationObserver(() => applySiteFormTheme(container))
+        : null;
+    if (themeObserver) {
+      themeObserver.observe(container, { childList: true, subtree: true });
+    }
+
     let requested = false;
     let retryTimer = 0;
     const started = Date.now();
     const timer = window.setInterval(() => {
+      if (appearance === "site" && container.childElementCount > 0) {
+        applySiteFormTheme(container);
+      }
       if (container.childElementCount > 0 || Date.now() - started > 8000) {
         window.clearInterval(timer);
         return;
@@ -91,8 +204,9 @@ export function MailerLiteEmbed({ className = "" }: { className?: string }) {
     return () => {
       window.clearInterval(timer);
       window.clearTimeout(retryTimer);
+      themeObserver?.disconnect();
     };
-  }, []);
+  }, [appearance]);
 
   return (
     <div

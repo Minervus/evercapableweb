@@ -4,10 +4,10 @@ export const KICKSTARTER_TITLE =
   "Free 12-week Kickstarter emails | Tony Nguyen Fit";
 
 export const KICKSTARTER_DESCRIPTION =
-  "One short email a week for 12 weeks, with one food action each time. Free from Tony Nguyen Fit, for people who eat well and still aren't losing fat.";
+  "Free weekly emails for 12 weeks from Tony Nguyen Fit. One food action each time, for people with decent meals, stalled fat loss, and flat energy.";
 
 export const KICKSTARTER_H1 =
-  "You eat pretty well. The fat loss still stalls.";
+  "Fat loss has stalled, and your energy is still flat.";
 
 export const KICKSTARTER_WEEKS = [
   {
@@ -50,8 +50,9 @@ export function renderKickstarterStaticHtml(): string {
     `<nav aria-label="Site"><a href="/">Home</a> <a href="/audit">Audit + Roadmap</a></nav>`,
     `<h1>${escapeHtmlText(KICKSTARTER_H1)}</h1>`,
     `<p>${escapeHtmlText(KICKSTARTER_DESCRIPTION)}</p>`,
+    `<p>The 12-week emails cost nothing.</p>`,
     blocks,
-    `<p><a href="/audit">Audit + Roadmap, $149</a></p>`,
+    `<p><a href="https://tonynguyenfit.com/audit">Audit + Roadmap, $149</a></p>`,
     `</main>`,
   ].join("");
 }

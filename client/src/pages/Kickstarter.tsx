@@ -22,25 +22,6 @@ const fadeUp = {
   transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
 };
 
-const problems = [
-  {
-    title: "Guessing",
-    body: "Meals feel healthy, and the day never gets added up. Fat loss stays hard to explain.",
-  },
-  {
-    title: "Clean-eating plateaus",
-    body: "The plate looks careful. Portions and protein were never checked, so the scale sits still.",
-  },
-  {
-    title: "Weekend blowups",
-    body: "Friday to Sunday runs on a looser set of rules, and Monday starts behind.",
-  },
-  {
-    title: "Scale drama",
-    body: "One heavy morning makes the week feel wasted, even when the food was mostly fine.",
-  },
-];
-
 const beats = [
   {
     title: "Sign up",
@@ -160,11 +141,11 @@ export default function Kickstarter() {
                   {KICKSTARTER_H1}
                 </h1>
                 <p className="text-lg md:text-xl text-zinc-300 leading-[1.7] mb-8 max-w-[540px]">
-                  A lot of that stall is guessing. The Kickstarter is a free email, once a week for 12 weeks. Each one is short, and each one gives you a single action to take with your food.
+                  The meals are already in a decent place. The hard part is knowing what to change first. The Kickstarter is one short email a week for 12 weeks, and each note gives you a single action with your food.
                 </p>
                 <EmailButton label="Get the free emails" />
                 <p className="mt-4 text-zinc-500 text-xs tracking-wide">
-                  Free. Under 3 minutes to read. No crash diets.
+                  Free, under 3 minutes to read, and no crash diets.
                 </p>
               </motion.div>
 
@@ -190,25 +171,17 @@ export default function Kickstarter() {
             <motion.div {...fadeUp} className="max-w-3xl">
               <Eyebrow>The stuck point</Eyebrow>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-                The week was never specific enough
+                A lot of nutrition advice, and no clear first step
               </h2>
-              <p className="text-zinc-300 text-[1.05rem] leading-[1.8] max-w-[640px]">
-                You can do a lot of the right things and still be guessing. The emails walk through these patterns one at a time, on the food side of fat loss. Daily movement shows up once, as support.
-              </p>
+              <div className="space-y-6 text-zinc-300 text-[1.05rem] leading-[1.8] max-w-[640px]">
+                <p>
+                  One source says cut carbs. Another says raise protein and start fasting. If the food is already decent, that stack still doesn't say whether this week is about portions, protein, weekends, or sleep.
+                </p>
+                <p>
+                  The scale sits still and the days feel flat while you try to hold every rule at once. These emails take one food topic a week. Daily movement shows up once, as support.
+                </p>
+              </div>
             </motion.div>
-
-            <div className="grid sm:grid-cols-2 gap-4 md:gap-5 mt-10 md:mt-12">
-              {problems.map((problem) => (
-                <motion.article
-                  key={problem.title}
-                  {...fadeUp}
-                  className="bg-white/[0.02] border border-white/[0.05] p-6"
-                >
-                  <h3 className="text-white font-semibold text-lg mb-2">{problem.title}</h3>
-                  <p className="text-zinc-400 text-sm md:text-base leading-relaxed">{problem.body}</p>
-                </motion.article>
-              ))}
-            </div>
           </section>
 
           <section className="border-t border-zinc-800/80">
@@ -274,6 +247,18 @@ export default function Kickstarter() {
             </div>
           </section>
 
+          <section className="max-w-6xl mx-auto px-6 pb-16 md:pb-24">
+            <motion.div {...fadeUp} className="max-w-3xl">
+              <Eyebrow>What it costs</Eyebrow>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+                The 12 weeks are free
+              </h2>
+              <p className="text-zinc-300 text-[1.05rem] leading-[1.8] max-w-[640px]">
+                Nothing to pay. You leave your name and email, a short note shows up once a week, and you can leave the list whenever you want.
+              </p>
+            </motion.div>
+          </section>
+
           <section
             id="signup"
             aria-label="Name and email signup"
@@ -283,7 +268,7 @@ export default function Kickstarter() {
               <p className="text-zinc-400 text-base md:text-lg leading-relaxed mb-10">
                 Your name and email. No spam, and you can unsubscribe any time.
               </p>
-              <MailerLiteEmbed />
+              <MailerLiteEmbed appearance="site" />
             </div>
           </section>
 
@@ -295,11 +280,12 @@ export default function Kickstarter() {
               <p className="text-zinc-400 text-base md:text-lg leading-[1.75] mb-8">
                 The emails can stand on their own. If you want a plan written around your actual week, the Audit + Roadmap is $149 for one session and a 4–6 week food roadmap.
               </p>
-              <Link href="/audit" asChild>
-                <a className="inline-block text-sm text-zinc-300 underline underline-offset-4 decoration-zinc-600 hover:text-orange-400 hover:decoration-orange-400/70 transition-colors">
-                  See the Audit + Roadmap
-                </a>
-              </Link>
+              <a
+                href="https://tonynguyenfit.com/audit"
+                className="inline-block text-sm text-zinc-300 underline underline-offset-4 decoration-zinc-600 hover:text-orange-400 hover:decoration-orange-400/70 transition-colors"
+              >
+                See the Audit + Roadmap
+              </a>
             </motion.div>
           </section>
         </main>
