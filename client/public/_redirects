@@ -6,6 +6,9 @@
 # Prerendered audit landing page
 /audit /audit.html 200!
 /audit/ /audit.html 200!
+# Prerendered Kickstarter landing page
+/kickstarter /kickstarter.html 200!
+/kickstarter/ /kickstarter.html 200!
 /journal/how-busy-dads-can-exercise-without-a-gym /journal/how-busy-dads-can-exercise-without-a-gym.html 200!
 /journal/how-busy-dads-can-exercise-without-a-gym/ /journal/how-busy-dads-can-exercise-without-a-gym.html 200!
 /journal/why-busy-dads-overeat-at-night /journal/why-busy-dads-overeat-at-night.html 200!

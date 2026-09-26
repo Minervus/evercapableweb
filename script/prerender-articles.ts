@@ -12,6 +12,11 @@ import {
   SITE_BASE_URL,
 } from "../shared/articleSeo";
 import { buildJournalRedirectRules } from "../shared/journalRedirects";
+import {
+  KICKSTARTER_DESCRIPTION,
+  KICKSTARTER_TITLE,
+  renderKickstarterStaticHtml,
+} from "../shared/kickstarterPage";
 
 const client = createClient({
   projectId: "49ykafev",
@@ -195,7 +200,17 @@ export async function prerenderArticles() {
   );
   writeFileSync(resolve(publicDir, "audit.html"), auditHtml, "utf-8");
 
-  // Redirects (article rewrites + journal index + /audit + SPA fallback)
+  // /kickstarter landing page: static crawlable shell with SEO meta
+  const kickstarterUrl = `${SITE_BASE_URL}/kickstarter`;
+  let kickstarterHtml = injectPageMetadata(template, {
+    title: KICKSTARTER_TITLE,
+    description: KICKSTARTER_DESCRIPTION,
+    url: kickstarterUrl,
+  });
+  kickstarterHtml = injectRootContent(kickstarterHtml, renderKickstarterStaticHtml());
+  writeFileSync(resolve(publicDir, "kickstarter.html"), kickstarterHtml, "utf-8");
+
+  // Redirects (article rewrites + journal index + /audit + /kickstarter + SPA fallback)
   writeFileSync(
     resolve(publicDir, "_redirects"),
     buildJournalRedirectRules(posts.map((p) => p.slug)),
