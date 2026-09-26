@@ -1,7 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
+    <!-- Critical CSS: paint the prerendered SEO shell before the Tailwind bundle loads. -->
+    <style>
+      html.dark { color-scheme: dark; }
+      html.dark,
+      html.dark body {
+        background: #121212;
+        color: #fafafa;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, sans-serif;
+      }
+      #root > nav[aria-label="Site"],
+      #root > main,
+      #root > section[aria-label="Latest articles"] {
+        max-width: 42rem;
+        padding: 1.25rem 1.5rem 2rem;
+        line-height: 1.6;
+      }
+      #root > nav[aria-label="Site"],
+      #root > main nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
+        padding-bottom: 0.25rem;
+      }
+      #root > nav[aria-label="Site"] a,
+      #root > main a,
+      #root > section[aria-label="Latest articles"] a {
+        color: #a1a1aa;
+        text-decoration: none;
+      }
+      #root > main ul,
+      #root > section[aria-label="Latest articles"] ul {
+        margin: 0.75rem 0 1rem;
+        padding-left: 1.25rem;
+      }
+      #root > main li,
+      #root > section[aria-label="Latest articles"] li {
+        margin: 0.35rem 0;
+      }
+      #root > main h1,
+      #root > main h2,
+      #root > section[aria-label="Latest articles"] h2 {
+        margin: 0.75rem 0 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <meta name="description" content="Tony Nguyen Fit — nutrition-led coaching. Weekly check-ins, a practical food strategy, and sustainable weight change. Training as support." />
     <meta property="og:title" content="Tony Nguyen Fit — Nutrition-led coaching" />
