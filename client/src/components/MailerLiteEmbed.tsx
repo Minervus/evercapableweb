@@ -97,7 +97,7 @@ export function MailerLiteEmbed({ className = "" }: { className?: string }) {
   return (
     <div
       ref={containerRef}
-      className={`ml-embedded mx-auto w-full max-w-[400px] ${className}`.trim()}
+      className={`ml-embedded mx-auto w-full max-w-[440px] min-h-[20rem] overflow-visible ${className}`.trim()}
       data-form={MAILERLITE_FORM}
     />
   );

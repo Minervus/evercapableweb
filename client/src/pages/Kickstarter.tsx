@@ -44,7 +44,7 @@ const problems = [
 const beats = [
   {
     title: "Sign up",
-    body: "Leave your email. The series starts from there.",
+    body: "Leave your name and email. The series starts from there.",
   },
   {
     title: "One email a week",
@@ -56,6 +56,9 @@ const beats = [
   },
 ];
 
+const FIELD_SELECTOR =
+  "input:not([type='hidden']):not([type='submit']):not([type='button']):not([type='checkbox']):not([type='radio'])";
+
 function scrollToSignup() {
   const section = document.getElementById("signup");
   if (!section) return;
@@ -66,9 +69,7 @@ function scrollToSignup() {
   const started = Date.now();
   const timer = window.setInterval(() => {
     const root = section.querySelector(".ml-embedded");
-    const input = root?.querySelector<HTMLInputElement>(
-      "input[type='email'], input[name='email']",
-    );
+    const input = root?.querySelector<HTMLInputElement>(FIELD_SELECTOR);
     if (input) {
       input.focus({ preventScroll: true });
       window.clearInterval(timer);
@@ -78,9 +79,7 @@ function scrollToSignup() {
     const iframe = root?.querySelector("iframe");
     if (iframe instanceof HTMLIFrameElement) {
       try {
-        const inner = iframe.contentDocument?.querySelector<HTMLInputElement>(
-          "input[type='email'], input[name='email']",
-        );
+        const inner = iframe.contentDocument?.querySelector<HTMLInputElement>(FIELD_SELECTOR);
         if (inner) {
           inner.focus();
           window.clearInterval(timer);
@@ -277,12 +276,12 @@ export default function Kickstarter() {
 
           <section
             id="signup"
-            aria-label="Email signup"
-            className="bg-black border-y border-white/5 py-16 md:py-24 scroll-mt-6"
+            aria-label="Name and email signup"
+            className="bg-black border-y border-white/5 py-16 md:py-28 scroll-mt-6"
           >
             <div className="max-w-[720px] mx-auto px-6 text-center">
-              <p className="text-zinc-400 text-base md:text-lg leading-relaxed mb-8">
-                No spam. Unsubscribe any time.
+              <p className="text-zinc-400 text-base md:text-lg leading-relaxed mb-10">
+                Your name and email. No spam, and you can unsubscribe any time.
               </p>
               <MailerLiteEmbed />
             </div>
