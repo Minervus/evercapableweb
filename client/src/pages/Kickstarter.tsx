@@ -253,9 +253,24 @@ export default function Kickstarter() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
                 The 12 weeks are free
               </h2>
-              <p className="text-zinc-300 text-[1.05rem] leading-[1.8] max-w-[640px]">
-                Nothing to pay. You leave your name and email, a short note shows up once a week, and you can leave the list whenever you want.
-              </p>
+              <div className="space-y-6 text-zinc-300 text-[1.05rem] leading-[1.8] max-w-[640px]">
+                <p>
+                  Nothing to pay. You leave your name and email, a short note shows up once a week, and you can leave the list whenever you want.
+                </p>
+                <p>
+                  The nutrition is already public. It sits in separate articles and videos, so gathering the useful parts into one sequence takes longer than a normal week allows. These emails do that sorting. Each note is one topic and one action, and the next email picks up from there.
+                </p>
+                <p>
+                  The series is a general path, the kind a lot of people can follow. When you want a plan written for your situation and the way you live, the{" "}
+                  <a
+                    href="https://tonynguyenfit.com/audit"
+                    className="text-zinc-200 underline underline-offset-4 decoration-zinc-600 hover:text-orange-400 hover:decoration-orange-400/70 transition-colors"
+                  >
+                    Audit + Roadmap
+                  </a>{" "}
+                  is there.
+                </p>
+              </div>
             </motion.div>
           </section>
 
