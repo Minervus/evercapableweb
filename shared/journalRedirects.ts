@@ -8,6 +8,9 @@ export function buildJournalRedirectRules(slugs: string[]): string {
     "# Prerendered audit landing page",
     "/audit /audit.html 200!",
     "/audit/ /audit.html 200!",
+    "# Prerendered Kickstarter landing page",
+    "/kickstarter /kickstarter.html 200!",
+    "/kickstarter/ /kickstarter.html 200!",
   ];
 
   for (const slug of slugs) {

@@ -11,6 +11,7 @@ import NotFound from "@/pages/not-found";
 import Journal from "@/pages/Journal";
 import Article from "@/pages/Article";
 import Audit from "@/pages/Audit";
+import Kickstarter from "@/pages/Kickstarter";
 
 import TDEE from "@/pages/TDEE";
 
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/journal" component={Journal} />
       <Route path="/journal/:slug" component={Article} />
       <Route path="/audit" component={Audit} />
+      <Route path="/kickstarter" component={Kickstarter} />
       <Route path="/tdee" component={TDEE} />
       <Route component={NotFound} />
     </Switch>
