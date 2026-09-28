@@ -1,10 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from "react-helmet-async";
 import { client } from '../lib/sanity';
 import { format } from 'date-fns';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowLeft } from 'lucide-react';
+import {
+  JOURNAL_DESCRIPTION,
+  JOURNAL_NAME,
+  SITE_BASE_URL,
+} from "@shared/articleSeo";
 
 export default function Journal() {
   const { data: articles, isLoading, isError } = useQuery({
@@ -23,8 +29,19 @@ export default function Journal() {
     },
   });
 
+  const journalUrl = `${SITE_BASE_URL}/journal`;
+
   return (
     <div className="min-h-screen bg-background pt-24 pb-16">
+      <Helmet>
+        <title>{JOURNAL_NAME}</title>
+        <meta name="description" content={JOURNAL_DESCRIPTION} />
+        <meta property="og:title" content={JOURNAL_NAME} />
+        <meta property="og:description" content={JOURNAL_DESCRIPTION} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={journalUrl} />
+        <link rel="canonical" href={journalUrl} />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-6">
         <Link href="/">
           <a className="inline-flex items-center text-zinc-400 hover:text-white transition-colors mb-8 font-mono text-sm uppercase tracking-wider">
@@ -43,10 +60,10 @@ export default function Journal() {
             // THE_JOURNAL
           </p>
           <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight">
-            EverCapable Journal
+            {JOURNAL_NAME}
           </h1>
           <p className="text-zinc-400 mt-4 md:text-xl max-w-2xl">
-            Insights on training, nutrition, and performance designed to help you build a body that lasts.
+            {JOURNAL_DESCRIPTION}
           </p>
         </motion.div>
 

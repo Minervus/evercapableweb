@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { client } from '../lib/sanity';
 import { Link } from "wouter";
+import { JOURNAL_DESCRIPTION } from "@shared/articleSeo";
 
 type FeedItem = {
   title: string;
@@ -53,7 +54,7 @@ export function LatestArticles() {
             Latest from the Journal
           </h2>
           <p className="text-zinc-400 mt-4 md:text-lg max-w-2xl">
-            Insights on training, nutrition, and performance designed to help you build a body that lasts.
+            {JOURNAL_DESCRIPTION}
           </p>
         </motion.div>
 
