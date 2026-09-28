@@ -9,6 +9,8 @@ import {
   injectArticleMetadata,
   injectPageMetadata,
   injectRootContent,
+  JOURNAL_DESCRIPTION,
+  JOURNAL_NAME,
   SITE_BASE_URL,
 } from "../shared/articleSeo";
 import { buildJournalRedirectRules } from "../shared/journalRedirects";
@@ -110,7 +112,7 @@ function renderArticleContent(post: PrerenderPost, allPosts: PrerenderPost[]): s
 function renderJournalIndexContent(posts: PrerenderPost[]): string {
   const items = posts
     .map((p) => {
-      const snippet = p.snippet ? ` — ${escapeHtmlText(p.snippet)}` : "";
+      const snippet = p.snippet ? ` · ${escapeHtmlText(p.snippet)}` : "";
       return `<li><a href="/journal/${escapeHtmlAttribute(p.slug)}">${escapeHtmlText(
         p.title,
       )}</a>${snippet}</li>`;
@@ -120,8 +122,8 @@ function renderJournalIndexContent(posts: PrerenderPost[]): string {
   return [
     `<main>`,
     `<nav aria-label="Breadcrumb"><a href="/">Home</a></nav>`,
-    `<h1>EverCapable Journal</h1>`,
-    `<p>Insights on training, nutrition, and performance designed to help you build a body that lasts.</p>`,
+    `<h1>${escapeHtmlText(JOURNAL_NAME)}</h1>`,
+    `<p>${escapeHtmlText(JOURNAL_DESCRIPTION)}</p>`,
     `<ul>${items}</ul>`,
     `</main>`,
   ].join("");
@@ -167,9 +169,8 @@ export async function prerenderArticles() {
   // Journal index page: crawlable list linking to every article
   const journalUrl = `${SITE_BASE_URL}/journal`;
   let journalHtml = injectPageMetadata(template, {
-    title: "EverCapable Journal | Training & Nutrition for Busy Dads",
-    description:
-      "Insights on training, nutrition, and performance designed to help busy dads build a body that lasts.",
+    title: JOURNAL_NAME,
+    description: JOURNAL_DESCRIPTION,
     url: journalUrl,
   });
   journalHtml = injectRootContent(journalHtml, renderJournalIndexContent(posts));

@@ -1,4 +1,25 @@
-export const SITE_BASE_URL = "https://evercapable.com";
+export const SITE_BASE_URL = "https://tonynguyenfit.com";
+
+export const JOURNAL_NAME = "TonyNguyenFit Journal";
+
+export const JOURNAL_DESCRIPTION =
+  "Practical nutrition notes for people who eat well but still feel stuck.";
+
+const JOURNAL_TITLE_SUFFIX = ` | ${JOURNAL_NAME}`;
+
+/** Document title for journal routes: `{title} | TonyNguyenFit Journal`. */
+export function formatJournalDocumentTitle(title: string): string {
+  const trimmed = title.trim();
+  const base = trimmed
+    .replace(/\s*\|\s*(?:EverCapable|TonyNguyenFit)\s+Journal\s*$/i, "")
+    .trim();
+
+  if (!base || base.toLowerCase() === JOURNAL_NAME.toLowerCase()) {
+    return JOURNAL_NAME;
+  }
+
+  return `${base}${JOURNAL_TITLE_SUFFIX}`;
+}
 
 export interface ArticleSeoFields {
   title: string;
@@ -33,7 +54,8 @@ export function buildArticleCanonicalUrl(
 }
 
 export function buildArticleMetadata(article: ArticleSeoFields): ArticleMetadata {
-  const title = article.seo?.metaTitle?.trim() || article.title;
+  const rawTitle = article.seo?.metaTitle?.trim() || article.title;
+  const title = formatJournalDocumentTitle(rawTitle);
   const description =
     article.seo?.metaDescription?.trim() ||
     article.snippet?.trim() ||
