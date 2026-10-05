@@ -183,9 +183,9 @@ export async function prerenderArticles() {
   // /audit landing page: static crawlable shell with SEO meta
   const auditUrl = `${SITE_BASE_URL}/audit`;
   let auditHtml = injectPageMetadata(template, {
-    title: "The Millennial Vitality Audit & Roadmap — Tony Nguyen Fit",
+    title: "Nutrition Audit for Parents 35 to 50 | Tony Nguyen Fit",
     description:
-      "A 60-minute data-backed strategy session ($149) for 35–45 year-old professionals ready to build a health system that fits their real life.",
+      "A 60-minute nutrition session ($149) for professionals 35 to 50 who are raising kids and want more energy in a week that is already full.",
     url: auditUrl,
   });
   auditHtml = injectRootContent(
@@ -193,8 +193,8 @@ export async function prerenderArticles() {
     [
       `<main>`,
       `<nav aria-label="Site"><a href="/">Home</a> <a href="/journal">Journal</a></nav>`,
-      `<h1>The Millennial Vitality Audit &amp; Roadmap</h1>`,
-      `<p>A 60-minute data-backed strategy session ($149) for 35–45 year-old professionals who are done guessing and ready to build a health system that fits their real life.</p>`,
+      `<h1>More energy, in a week that already has work and kids.</h1>`,
+      `<p>A 60-minute nutrition session ($149) for professionals 35 to 50 who are raising kids and want more energy in a week that is already full.</p>`,
       `<p><a href="/journal">Read the Journal</a></p>`,
       `</main>`,
     ].join(""),
