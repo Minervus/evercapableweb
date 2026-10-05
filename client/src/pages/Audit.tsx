@@ -60,17 +60,17 @@ export default function Audit() {
   return (
     <>
       <Helmet>
-        <title>Audit + Roadmap — $149 | Tony Nguyen Fit</title>
+        <title>Nutrition Audit for Parents 35 to 50 | Tony Nguyen Fit</title>
         <meta
           name="description"
-          content="A one-off nutrition and lifestyle diagnostic plus a 4–6 week roadmap ($149). Start Habits within 14 days and the first month is covered; start 1:1 and get $149 off month one."
+          content="A 60-minute nutrition session ($149) for professionals 35 to 50 who are raising kids and want more energy in a week that is already full."
         />
-        <meta property="og:title" content="Audit + Roadmap — $149 | Tony Nguyen Fit" />
-        <meta property="og:description" content="One session. A 4–6 week food and habit roadmap. Start Habits within 14 days and the first month is covered; start 1:1 and get $149 off month one." />
+        <meta property="og:title" content="Nutrition Audit for Parents 35 to 50 | Tony Nguyen Fit" />
+        <meta property="og:description" content="A 60-minute nutrition session ($149) for professionals 35 to 50 who are raising kids and want more energy in a week that is already full." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://evercapable.com/audit" />
-        <meta property="og:image" content="https://evercapable.com/tony-harbor.png" />
-        <link rel="canonical" href="https://evercapable.com/audit" />
+        <meta property="og:url" content="https://tonynguyenfit.com/audit" />
+        <meta property="og:image" content="https://tonynguyenfit.com/tony-harbor.png" />
+        <link rel="canonical" href="https://tonynguyenfit.com/audit" />
       </Helmet>
 
       <div className="min-h-screen bg-zinc-950 text-white antialiased selection:bg-orange-500/30">
@@ -101,16 +101,11 @@ export default function Audit() {
               <EyebrowLabel>Audit + Roadmap — {money(149, currency)}</EyebrowLabel>
 
               <h1 className="text-[2.6rem] md:text-[3.5rem] font-bold leading-[1.06] tracking-tight text-white mb-7">
-                Stop Searching for the{" "}
-                <span className="text-orange-500">"Magic Secret."</span>
-                <br />
-                <span className="text-zinc-400 font-light">There isn't one.</span>
+                <span className="text-orange-500">More energy,</span> in a week that already has work and kids.
               </h1>
 
               <p className="text-xl text-zinc-300 leading-[1.75] mb-10 max-w-[520px]">
-                There's just the <strong className="text-white">science</strong>,
-                the <strong className="text-white">system</strong>, and the{" "}
-                <strong className="text-white">execution</strong>.
+                One 60-minute session. You leave with a 4 to 6 week food roadmap, one habit at a time. Once the energy is back, you feel healthier, and some of the weight comes off.
               </p>
 
               <ApplyButton />
@@ -257,37 +252,14 @@ export default function Audit() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-10">
                 This is for you if…
               </h2>
-              <ul className="space-y-8">
-                <li className="flex items-start gap-4">
-                  <span className="text-orange-500 mt-[6px] shrink-0 text-xs">◆</span>
-                  <div className="text-zinc-300 leading-[1.8]">
-                    <p>
-                      <strong className="text-white">You're 35–45, career-driven, and serious about your health.</strong>
-                    </p>
-                    <p className="mt-2 text-zinc-400 text-sm leading-[1.8]">
-                      You've realized your health isn't just about how you look — it's the foundation for everything else. You want the stamina to show up for your career, the energy to be present for your family, and the longevity to keep doing it for years to come.
-                    </p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="text-orange-500 mt-[6px] shrink-0 text-xs">◆</span>
-                  <p className="text-zinc-300 leading-[1.8]">
-                    You've tried generic programs and hit the same wall.
-                  </p>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="text-orange-500 mt-[6px] shrink-0 text-xs">◆</span>
-                  <p className="text-zinc-300 leading-[1.8]">
-                    You want a system that <strong className="text-white">integrates into your life</strong>, not one that consumes it.
-                  </p>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="text-orange-500 mt-[6px] shrink-0 text-xs">◆</span>
-                  <p className="text-zinc-300 leading-[1.8]">
-                    You're ready to stop experimenting and <strong className="text-white">start executing</strong>.
-                  </p>
-                </li>
-              </ul>
+              <div className="space-y-6 text-zinc-300 text-[1.05rem] leading-[1.8]">
+                <p>
+                  You're a working parent, 35 to 50, and the afternoon slump is the problem you actually feel. You want a way of eating that fits the job and the kids you already have.
+                </p>
+                <p>
+                  Generic programs left you guessing at dinner. You want one habit at a time, not a second job. You're ready for a clear picture of where you are, and a roadmap from there.
+                </p>
+              </div>
             </motion.div>
 
             {/* Photo */}
@@ -500,7 +472,7 @@ export default function Audit() {
           <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-600 text-xs tracking-wide">
             <span>© {new Date().getFullYear()} Tony Nguyen Fit. All rights reserved.</span>
             <a href="/" className="hover:text-zinc-400 transition-colors">
-              evercapable.com
+              tonynguyenfit.com
             </a>
           </div>
         </footer>
