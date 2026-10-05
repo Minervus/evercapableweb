@@ -4,10 +4,10 @@ export const KICKSTARTER_TITLE =
   "Free 12-week Kickstarter emails | Tony Nguyen Fit";
 
 export const KICKSTARTER_DESCRIPTION =
-  "Free weekly emails for 12 weeks from Tony Nguyen Fit. One food action each time, for people with decent meals, stalled fat loss, and flat energy.";
+  "Free weekly emails for 12 weeks. One food action each time, written for busy parents 35 to 50 who want eating that fits work and kids so energy comes back.";
 
 export const KICKSTARTER_H1 =
-  "Fat loss has stalled, and your energy is still flat.";
+  "Your energy is still flat, and the week is already full.";
 
 export const KICKSTARTER_WEEKS = [
   {

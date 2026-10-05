@@ -132,7 +132,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-[60px] font-bold text-white leading-tight tracking-tight mb-6 drop-shadow-lg"
             data-testid="text-hero-headline"
-          >Weekly nutrition check-ins that make weight change actually last.</motion.h1>
+          >Weekly nutrition check-ins for parents 35 to 50 who want energy back in a week that already has work and kids.</motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
