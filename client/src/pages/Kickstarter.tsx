@@ -141,7 +141,7 @@ export default function Kickstarter() {
                   {KICKSTARTER_H1}
                 </h1>
                 <p className="text-lg md:text-xl text-zinc-300 leading-[1.7] mb-8 max-w-[540px]">
-                  The meals are already in a decent place. The hard part is knowing what to change first. The Kickstarter is one short email a week for 12 weeks, and each note gives you a single action with your food.
+                  {KICKSTARTER_DESCRIPTION}
                 </p>
                 <EmailButton label="Get the free emails" />
                 <p className="mt-4 text-zinc-500 text-xs tracking-wide">
@@ -174,6 +174,9 @@ export default function Kickstarter() {
                 A lot of nutrition advice, and no clear first step
               </h2>
               <div className="space-y-6 text-zinc-300 text-[1.05rem] leading-[1.8] max-w-[640px]">
+                <p>
+                  The meals are already in a decent place. The hard part is knowing what to change first.
+                </p>
                 <p>
                   One source says cut carbs. Another says raise protein and start fasting. If the food is already decent, that stack still doesn't say whether this week is about portions, protein, weekends, or sleep.
                 </p>

@@ -32,7 +32,7 @@ export function Familiar() {
                             You already know food matters. The week still wins.
                         </h2>
                         <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-3xl mx-auto">
-                            Most people don't need another workout plan. They need a food strategy that survives busy weeks — and someone to help adjust it when life gets messy.
+                            You're eating decently. The afternoon still crashes. Work and kids fill the week, so another rigid meal plan never lasts. You want one habit at a time, and a coach who adjusts with you.
                         </p>
                     </div>
 
