@@ -40,6 +40,15 @@ export function Contact() {
           <p className="mt-8 text-[10px] md:text-xs text-zinc-600 font-mono tracking-widest uppercase">
             Application takes a couple of minutes
           </p>
+          <p className="mt-4 text-sm text-zinc-500">
+            Email Tony at{" "}
+            <a
+              href="mailto:tony@tonynguyenfit.com"
+              className="text-zinc-300 underline underline-offset-4 hover:text-white"
+            >
+              tony@tonynguyenfit.com
+            </a>
+          </p>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,7 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { HOME_CANONICAL, HOME_TITLE, scrollToSectionId, watchCanonical } from "@/lib/sectionRoutes";
 
 // Lazy Load Below-the-fold Components
 const Familiar = lazy(() => import("@/components/Familiar").then(m => ({ default: m.Familiar })));
@@ -16,7 +17,20 @@ const Contact = lazy(() => import("@/components/Contact").then(m => ({ default: 
 const KickstarterSignup = lazy(() => import("@/components/KickstarterSignup").then(m => ({ default: m.KickstarterSignup })));
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 
-export default function Home() {
+export default function Home({ scrollToId }: { scrollToId?: string }) {
+  useEffect(() => {
+    document.title = HOME_TITLE;
+    const stopWatching = watchCanonical(HOME_CANONICAL);
+
+    const id = scrollToId || window.location.hash.replace(/^#/, "");
+    if (!id) return stopWatching;
+    const stopScrolling = scrollToSectionId(id);
+    return () => {
+      stopWatching();
+      stopScrolling();
+    };
+  }, [scrollToId]);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />

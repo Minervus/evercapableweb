@@ -1,9 +1,13 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { SlidersHorizontal, FlaskConical, GitMerge } from "lucide-react";
 import { Link } from "wouter";
 import logoIcon from "@assets/tn-logo-on-black.png";
 import { money, useDisplayCurrency } from "@/lib/displayCurrency";
+import { watchCanonical } from "@/lib/sectionRoutes";
+
+const AUDIT_CANONICAL = "https://tonynguyenfit.com/audit";
 
 const APPLY_URL = "/initialize?plan=audit";
 
@@ -57,6 +61,8 @@ function SectionDivider() {
 export default function Audit() {
   const currency = useDisplayCurrency();
 
+  useEffect(() => watchCanonical(AUDIT_CANONICAL), []);
+
   return (
     <>
       <Helmet>
@@ -70,7 +76,7 @@ export default function Audit() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://tonynguyenfit.com/audit" />
         <meta property="og:image" content="https://tonynguyenfit.com/tony-harbor.png" />
-        <link rel="canonical" href="https://tonynguyenfit.com/audit" />
+        <link rel="canonical" href={AUDIT_CANONICAL} />
       </Helmet>
 
       <div className="min-h-screen bg-zinc-950 text-white antialiased selection:bg-orange-500/30">
@@ -98,7 +104,7 @@ export default function Audit() {
 
             {/* Copy */}
             <motion.div {...fadeUp}>
-              <EyebrowLabel>Audit + Roadmap — {money(149, currency)}</EyebrowLabel>
+              <EyebrowLabel>Audit + Roadmap, {money(149, currency)}</EyebrowLabel>
 
               <h1 className="text-[2.6rem] md:text-[3.5rem] font-bold leading-[1.06] tracking-tight text-white mb-7">
                 <span className="text-orange-500">More energy,</span> in a week that already has work and kids.
@@ -118,7 +124,7 @@ export default function Audit() {
             <motion.div {...fadeIn} className="relative">
               <img
                 src={HARBOR_IMG}
-                alt="Tony Nguyen — coach and founder of Tony Nguyen Fit"
+                alt="Tony Nguyen, coach and founder of Tony Nguyen Fit"
                 className="w-full rounded-lg object-cover shadow-2xl shadow-black/60"
                 style={{ aspectRatio: "4/5", objectPosition: "top" }}
               />
@@ -134,17 +140,17 @@ export default function Audit() {
             <motion.div {...fadeUp}>
               <EyebrowLabel>The Problem</EyebrowLabel>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">
-                Fitness shouldn't feel like a mystery.
+                Energy fades before the day is over.
               </h2>
               <div className="space-y-6 text-zinc-300 text-[1.05rem] leading-[1.8]">
                 <p>
-                  You've read the articles, bought the program, tracked the macros. And yet — six months later — you're back where you started, or worse.
+                  You have already tried to eat better, and you may have kept a food log for a while. Six months later the 3pm crash still decides how the rest of the day goes.
                 </p>
                 <p>
-                  The problem isn't your discipline. It isn't that you don't know <em>what</em> to do. The real challenge is execution: putting the right system in place for <em>your</em> specific body, schedule, and life.
+                  Work runs late and dinner is whatever the kids will eat. A plan written for an empty calendar does not survive that week.
                 </p>
                 <p>
-                  Without that, every new tactic is just noise. <strong className="text-white">And the noise is deafening.</strong>
+                  You want energy that lasts past school pickup. Once that holds, the weight has room to change too.
                 </p>
               </div>
             </motion.div>
@@ -157,19 +163,19 @@ export default function Audit() {
             <motion.div {...fadeUp} className="max-w-[700px] mx-auto text-center">
               <EyebrowLabel>The Core Philosophy</EyebrowLabel>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">
-                Simple. Not easy. And never one-size-fits-all.
+                A food plan for the week you already have.
               </h2>
 
               <blockquote className="border-l-2 border-orange-500 pl-6 py-1 my-9 text-lg md:text-xl text-zinc-300 italic leading-[1.75] text-left">
-                "It's simple, but it's not easy. And everyone is different — what works for a 20-year-old athlete won't work for a busy professional managing a career, a family, and a body that doesn't recover the way it used to."
+                "A 20-year-old athlete can train and bounce back in a way a parent with a full workday and school pickup cannot. Your roadmap has to fit the recovery and the calendar you have now."
               </blockquote>
 
               <div className="space-y-6 text-zinc-300 text-[1.05rem] leading-[1.8]">
                 <p>
-                  You need a <strong className="text-white">data-backed system</strong> that identifies how your body responds to your unique lifestyle. Not a template. A roadmap built around your biology, your schedule, and your actual goals.
+                  We look at how your energy responds to the way you eat on a normal week with the kids. You leave with a <strong className="text-white">food roadmap</strong> written for that week, aimed at the afternoon energy you want back.
                 </p>
                 <p>
-                  I help you filter the noise and build a food strategy that makes health <strong className="text-white">sustainable</strong> — for your life, long-term.
+                  I will help you keep a way of eating that still works when the week gets messy. <strong className="text-white">Steady afternoon energy</strong> comes first. A calmer scale can follow.
                 </p>
               </div>
 
@@ -196,20 +202,20 @@ export default function Audit() {
             {[
               {
                 number: "01",
-                title: "Filter the Noise",
-                body: "We audit everything you've tried and identify exactly what's working, what's wasted effort, and what's actively setting you back. No opinions — just data.",
+                title: "Look at your week",
+                body: "We go through how you eat now and what you have already tried. The session stays with your real meals and your real schedule, so the next step belongs to your life.",
                 Icon: SlidersHorizontal,
               },
               {
                 number: "02",
-                title: "Sketch the food strategy",
-                body: "Based on how you eat now, your week, and your goals, we map a simple nutrition plan — meals, portions, and habits you can actually keep.",
+                title: "Sketch the meals",
+                body: "From that week, we sketch meals and portions you can repeat on a busy Tuesday. The aim is energy you can feel in the afternoon.",
                 Icon: FlaskConical,
               },
               {
                 number: "03",
-                title: "Bridge the Gap",
-                body: "We build a 4–6 week roadmap that closes the distance between where you are and where you want to be — with clear next steps, not a pile of rules.",
+                title: "Leave with the next habit",
+                body: "You leave with a 4 to 6 week roadmap and one habit to practice first. More energy in the coming weeks is the target, and the weight can move once that energy sticks.",
                 Icon: GitMerge,
               },
             ].map((item) => (
@@ -435,7 +441,7 @@ export default function Audit() {
                 {[
                   "One-off nutrition and lifestyle diagnostic",
                   "Personal 4–6 week food and habit roadmap",
-                  "No ongoing chat — a clear plan you can use",
+                  "One session, then a plan you use on your own",
                 ].map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-zinc-200 text-sm leading-relaxed">
                     <span className="w-5 h-5 rounded-full bg-orange-500/15 border border-orange-500/30 flex items-center justify-center shrink-0">
@@ -451,7 +457,7 @@ export default function Audit() {
               {/* Incentive callout */}
               <div className="rounded-md bg-zinc-800/60 border border-zinc-700/50 px-5 py-4 mb-8">
                 <p className="text-zinc-400 text-xs leading-[1.75]">
-                  <span className="text-zinc-200 font-semibold">Credit guarantee — </span>
+                  <span className="text-zinc-200 font-semibold">Credit toward the next offer: </span>
                   Start Nutrition Habits within 14 days and the audit covers your first month (then {money(149, currency)}/month). Start 1:1 within 14 days and you get {money(149, currency)} off month one.
                 </p>
               </div>

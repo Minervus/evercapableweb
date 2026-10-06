@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { SITE_BASE_URL } from "@shared/articleSeo";
+import { watchCanonical } from "@/lib/sectionRoutes";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,6 +24,8 @@ import {
 } from "@/components/ui/dialog";
 
 export default function TDEE() {
+  useEffect(() => watchCanonical(`${SITE_BASE_URL}/tdee`), []);
+
   const [gender, setGender] = useState<"male" | "female">("male");
   const [age, setAge] = useState<number | "">("");
   const [weight, setWeight] = useState<number | "">("");

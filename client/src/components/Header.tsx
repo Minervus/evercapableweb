@@ -6,18 +6,19 @@ import logoIconDark from "@assets/tn-logo-on-black.png";
 import logoIconLight from "@assets/tn-logo-on-white.png";
 
 import { useLocation } from "wouter";
+import { scrollToSectionId, sectionIdForPath } from "@/lib/sectionRoutes";
 
 type NavLink =
   | { href: string; label: string; submenu?: never }
   | { label: string; submenu: { href: string; label: string }[]; href?: never };
 
 const navLinks: NavLink[] = [
-  { href: "#evercapable-method", label: "How it works" },
+  { href: "/#evercapable-method", label: "How it works" },
   { href: "/journal", label: "Journal" },
-  { href: "#coach", label: "About" },
-  { href: "#protocol-tiers", label: "Pricing" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "/about", label: "About" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const socialLinks = [
@@ -32,43 +33,43 @@ export function Header() {
   const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
   const [location, setLocation] = useLocation();
 
-  const scrollToSection = (href: string) => {
-    // Close menu first
+  const closeMenu = () => {
     setIsMenuOpen(false);
     setExpandedSubmenu(null);
+  };
 
-    if (href.startsWith("/")) {
-      setLocation(href);
-      window.scrollTo(0, 0);
-      return;
-    }
+  const followNav = (href: string) => {
+    closeMenu();
 
-    if (location !== "/") {
-      window.location.href = `/${href}`;
-      return;
-    }
-
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-
-    // Wait for menu to close, then scroll
-    setTimeout(() => {
-      const element = document.querySelector(href);
-      if (element) {
-        const headerOffset = 100; // Account for fixed header + padding
-        const rect = element.getBoundingClientRect();
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const elementTop = rect.top + scrollTop;
-        const offsetPosition = elementTop - headerOffset;
-
-        window.scrollTo({
-          top: Math.max(0, offsetPosition),
-          behavior: "smooth"
-        });
+    if (href === "/" || href === "#") {
+      if (location === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.history.replaceState(null, "", "/");
+      } else {
+        setLocation("/");
+        window.scrollTo({ top: 0, behavior: "auto" });
       }
-    }, 150);
+      return;
+    }
+
+    const hash = href.includes("#") ? href.slice(href.indexOf("#") + 1) : "";
+    if (hash) {
+      if (location === "/") {
+        scrollToSectionId(hash, "smooth");
+        window.history.replaceState(null, "", `/#${hash}`);
+      } else {
+        window.location.assign(`/#${hash}`);
+      }
+      return;
+    }
+
+    const sectionId = sectionIdForPath(href);
+    if (sectionId && sectionIdForPath(location) === sectionId) {
+      scrollToSectionId(sectionId, "smooth");
+      return;
+    }
+
+    setLocation(href);
   };
 
   return (
@@ -84,10 +85,10 @@ export function Header() {
       >
         <div className="flex items-center justify-between gap-4">
           <a
-            href="#"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection("#");
+              followNav("/");
             }}
             className="flex items-center gap-2"
             data-testid="link-logo"
@@ -153,26 +154,34 @@ export function Header() {
                         {expandedSubmenu === link.label && (
                           <div className="ml-4 mt-3 flex flex-col gap-3">
                             {link.submenu.map((sublink) => (
-                              <button
+                              <a
                                 key={sublink.href}
-                                onClick={() => scrollToSection(sublink.href)}
+                                href={sublink.href}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  followNav(sublink.href);
+                                }}
                                 className="text-lg font-medium text-zinc-700 dark:text-zinc-300 text-left hover:text-orange-600 dark:hover:text-orange-500 transition-colors"
                                 data-testid={`link-nav-${sublink.label.toLowerCase().replace(/\s+/g, '-')}`}
                               >
                                 {sublink.label}
-                              </button>
+                              </a>
                             ))}
                           </div>
                         )}
                       </>
                     ) : link.href ? (
-                      <button
-                        onClick={() => scrollToSection(link.href)}
+                      <a
+                        href={link.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          followNav(link.href);
+                        }}
                         className="text-2xl font-semibold text-zinc-900 dark:text-white text-left hover:text-orange-600 dark:hover:text-orange-500 transition-colors"
                         data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                       >
                         {link.label}
-                      </button>
+                      </a>
                     ) : null}
                   </div>
                 ))}

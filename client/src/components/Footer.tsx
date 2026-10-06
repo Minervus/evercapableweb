@@ -3,6 +3,7 @@ import { Instagram, Youtube, Globe, Mail } from "lucide-react";
 import { SiX } from "react-icons/si";
 import logoIconDark from "@assets/tn-logo-on-black.png";
 import logoIconLight from "@assets/tn-logo-on-white.png";
+import { Link } from "wouter";
 import { PrivacyModal } from "@/components/PrivacyModal";
 import { TermsModal } from "@/components/TermsModal";
 
@@ -48,12 +49,9 @@ export function Footer() {
 
 
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8 mb-16 md:mb-24">
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("#");
-              }}
+            <Link
+              href="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="flex items-center gap-3"
               data-testid="link-footer-logo"
             >
@@ -74,7 +72,7 @@ export function Footer() {
               <span className="text-2xl font-bold text-zinc-400 tracking-tight">
                 Tony Nguyen Fit
               </span>
-            </a>
+            </Link>
 
             <div className="flex flex-col items-start md:items-end gap-4">
               <nav className="flex flex-wrap gap-6" data-testid="nav-footer">
