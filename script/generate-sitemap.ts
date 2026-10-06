@@ -14,6 +14,8 @@ const client = createClient({
 export async function generateSitemap() {
   console.log("Generating sitemap...");
   
+  // Real URLs only. /about, /contact, /pricing, /protocol, /faq, /coaching, and
+  // /programs are aliases (homepage sections or /audit), not sitemap entries.
   const staticPages = ["", "/journal", "/kickstarter"];
   
   const posts = await client.fetch(`*[_type == "post" && defined(slug.current)]{ "slug": slug.current, "_updatedAt": _updatedAt }`);

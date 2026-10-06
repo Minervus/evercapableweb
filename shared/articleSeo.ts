@@ -89,7 +89,7 @@ export function injectPageMetadata(
   const safeUrl = escapeHtmlAttribute(meta.url);
   const ogType = meta.ogType ?? "website";
 
-  return html
+  let next = html
     .replace(/<title>.*?<\/title>/, `<title>${safeTitle}</title>`)
     .replace(
       /<meta name="description" content="[^"]*"\s*\/?>/,
@@ -106,11 +106,27 @@ export function injectPageMetadata(
     .replace(
       /<meta property="og:type" content="[^"]*"\s*\/?>/,
       `<meta property="og:type" content="${ogType}" />`,
-    )
-    .replace(
-      /<\/head>/,
-      `    <meta property="og:url" content="${safeUrl}" />\n    <link rel="canonical" href="${safeUrl}" />\n  </head>`,
     );
+
+  next = upsertHeadTag(
+    next,
+    /<meta property="og:url" content="[^"]*"\s*\/?>/,
+    `<meta property="og:url" content="${safeUrl}" />`,
+  );
+  next = upsertHeadTag(
+    next,
+    /<link rel="canonical" href="[^"]*"\s*\/?>/,
+    `<link rel="canonical" href="${safeUrl}" />`,
+  );
+  return next;
+}
+
+/** Replace an existing head tag, or insert one before </head>. Avoids duplicate canonicals. */
+function upsertHeadTag(html: string, pattern: RegExp, tag: string): string {
+  if (pattern.test(html)) {
+    return html.replace(pattern, tag);
+  }
+  return html.replace(/<\/head>/, `    ${tag}\n  </head>`);
 }
 
 /** Inject server-rendered, crawlable content into the empty SPA root container. */

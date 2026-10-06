@@ -21,6 +21,14 @@ export function buildJournalRedirectRules(slugs: string[]): string {
     );
   }
 
+  // /protocol is an alias of the audit page. Serve that document (canonical stays /audit).
+  // Do not list it in the sitemap. Homepage section aliases (/about, /pricing, …)
+  // are client routes on index.html and are not redirects or sitemap URLs.
+  rules.push(
+    "/protocol /audit.html 200!",
+    "/protocol/ /audit.html 200!",
+  );
+
   // SPA fallback must live in _redirects (after journal rules).
   rules.push("/* /index.html 200");
 

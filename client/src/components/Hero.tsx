@@ -159,7 +159,7 @@ export function Hero() {
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
-              <a href="#pricing" className="w-full sm:w-auto">
+              <Link href="/pricing" className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   variant="outline"
@@ -168,7 +168,7 @@ export function Hero() {
                 >
                   See the offers
                 </Button>
-              </a>
+              </Link>
             </div>
 
             <div className="flex flex-col items-center gap-3 pt-4">

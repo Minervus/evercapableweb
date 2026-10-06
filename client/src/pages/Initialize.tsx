@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearch } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
+import { watchCanonical } from "@/lib/sectionRoutes";
+import { SITE_BASE_URL } from "@shared/articleSeo";
 
 function planLabels(currency: DisplayCurrency | null): Record<string, string> {
     return {
@@ -68,6 +70,25 @@ const TIMEZONES = [
     "Pacific/Auckland (NZST — UTC+12/13)",
     "Pacific/Fiji (FJT — UTC+12)",
 ] as const;
+
+function readBrowserTimeZone(): string {
+    try {
+        return Intl.DateTimeFormat().resolvedOptions().timeZone?.trim() ?? "";
+    } catch {
+        return "";
+    }
+}
+
+/** Match the browser IANA zone to a labeled option, or offer the raw zone if it is new. */
+function timezoneChoice(detected: string): { value: string; options: string[] } {
+    const options = [...TIMEZONES];
+    if (!detected) return { value: "", options };
+    const match = options.find(
+        (option) => option === detected || option.startsWith(`${detected} `) || option.startsWith(`${detected}(`),
+    );
+    if (match) return { value: match, options };
+    return { value: detected, options: [detected, ...options] };
+}
 
 // ---------------------------------------------------------------------------
 // Question steps — Step 1 is the new contact details page
@@ -136,6 +157,18 @@ const questions: Question[][] = [
 
 const TOTAL_STEPS = questions.length; // 7
 
+const STEP_LABELS = [
+    "Contact details",
+    "About you",
+    "Training",
+    "Food",
+    "Goals",
+    "Sleep and stress",
+    "Agreement",
+];
+
+const APPLICATION_MINUTES = 8;
+
 // ---------------------------------------------------------------------------
 // Email validator
 // ---------------------------------------------------------------------------
@@ -155,10 +188,17 @@ export default function Initialize() {
     const planLabel = labels[planKey] ?? labels.audit;
 
     const [currentStep, setCurrentStep] = useState(1);
-    const [formData, setFormData] = useState<Record<string, string>>({});
+    const [timezoneChoiceState] = useState(() => timezoneChoice(readBrowserTimeZone()));
+    const [formData, setFormData] = useState<Record<string, string>>(() => {
+        const initial: Record<string, string> = {};
+        if (timezoneChoiceState.value) initial.timezone = timezoneChoiceState.value;
+        return initial;
+    });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [contractAgreed, setContractAgreed] = useState(false);
+
+    useEffect(() => watchCanonical(`${SITE_BASE_URL}/initialize`), []);
 
     const currentStepQuestions = questions[currentStep - 1];
 
@@ -223,23 +263,19 @@ export default function Initialize() {
                     className="max-w-xl w-full"
                 >
                     <div className="text-orange-500 mb-6 font-bold tracking-widest uppercase">
-                        {">"} UPLOADING_BIO_DATA... SUCCESS.<br />
-                        {">"} // DATA_RECEIVED
+                        Application received
                     </div>
 
-                    <p className="mb-4 leading-relaxed">
-                        Your biological calibration is now in the queue. I am personally auditing your goals and constraints.
+                    <h1 className="text-2xl md:text-3xl text-white font-bold tracking-tight mb-4">
+                        Tony has your application.
+                    </h1>
+
+                    <p className="mb-4 leading-relaxed text-zinc-300">
+                        He reviews it and replies by email to book the session.
                     </p>
 
-                    <div className="bg-white/5 border border-white/10 text-zinc-500 text-[10px] px-4 py-2 font-mono uppercase tracking-widest mb-6">
+                    <div className="bg-white/5 border border-white/10 text-zinc-500 text-[10px] px-4 py-2 font-mono uppercase tracking-widest mb-10">
                         SELECTED_PLAN: {planLabel}
-                    </div>
-
-                    <div className="bg-orange-500/10 border border-orange-500/20 p-5 rounded-sm mb-10">
-                        <p className="text-orange-500 text-xs font-bold uppercase tracking-wider mb-2">NEXT_STEP:</p>
-                        <p className="text-sm">
-                            Check your inbox within 24 hours for your "System Validation" update. I will confirm your 6-month goal feasibility before initializing the partnership.
-                        </p>
                     </div>
 
                     <Link href="/">
@@ -264,14 +300,17 @@ export default function Initialize() {
                 <div className="max-w-3xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
                     <div className="flex flex-col gap-1">
                         <span className="text-[10px] md:text-xs text-orange-500 tracking-widest uppercase">
-              // INITIALIZING_PROTOCOL_CALIBRATION...
+                            {TOTAL_STEPS} steps · about {APPLICATION_MINUTES} minutes
+                        </span>
+                        <span className="text-[10px] md:text-xs text-white tracking-wide">
+                            Step {currentStep} of {TOTAL_STEPS}: {STEP_LABELS[currentStep - 1]}
                         </span>
                         <span className="text-[9px] text-zinc-600 tracking-widest uppercase">
                             PLAN: {planLabel}
                         </span>
                     </div>
                     <div className="flex items-center gap-3">
-                        <span className="text-[10px] md:text-xs text-zinc-500">[{currentStep}/{TOTAL_STEPS}]</span>
+                        <span className="text-[10px] md:text-xs text-zinc-500">Step {currentStep} of {TOTAL_STEPS}</span>
                         <div className="w-32 h-1 bg-white/10 rounded-full overflow-hidden">
                             <motion.div
                                 className="h-full bg-orange-500"
@@ -287,13 +326,15 @@ export default function Initialize() {
             {/* Form Container */}
             <div className="max-w-3xl mx-auto px-6 pt-32 pb-16 relative z-10">
                 <div className="mb-12">
+                    <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 max-w-xl">
+                        This application is {TOTAL_STEPS} short steps and takes about {APPLICATION_MINUTES} minutes.
+                        When you submit, Tony reviews it and replies by email to book the session.
+                    </p>
                     <h1 className="text-2xl md:text-4xl text-white font-bold tracking-tight mb-2 uppercase">
-                        {currentStep === 1 ? "Contact Details" : "System Deep-Dive"}
+                        {currentStep === 1 ? "Contact Details" : STEP_LABELS[currentStep - 1]}
                     </h1>
                     <p className="text-zinc-500 text-xs md:text-sm tracking-wide">
-                        {currentStep === 1
-                            ? "Confirm your details so I can follow up directly."
-                            : "Provide precise, objective data. No estimates."}
+                        Step {currentStep} of {TOTAL_STEPS}.
                     </p>
                 </div>
 
@@ -340,7 +381,7 @@ export default function Initialize() {
                                                 <option value="" disabled className="bg-[#0A0A0A] text-zinc-500">
                                                     {q.id === "timezone" ? "[ SELECT_TIMEZONE... ]" : "[ SELECT_OPTION... ]"}
                                                 </option>
-                                                {q.options?.map((tz) => (
+                                                {(q.id === "timezone" ? timezoneChoiceState.options : q.options)?.map((tz) => (
                                                     <option key={tz} value={tz} className="bg-[#0A0A0A] text-white">
                                                         {tz}
                                                     </option>
@@ -446,7 +487,7 @@ export default function Initialize() {
                                     : "bg-white/10 text-zinc-500 cursor-not-allowed"
                                     }`}
                             >
-                                {currentStep === 1 ? "Begin Deep-Dive" : `Proceed to Stage 0${currentStep}`}
+                                Next step
                                 <ArrowRight className="w-4 h-4" />
                             </button>
                         ) : (
