@@ -4,12 +4,16 @@ import { motion } from "framer-motion";
 import { SlidersHorizontal, FlaskConical, GitMerge } from "lucide-react";
 import { Link } from "wouter";
 import logoIcon from "@assets/tn-logo-on-black.png";
+import { wiseAuditPayUrl } from "@/lib/auditPayment";
 import { money, useDisplayCurrency } from "@/lib/displayCurrency";
 import { watchCanonical } from "@/lib/sectionRoutes";
 
 const AUDIT_CANONICAL = "https://tonynguyenfit.com/audit";
 
 const APPLY_URL = "/initialize?plan=audit";
+
+const payButtonClass =
+  "inline-block bg-orange-500 hover:bg-orange-400 active:scale-[0.97] text-white font-bold tracking-widest text-xs uppercase px-10 py-4 rounded-sm transition-all duration-200 shadow-xl shadow-orange-500/20";
 
 const HARBOR_IMG = "/tony-harbor.png";
 const SQUAT_IMG  = "/tony-squat.png";
@@ -30,17 +34,21 @@ const fadeIn = {
 };
 
 /* ─── Shared primitives ──────────────────────────────────────────────────── */
-function ApplyButton({ label = "Get your roadmap" }: { label?: string }) {
+function PayButton({ href, label }: { href: string; label: string }) {
   return (
-    <Link href={APPLY_URL}>
-      <a className="
-        inline-block bg-orange-500 hover:bg-orange-400 active:scale-[0.97]
-        text-white font-bold tracking-widest text-xs uppercase
-        px-10 py-4 rounded-sm transition-all duration-200
-        shadow-xl shadow-orange-500/20
-      ">
-        {label}
-      </a>
+    <a href={href} target="_blank" rel="noopener noreferrer" className={payButtonClass}>
+      {label}
+    </a>
+  );
+}
+
+function ApplyLink({ children }: { children: React.ReactNode }) {
+  return (
+    <Link
+      href={APPLY_URL}
+      className="text-orange-400 hover:text-orange-300 underline underline-offset-2"
+    >
+      {children}
     </Link>
   );
 }
@@ -60,6 +68,8 @@ function SectionDivider() {
 /* ─── Page ───────────────────────────────────────────────────────────────── */
 export default function Audit() {
   const currency = useDisplayCurrency();
+  const payUrl = wiseAuditPayUrl(currency);
+  const price = money(149, currency);
 
   useEffect(() => watchCanonical(AUDIT_CANONICAL), []);
 
@@ -95,7 +105,7 @@ export default function Audit() {
               </span>
             </a>
           </Link>
-          <ApplyButton label="Apply Now →" />
+          <PayButton href={payUrl} label="Book now" />
         </header>
 
         {/* ─── HERO ───────────────────────────────────────────────────── */}
@@ -104,7 +114,7 @@ export default function Audit() {
 
             {/* Copy */}
             <motion.div {...fadeUp}>
-              <EyebrowLabel>Audit + Roadmap, {money(149, currency)}</EyebrowLabel>
+              <EyebrowLabel>Audit + Roadmap, {price}</EyebrowLabel>
 
               <h1 className="text-[2.6rem] md:text-[3.5rem] font-bold leading-[1.06] tracking-tight text-white mb-7">
                 <span className="text-orange-500">More energy,</span> in a week that already has work and kids.
@@ -114,9 +124,10 @@ export default function Audit() {
                 One 60-minute session. You leave with a 4 to 6 week food roadmap, one habit at a time. Once the energy is back, you feel healthier, and some of the weight comes off.
               </p>
 
-              <ApplyButton />
-              <p className="mt-4 text-zinc-500 text-xs tracking-wide">
-                One session · 4–6 week roadmap · start Habits within 14 days and month one is covered; start 1:1 and get $149 off month one
+              <PayButton href={payUrl} label="Book now" />
+              <p className="mt-4 text-zinc-500 text-xs tracking-wide leading-relaxed max-w-[480px]">
+                Wise opens in a new tab. After the payment goes through, <ApplyLink>apply here</ApplyLink> so I can prep the session and email you a time.
+                Start Habits within 14 days and month one is covered. Start 1:1 and you get {price} off month one.
               </p>
             </motion.div>
 
@@ -180,9 +191,9 @@ export default function Audit() {
               </div>
 
               <div className="mt-10 flex flex-col items-center">
-                <ApplyButton />
-                <p className="mt-4 text-zinc-600 text-xs">
-                  Applications are reviewed personally to ensure this is the right fit for your goals.
+                <PayButton href={payUrl} label="Book now" />
+                <p className="mt-4 text-zinc-600 text-xs leading-relaxed max-w-sm">
+                  Pay on Wise, then <ApplyLink>apply with your details</ApplyLink>. I'll email you to book the session.
                 </p>
               </div>
             </motion.div>
@@ -403,12 +414,13 @@ export default function Audit() {
         <section className="max-w-6xl mx-auto px-6">
           <SectionDivider />
           <motion.div {...fadeUp} className="text-center max-w-2xl mx-auto">
-            <EyebrowLabel>Ready to execute?</EyebrowLabel>
+            <EyebrowLabel>Ready to book?</EyebrowLabel>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
               Ready to stop guessing?
             </h2>
             <p className="text-zinc-400 text-lg leading-[1.8]">
-              Apply for your Audit + Roadmap. The application takes a few minutes. If it's a fit, we'll book the session.
+              Pay {price} for the Audit + Roadmap, then apply so I know who to book. I'll email you to set the session.
+              Start Habits within 14 days and that fee covers month one. Start 1:1 within 14 days and you get {price} off month one.
             </p>
           </motion.div>
         </section>
@@ -457,16 +469,16 @@ export default function Audit() {
               {/* Incentive callout */}
               <div className="rounded-md bg-zinc-800/60 border border-zinc-700/50 px-5 py-4 mb-8">
                 <p className="text-zinc-400 text-xs leading-[1.75]">
-                  <span className="text-zinc-200 font-semibold">Credit toward the next offer: </span>
-                  Start Nutrition Habits within 14 days and the audit covers your first month (then {money(149, currency)}/month). Start 1:1 within 14 days and you get {money(149, currency)} off month one.
+                  <span className="text-zinc-200 font-semibold">The {price} is credited if you start coaching: </span>
+                  Start Nutrition Habits within 14 days and the audit covers your first month (then {price}/month). Start 1:1 within 14 days and you get {price} off month one.
                 </p>
               </div>
 
               {/* CTA */}
               <div className="flex flex-col items-center gap-4 text-center">
-                <ApplyButton label="Get your roadmap" />
-                <p className="text-zinc-600 text-xs max-w-xs leading-relaxed">
-                  Applications are reviewed personally to ensure this is the right fit for your goals.
+                <PayButton href={payUrl} label="Book now" />
+                <p className="text-zinc-500 text-xs max-w-sm leading-relaxed">
+                  After Wise confirms the payment, <ApplyLink>apply here</ApplyLink> so I can prep the session and email you a time.
                 </p>
               </div>
             </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useSearch } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { wiseAuditPayUrl } from "@/lib/auditPayment";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 import { watchCanonical } from "@/lib/sectionRoutes";
 import { SITE_BASE_URL } from "@shared/articleSeo";
@@ -186,6 +187,9 @@ export default function Initialize() {
     const currency = useDisplayCurrency();
     const labels = planLabels(currency);
     const planLabel = labels[planKey] ?? labels.audit;
+    const isAudit = planKey === "audit" || !(planKey in labels);
+    const auditPrice = money(149, currency);
+    const auditPayUrl = wiseAuditPayUrl(currency);
 
     const [currentStep, setCurrentStep] = useState(1);
     const [timezoneChoiceState] = useState(() => timezoneChoice(readBrowserTimeZone()));
@@ -274,6 +278,21 @@ export default function Initialize() {
                         He reviews it and replies by email to book the session.
                     </p>
 
+                    {isAudit && (
+                        <p className="mb-6 leading-relaxed text-zinc-400">
+                            If the {auditPrice} audit fee is still unpaid,{" "}
+                            <a
+                                href={auditPayUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-orange-400 underline underline-offset-2 hover:text-orange-300"
+                            >
+                                pay it on Wise
+                            </a>{" "}
+                            so the session can be booked. Start Habits within 14 days and that fee covers month one. Start 1:1 within 14 days and you get {auditPrice} off month one.
+                        </p>
+                    )}
+
                     <div className="bg-white/5 border border-white/10 text-zinc-500 text-[10px] px-4 py-2 font-mono uppercase tracking-widest mb-10">
                         SELECTED_PLAN: {planLabel}
                     </div>
@@ -326,6 +345,22 @@ export default function Initialize() {
             {/* Form Container */}
             <div className="max-w-3xl mx-auto px-6 pt-32 pb-16 relative z-10">
                 <div className="mb-12">
+                    {isAudit && currentStep === 1 && (
+                        <div className="mb-8 max-w-xl border border-orange-500/30 bg-orange-500/5 px-5 py-5">
+                            <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-4">
+                                Pay {auditPrice} for the audit first. Then finish this form so Tony has your name and can prep the session.
+                                Start Habits within 14 days and the audit covers month one. Start 1:1 within 14 days and you get {auditPrice} off month one.
+                            </p>
+                            <a
+                                href={auditPayUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block bg-orange-500 hover:bg-orange-400 text-black font-bold tracking-widest text-xs uppercase px-6 py-3 transition-colors"
+                            >
+                                Book now
+                            </a>
+                        </div>
+                    )}
                     <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 max-w-xl">
                         This application is {TOTAL_STEPS} short steps and takes about {APPLICATION_MINUTES} minutes.
                         When you submit, Tony reviews it and replies by email to book the session.
