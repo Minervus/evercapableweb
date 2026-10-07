@@ -105,7 +105,7 @@ export default function Audit() {
               </span>
             </a>
           </Link>
-          <PayButton href={payUrl} label={`Pay ${price} →`} />
+          <PayButton href={payUrl} label="Book now" />
         </header>
 
         {/* ─── HERO ───────────────────────────────────────────────────── */}
@@ -124,7 +124,7 @@ export default function Audit() {
                 One 60-minute session. You leave with a 4 to 6 week food roadmap, one habit at a time. Once the energy is back, you feel healthier, and some of the weight comes off.
               </p>
 
-              <PayButton href={payUrl} label={`Pay ${price}`} />
+              <PayButton href={payUrl} label="Book now" />
               <p className="mt-4 text-zinc-500 text-xs tracking-wide leading-relaxed max-w-[480px]">
                 Wise opens in a new tab. After the payment goes through, <ApplyLink>apply here</ApplyLink> so I can prep the session and email you a time.
                 Start Habits within 14 days and month one is covered. Start 1:1 and you get {price} off month one.
@@ -191,7 +191,7 @@ export default function Audit() {
               </div>
 
               <div className="mt-10 flex flex-col items-center">
-                <PayButton href={payUrl} label={`Pay ${price}`} />
+                <PayButton href={payUrl} label="Book now" />
                 <p className="mt-4 text-zinc-600 text-xs leading-relaxed max-w-sm">
                   Pay on Wise, then <ApplyLink>apply with your details</ApplyLink>. I'll email you to book the session.
                 </p>
@@ -476,7 +476,7 @@ export default function Audit() {
 
               {/* CTA */}
               <div className="flex flex-col items-center gap-4 text-center">
-                <PayButton href={payUrl} label={`Pay ${price}`} />
+                <PayButton href={payUrl} label="Book now" />
                 <p className="text-zinc-500 text-xs max-w-sm leading-relaxed">
                   After Wise confirms the payment, <ApplyLink>apply here</ApplyLink> so I can prep the session and email you a time.
                 </p>

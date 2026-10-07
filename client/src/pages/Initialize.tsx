@@ -357,7 +357,7 @@ export default function Initialize() {
                                 rel="noopener noreferrer"
                                 className="inline-block bg-orange-500 hover:bg-orange-400 text-black font-bold tracking-widest text-xs uppercase px-6 py-3 transition-colors"
                             >
-                                Pay {auditPrice} on Wise
+                                Book now
                             </a>
                         </div>
                     )}
