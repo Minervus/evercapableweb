@@ -478,7 +478,7 @@ export default function Audit() {
               <div className="flex flex-col items-center gap-4 text-center">
                 <PayButton href={payUrl} label={`Pay ${price}`} />
                 <p className="text-zinc-500 text-xs max-w-sm leading-relaxed">
-                  After Wise confirms the payment, <ApplyLink>apply here</ApplyLink>. I use that to prep the session, then email you a time.
+                  After Wise confirms the payment, <ApplyLink>apply here</ApplyLink> so I can prep the session and email you a time.
                 </p>
               </div>
             </div>
