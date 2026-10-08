@@ -3,7 +3,7 @@ import { SITE_BASE_URL } from "@shared/articleSeo";
 /** Homepage URL. Alias routes must canonicalize here, never to themselves. */
 export const HOME_CANONICAL = `${SITE_BASE_URL}/`;
 
-export const HOME_TITLE = "Tony Nguyen Fit — Nutrition-led coaching";
+export const HOME_TITLE = "Online Nutrition Coach for Busy Parents | Tony Nguyen Fit";
 
 /**
  * Single-segment paths that render the homepage and scroll to a section.

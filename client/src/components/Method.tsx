@@ -28,23 +28,23 @@ const phases = [
 
 export function Method() {
   return (
-    <section id="evercapable-method" className="py-16 md:py-24 bg-background scroll-mt-20 border-y border-zinc-900">
+    <section id="evercapable-method" className="py-14 md:py-20 bg-background scroll-mt-20 border-y border-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
         {/* Positioning / Solution Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16 md:mb-24"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "120px 0px" }}
+          transition={{ duration: 0.3 }}
+          className="text-center mb-12 md:mb-16"
         >
           <p className="mb-4 text-sm md:text-base font-medium text-orange-500 font-mono uppercase tracking-wider">
             How It Works
           </p>
-          <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-foreground mb-8 tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
             Nutrition First
           </h2>
-          <div className="max-w-3xl mx-auto space-y-6 text-lg md:text-xl text-zinc-400 leading-relaxed">
+          <div className="max-w-3xl mx-auto space-y-4 text-base md:text-lg text-zinc-400 leading-relaxed">
             <p>
               Most coaching leads with workouts and treats food as a PDF on the side. That falls apart the first week you're tired, travelling, or just cooking for other people.
             </p>
@@ -59,11 +59,11 @@ export function Method() {
 
         {/* The 3-Phase Transformation System */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "120px 0px" }}
+          transition={{ duration: 0.3 }}
+          className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             A simple weekly rhythm
@@ -77,10 +77,10 @@ export function Method() {
           {phases.map((phase, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "120px 0px" }}
+              transition={{ duration: 0.3, delay: Math.min(index, 3) * 0.05 }}
             >
               <Card
                 className="bg-zinc-900/50 hover:bg-zinc-900/80 border border-white/5 hover:border-orange-500/30 transition-all duration-300 h-full relative overflow-hidden group"

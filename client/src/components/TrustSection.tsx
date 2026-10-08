@@ -6,10 +6,10 @@ export function TrustSection() {
         <section className="py-20 md:py-32 bg-background border-t border-white/5">
             <div className="max-w-6xl mx-auto px-6">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "120px 0px" }}
+                    transition={{ duration: 0.3 }}
                     className="bg-[#0A0A0A] border border-zinc-800/60 rounded-3xl p-8 md:p-16 lg:p-20 relative overflow-hidden group"
                 >
                     {/* Subtle gradient glow */}

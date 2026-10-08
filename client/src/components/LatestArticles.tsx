@@ -41,14 +41,14 @@ export function LatestArticles() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "120px 0px" }}
+          transition={{ duration: 0.3 }}
           className="mb-12 md:mb-16 text-center md:text-left"
         >
-          <p className="mb-4 text-sm md:text-base font-medium text-orange-500 font-mono uppercase tracking-wider">
-            // THE_JOURNAL
+          <p className="mb-4 text-sm md:text-base font-medium text-orange-500 uppercase tracking-wider">
+            The Journal
           </p>
           <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-white tracking-tight">
             Latest from the Journal
@@ -61,7 +61,7 @@ export function LatestArticles() {
         {/* Content */}
         {isLoading ? (
           <div className="flex justify-center items-center py-20 min-h-[300px]">
-            <span className="text-zinc-500 font-mono text-sm animate-pulse">LOADING_ARTICLES...</span>
+            <span className="text-zinc-500 font-mono text-sm animate-pulse">Loading articles…</span>
           </div>
         ) : isError || !articles || articles.length === 0 ? (
           <div className="text-center py-20 bg-zinc-900/50 rounded-2xl border border-white/5">
@@ -74,10 +74,10 @@ export function LatestArticles() {
               return (
                 <motion.div
                   key={article.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, margin: "120px 0px" }}
+                  transition={{ duration: 0.3, delay: Math.min(index, 3) * 0.05 }}
                 >
                   <Card className="bg-zinc-900/50 hover:bg-zinc-900/80 border border-white/5 hover:border-orange-500/30 transition-all duration-300 h-full relative overflow-hidden group flex flex-col">
                     {/* Accent glow on hover */}
@@ -116,10 +116,10 @@ export function LatestArticles() {
 
         {/* View All Button */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "120px 0px" }}
+          transition={{ duration: 0.3, delay: 0.1 }}
           className="flex justify-center md:justify-start"
         >
           <Link href="/journal">

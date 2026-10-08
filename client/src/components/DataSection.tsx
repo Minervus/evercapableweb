@@ -11,10 +11,10 @@ export function DataSection() {
                 <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 items-center">
                     {/* Left Column: Text Content */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6 }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true, margin: "120px 0px" }}
+                        transition={{ duration: 0.3 }}
                     >
                         <div className="mb-6">
                             <span className="font-mono text-orange-500 uppercase tracking-wider text-sm font-medium block mb-2">
@@ -26,8 +26,8 @@ export function DataSection() {
                             <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
                                 Weekly coaching works better when we can see the week. You track food in the coaching app; I review it and send written adjustments. On 1:1, I also send a video deep dive. Wearables can add sleep and energy context if you have them.
                             </p>
-                            <p className="font-mono text-zinc-500 text-xs tracking-[0.2em] mt-8 mb-8">
-                                COMPATIBLE_INTEGRATIONS: OURA // APPLE_HEALTH // GARMIN // GOOGLE_FIT // MORE_SOON
+                            <p className="text-zinc-400 text-sm mt-8 mb-8">
+                                Connects with Oura, Apple Health, Garmin and Google Fit — optional, and only if you already wear something.
                             </p>
                         </div>
 
@@ -57,7 +57,7 @@ export function DataSection() {
                                     <TrendingUp className="w-6 h-6 text-orange-500" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-white mb-1">Consistency Trends</h3>
+                                    <h3 className="text-xl font-semibold text-white mb-1">Consistency over perfection</h3>
                                     <p className="text-zinc-400">Focus on trends and consistency to build sustainable habits.</p>
                                 </div>
                             </div>
@@ -66,16 +66,16 @@ export function DataSection() {
 
                     {/* Right Column: Image */}
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true, margin: "120px 0px" }}
+                        transition={{ duration: 0.3, delay: 0.2 }}
                         className="relative"
                     >
                         <div className="relative rounded-2xl shadow-2xl border border-zinc-800 bg-zinc-800/50 group">
                             <img
                                 src={dashboardImage}
-                                alt="EverCapable App Dashboard"
+                                alt="The coaching app dashboard, showing a week of food and energy"
                                 width={800}
                                 height={600}
                                 className="w-full h-auto object-cover relative z-10 rounded-2xl"
@@ -84,27 +84,27 @@ export function DataSection() {
                             {/* Data Overlay */}
                             <motion.img
                                 src={dataOverlay}
-                                alt="Data Metrics"
+                                alt="Weekly trend summary"
                                 width={400}
                                 height={300}
                                 className="absolute -top-[15%] -right-[10%] w-[65%] sm:-right-[20%] md:-top-[30%] md:-right-[35%] lg:-right-[45%] md:w-[75%] shadow-2xl rounded-xl z-20"
-                                initial={{ opacity: 0, y: -40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true, margin: "120px 0px" }}
+                                transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
                             />
 
                             {/* Mobile Overlay */}
                             <motion.img
                                 src={mobileOverlay}
-                                alt="Mobile Workout View"
+                                alt="The coaching app on a phone"
                                 width={300}
                                 height={600}
                                 className="absolute -bottom-[15%] -left-[5%] w-[55%] sm:-left-[10%] md:-bottom-[30%] md:-left-[15%] lg:-left-[20%] md:w-[72%] shadow-2xl rounded-[1.5rem] md:rounded-[2.5rem] z-30"
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true, margin: "120px 0px" }}
+                                transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
                             />
 
                             {/* Decorative elements */}

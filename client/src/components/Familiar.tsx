@@ -18,13 +18,13 @@ export function Familiar() {
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "120px 0px" }}
+                    transition={{ duration: 0.3 }}
                 >
                     {/* Header */}
-                    <div className="mb-12 md:mb-16 text-center">
+                    <div className="mb-10 md:mb-12 text-center">
                         <p className="font-mono text-sm tracking-widest text-[#FF9500]/80 mb-4 uppercase">
                             Sound Familiar?
                         </p>
@@ -40,9 +40,9 @@ export function Familiar() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                         {/* Point 1 */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true, margin: "120px 0px" }}
                             transition={{ duration: 0.4, delay: 0.1 }}
                             className="bg-white/[0.02] border border-white/[0.05] p-6 hover:border-[#FF6600]/30 transition-colors duration-300 flex flex-col group"
                         >
@@ -61,9 +61,9 @@ export function Familiar() {
 
                         {/* Point 2 */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true, margin: "120px 0px" }}
                             transition={{ duration: 0.4, delay: 0.2 }}
                             className="bg-white/[0.02] border border-white/[0.05] p-6 hover:border-[#FF6600]/30 transition-colors duration-300 flex flex-col group"
                         >
@@ -82,10 +82,10 @@ export function Familiar() {
 
                         {/* Point 3 */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: 0.3 }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true, margin: "120px 0px" }}
+                            transition={{ duration: 0.4, delay: 0.1 }}
                             className="bg-white/[0.02] border border-white/[0.05] p-6 hover:border-[#FF6600]/30 transition-colors duration-300 flex flex-col group"
                         >
                             <div className="flex flex-col items-center mb-6 text-center relative">
@@ -103,10 +103,10 @@ export function Familiar() {
 
                         {/* Point 4 */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: 0.4 }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true, margin: "120px 0px" }}
+                            transition={{ duration: 0.4, delay: 0.1 }}
                             className="bg-white/[0.02] border border-white/[0.05] p-6 hover:border-[#FF6600]/30 transition-colors duration-300 flex flex-col group"
                         >
                             <div className="flex flex-col items-center mb-6 text-center relative">
@@ -127,9 +127,9 @@ export function Familiar() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.5 }}
-                        className="mt-16 pt-12 border-t border-zinc-800/50 text-center"
+                        viewport={{ once: true, margin: "120px 0px" }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                        className="mt-12 pt-10 border-t border-zinc-800/50 text-center"
                     >
                         <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
                             It is not your fault.

@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
+import { CREDIT_WINDOW_DAYS, REFUND_WINDOW_DAYS, creditLine } from "@/lib/offer";
 
 const faqs = (currency: DisplayCurrency | null) => [
   {
@@ -25,7 +26,41 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
   {
     question: "If I start with the audit, can I join a monthly offer later?",
-    answer: `Yes. If you start Nutrition Habits within 14 days of the audit, the audit covers your first month — then it's ${money(149, currency)}/month. If you start 1:1 within 14 days, you get ${money(149, currency)} off month one (you pay the rest toward ${money(279, currency)}). After 14 days the audit still stands on its own — there's just no first-month deal.`,
+    answer: `Yes. ${creditLine(currency)} After ${CREDIT_WINDOW_DAYS} days the audit still stands on its own — there's just no credit.`,
+  },
+  {
+    question: "I'm on a GLP-1 medication. Can you help?",
+    answer:
+      "Yes, and it's a good fit for what I do. The risk on a GLP-1 is losing muscle along with fat, and eating so little that you feel flat. We focus on getting enough protein, keeping meals practical when appetite is low, and adding strength work to hold onto muscle. I work alongside the doctor who prescribed it — I don't advise on the medication itself, dosing, or whether to stay on it.",
+  },
+  {
+    question: "I cook for picky kids. Do I need to make separate meals?",
+    answer:
+      "No. Separate meals are the first thing that breaks when the week gets busy. We build around what the family already eats and adjust your portions and a couple of components, so you're eating a version of the same dinner rather than cooking twice.",
+  },
+  {
+    question: "How much time does this take each week?",
+    answer:
+      "Tracking food takes a few minutes a day in the app, and the weekly check-in takes about 10 minutes to fill in. Reading the adjustments I send back takes another few minutes. Training is optional — if you want it, we'll fit it to the time you actually have, not an ideal week.",
+  },
+  {
+    question: "How fast will I see results?",
+    answer:
+      "Energy usually shifts first, often inside the first two to three weeks, because it responds to how and when you eat. Weight moves more slowly and less tidily — some weeks nothing, then a drop. Anyone promising a fixed number by a fixed date is guessing. What I'll commit to is that you'll know each week whether the plan is working and what to change.",
+  },
+  {
+    question: "How do cancelling and refunds work?",
+    answer: `The monthly offers are month to month — email me before your next billing date and that's it, no notice period and no exit fee. For the audit: if the roadmap isn't useful, email me within ${REFUND_WINDOW_DAYS} days and I'll refund it.`,
+  },
+  {
+    question: "Do you take clients outside New Zealand and Canada?",
+    answer:
+      "Yes. Coaching is fully online, so where you are only affects the check-in timing, and that's flexible. Prices are shown in NZD or CAD depending on where you're browsing from; if you're somewhere else, you'll see the amount without a currency label — just ask and I'll confirm which one you'd be charged in.",
+  },
+  {
+    question: "Are you a dietitian?",
+    answer:
+      "No. I'm a certified nutrition coach (Precision Nutrition Level 1) and a certified personal trainer (ISSA). I coach habits, food strategy, and training. I don't diagnose, treat, or prescribe, and I don't write medical nutrition therapy for a diagnosed condition. If you have one — diabetes, heart disease, a pregnancy, a GLP-1 prescription, anything your doctor is managing — I'll work alongside them rather than around them, and I'll say so when something belongs with them rather than me.",
   },
   {
     question: "Is there a 90-day lock-in?",
@@ -51,14 +86,31 @@ const faqs = (currency: DisplayCurrency | null) => [
 
 export function FAQ() {
   const currency = useDisplayCurrency();
+  const items = faqs(currency);
+
+  // Built from the same array that renders below, so the markup Google reads
+  // can never drift from the answers a visitor sees.
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
 
   return (
     <section id="faq" className="py-16 md:py-24 bg-black scroll-mt-20 overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
           <div>
             <p className="text-sm text-orange-500 font-mono uppercase tracking-wider mb-2">
-              // FAQ
+              FAQ
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
               Frequently Asked Questions
@@ -69,9 +121,9 @@ export function FAQ() {
           </div>
 
           <Accordion type="single" collapsible data-testid="accordion-faq">
-            {faqs(currency).map((faq, index) => (
+            {items.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`} data-testid={`faq-item-${index}`}>
-                <AccordionTrigger className="text-left font-mono font-medium text-white min-w-0 break-all" data-testid={`button-faq-trigger-${index}`}>
+                <AccordionTrigger className="text-left font-mono font-medium text-white min-w-0 break-words" data-testid={`button-faq-trigger-${index}`}>
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-zinc-400" data-testid={`text-faq-answer-${index}`}>

@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect, useLocation } from "wouter";
+import { Switch, Route, Redirect, Router as WouterRouter, useLocation } from "wouter";
 import { HelmetProvider } from "react-helmet-async";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -15,6 +15,17 @@ import Kickstarter from "@/pages/Kickstarter";
 import { sectionIdForPath } from "@/lib/sectionRoutes";
 
 import TDEE from "@/pages/TDEE";
+
+/**
+ * Where the app is mounted. "" on tonynguyenfit.com, which is how it has always
+ * run; non-empty only when the built site is served from a subdirectory (a
+ * staging path or a preview host), where wouter would otherwise match no route.
+ */
+function routerBase(): string {
+  if (typeof document === "undefined") return "";
+  const dir = new URL(".", document.baseURI).pathname.replace(/\/+$/, "");
+  return dir === "" ? "" : dir;
+}
 
 function HomeSectionAlias() {
   const [location] = useLocation();
@@ -49,7 +60,9 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
             <Toaster />
-            <Router />
+            <WouterRouter base={routerBase()}>
+              <Router />
+            </WouterRouter>
           </TooltipProvider>
         </QueryClientProvider>
       </ThemeProvider>
