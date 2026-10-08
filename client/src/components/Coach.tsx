@@ -1,4 +1,3 @@
-import coachPhoto from "@assets/Gemini_Generated_Image_pyhkcmpyhkcmpyhk_copy_1768605875661.png";
 import issaLogo from "@assets/images_1768606382552.png";
 import pnLogo from "@assets/PN_coach_logo_1768606213043.jpeg";
 
@@ -24,10 +23,11 @@ export function Coach() {
         <div className="bg-card rounded-lg p-8 md:p-12 border border-border">
           <div className="flex justify-center mb-8">
             <img
-              src={coachPhoto}
-              alt="Tony Nguyen — nutrition coach"
+              src="/tony-family.png"
+              alt="Tony Nguyen lifting his son up, on the waterfront"
               width={224}
               height={224}
+              loading="lazy"
               className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-primary/20"
               data-testid="img-coach-photo"
             />
@@ -83,11 +83,10 @@ export function Coach() {
             </p>
 
             <p data-testid="text-coach-mission">
-              I coach online. The front door is nutrition:
-              weekly check-ins, a food strategy that fits real life, and practical
-              adjustments. Strength training and ISSA credentials stay in the mix
-              as support — not the headline. No more 2-hour gym sessions or crash
-              diets.
+              I coach online, and I start with food: weekly check-ins, a food
+              strategy that fits real life, and practical adjustments. Strength
+              training is there to support your energy — no 2-hour gym sessions,
+              no crash diets.
             </p>
 
             <p
@@ -135,6 +134,10 @@ export function Coach() {
                   data-testid="img-pn-logo"
                 />
               </a>
+            </div>
+            <div className="text-sm text-muted-foreground leading-relaxed">
+              <p>Precision Nutrition Level 1 Certified</p>
+              <p>ISSA Certified Personal Trainer</p>
             </div>
             <p
               className="text-3xl md:text-4xl text-foreground italic text-right"

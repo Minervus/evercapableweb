@@ -1,7 +1,17 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { CheckCircle2, Minus } from "lucide-react";
+import { Check, Minus } from "lucide-react";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
+import {
+  AUDIT_PRICE,
+  auditSteps,
+  COACHING_PRICE,
+  HABITS_PRICE,
+  creditLine,
+  guaranteeLine,
+  spotsLine,
+} from "@/lib/offer";
+import { reveal, revealAt } from "@/lib/reveal";
 
 const resultMarkers = [
   {
@@ -10,142 +20,104 @@ const resultMarkers = [
   },
   {
     title: "Weekly course-correction",
-    description: "You track food in the coaching app. I send written adjustments each week — and on 1:1, a video deep dive too.",
+    description: "You track food in the coaching app. I send written adjustments each week.",
   },
   {
     title: "Energy that lasts the day",
     description: "Fewer 3 PM crashes because meals, portions, and timing actually fit your life.",
   },
   {
-    title: "Strength as support",
-    description: "Optional training for energy, longevity, and feeling capable — not a second job.",
-  },
-  {
     title: "You know what to do next",
-    description: "The knowledge and tools to take the reins on your health, nutrition, and longevity for the long haul.",
+    description: "The tools to take the reins on your own health for the long haul.",
   },
 ];
 
-type OfferFeature = {
-  text: string;
-  included: boolean;
-};
-
-type Offer = {
+type Plan = {
   id: string;
-  eyebrow: string;
   name: string;
-  price: string;
-  cadence: string;
-  badge?: string;
+  price: number;
+  cadence: () => string;
   summary: string;
-  features: OfferFeature[];
-  cadenceNote: string;
-  footnote: string;
   cta: string;
   href: string;
   testId: string;
+  featured?: boolean;
 };
 
-const offers = (currency: DisplayCurrency | null): Offer[] => [
+const plans: Plan[] = [
   {
     id: "audit",
-    eyebrow: "Front door · one-off",
     name: "Audit + Roadmap",
-    price: "$149",
-    cadence: currency ? `${currency} · one session` : "one session",
-    badge: "Start here",
-    summary: "A nutrition and lifestyle diagnostic plus a 4–6 week roadmap. No ongoing chat — just a clear plan you can use.",
-    features: [
-      { text: "One-off nutrition & lifestyle diagnostic", included: true },
-      { text: "Personal 4–6 week food and habit roadmap", included: true },
-      { text: "Practical next steps for meals, portions, and weekly rhythm", included: true },
-      { text: "Start Habits within 14 days: first month covered", included: true },
-      { text: `Start 1:1 within 14 days: ${money(149, currency)} off month one`, included: true },
-      { text: "Weekly check-ins or ongoing messaging", included: false },
-    ],
-    cadenceNote: "One session. You walk away with the roadmap. I don't stay in your inbox after that unless you join a monthly offer.",
-    footnote: `Join Habits within 14 days and the audit covers your first month (then ${money(149, currency)}/month). Join 1:1 within 14 days and you get ${money(149, currency)} off month one.`,
+    price: AUDIT_PRICE,
+    cadence: () => "one-off",
+    summary: "One session and a plan you can use on your own.",
     cta: "Get your roadmap",
     href: "/initialize?plan=audit",
     testId: "button-offer-audit",
+    featured: true,
   },
   {
     id: "habits",
-    eyebrow: "Lighter · higher capacity",
     name: "Nutrition Habits",
-    price: "$149",
-    cadence: currency ? `${currency} / month` : "/ month",
-    summary: "Track food in the coaching app each week, ask questions in the check-in, and get written adjustments. Training optional and light.",
-    features: [
-      { text: "Weekly check-in in the coaching app (food tracking / inputs)", included: true },
-      { text: "Q&A as part of the weekly check-in", included: true },
-      { text: "Written adjustments for the week ahead", included: true },
-      { text: "Optional light training support", included: true },
-      { text: "First month covered if you start within 14 days of the audit", included: true },
-    ],
-    cadenceNote: "Each week you track food in the coaching app and can ask questions in that check-in. I review the week you actually had and send written adjustments — specific tweaks, not a leftover meal plan.",
-    footnote: `Start within 14 days of the audit and your first month is covered. After that it's ${money(149, currency)}/month.`,
+    price: HABITS_PRICE,
+    cadence: () => "per month",
+    summary: "Weekly check-ins and written adjustments.",
     cta: "Start weekly habits",
     href: "/initialize?plan=habits",
     testId: "button-offer-habits",
   },
   {
     id: "coaching",
-    eyebrow: "Premium · capped",
-    name: "1:1 Nutrition Coaching",
-    price: "$279",
-    cadence: currency ? `${currency} / month` : "/ month",
-    summary: "Same coaching-app tracking as Habits, plus video deep dives with specific adjustments. Priority messaging, fuller roadmap updates, and optional training support.",
-    features: [
-      { text: "Weekly food tracking in the coaching app", included: true },
-      { text: "Video deep dives with specific adjustments", included: true },
-      { text: "Priority messaging between check-ins", included: true },
-      { text: "Personal roadmap updates as life changes", included: true },
-      { text: "Optional training support for strength, energy, and longevity", included: true },
-      { text: `Audit: ${money(149, currency)} off month one if you start within 14 days`, included: true },
-    ],
-    cadenceNote: "Same weekly tracking as Habits — you log food in the app, I review it. 1:1 adds video deep dives, more personalization, priority chat, and a roadmap that gets rewritten when life changes.",
-    footnote: `Start within 14 days of the audit and you get ${money(149, currency)} off month one — you pay the rest toward ${money(279, currency)}. A soft 90-day stretch is recommended so the habits have time to stick. Month-to-month after that. Spots are capped.`,
+    name: "1:1 Coaching",
+    price: COACHING_PRICE,
+    cadence: () => "per month",
+    summary: "Everything in Habits, plus weekly video deep dives.",
     cta: "Apply for coaching",
     href: "/initialize?plan=coaching",
     testId: "button-offer-coaching",
   },
 ];
 
-function FeatureIcon({ included }: { included: boolean }) {
-  if (included) {
+/** `true` = included, `false` = not included, string = included with a caveat. */
+type Cell = boolean | string;
+
+const comparison: { label: string; cells: [Cell, Cell, Cell] }[] = [
+  { label: "60-minute nutrition session", cells: [true, false, false] },
+  { label: "4–6 week food roadmap", cells: [true, false, "Rewritten as life changes"] },
+  { label: "Track food in the coaching app", cells: [false, "Weekly", "Weekly"] },
+  { label: "Written adjustments each week", cells: [false, true, true] },
+  { label: "Questions answered in the check-in", cells: [false, true, true] },
+  { label: "Video deep dive each week", cells: [false, false, true] },
+  { label: "Priority messaging between check-ins", cells: [false, false, true] },
+  { label: "Training support", cells: [false, "Optional, light", "Optional, fuller"] },
+];
+
+function CellMark({ value }: { value: Cell }) {
+  if (value === true) {
     return (
-      <span className="w-5 h-5 rounded-full bg-orange-500/15 border border-orange-500/30 flex items-center justify-center shrink-0">
-        <svg className="w-2.5 h-2.5 text-orange-400" viewBox="0 0 12 12" fill="none">
-          <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </span>
+      <>
+        <Check className="w-4 h-4 text-orange-400 mx-auto" aria-hidden="true" />
+        <span className="sr-only">Included</span>
+      </>
     );
   }
-
-  return (
-    <span className="w-5 h-5 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0">
-      <Minus className="w-2.5 h-2.5 text-zinc-500" />
-    </span>
-  );
+  if (value === false) {
+    return (
+      <>
+        <Minus className="w-4 h-4 text-zinc-600 mx-auto" aria-hidden="true" />
+        <span className="sr-only">Not included</span>
+      </>
+    );
+  }
+  return <span className="text-zinc-300 text-xs leading-snug">{value}</span>;
 }
 
 export function Pricing() {
   const currency = useDisplayCurrency();
-  const offerCards = offers(currency);
 
   return (
     <section id="pricing" className="py-16 md:py-24 bg-background scroll-mt-20 relative border-t border-white/10">
-
-      <motion.div
-        id="protocol-tiers"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="max-w-[1200px] mx-auto px-6"
-      >
+      <motion.div {...reveal} id="protocol-tiers" className="max-w-[1100px] mx-auto px-6">
         <div className="mb-10 text-center">
           <p className="text-xs text-zinc-500 font-mono uppercase tracking-widest">
             Three ways to work together
@@ -154,61 +126,188 @@ export function Pricing() {
             Start with a roadmap. Stay for weekly coaching.
           </h2>
           <p className="mt-4 text-zinc-400 text-base md:text-lg max-w-2xl mx-auto">
-            Audit is the soft front door. Habits is the lighter weekly rhythm. 1:1 is the capped, hands-on option.
+            Most people start with the audit: one session, a plan, no monthly commitment.
           </p>
         </div>
 
+        {/* The credit and the guarantee — stated once, in one wording. */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-12 max-w-4xl mx-auto border border-dashed border-orange-500/50 bg-orange-500/5 p-8 md:p-10 relative overflow-hidden"
+          {...reveal}
+          className="mb-14 max-w-2xl mx-auto rounded-xl border border-orange-500/40 bg-orange-500/5 px-6 py-5 text-center"
         >
-          <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-            <span className="font-mono text-[80px] text-orange-500 font-bold select-none leading-none">1:1</span>
-          </div>
-
-          <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
-            <div className="flex-1">
-              <h4 className="text-orange-500 font-mono font-bold uppercase tracking-widest text-sm md:text-base mb-3">
-                1:1 spots are capped
-              </h4>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">Not sure which one yet?</h3>
-              <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-6">
-                Start with the Audit + Roadmap. You'll get a 4–6 week plan without a monthly commitment. Join Habits within 14 days and the audit covers your first month. Join 1:1 within 14 days and you get {money(149, currency)} off month one.
-              </p>
-              <Link href="/initialize?plan=audit">
-                <button className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-black font-mono uppercase tracking-widest px-6 py-2.5 text-sm transition-colors duration-200">
-                  Get your roadmap
-                </button>
-              </Link>
-            </div>
-          </div>
+          <p className="text-white text-sm md:text-base font-medium">{creditLine(currency)}</p>
+          <p className="mt-2 text-zinc-400 text-sm">{guaranteeLine(currency)}</p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mb-16 max-w-4xl mx-auto"
-        >
+        {/* What the audit actually is, so $149 is easy to picture. */}
+        <motion.div {...reveal} className="mb-16 max-w-4xl mx-auto">
+          <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight mb-6 text-center">
+            What the audit involves
+          </h3>
+          <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {auditSteps(currency).map((step, i) => (
+              <li
+                key={step.label}
+                className="rounded-lg border border-zinc-800 bg-zinc-900/40 p-5"
+              >
+                <p className="text-orange-500 font-mono text-xs tracking-widest uppercase mb-2">
+                  Step {i + 1}
+                </p>
+                <p className="text-white font-semibold mb-1">{step.label}</p>
+                <p className="text-zinc-400 text-sm leading-relaxed">{step.detail}</p>
+              </li>
+            ))}
+          </ol>
+        </motion.div>
+
+        {/* Comparison table — desktop */}
+        <motion.div {...reveal} className="hidden md:block mb-6 overflow-hidden rounded-xl border border-zinc-800">
+          <table className="w-full border-collapse text-sm" data-testid="table-plan-comparison">
+            <caption className="sr-only">Compare the three coaching options</caption>
+            <thead>
+              <tr className="bg-zinc-900">
+                <th scope="col" className="text-left font-medium text-zinc-500 p-5 w-[34%]">
+                  <span className="sr-only">Feature</span>
+                </th>
+                {plans.map((plan) => (
+                  <th
+                    key={plan.id}
+                    scope="col"
+                    className={`p-5 text-left align-top border-l border-zinc-800 ${
+                      plan.featured ? "bg-orange-500/[0.07]" : ""
+                    }`}
+                  >
+                    {plan.featured && (
+                      <span className="block text-[10px] font-mono uppercase tracking-widest text-orange-400 mb-1">
+                        Start here
+                      </span>
+                    )}
+                    <span className="block text-white font-bold text-base">{plan.name}</span>
+                    <span className="block text-2xl font-bold text-white mt-2">
+                      {money(plan.price, currency)}
+                    </span>
+                    <span className="block text-zinc-500 text-xs mt-0.5">{plan.cadence()}</span>
+                    <span className="block text-zinc-400 text-xs mt-3 leading-relaxed font-normal">
+                      {plan.summary}
+                    </span>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {comparison.map((row) => (
+                <tr key={row.label} className="border-t border-zinc-800">
+                  <th scope="row" className="text-left font-normal text-zinc-300 p-4 pl-5">
+                    {row.label}
+                  </th>
+                  {row.cells.map((cell, i) => (
+                    <td
+                      key={plans[i].id}
+                      className={`p-4 text-center border-l border-zinc-800 ${
+                        plans[i].featured ? "bg-orange-500/[0.04]" : ""
+                      }`}
+                    >
+                      <CellMark value={cell} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+              <tr className="border-t border-zinc-800">
+                <td />
+                {plans.map((plan) => (
+                  <td
+                    key={plan.id}
+                    className={`p-4 border-l border-zinc-800 ${plan.featured ? "bg-orange-500/[0.04]" : ""}`}
+                  >
+                    <Link href={plan.href}>
+                      <button
+                        className={`w-full py-3 font-bold tracking-widest text-[11px] uppercase rounded-sm transition-colors ${
+                          plan.featured
+                            ? "bg-orange-500 hover:bg-orange-400 text-white"
+                            : "border border-zinc-600 text-zinc-200 hover:border-orange-500 hover:text-orange-400"
+                        }`}
+                        data-testid={plan.testId}
+                      >
+                        {plan.cta}
+                      </button>
+                    </Link>
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </motion.div>
+
+        {/* Comparison — mobile */}
+        <div className="md:hidden space-y-5 mb-6">
+          {plans.map((plan, planIndex) => (
+            <motion.div
+              key={plan.id}
+              {...revealAt(planIndex)}
+              className={`rounded-xl border p-6 ${
+                plan.featured ? "border-orange-500/50 bg-orange-500/[0.06]" : "border-zinc-800 bg-zinc-900/40"
+              }`}
+            >
+              {plan.featured && (
+                <p className="text-[10px] font-mono uppercase tracking-widest text-orange-400 mb-1">
+                  Start here
+                </p>
+              )}
+              <h3 className="text-white font-bold text-lg">{plan.name}</h3>
+              <p className="text-2xl font-bold text-white mt-1">{money(plan.price, currency)}</p>
+              <p className="text-zinc-500 text-xs">{plan.cadence()}</p>
+              <p className="text-zinc-400 text-sm mt-3 leading-relaxed">{plan.summary}</p>
+
+              <ul className="mt-5 space-y-2.5">
+                {comparison.map((row) => {
+                  const cell = row.cells[planIndex];
+                  if (cell === false) return null;
+                  return (
+                    <li key={row.label} className="flex items-start gap-2.5 text-sm text-zinc-200">
+                      <Check className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" aria-hidden="true" />
+                      <span>
+                        {row.label}
+                        {typeof cell === "string" && (
+                          <span className="text-zinc-500"> — {cell.toLowerCase()}</span>
+                        )}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <Link href={plan.href}>
+                <button
+                  className={`mt-6 w-full py-3.5 font-bold tracking-widest text-[11px] uppercase rounded-sm transition-colors ${
+                    plan.featured
+                      ? "bg-orange-500 hover:bg-orange-400 text-white"
+                      : "border border-zinc-600 text-zinc-200 hover:border-orange-500 hover:text-orange-400"
+                  }`}
+                  data-testid={`${plan.testId}-mobile`}
+                >
+                  {plan.cta}
+                </button>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        <p className="text-center text-zinc-500 text-sm mb-16">
+          {spotsLine()} For 1:1 I suggest giving it about 90 days so the weekly rhythm has time to
+          stick — then it's month to month.
+        </p>
+
+        <motion.div {...reveal} className="mb-20 max-w-4xl mx-auto">
           <div className="border-l-2 border-orange-500/30 pl-6 py-2 mb-8">
-            <h4 className="text-[12px] font-mono text-orange-500 tracking-widest uppercase mb-2">
-              What this is for
-            </h4>
             <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">You'll have:</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-            {resultMarkers.map((marker, i) => (
-              <div key={i} className="flex items-start gap-4">
-                <CheckCircle2 className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+            {resultMarkers.map((marker) => (
+              <div key={marker.title} className="flex items-start gap-4">
+                <Check className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
-                  <h5 className="font-bold text-white text-base md:text-lg mb-1">
-                    {marker.title}
-                  </h5>
+                  <h4 className="font-bold text-white text-base md:text-lg mb-1">{marker.title}</h4>
                   <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
                     {marker.description}
                   </p>
@@ -218,122 +317,20 @@ export function Pricing() {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-[1200px] mx-auto mb-16">
-          {offerCards.map((offer, index) => (
-            <motion.div
-              key={offer.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-              className={`flex flex-col rounded-xl border bg-zinc-900/60 overflow-hidden shadow-xl shadow-black/30 ${
-                offer.badge
-                  ? "border-orange-500/50"
-                  : "border-zinc-700/60"
-              }`}
-            >
-              <div className="bg-zinc-800/80 border-b border-zinc-700/60 px-6 py-6 flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-orange-500 font-mono text-[10px] uppercase tracking-[0.25em] mb-1">
-                    {offer.eyebrow}
-                  </p>
-                  <h3 className="text-white font-bold text-lg leading-snug">
-                    {offer.name}
-                  </h3>
-                </div>
-                <div className="shrink-0 text-right">
-                  {offer.badge && (
-                    <p className="text-[10px] font-mono uppercase tracking-widest text-orange-400 mb-1">
-                      {offer.badge}
-                    </p>
-                  )}
-                  <span className="text-3xl font-bold text-white tracking-tight">{offer.price}</span>
-                  <p className="text-zinc-500 text-[10px] mt-0.5">{offer.cadence}</p>
-                </div>
-              </div>
-
-              <div className="px-6 py-7 flex flex-col flex-1">
-                <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-                  {offer.summary}
-                </p>
-
-                <ul className="space-y-3 mb-7 flex-1">
-                  {offer.features.map((feature) => (
-                    <li
-                      key={feature.text}
-                      className={`flex items-start gap-3 text-sm leading-relaxed ${
-                        feature.included ? "text-zinc-200" : "text-zinc-500"
-                      }`}
-                    >
-                      <FeatureIcon included={feature.included} />
-                      {feature.text}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="rounded-md bg-zinc-800/60 border border-zinc-700/50 px-4 py-3 mb-4">
-                  <p className="text-zinc-300 text-[11px] font-mono uppercase tracking-widest mb-2">
-                    Weekly rhythm
-                  </p>
-                  <p className="text-zinc-400 text-xs leading-[1.75]">
-                    {offer.cadenceNote}
-                  </p>
-                </div>
-
-                <div className="rounded-md bg-zinc-800/40 border border-zinc-700/40 px-4 py-3 mb-7">
-                  <p className="text-zinc-400 text-xs leading-[1.75]">
-                    {offer.footnote}
-                  </p>
-                </div>
-
-                <Link href={offer.href}>
-                  <button
-                    className="w-full py-4 bg-orange-500 hover:bg-orange-400 active:scale-[0.98] text-white font-bold tracking-widest text-xs uppercase rounded-sm transition-all duration-200 shadow-lg shadow-orange-500/20"
-                    data-testid={offer.testId}
-                  >
-                    {offer.cta}
-                  </button>
-                </Link>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="max-w-4xl mx-auto border border-zinc-800 bg-zinc-900/40 rounded-xl p-6 md:p-8"
-        >
-          <h4 className="text-white font-bold text-lg md:text-xl mb-2">A fair start</h4>
-          <p className="text-zinc-400 leading-relaxed text-sm md:text-base">
-            For 1:1, I recommend giving it about 90 days so the weekly rhythm has time to stick. Track in the app, watch the video deep dive, and we'll keep adjusting the food strategy until it fits.{" "}
-            <span className="text-white font-bold">You bring the week. I bring the next adjustment.</span>
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-28 text-center pb-12"
-        >
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+        <motion.div {...reveal} className="text-center pb-12">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
             Start with the roadmap
           </h2>
-          <p className="text-zinc-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-            One session. A 4–6 week plan. Start Habits within 14 days and the first month is covered; start 1:1 and you get {money(149, currency)} off month one.
+          <p className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto">
+            One session. A 4–6 week plan. {creditLine(currency)}
           </p>
           <Link href="/initialize?plan=audit">
-            <button className="inline-block bg-orange-500 hover:bg-orange-400 text-white font-bold tracking-widest text-sm uppercase px-12 py-5 rounded-sm transition-all duration-200 shadow-xl shadow-orange-500/20">
+            <button className="inline-block bg-orange-500 hover:bg-orange-400 text-white font-bold tracking-widest text-sm uppercase px-12 py-5 rounded-sm transition-colors shadow-xl shadow-orange-500/20">
               Get your roadmap
             </button>
           </Link>
         </motion.div>
-
-      </motion.div >
-    </section >
+      </motion.div>
+    </section>
   );
 }

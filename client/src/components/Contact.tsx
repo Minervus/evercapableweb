@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { money, useDisplayCurrency } from "@/lib/displayCurrency";
+import { useDisplayCurrency } from "@/lib/displayCurrency";
+import { AUDIT_MINUTES, creditLine, guaranteeLine } from "@/lib/offer";
 
 export function Contact() {
   const currency = useDisplayCurrency();
@@ -11,19 +12,19 @@ export function Contact() {
     <section id="contact" className="py-20 md:py-32 bg-black scroll-mt-20 border-t border-white/5">
       <div className="max-w-[800px] mx-auto px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "120px 0px" }}
+          transition={{ duration: 0.3 }}
         >
           <p className="text-xs md:text-sm text-orange-500 mb-4 font-mono uppercase tracking-widest font-bold">
-            Start with the front door
+            Ready when you are
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6">
             Get a 4–6 week roadmap before you commit to monthly coaching.
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-12 text-lg md:text-xl font-light leading-relaxed">
-            One nutrition session. A plan you can use. Start Habits within 14 days and the audit covers your first month. Start 1:1 and you get {money(149, currency)} off month one.
+            One {AUDIT_MINUTES}-minute nutrition session. A plan you can use. {creditLine(currency)}
           </p>
 
           <Link href="/initialize?plan=audit">
@@ -37,9 +38,11 @@ export function Contact() {
             </Button>
           </Link>
 
-          <p className="mt-8 text-[10px] md:text-xs text-zinc-600 font-mono tracking-widest uppercase">
-            Application takes a couple of minutes
+          <p className="mt-8 text-sm text-zinc-500">
+            Next step is a short form about how you eat now — about 5 minutes. I'll email you to
+            book the session.
           </p>
+          <p className="mt-2 text-sm text-zinc-500">{guaranteeLine(currency)}</p>
           <p className="mt-4 text-sm text-zinc-500">
             Email Tony at{" "}
             <a

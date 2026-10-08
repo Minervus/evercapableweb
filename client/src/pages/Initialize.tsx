@@ -148,6 +148,18 @@ const questions: Question[][] = [
         { id: "injuries", label: "EXISTING HISTORICAL INJURIES/LIMITATIONS //", type: "textarea", required: true },
         { id: "sleepQuality", label: "AVERAGE SLEEP QUALITY METRIC (1-10 — 1=terrible, 10=perfect) //", type: "text", required: true },
         { id: "lifeStressor", label: "PRIMARY CAREER/LIFE STRESSOR (What's your biggest challenge right now?) //", type: "text", required: true },
+        {
+            id: "medicalConditions",
+            label: "ANYTHING A DOCTOR IS CURRENTLY MANAGING? // (e.g. diabetes, heart or thyroid condition, pregnancy, GLP-1 medication. Write 'none' if not.)",
+            type: "textarea",
+            required: true,
+        },
+        {
+            id: "disorderedEatingHistory",
+            label: "HAVE YOU EVER HAD AN EATING DISORDER, OR TREATMENT FOR DISORDERED EATING? // (Optional. It changes how I coach tracking and the scale — it doesn't rule you out.)",
+            type: "textarea",
+            required: false,
+        },
     ],
     // ── STEP 7 (Contract) ─────────────────────────────────────────────────────
     [

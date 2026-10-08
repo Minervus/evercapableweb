@@ -6,8 +6,7 @@ import { HOME_CANONICAL, HOME_TITLE, scrollToSectionId, watchCanonical } from "@
 // Lazy Load Below-the-fold Components
 const Familiar = lazy(() => import("@/components/Familiar").then(m => ({ default: m.Familiar })));
 const Method = lazy(() => import("@/components/Method").then(m => ({ default: m.Method })));
-const Testimonial = lazy(() => import("@/components/Testimonial").then(m => ({ default: m.Testimonial })));
-const TrustSection = lazy(() => import("@/components/TrustSection").then(m => ({ default: m.TrustSection })));
+const ClientResults = lazy(() => import("@/components/ClientResults").then(m => ({ default: m.ClientResults })));
 const Pricing = lazy(() => import("@/components/Pricing").then(m => ({ default: m.Pricing })));
 const DataSection = lazy(() => import("@/components/DataSection").then(m => ({ default: m.DataSection })));
 const Coach = lazy(() => import("@/components/Coach").then(m => ({ default: m.Coach })));
@@ -36,18 +35,19 @@ export default function Home({ scrollToId }: { scrollToId?: string }) {
       <Header />
       <main>
         <Hero />
-        <Suspense fallback={<div className="min-h-[200px] flex items-center justify-center bg-black"><span className="text-zinc-500 font-mono text-sm">LOADING_MODULE...</span></div>}>
+        <Suspense fallback={<div className="min-h-[200px] flex items-center justify-center bg-black"><span className="text-zinc-500 font-mono text-sm">Loading…</span></div>}>
           <Familiar />
           <Method />
-          <Testimonial />
-          <TrustSection />
+          <ClientResults />
           <Pricing />
           <DataSection />
           <Coach />
+          {/* Most first-time visitors won't pay for the audit yet — give them
+              the free option right after they've met Tony, not at the very end. */}
+          <KickstarterSignup />
           <FAQ />
           <LatestArticles />
           <Contact />
-          <KickstarterSignup />
         </Suspense>
       </main>
       <Suspense fallback={<div className="h-64 bg-black" />}>

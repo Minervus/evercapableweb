@@ -7,6 +7,7 @@ import { MailerLiteEmbed } from "@/components/MailerLiteEmbed";
 import { SITE_BASE_URL } from "@shared/articleSeo";
 import {
   KICKSTARTER_DESCRIPTION,
+  KICKSTARTER_NAME,
   KICKSTARTER_H1,
   KICKSTARTER_TITLE,
   KICKSTARTER_WEEKS,
@@ -136,7 +137,7 @@ export default function Kickstarter() {
           <section className="max-w-6xl mx-auto px-6 pt-16 md:pt-24 pb-16 md:pb-24">
             <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
               <motion.div {...fadeUp}>
-                <Eyebrow>Free 12-week Kickstarter</Eyebrow>
+                <Eyebrow>Free · {KICKSTARTER_NAME}</Eyebrow>
                 <h1 className="text-[2.15rem] sm:text-4xl md:text-[3.15rem] font-bold leading-[1.08] tracking-tight text-white mb-6">
                   {KICKSTARTER_H1}
                 </h1>

@@ -1,7 +1,10 @@
 import { escapeHtmlText } from "./articleSeo";
 
+/** The name people read. The /kickstarter route is unchanged. */
+export const KICKSTARTER_NAME = "12-Week Energy Reset";
+
 export const KICKSTARTER_TITLE =
-  "Free 12-week Kickstarter emails | Tony Nguyen Fit";
+  "Free 12-Week Energy Reset emails | Tony Nguyen Fit";
 
 export const KICKSTARTER_DESCRIPTION =
   "Free weekly emails for 12 weeks. One food action each time, written for busy parents 35 to 50 who want eating that fits work and kids so energy comes back.";

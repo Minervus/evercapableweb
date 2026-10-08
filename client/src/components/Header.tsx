@@ -73,9 +73,9 @@ export function Header() {
   };
 
   return (
-    <header className="fixed top-4 left-4 md:left-6 z-50">
+    <header className="fixed top-4 left-4 right-4 md:left-6 md:right-6 z-50 flex justify-start md:justify-center pointer-events-none">
       <div
-        className="bg-white/95 dark:bg-black backdrop-blur-md overflow-hidden"
+        className="bg-white/95 dark:bg-black backdrop-blur-md overflow-hidden pointer-events-auto md:w-full md:max-w-5xl"
         style={{
           borderRadius: isMenuOpen ? '16px' : '9999px',
           padding: isMenuOpen ? '24px' : '8px 16px',
@@ -112,10 +112,40 @@ export function Header() {
             </span>
           </a>
 
+          <nav className="hidden md:flex items-center gap-6" data-testid="nav-desktop">
+            {navLinks.map((link) =>
+              link.href ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    followNav(link.href!);
+                  }}
+                  className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-orange-600 dark:hover:text-orange-500 transition-colors whitespace-nowrap"
+                  data-testid={`link-navdesktop-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {link.label}
+                </a>
+              ) : null,
+            )}
+            <a
+              href="/initialize?plan=audit"
+              onClick={(e) => {
+                e.preventDefault();
+                followNav("/initialize?plan=audit");
+              }}
+              className="bg-orange-500 hover:bg-orange-400 text-white text-sm font-bold rounded-full px-5 py-2 transition-colors whitespace-nowrap"
+              data-testid="link-navdesktop-cta"
+            >
+              Get your roadmap
+            </a>
+          </nav>
+
           <div className="flex items-center gap-1">
             {!isMenuOpen && <ThemeToggle testId="button-theme-toggle" />}
             <button
-              className={`p-2 transition-all ${isMenuOpen ? "rounded-md border border-border" : "rounded-full"} hover-elevate`}
+              className={`md:hidden p-2 transition-all ${isMenuOpen ? "rounded-md border border-border" : "rounded-full"} hover-elevate`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               data-testid={isMenuOpen ? "button-menu-close" : "button-menu-open"}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -136,7 +166,7 @@ export function Header() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="overflow-hidden"
+              className="overflow-hidden md:hidden"
             >
               <nav className="mt-6 flex flex-col gap-4">
                 {navLinks.map((link) => (
