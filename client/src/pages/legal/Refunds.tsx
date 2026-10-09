@@ -1,19 +1,17 @@
 /*
  * DRAFT: needs Tony's or a lawyer's review before it is relied on.
  *
- * The audit refund is guaranteeLine() from lib/offer.ts word for word, so this
- * page can't drift from the guarantee shown beside the price. Cancelling comes
- * from the FAQ. Nothing else is promised.
+ * Every line here comes from lib/offer.ts, so this page can't drift from the
+ * guarantee shown beside the price. Only the audit has a guarantee.
  *
  * TODO(tony): confirm or fill in
- *   - when the 14 days start (payment date, session date, or roadmap delivery);
+ *   - how to ask for a refund (email is a placeholder until you confirm it);
  *   - how the refund is paid back (through Stripe, to the card used, in the currency paid) and how long it takes;
- *   - whether a refunded audit can still be credited to Habits or 1:1;
- *   - whether any part of a paid month on Habits or 1:1 is ever refunded.
+ *   - whether a refunded audit can still be credited to Habits or 1:1.
  */
 import { EmailLink, LegalPage, LegalSection } from "@/components/LegalPage";
 import { useDisplayCurrency } from "@/lib/displayCurrency";
-import { guaranteeLine } from "@/lib/offer";
+import { MONTHLY_TERMS_LINE, creditRefundLine, guaranteeLine, refundWindowLine } from "@/lib/offer";
 
 export default function Refunds() {
   const currency = useDisplayCurrency();
@@ -26,14 +24,17 @@ export default function Refunds() {
     >
       <LegalSection title="Audit + Roadmap">
         <p>{guaranteeLine(currency)}</p>
+        <p>{refundWindowLine()}</p>
+        <p>{creditRefundLine(currency)}</p>
         <p>
-          To ask for it, email <EmailLink />.
+          To ask for a refund, email <EmailLink />.
         </p>
       </LegalSection>
 
       <LegalSection title="Habits and 1:1">
+        <p>{MONTHLY_TERMS_LINE}</p>
         <p>
-          Monthly plans run month to month. Email me before your next billing date to cancel. There's no notice period and no exit fee.
+          To cancel, email <EmailLink /> before your next billing date.
         </p>
       </LegalSection>
     </LegalPage>

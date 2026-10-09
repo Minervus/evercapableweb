@@ -21,8 +21,11 @@ import {
   COACHING_SUMMARY,
   HABITS_PRICE,
   HABITS_SUMMARY,
+  MONTHLY_TERMS_LINE,
   creditLine,
+  creditRefundLine,
   guaranteeLine,
+  refundWindowLine,
 } from "@/lib/offer";
 
 export default function Terms() {
@@ -48,13 +51,13 @@ export default function Terms() {
 
       <LegalSection title="Monthly plans and cancelling">
         <p>
-          Habits and 1:1 run month to month. Email me before your next billing date to cancel. There's no notice period and no exit fee.
+          {MONTHLY_TERMS_LINE} To cancel, email <EmailLink />. There's no notice period and no exit fee.
         </p>
       </LegalSection>
 
       <LegalSection title="Refunds">
         <p>
-          {guaranteeLine(currency)} The details are on the{" "}
+          {guaranteeLine(currency)} {refundWindowLine()} {creditRefundLine(currency)} Habits and 1:1 have no guarantee. The details are on the{" "}
           <Link href="/refunds" className="text-orange-400 hover:text-orange-300 underline underline-offset-2">
             refund policy
           </Link>{" "}

@@ -16,7 +16,9 @@ import {
   INTAKE_MINUTES,
   auditSteps,
   creditLine,
+  creditRefundLine,
   guaranteeLine,
+  refundWindowLine,
 } from "@/lib/offer";
 import { watchCanonical } from "@/lib/sectionRoutes";
 import { SHARE_IMAGE_URL } from "@shared/articleSeo";
@@ -71,7 +73,7 @@ function auditFaqs(currency: DisplayCurrency | null): FaqItem[] {
     },
     {
       question: "How do refunds work?",
-      answer: `${guaranteeLine(currency)} The full policy is at tonynguyenfit.com/refunds.`,
+      answer: `${guaranteeLine(currency)} ${refundWindowLine()} ${creditRefundLine(currency)} The full policy is at tonynguyenfit.com/refunds.`,
     },
     {
       question: "Does my time zone matter?",

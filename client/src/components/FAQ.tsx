@@ -5,7 +5,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
-import { CREDIT_WINDOW_DAYS, REFUND_WINDOW_DAYS, creditLine } from "@/lib/offer";
+import {
+  CREDIT_WINDOW_DAYS,
+  MONTHLY_TERMS_LINE,
+  creditLine,
+  creditRefundLine,
+  guaranteeLine,
+  refundWindowLine,
+} from "@/lib/offer";
 
 const faqs = (currency: DisplayCurrency | null) => [
   {
@@ -50,7 +57,7 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
   {
     question: "How do cancelling and refunds work?",
-    answer: `The monthly offers are month to month — email me before your next billing date and that's it, no notice period and no exit fee. For the audit: if the roadmap isn't useful, email me within ${REFUND_WINDOW_DAYS} days and I'll refund it.`,
+    answer: `${MONTHLY_TERMS_LINE} ${guaranteeLine(currency)} ${refundWindowLine()} ${creditRefundLine(currency)}`,
   },
   {
     question: "Do you take clients outside New Zealand and Canada?",
