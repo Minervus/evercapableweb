@@ -71,7 +71,7 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
   {
     question: "Is there a 90-day lock-in?",
-    answer: "Not a hard contract. For 1:1 I recommend about 90 days so the weekly rhythm has time to stick. After that it's month-to-month. The audit is one-off with no ongoing commitment.",
+    answer: `No. ${MONTHLY_TERMS_LINE} For 1:1 I recommend about 90 days so the weekly rhythm has time to stick. The audit is one-off with no ongoing commitment.`,
   },
   {
     question: "Is coaching online?",

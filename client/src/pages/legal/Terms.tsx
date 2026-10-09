@@ -5,11 +5,6 @@
  * credit and guarantee from lib/offer.ts, and the cancellation and "not a
  * dietitian" answers in components/FAQ.tsx. It deliberately leaves out
  * governing law, liability limits and dispute terms; a lawyer should add those.
- *
- * TODO(tony): the intake form (/initialize) still shows a "90-Day System
- * Guarantee" toggle (free coaching until you hit your target at 90%
- * compliance). That isn't in offer.ts and isn't stated here. Decide whether it
- * still applies, then align the form, this page and offer.ts.
  */
 import { Link } from "wouter";
 import { EmailLink, LegalPage, LegalSection } from "@/components/LegalPage";
