@@ -84,9 +84,24 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
 ];
 
-export function FAQ() {
+export type FaqItem = { question: string; answer: string };
+
+type FAQProps = {
+  /** Defaults to the homepage questions. */
+  items?: FaqItem[];
+  heading?: string;
+  intro?: string;
+  className?: string;
+};
+
+export function FAQ({
+  items: itemsProp,
+  heading = "Frequently Asked Questions",
+  intro = "Straight answers about the offers, weekly check-ins, and how we work together.",
+  className = "py-16 md:py-24 bg-black",
+}: FAQProps = {}) {
   const currency = useDisplayCurrency();
-  const items = faqs(currency);
+  const items = itemsProp ?? faqs(currency);
 
   // Built from the same array that renders below, so the markup Google reads
   // can never drift from the answers a visitor sees.
@@ -101,7 +116,7 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-16 md:py-24 bg-black scroll-mt-20 overflow-hidden">
+    <section id="faq" className={`${className} scroll-mt-20 overflow-hidden`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -113,11 +128,9 @@ export function FAQ() {
               FAQ
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Frequently Asked Questions
+              {heading}
             </h2>
-            <p className="text-zinc-400 mb-6">
-              Straight answers about the offers, weekly check-ins, and how we work together.
-            </p>
+            <p className="text-zinc-400 mb-6">{intro}</p>
           </div>
 
           <Accordion type="single" collapsible data-testid="accordion-faq">

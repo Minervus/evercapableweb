@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Menu, X, Instagram, Youtube, Globe, Mail, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { AnimatePresence, motion } from "framer-motion";
-import logoIconDark from "@assets/tn-logo-on-black.png";
-import logoIconLight from "@assets/tn-logo-on-white.png";
+import logoIconDark from "@assets/tn-logo-on-black-128.png";
+import logoIconLight from "@assets/tn-logo-on-white-128.png";
 
 import { useLocation } from "wouter";
 import { scrollToSectionId, sectionIdForPath } from "@/lib/sectionRoutes";

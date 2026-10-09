@@ -25,6 +25,13 @@ export const SPOTS_MONTH = "November";
 /** Minutes in the audit session. Matches the /audit page. */
 export const AUDIT_MINUTES = 60;
 
+/** Minutes the intake form at /initialize takes. Matches that page. */
+export const INTAKE_MINUTES = 8;
+
+/** One-line plain descriptions of the monthly plans, shared with Pricing. */
+export const HABITS_SUMMARY = "Weekly check-ins and written adjustments.";
+export const COACHING_SUMMARY = "Everything in Habits, plus weekly video deep dives.";
+
 /**
  * The credit, stated once, in one wording.
  * Previously this appeared ~10 times as both "covers your first month"
@@ -54,7 +61,7 @@ export function auditSteps(currency: DisplayCurrency | null) {
   return [
     {
       label: "You book",
-      detail: `Pay the ${money(AUDIT_PRICE, currency)} on Stripe and you land on a short intake form about how you eat now. Once it's in, I email you to book a time.`,
+      detail: `Pay the ${money(AUDIT_PRICE, currency)} on Stripe and you land on the intake form about how you eat now. It takes about ${INTAKE_MINUTES} minutes, and I email you to book a time.`,
     },
     {
       label: "We talk",

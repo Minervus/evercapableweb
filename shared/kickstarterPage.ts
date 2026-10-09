@@ -4,7 +4,12 @@ import { escapeHtmlText } from "./articleSeo";
 export const KICKSTARTER_NAME = "12-Week Energy Reset";
 
 export const KICKSTARTER_TITLE =
-  "Free 12-Week Energy Reset emails | Tony Nguyen Fit";
+  "Free 12-Week Energy Reset emails for parents | Tony Nguyen Fit";
+
+export const KICKSTARTER_SHARE_TITLE = "The free 12-Week Energy Reset for busy parents";
+
+export const KICKSTARTER_SHARE_DESCRIPTION =
+  "One short email a week for 12 weeks, each with one food action to try. Free, from nutrition coach Tony Nguyen.";
 
 export const KICKSTARTER_DESCRIPTION =
   "Free weekly emails for 12 weeks. One food action each time, written for busy parents 35 to 50 who want eating that fits work and kids so energy comes back.";
@@ -55,7 +60,7 @@ export function renderKickstarterStaticHtml(): string {
     `<p>${escapeHtmlText(KICKSTARTER_DESCRIPTION)}</p>`,
     `<p>The 12-week emails cost nothing.</p>`,
     blocks,
-    `<p><a href="https://tonynguyenfit.com/audit">Audit + Roadmap, $149</a></p>`,
+    `<p><a href="https://tonynguyenfit.com/audit">Audit + Roadmap</a></p>`,
     `</main>`,
   ].join("");
 }
