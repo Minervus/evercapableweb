@@ -7,8 +7,10 @@ import {
   auditSteps,
   COACHING_PRICE,
   HABITS_PRICE,
+  COACHING_SUMMARY,
   creditLine,
   guaranteeLine,
+  HABITS_SUMMARY,
   spotsLine,
 } from "@/lib/offer";
 import { reveal, revealAt } from "@/lib/reveal";
@@ -61,7 +63,7 @@ const plans: Plan[] = [
     name: "Nutrition Habits",
     price: HABITS_PRICE,
     cadence: () => "per month",
-    summary: "Weekly check-ins and written adjustments.",
+    summary: HABITS_SUMMARY,
     cta: "Start weekly habits",
     href: "/initialize?plan=habits",
     testId: "button-offer-habits",
@@ -71,7 +73,7 @@ const plans: Plan[] = [
     name: "1:1 Coaching",
     price: COACHING_PRICE,
     cadence: () => "per month",
-    summary: "Everything in Habits, plus weekly video deep dives.",
+    summary: COACHING_SUMMARY,
     cta: "Apply for coaching",
     href: "/initialize?plan=coaching",
     testId: "button-offer-coaching",

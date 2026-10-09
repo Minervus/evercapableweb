@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wiseAuditPayUrl } from "@/lib/auditPayment";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
+import { creditLine, INTAKE_MINUTES } from "@/lib/offer";
 import { watchCanonical } from "@/lib/sectionRoutes";
 import { SITE_BASE_URL } from "@shared/articleSeo";
 
@@ -180,7 +181,7 @@ const STEP_LABELS = [
     "Agreement",
 ];
 
-const APPLICATION_MINUTES = 8;
+const APPLICATION_MINUTES = INTAKE_MINUTES;
 
 // ---------------------------------------------------------------------------
 // Email validator
@@ -202,6 +203,7 @@ export default function Initialize() {
     const isAudit = planKey === "audit" || !(planKey in labels);
     const auditPrice = money(149, currency);
     const auditPayUrl = wiseAuditPayUrl(currency);
+    const formName = isAudit ? "intake form" : "application";
 
     const [currentStep, setCurrentStep] = useState(1);
     const [timezoneChoiceState] = useState(() => timezoneChoice(readBrowserTimeZone()));
@@ -279,11 +281,11 @@ export default function Initialize() {
                     className="max-w-xl w-full"
                 >
                     <div className="text-orange-500 mb-6 font-bold tracking-widest uppercase">
-                        Application received
+                        {isAudit ? "Intake form received" : "Application received"}
                     </div>
 
                     <h1 className="text-2xl md:text-3xl text-white font-bold tracking-tight mb-4">
-                        Tony has your application.
+                        Tony has your {formName}.
                     </h1>
 
                     <p className="mb-4 leading-relaxed text-zinc-300">
@@ -301,7 +303,7 @@ export default function Initialize() {
                             >
                                 pay it on Wise
                             </a>{" "}
-                            so the session can be booked. Start Habits within 14 days and that fee covers month one. Start 1:1 within 14 days and you get {auditPrice} off month one.
+                            so the session can be booked. {creditLine(currency)}
                         </p>
                     )}
 
@@ -360,8 +362,8 @@ export default function Initialize() {
                     {isAudit && currentStep === 1 && (
                         <div className="mb-8 max-w-xl border border-orange-500/30 bg-orange-500/5 px-5 py-5">
                             <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-4">
-                                Pay {auditPrice} for the audit first. Then finish this form so Tony has your name and can prep the session.
-                                Start Habits within 14 days and the audit covers month one. Start 1:1 within 14 days and you get {auditPrice} off month one.
+                                Pay {auditPrice} for the audit first, then fill in this intake form so Tony can prepare for the session.
+                                {" "}{creditLine(currency)}
                             </p>
                             <a
                                 href={auditPayUrl}
@@ -374,7 +376,7 @@ export default function Initialize() {
                         </div>
                     )}
                     <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 max-w-xl">
-                        This application is {TOTAL_STEPS} short steps and takes about {APPLICATION_MINUTES} minutes.
+                        This {formName} is {TOTAL_STEPS} short steps and takes about {APPLICATION_MINUTES} minutes.
                         When you submit, Tony reviews it and replies by email to book the session.
                     </p>
                     <h1 className="text-2xl md:text-4xl text-white font-bold tracking-tight mb-2 uppercase">

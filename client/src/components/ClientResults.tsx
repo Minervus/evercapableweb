@@ -32,7 +32,7 @@ const snapshots: Snapshot[] = [
     context: "Finance exec, two kids, 60+ hour weeks",
     timeframe: "After 90 days",
     startingPoint: "Weight swinging up and down, 3 PM energy crashes, felt out of control.",
-    result: "12 lbs down and holding, steady energy through the workday.",
+    result: "5.4 kg / 12 lb down and holding, steady energy through the workday.",
     quote: "I feel more in control of my health than ever before.",
   },
   {
