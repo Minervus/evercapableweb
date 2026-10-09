@@ -16,9 +16,21 @@ import {
 import { buildJournalRedirectRules } from "../shared/journalRedirects";
 import {
   KICKSTARTER_DESCRIPTION,
+  KICKSTARTER_SHARE_DESCRIPTION,
+  KICKSTARTER_SHARE_TITLE,
   KICKSTARTER_TITLE,
   renderKickstarterStaticHtml,
 } from "../shared/kickstarterPage";
+import {
+  AUDIT_DESCRIPTION,
+  AUDIT_H1_LEAD,
+  AUDIT_H1_REST,
+  AUDIT_SHARE_DESCRIPTION,
+  AUDIT_SHARE_TITLE,
+  AUDIT_TITLE,
+} from "../shared/auditPage";
+import { wiseAuditPayUrl } from "../client/src/lib/auditPayment";
+import { AUDIT_PRICE, creditLine, guaranteeLine } from "../client/src/lib/offer";
 
 const client = createClient({
   projectId: "49ykafev",
@@ -183,21 +195,24 @@ export async function prerenderArticles() {
   // /audit landing page: static crawlable shell with SEO meta
   const auditUrl = `${SITE_BASE_URL}/audit`;
   let auditHtml = injectPageMetadata(template, {
-    title: "Nutrition Audit for Parents 35 to 50 | Tony Nguyen Fit",
-    description:
-      "A 60-minute nutrition session ($149) for professionals 35 to 50 who are raising kids and want more energy in a week that is already full.",
+    title: AUDIT_TITLE,
+    description: AUDIT_DESCRIPTION,
     url: auditUrl,
+    shareTitle: AUDIT_SHARE_TITLE,
+    shareDescription: AUDIT_SHARE_DESCRIPTION,
   });
   auditHtml = injectRootContent(
     auditHtml,
     [
       `<main>`,
       `<nav aria-label="Site"><a href="/">Home</a> <a href="/journal">Journal</a></nav>`,
-      `<h1>More energy, in a week that already has work and kids.</h1>`,
-      `<p>A 60-minute nutrition session ($149) for professionals 35 to 50 who are raising kids and want more energy in a week that is already full.</p>`,
-      `<p><a href="https://wise.com/pay/r/xAREGf4eI35QlrY">Book now</a></p>`,
-      `<p>After you pay, <a href="/initialize?plan=audit">apply here</a> so the session can be booked. Start Habits within 14 days and the audit covers month one. Start 1:1 within 14 days and you get $149 off month one.</p>`,
-      `<p><a href="/journal">Read the Journal</a></p>`,
+      `<h1>${escapeHtmlText(`${AUDIT_H1_LEAD} ${AUDIT_H1_REST}`)}</h1>`,
+      `<p>${escapeHtmlText(AUDIT_DESCRIPTION)}</p>`,
+      `<p>$${AUDIT_PRICE} NZD: <a href="${wiseAuditPayUrl("NZD")}">Book now</a></p>`,
+      `<p>$${AUDIT_PRICE} CAD: <a href="${wiseAuditPayUrl("CAD")}">Book now</a></p>`,
+      `<p>After you book, <a href="/initialize?plan=audit">fill in the intake form</a> so I can prepare for the session.</p>`,
+      `<p>${escapeHtmlText(creditLine(null))} ${escapeHtmlText(guaranteeLine(null))}</p>`,
+      `<p><a href="/refunds">Refund policy</a> <a href="/privacy">Privacy</a> <a href="/terms">Terms</a></p>`,
       `</main>`,
     ].join(""),
   );
@@ -209,6 +224,8 @@ export async function prerenderArticles() {
     title: KICKSTARTER_TITLE,
     description: KICKSTARTER_DESCRIPTION,
     url: kickstarterUrl,
+    shareTitle: KICKSTARTER_SHARE_TITLE,
+    shareDescription: KICKSTARTER_SHARE_DESCRIPTION,
   });
   kickstarterHtml = injectRootContent(kickstarterHtml, renderKickstarterStaticHtml());
   writeFileSync(resolve(publicDir, "kickstarter.html"), kickstarterHtml, "utf-8");

@@ -1,5 +1,8 @@
 export const SITE_BASE_URL = "https://tonynguyenfit.com";
 
+/** The one share image used for og:image and twitter:image. 1200x630. */
+export const SHARE_IMAGE_URL = `${SITE_BASE_URL}/og-image.jpg`;
+
 export const JOURNAL_NAME = "TonyNguyenFit Journal";
 
 export const JOURNAL_DESCRIPTION =
@@ -82,10 +85,20 @@ export function escapeHtmlText(value: string): string {
 /** Replace the head meta/title/canonical tags for any prerendered page. */
 export function injectPageMetadata(
   html: string,
-  meta: { title: string; description: string; url: string; ogType?: string },
+  meta: {
+    title: string;
+    description: string;
+    url: string;
+    ogType?: string;
+    /** Social card copy. Defaults to title and description. */
+    shareTitle?: string;
+    shareDescription?: string;
+  },
 ): string {
   const safeTitle = escapeHtmlAttribute(meta.title);
   const safeDescription = escapeHtmlAttribute(meta.description);
+  const safeShareTitle = escapeHtmlAttribute(meta.shareTitle ?? meta.title);
+  const safeShareDescription = escapeHtmlAttribute(meta.shareDescription ?? meta.description);
   const safeUrl = escapeHtmlAttribute(meta.url);
   const ogType = meta.ogType ?? "website";
 
@@ -97,11 +110,19 @@ export function injectPageMetadata(
     )
     .replace(
       /<meta property="og:title" content="[^"]*"\s*\/?>/,
-      `<meta property="og:title" content="${safeTitle}" />`,
+      `<meta property="og:title" content="${safeShareTitle}" />`,
     )
     .replace(
       /<meta property="og:description" content="[^"]*"\s*\/?>/,
-      `<meta property="og:description" content="${safeDescription}" />`,
+      `<meta property="og:description" content="${safeShareDescription}" />`,
+    )
+    .replace(
+      /<meta name="twitter:title" content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:title" content="${safeShareTitle}" />`,
+    )
+    .replace(
+      /<meta name="twitter:description" content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:description" content="${safeShareDescription}" />`,
     )
     .replace(
       /<meta property="og:type" content="[^"]*"\s*\/?>/,

@@ -1,14 +1,18 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import logoIcon from "@assets/tn-logo-on-black.png";
+import logoIcon from "@assets/tn-logo-on-black-128.png";
 import { Footer } from "@/components/Footer";
 import { MailerLiteEmbed } from "@/components/MailerLiteEmbed";
-import { SITE_BASE_URL } from "@shared/articleSeo";
+import { money, useDisplayCurrency } from "@/lib/displayCurrency";
+import { AUDIT_PRICE } from "@/lib/offer";
+import { SHARE_IMAGE_URL, SITE_BASE_URL } from "@shared/articleSeo";
 import {
   KICKSTARTER_DESCRIPTION,
   KICKSTARTER_NAME,
   KICKSTARTER_H1,
+  KICKSTARTER_SHARE_DESCRIPTION,
+  KICKSTARTER_SHARE_TITLE,
   KICKSTARTER_TITLE,
   KICKSTARTER_WEEKS,
 } from "@shared/kickstarterPage";
@@ -101,16 +105,21 @@ function EmailButton({ label, className = "" }: { label: string; className?: str
 }
 
 export default function Kickstarter() {
+  const currency = useDisplayCurrency();
+
   return (
     <>
       <Helmet>
         <title>{KICKSTARTER_TITLE}</title>
         <meta name="description" content={KICKSTARTER_DESCRIPTION} />
-        <meta property="og:title" content={KICKSTARTER_TITLE} />
-        <meta property="og:description" content={KICKSTARTER_DESCRIPTION} />
+        <meta property="og:title" content={KICKSTARTER_SHARE_TITLE} />
+        <meta property="og:description" content={KICKSTARTER_SHARE_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={PAGE_URL} />
-        <meta property="og:image" content={`${SITE_BASE_URL}/tony-harbor.png`} />
+        <meta property="og:image" content={SHARE_IMAGE_URL} />
+        <meta name="twitter:title" content={KICKSTARTER_SHARE_TITLE} />
+        <meta name="twitter:description" content={KICKSTARTER_SHARE_DESCRIPTION} />
+        <meta name="twitter:image" content={SHARE_IMAGE_URL} />
         <link rel="canonical" href={PAGE_URL} />
       </Helmet>
 
@@ -297,7 +306,7 @@ export default function Kickstarter() {
                 A closer look, if you want one
               </h2>
               <p className="text-zinc-400 text-base md:text-lg leading-[1.75] mb-8">
-                The emails can stand on their own. If you want a plan written around your actual week, the Audit + Roadmap is $149 for one session and a 4–6 week food roadmap.
+                The emails can stand on their own. If you want a plan written around your actual week, the Audit + Roadmap is {money(AUDIT_PRICE, currency)} for one session and a 4 to 6 week food roadmap.
               </p>
               <a
                 href="https://tonynguyenfit.com/audit"
