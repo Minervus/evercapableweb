@@ -53,8 +53,8 @@ export function spotsLine(): string {
 export function auditSteps(currency: DisplayCurrency | null) {
   return [
     {
-      label: "You apply",
-      detail: `A short form about how you eat now — about 5 minutes. Pay the ${money(AUDIT_PRICE, currency)}, then I email you to book a time.`,
+      label: "You book",
+      detail: `Pay the ${money(AUDIT_PRICE, currency)} on Stripe and you land on a short intake form about how you eat now. Once it's in, I email you to book a time.`,
     },
     {
       label: "We talk",

@@ -14,6 +14,7 @@ import {
   SITE_BASE_URL,
 } from "../shared/articleSeo";
 import { buildJournalRedirectRules } from "../shared/journalRedirects";
+import { AUDIT_PAY_URL } from "../client/src/lib/auditPayment";
 import {
   KICKSTARTER_DESCRIPTION,
   KICKSTARTER_TITLE,
@@ -195,8 +196,8 @@ export async function prerenderArticles() {
       `<nav aria-label="Site"><a href="/">Home</a> <a href="/journal">Journal</a></nav>`,
       `<h1>More energy, in a week that already has work and kids.</h1>`,
       `<p>A 60-minute nutrition session ($149) for professionals 35 to 50 who are raising kids and want more energy in a week that is already full.</p>`,
-      `<p><a href="https://wise.com/pay/r/xAREGf4eI35QlrY">Book now</a></p>`,
-      `<p>After you pay, <a href="/initialize?plan=audit">apply here</a> so the session can be booked. Start Habits within 14 days and the audit covers month one. Start 1:1 within 14 days and you get $149 off month one.</p>`,
+      `<p><a href="${AUDIT_PAY_URL}">Book now</a></p>`,
+      `<p>After you pay on Stripe, you land on the <a href="/initialize?plan=audit">intake form</a> so the session can be booked. Start Habits within 14 days and the audit covers month one. Start 1:1 within 14 days and you get $149 off month one.</p>`,
       `<p><a href="/journal">Read the Journal</a></p>`,
       `</main>`,
     ].join(""),

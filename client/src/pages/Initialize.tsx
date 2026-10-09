@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useSearch } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { wiseAuditPayUrl } from "@/lib/auditPayment";
+import { AUDIT_PAY_URL } from "@/lib/auditPayment";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 import { watchCanonical } from "@/lib/sectionRoutes";
 import { SITE_BASE_URL } from "@shared/articleSeo";
@@ -201,8 +201,6 @@ export default function Initialize() {
     const planLabel = labels[planKey] ?? labels.audit;
     const isAudit = planKey === "audit" || !(planKey in labels);
     const auditPrice = money(149, currency);
-    const auditPayUrl = wiseAuditPayUrl(currency);
-
     const [currentStep, setCurrentStep] = useState(1);
     const [timezoneChoiceState] = useState(() => timezoneChoice(readBrowserTimeZone()));
     const [formData, setFormData] = useState<Record<string, string>>(() => {
@@ -292,16 +290,14 @@ export default function Initialize() {
 
                     {isAudit && (
                         <p className="mb-6 leading-relaxed text-zinc-400">
-                            If the {auditPrice} audit fee is still unpaid,{" "}
+                            If you haven't paid the {auditPrice} audit fee yet,{" "}
                             <a
-                                href={auditPayUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href={AUDIT_PAY_URL}
                                 className="text-orange-400 underline underline-offset-2 hover:text-orange-300"
                             >
-                                pay it on Wise
+                                pay it on Stripe
                             </a>{" "}
-                            so the session can be booked. Start Habits within 14 days and that fee covers month one. Start 1:1 within 14 days and you get {auditPrice} off month one.
+                            so the session can be booked. There's no need to fill in the form again after that. Start Habits within 14 days and that fee covers month one. Start 1:1 within 14 days and you get {auditPrice} off month one.
                         </p>
                     )}
 
@@ -360,13 +356,12 @@ export default function Initialize() {
                     {isAudit && currentStep === 1 && (
                         <div className="mb-8 max-w-xl border border-orange-500/30 bg-orange-500/5 px-5 py-5">
                             <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-4">
-                                Pay {auditPrice} for the audit first. Then finish this form so Tony has your name and can prep the session.
+                                If you just paid on Stripe, you're in the right place. This form is the last step, so Tony has your details and can prep the session.
+                                If you haven't paid yet, book the {auditPrice} audit first and Stripe brings you back here.
                                 Start Habits within 14 days and the audit covers month one. Start 1:1 within 14 days and you get {auditPrice} off month one.
                             </p>
                             <a
-                                href={auditPayUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href={AUDIT_PAY_URL}
                                 className="inline-block bg-orange-500 hover:bg-orange-400 text-black font-bold tracking-widest text-xs uppercase px-6 py-3 transition-colors"
                             >
                                 Book now
