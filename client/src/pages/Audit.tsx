@@ -7,6 +7,7 @@ import logoIcon from "@assets/tn-logo-on-black-128.png";
 import { FAQ, type FaqItem } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { AUDIT_PAY_URL } from "@/lib/auditPayment";
+import { CHRISTIAN, CHRISTIAN_RESULT } from "@/lib/clientStories";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 import {
   AUDIT_MINUTES,
@@ -472,16 +473,14 @@ export default function Audit() {
                     </div>
                   </div>
 
-                  {/* TODO(tony): confirm what Christian did in these 90 days, i.e. the audit
-                      plus how many months of Habits or 1:1, and add it under this label. */}
                   <div className="flex items-start gap-3">
                     <span className="mt-1 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
                     <div>
                       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-1">
-                        [ After 90 Days ]
+                        [ {CHRISTIAN.timeframe} ]
                       </p>
                       <p className="text-white font-semibold text-base leading-relaxed">
-                        5.4 kg / 12 lb down, maintaining weight, consistent energy despite 60+ hour weeks.
+                        {CHRISTIAN_RESULT}
                       </p>
                     </div>
                   </div>
@@ -491,47 +490,21 @@ export default function Audit() {
               {/* ── Comparison bridge ── */}
               <div className="border-t border-zinc-800 px-8 py-8">
                 <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.2em] mb-6">
-                  How Christian Changed His Trajectory
+                  How we worked on it over 3 months
                 </p>
-                <div className="grid md:grid-cols-2 gap-4">
-
-                  {/* Without column */}
-                  <div className="rounded-lg bg-red-950/20 border border-red-900/30 px-6 py-5">
-                    <p className="text-red-400 font-mono text-[10px] uppercase tracking-widest mb-4 font-bold">
-                      Without a Roadmap
-                    </p>
-                    <ul className="space-y-3">
-                      {[
-                        "Trying to eat healthy, but still gaining weight",
-                        "Guessing at nutrition and recovery",
-                      ].map((item) => (
-                        <li key={item} className="flex items-start gap-3 text-zinc-400 text-sm leading-relaxed">
-                          <span className="mt-0.5 text-red-500 font-bold shrink-0" aria-hidden="true">✕</span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* With column */}
-                  <div className="rounded-lg bg-emerald-950/20 border border-emerald-900/30 px-6 py-5">
-                    <p className="text-emerald-400 font-mono text-[10px] uppercase tracking-widest mb-4 font-bold">
-                      With the roadmap
-                    </p>
-                    <ul className="space-y-3">
-                      {[
-                        "Making smarter food choices, losing weight",
-                        "Having a plan to fit my goals, making consistent progress",
-                      ].map((item) => (
-                        <li key={item} className="flex items-start gap-3 text-zinc-200 text-sm leading-relaxed">
-                          <span className="mt-0.5 text-emerald-400 font-bold shrink-0" aria-hidden="true">✓</span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                </div>
+                <ol className="grid md:grid-cols-2 gap-4">
+                  {CHRISTIAN.steps.map((step, i) => (
+                    <li
+                      key={step}
+                      className="rounded-lg bg-zinc-950/40 border border-zinc-800 px-6 py-5 flex items-start gap-4"
+                    >
+                      <span className="text-orange-500 font-mono text-xs font-bold shrink-0 mt-0.5">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <p className="text-zinc-300 text-sm leading-relaxed">{step}</p>
+                    </li>
+                  ))}
+                </ol>
               </div>
 
             </div>

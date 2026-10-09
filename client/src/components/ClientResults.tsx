@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { CHRISTIAN, CHRISTIAN_RESULT } from "@/lib/clientStories";
 import { reveal, revealAt } from "@/lib/reveal";
 
 /**
@@ -17,10 +18,12 @@ type Snapshot = {
   initials: string;
   photo?: string;
   context: string;
-  /** Rendered as the result heading, e.g. "After 90 days" or "Where he is now". */
+  /** Rendered as the result heading, e.g. "Over 3 months of coaching" or "Where he is now". */
   timeframe: string;
   startingPoint: string;
   result: string;
+  /** What the coaching actually involved, in order. */
+  steps?: readonly string[];
   quote?: string;
 };
 
@@ -30,9 +33,10 @@ const snapshots: Snapshot[] = [
     initials: "CK",
     photo: "/christian.jpeg",
     context: "Finance exec, two kids, 60+ hour weeks",
-    timeframe: "After 90 days",
+    timeframe: CHRISTIAN.timeframe,
     startingPoint: "Weight swinging up and down, 3 PM energy crashes, felt out of control.",
-    result: "5.4 kg / 12 lb down and holding, steady energy through the workday.",
+    result: CHRISTIAN_RESULT,
+    steps: CHRISTIAN.steps,
     quote: "I feel more in control of my health than ever before.",
   },
   {
@@ -101,6 +105,20 @@ export function ClientResults() {
                     {snapshot.result}
                   </dd>
                 </div>
+                {snapshot.steps && (
+                  <div>
+                    <dt className="text-[10px] font-mono uppercase tracking-[0.2em] text-zinc-500 mb-2">
+                      How we worked on it
+                    </dt>
+                    <dd>
+                      <ol className="space-y-2 list-decimal list-inside marker:text-orange-500 text-zinc-400 text-sm leading-relaxed">
+                        {snapshot.steps.map((step) => (
+                          <li key={step}>{step}</li>
+                        ))}
+                      </ol>
+                    </dd>
+                  </div>
+                )}
               </dl>
 
               {snapshot.quote && (
@@ -114,7 +132,7 @@ export function ClientResults() {
         </div>
 
         <p className="mt-8 text-center text-zinc-600 text-xs">
-          Results shared with permission. Individual results vary — nothing here is a promise of a
+          Results shared with permission. Individual results vary, and nothing here is a promise of a
           specific outcome.
         </p>
       </div>
