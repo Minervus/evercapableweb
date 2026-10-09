@@ -42,7 +42,7 @@ export default function Terms() {
           Nutrition Habits is {money(HABITS_PRICE, currency)} a month: {HABITS_SUMMARY.toLowerCase()} 1:1 Nutrition Coaching is {money(COACHING_PRICE, currency)} a month: {COACHING_SUMMARY.charAt(0).toLowerCase() + COACHING_SUMMARY.slice(1)}
         </p>
         <p>
-          Prices show in NZD or CAD depending on where you're browsing from. {creditLine(currency)}
+          Prices show in NZD or CAD depending on where you're browsing from. The audit is paid through Stripe, which may also offer the price converted to your local currency at checkout. {creditLine(currency)}
         </p>
       </LegalSection>
 

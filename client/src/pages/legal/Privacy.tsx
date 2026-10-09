@@ -2,14 +2,14 @@
  * DRAFT: needs Tony's or a lawyer's review before it is relied on.
  *
  * Written in plain language from what the site does today: the Formspree intake
- * form (/initialize), MailerLite email signups, Wise payment links, and the
+ * form (/initialize), MailerLite email signups, the Stripe payment link, and the
  * Google Analytics and Metricool scripts in client/index.html. It makes no claim
  * about which privacy law applies.
  *
  * TODO(tony): confirm or fill in
  *   - how long intake answers and email-list details are kept;
  *   - the name of the coaching app provider behind EverCapable;
- *   - that you never see card numbers on Wise payments;
+ *   - that you never see card numbers on Stripe payments;
  *   - whether anyone else (an assistant, a VA) can read client information.
  */
 import { EmailLink, LegalPage, LegalSection } from "@/components/LegalPage";
@@ -38,7 +38,7 @@ export default function Privacy() {
 
       <LegalSection title="Payments">
         <p>
-          Payments go through Wise. Wise handles your payment details under its own privacy policy, and I don't see or store your card number.
+          Payments go through Stripe. You enter your card details on Stripe's checkout page, so they go to Stripe and never to me. Stripe handles them under its own privacy policy, and I don't see or store your card number.
         </p>
       </LegalSection>
 

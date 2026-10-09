@@ -7,7 +7,7 @@
  *
  * TODO(tony): confirm or fill in
  *   - when the 14 days start (payment date, session date, or roadmap delivery);
- *   - how the refund is paid back (through Wise, in the currency paid) and how long it takes;
+ *   - how the refund is paid back (through Stripe, to the card used, in the currency paid) and how long it takes;
  *   - whether a refunded audit can still be credited to Habits or 1:1;
  *   - whether any part of a paid month on Habits or 1:1 is ever refunded.
  */
