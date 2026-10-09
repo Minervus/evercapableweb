@@ -20,3 +20,24 @@ export const CHRISTIAN = {
 } as const;
 
 export const CHRISTIAN_RESULT = `${CHRISTIAN.weight}, ${CHRISTIAN.energy}.`;
+
+/**
+ * Gary's result. Facts from Tony: 4 months of coaching to build muscle and
+ * reduce body fat before his wedding, then week-to-week coaching since to
+ * maintain and keep making steady gains. No figures have been given.
+ *
+ * TODO(tony): confirm Gary is happy with the quote below. It was on the
+ * homepage before this story and is kept word for word.
+ * TODO(tony): confirm the starting point. It was on the homepage before and
+ * isn't part of what you sent.
+ */
+export const GARY = {
+  timeframe: "Over 4 months of coaching",
+  startingPoint: "Wanted a straight read on his habits, training and food together.",
+  result: "More muscle and less body fat in time for his wedding. We still work together week to week.",
+  steps: [
+    "In the 4 months before his wedding, we worked on building muscle and bringing his body fat down.",
+    "Since the wedding, we work week to week so he holds onto what he built and keeps making steady gains.",
+  ],
+  quote: "Tony has a great attention to detail… he educates me on the underlying reasoning as well.",
+} as const;

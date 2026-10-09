@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CHRISTIAN, CHRISTIAN_RESULT } from "@/lib/clientStories";
+import { CHRISTIAN, CHRISTIAN_RESULT, GARY } from "@/lib/clientStories";
 import { reveal, revealAt } from "@/lib/reveal";
 
 /**
@@ -18,7 +18,7 @@ type Snapshot = {
   initials: string;
   photo?: string;
   context: string;
-  /** Rendered as the result heading, e.g. "Over 3 months of coaching" or "Where he is now". */
+  /** Rendered as the result heading, e.g. "Over 3 months of coaching". */
   timeframe: string;
   startingPoint: string;
   result: string;
@@ -44,11 +44,11 @@ const snapshots: Snapshot[] = [
     initials: "GY",
     photo: "/gary.jpeg",
     context: "Software engineering lead",
-    timeframe: "Where he is now",
-    startingPoint: "Wanted a straight read on his habits, training and food together.",
-    result: "A routine he understands well enough to adjust himself.",
-    quote:
-      "Tony has a great attention to detail… he educates me on the underlying reasoning as well.",
+    timeframe: GARY.timeframe,
+    startingPoint: GARY.startingPoint,
+    result: GARY.result,
+    steps: GARY.steps,
+    quote: GARY.quote,
   },
 ];
 
