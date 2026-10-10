@@ -30,7 +30,14 @@ import {
   AUDIT_SHARE_TITLE,
   AUDIT_TITLE,
 } from "../shared/auditPage";
-import { AUDIT_PRICE, creditLine, guaranteeLine } from "../client/src/lib/offer";
+import {
+  AUDIT_PRICE,
+  auditProcessFaq,
+  auditSteps,
+  creditLine,
+  guaranteeLine,
+  refundWindowLine,
+} from "../client/src/lib/offer";
 
 const client = createClient({
   projectId: "49ykafev",
@@ -209,8 +216,14 @@ export async function prerenderArticles() {
       `<h1>${escapeHtmlText(`${AUDIT_H1_LEAD} ${AUDIT_H1_REST}`)}</h1>`,
       `<p>${escapeHtmlText(AUDIT_DESCRIPTION)}</p>`,
       `<p>$${AUDIT_PRICE} NZD, with a CAD option at checkout: <a href="${AUDIT_PAY_URL}">Book now</a></p>`,
-      `<p>After you pay on Stripe, you land on the <a href="/initialize?plan=audit">intake form</a> so I can prepare for the session.</p>`,
-      `<p>${escapeHtmlText(creditLine(null))} ${escapeHtmlText(guaranteeLine(null))}</p>`,
+      `<h2>From booking to roadmap</h2>`,
+      `<ol>${auditSteps(null)
+        .map((step) => `<li><h3>${escapeHtmlText(step.label)}</h3><p>${escapeHtmlText(step.detail)}</p></li>`)
+        .join("")}</ol>`,
+      `<p><a href="/initialize?plan=audit">Intake form</a></p>`,
+      `<p>${escapeHtmlText(creditLine(null))} ${escapeHtmlText(guaranteeLine(null))} ${escapeHtmlText(refundWindowLine())}</p>`,
+      `<h2>${escapeHtmlText(auditProcessFaq(null).question)}</h2>`,
+      `<p>${escapeHtmlText(auditProcessFaq(null).answer)}</p>`,
       `<p><a href="/refunds">Refund policy</a> <a href="/privacy">Privacy</a> <a href="/terms">Terms</a></p>`,
       `</main>`,
     ].join(""),

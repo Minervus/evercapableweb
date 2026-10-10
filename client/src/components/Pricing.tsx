@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Check, Minus } from "lucide-react";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 import {
+  AUDIT_FORMAT_LINE,
   AUDIT_PRICE,
   auditSteps,
   COACHING_PRICE,
@@ -53,7 +54,7 @@ const plans: Plan[] = [
     name: "Audit + Roadmap",
     price: AUDIT_PRICE,
     cadence: () => "one-off",
-    summary: "One session and a plan you can use on your own.",
+    summary: AUDIT_FORMAT_LINE,
     cta: "Get your roadmap",
     href: "/initialize?plan=audit",
     testId: "button-offer-audit",
@@ -148,7 +149,7 @@ export function Pricing() {
           <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight mb-6 text-center">
             What the audit involves
           </h3>
-          <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {auditSteps(currency).map((step, i) => (
               <li
                 key={step.label}

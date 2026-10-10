@@ -8,6 +8,7 @@ import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCu
 import {
   CREDIT_WINDOW_DAYS,
   MONTHLY_TERMS_LINE,
+  auditProcessFaq,
   creditLine,
   creditRefundLine,
   guaranteeLine,
@@ -19,6 +20,7 @@ const faqs = (currency: DisplayCurrency | null) => [
     question: "What's the difference between the three offers?",
     answer: `Audit + Roadmap (${money(149, currency)}) is a one-off diagnostic and a 4–6 week plan — no ongoing chat, and no weekly app loop. Nutrition Habits (${money(149, currency)}/month) is weekly food tracking in the coaching app, Q&A in the check-in, and written adjustments from me. 1:1 Nutrition Coaching (${money(279, currency)}/month) uses the same app tracking, plus video deep dives with specific adjustments, priority messaging, fuller roadmap updates, and optional training support. Spots for 1:1 are capped.`,
   },
+  auditProcessFaq(currency),
   {
     question: "What do I send each week?",
     answer: "On Habits and 1:1, you track food in the coaching app and can ask questions in the weekly check-in. I review your inputs and send written adjustments. 1:1 adds video deep dives, priority chat, and fuller roadmap updates when life changes. The audit is one-off — no weekly app loop.",
