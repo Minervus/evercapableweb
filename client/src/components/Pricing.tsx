@@ -7,8 +7,11 @@ import {
   auditSteps,
   COACHING_PRICE,
   HABITS_PRICE,
+  COACHING_SUMMARY,
   creditLine,
+  MONTHLY_TERMS_LINE,
   guaranteeLine,
+  HABITS_SUMMARY,
   spotsLine,
 } from "@/lib/offer";
 import { reveal, revealAt } from "@/lib/reveal";
@@ -61,7 +64,7 @@ const plans: Plan[] = [
     name: "Nutrition Habits",
     price: HABITS_PRICE,
     cadence: () => "per month",
-    summary: "Weekly check-ins and written adjustments.",
+    summary: HABITS_SUMMARY,
     cta: "Start weekly habits",
     href: "/initialize?plan=habits",
     testId: "button-offer-habits",
@@ -71,7 +74,7 @@ const plans: Plan[] = [
     name: "1:1 Coaching",
     price: COACHING_PRICE,
     cadence: () => "per month",
-    summary: "Everything in Habits, plus weekly video deep dives.",
+    summary: COACHING_SUMMARY,
     cta: "Apply for coaching",
     href: "/initialize?plan=coaching",
     testId: "button-offer-coaching",
@@ -137,6 +140,7 @@ export function Pricing() {
         >
           <p className="text-white text-sm md:text-base font-medium">{creditLine(currency)}</p>
           <p className="mt-2 text-zinc-400 text-sm">{guaranteeLine(currency)}</p>
+          <p className="mt-2 text-zinc-400 text-sm">{MONTHLY_TERMS_LINE}</p>
         </motion.div>
 
         {/* What the audit actually is, so $149 is easy to picture. */}
@@ -294,7 +298,7 @@ export function Pricing() {
 
         <p className="text-center text-zinc-500 text-sm mb-16">
           {spotsLine()} For 1:1 I suggest giving it about 90 days so the weekly rhythm has time to
-          stick — then it's month to month.
+          stick. It's month to month from the first payment.
         </p>
 
         <motion.div {...reveal} className="mb-20 max-w-4xl mx-auto">

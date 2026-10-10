@@ -13,8 +13,8 @@ export const COACHING_PRICE = 279;
 /** Days after the audit that the credit stays open. */
 export const CREDIT_WINDOW_DAYS = 14;
 
-/** Days the audit refund stays open. */
-export const REFUND_WINDOW_DAYS = 14;
+/** Days the audit refund stays open, counted from roadmap delivery. */
+export const REFUND_WINDOW_DAYS = 7;
 
 /** How many 1:1 seats are currently open. Edit this one number. */
 export const SPOTS_OPEN: number = 4;
@@ -25,6 +25,13 @@ export const SPOTS_MONTH = "November";
 /** Minutes in the audit session. Matches the /audit page. */
 export const AUDIT_MINUTES = 60;
 
+/** Minutes the intake form at /initialize takes. Matches that page. */
+export const INTAKE_MINUTES = 8;
+
+/** One-line plain descriptions of the monthly plans, shared with Pricing. */
+export const HABITS_SUMMARY = "Weekly check-ins and written adjustments.";
+export const COACHING_SUMMARY = "Everything in Habits, plus weekly video deep dives.";
+
 /**
  * The credit, stated once, in one wording.
  * Previously this appeared ~10 times as both "covers your first month"
@@ -34,9 +41,25 @@ export function creditLine(currency: DisplayCurrency | null): string {
   return `Your ${money(AUDIT_PRICE, currency)} audit is credited to whichever plan you join within ${CREDIT_WINDOW_DAYS} days.`;
 }
 
+/**
+ * The only guarantee on the site, and it covers the audit alone. Habits and
+ * 1:1 have none. Keep refund wording to these helpers so no page promises
+ * results, refunds once the credit is used, or "if you're not satisfied".
+ */
 export function guaranteeLine(currency: DisplayCurrency | null): string {
-  return `If the roadmap isn't useful, email me within ${REFUND_WINDOW_DAYS} days and I'll refund the ${money(AUDIT_PRICE, currency)}.`;
+  return `If the roadmap isn't useful, tell me within ${REFUND_WINDOW_DAYS} days of receiving it and I'll refund the ${money(AUDIT_PRICE, currency)}.`;
 }
+
+export function refundWindowLine(): string {
+  return `The ${REFUND_WINDOW_DAYS} days start on the day I email you the roadmap.`;
+}
+
+export function creditRefundLine(currency: DisplayCurrency | null): string {
+  return `Once the ${money(AUDIT_PRICE, currency)} is credited to Habits or 1:1, it can't be refunded.`;
+}
+
+export const MONTHLY_TERMS_LINE =
+  "Habits and 1:1 are month to month, and you can cancel any time before your next billing date. There are no refunds for part of a month.";
 
 export function spotsLine(): string {
   return `${SPOTS_OPEN} 1:1 ${SPOTS_OPEN === 1 ? "spot" : "spots"} open for ${SPOTS_MONTH}.`;
@@ -53,8 +76,8 @@ export function spotsLine(): string {
 export function auditSteps(currency: DisplayCurrency | null) {
   return [
     {
-      label: "You apply",
-      detail: `A short form about how you eat now — about 5 minutes. Pay the ${money(AUDIT_PRICE, currency)}, then I email you to book a time.`,
+      label: "You book",
+      detail: `Pay the ${money(AUDIT_PRICE, currency)} on Stripe and you land on the intake form about how you eat now. It takes about ${INTAKE_MINUTES} minutes, and I email you to book a time.`,
     },
     {
       label: "We talk",

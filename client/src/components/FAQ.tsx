@@ -5,7 +5,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
-import { CREDIT_WINDOW_DAYS, REFUND_WINDOW_DAYS, creditLine } from "@/lib/offer";
+import {
+  CREDIT_WINDOW_DAYS,
+  MONTHLY_TERMS_LINE,
+  creditLine,
+  creditRefundLine,
+  guaranteeLine,
+  refundWindowLine,
+} from "@/lib/offer";
 
 const faqs = (currency: DisplayCurrency | null) => [
   {
@@ -50,7 +57,7 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
   {
     question: "How do cancelling and refunds work?",
-    answer: `The monthly offers are month to month — email me before your next billing date and that's it, no notice period and no exit fee. For the audit: if the roadmap isn't useful, email me within ${REFUND_WINDOW_DAYS} days and I'll refund it.`,
+    answer: `${MONTHLY_TERMS_LINE} ${guaranteeLine(currency)} ${refundWindowLine()} ${creditRefundLine(currency)}`,
   },
   {
     question: "Do you take clients outside New Zealand and Canada?",
@@ -64,7 +71,7 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
   {
     question: "Is there a 90-day lock-in?",
-    answer: "Not a hard contract. For 1:1 I recommend about 90 days so the weekly rhythm has time to stick. After that it's month-to-month. The audit is one-off with no ongoing commitment.",
+    answer: `No. ${MONTHLY_TERMS_LINE} For 1:1 I recommend about 90 days so the weekly rhythm has time to stick. The audit is one-off with no ongoing commitment.`,
   },
   {
     question: "Is coaching online?",
@@ -84,9 +91,24 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
 ];
 
-export function FAQ() {
+export type FaqItem = { question: string; answer: string };
+
+type FAQProps = {
+  /** Defaults to the homepage questions. */
+  items?: FaqItem[];
+  heading?: string;
+  intro?: string;
+  className?: string;
+};
+
+export function FAQ({
+  items: itemsProp,
+  heading = "Frequently Asked Questions",
+  intro = "Straight answers about the offers, weekly check-ins, and how we work together.",
+  className = "py-16 md:py-24 bg-black",
+}: FAQProps = {}) {
   const currency = useDisplayCurrency();
-  const items = faqs(currency);
+  const items = itemsProp ?? faqs(currency);
 
   // Built from the same array that renders below, so the markup Google reads
   // can never drift from the answers a visitor sees.
@@ -101,7 +123,7 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-16 md:py-24 bg-black scroll-mt-20 overflow-hidden">
+    <section id="faq" className={`${className} scroll-mt-20 overflow-hidden`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -113,11 +135,9 @@ export function FAQ() {
               FAQ
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Frequently Asked Questions
+              {heading}
             </h2>
-            <p className="text-zinc-400 mb-6">
-              Straight answers about the offers, weekly check-ins, and how we work together.
-            </p>
+            <p className="text-zinc-400 mb-6">{intro}</p>
           </div>
 
           <Accordion type="single" collapsible data-testid="accordion-faq">

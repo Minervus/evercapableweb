@@ -12,6 +12,9 @@ import Journal from "@/pages/Journal";
 import Article from "@/pages/Article";
 import Audit from "@/pages/Audit";
 import Kickstarter from "@/pages/Kickstarter";
+import Privacy from "@/pages/legal/Privacy";
+import Terms from "@/pages/legal/Terms";
+import Refunds from "@/pages/legal/Refunds";
 import { sectionIdForPath } from "@/lib/sectionRoutes";
 
 import TDEE from "@/pages/TDEE";
@@ -47,6 +50,9 @@ function Router() {
       <Route path="/protocol" component={Audit} />
       <Route path="/kickstarter" component={Kickstarter} />
       <Route path="/tdee" component={TDEE} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/refunds" component={Refunds} />
       <Route path="/:alias" component={HomeSectionAlias} />
       <Route component={NotFound} />
     </Switch>

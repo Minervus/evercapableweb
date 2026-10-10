@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useSearch } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { wiseAuditPayUrl } from "@/lib/auditPayment";
+import { AUDIT_PAY_URL } from "@/lib/auditPayment";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
+import { MONTHLY_TERMS_LINE, creditLine, guaranteeLine, INTAKE_MINUTES, refundWindowLine } from "@/lib/offer";
 import { watchCanonical } from "@/lib/sectionRoutes";
 import { SITE_BASE_URL } from "@shared/articleSeo";
 
@@ -161,7 +162,7 @@ const questions: Question[][] = [
             required: false,
         },
     ],
-    // ── STEP 7 (Contract) ─────────────────────────────────────────────────────
+    // ── STEP 7 (Tracking and coaching) ─────────────────────────────────────────────────────
     [
         { id: "healthMetrics", label: "DO YOU CURRENTLY TRACK YOUR HEALTH METRICS? // (e.g. steps via a watch or phone, HRV, sleep data, etc.) //", type: "text", required: true },
         { id: "coachability", label: "COACHABILITY METRIC (1-10 — 1=resistant, 10=coachable) //", type: "text", required: true },
@@ -177,10 +178,10 @@ const STEP_LABELS = [
     "Food",
     "Goals",
     "Sleep and stress",
-    "Agreement",
+    "Tracking and coaching",
 ];
 
-const APPLICATION_MINUTES = 8;
+const APPLICATION_MINUTES = INTAKE_MINUTES;
 
 // ---------------------------------------------------------------------------
 // Email validator
@@ -201,7 +202,7 @@ export default function Initialize() {
     const planLabel = labels[planKey] ?? labels.audit;
     const isAudit = planKey === "audit" || !(planKey in labels);
     const auditPrice = money(149, currency);
-    const auditPayUrl = wiseAuditPayUrl(currency);
+    const formName = isAudit ? "intake form" : "application";
 
     const [currentStep, setCurrentStep] = useState(1);
     const [timezoneChoiceState] = useState(() => timezoneChoice(readBrowserTimeZone()));
@@ -212,7 +213,6 @@ export default function Initialize() {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [uploadSuccess, setUploadSuccess] = useState(false);
-    const [contractAgreed, setContractAgreed] = useState(false);
 
     useEffect(() => watchCanonical(`${SITE_BASE_URL}/initialize`), []);
 
@@ -226,7 +226,7 @@ export default function Initialize() {
         return true;
     });
 
-    const canProceed = isStepValid && (currentStep !== TOTAL_STEPS || contractAgreed);
+    const canProceed = isStepValid;
 
     const handleInputChange = (id: string, value: string) => {
         setFormData((prev) => ({ ...prev, [id]: value }));
@@ -249,7 +249,6 @@ export default function Initialize() {
             const payload = {
                 ...formData,
                 selected_plan: planLabel,
-                "90_Day_System_Guarantee_Agreed": contractAgreed ? "YES" : "NO",
             };
 
             await fetch(url, {
@@ -279,11 +278,11 @@ export default function Initialize() {
                     className="max-w-xl w-full"
                 >
                     <div className="text-orange-500 mb-6 font-bold tracking-widest uppercase">
-                        Application received
+                        {isAudit ? "Intake form received" : "Application received"}
                     </div>
 
                     <h1 className="text-2xl md:text-3xl text-white font-bold tracking-tight mb-4">
-                        Tony has your application.
+                        Tony has your {formName}.
                     </h1>
 
                     <p className="mb-4 leading-relaxed text-zinc-300">
@@ -292,16 +291,14 @@ export default function Initialize() {
 
                     {isAudit && (
                         <p className="mb-6 leading-relaxed text-zinc-400">
-                            If the {auditPrice} audit fee is still unpaid,{" "}
+                            If you haven't paid the {auditPrice} audit fee yet,{" "}
                             <a
-                                href={auditPayUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href={AUDIT_PAY_URL}
                                 className="text-orange-400 underline underline-offset-2 hover:text-orange-300"
                             >
-                                pay it on Wise
+                                pay it on Stripe
                             </a>{" "}
-                            so the session can be booked. Start Habits within 14 days and that fee covers month one. Start 1:1 within 14 days and you get {auditPrice} off month one.
+                            so the session can be booked. There's no need to fill in the form again after that. {creditLine(currency)}
                         </p>
                     )}
 
@@ -360,13 +357,12 @@ export default function Initialize() {
                     {isAudit && currentStep === 1 && (
                         <div className="mb-8 max-w-xl border border-orange-500/30 bg-orange-500/5 px-5 py-5">
                             <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-4">
-                                Pay {auditPrice} for the audit first. Then finish this form so Tony has your name and can prep the session.
-                                Start Habits within 14 days and the audit covers month one. Start 1:1 within 14 days and you get {auditPrice} off month one.
+                                If you just paid on Stripe, you're in the right place. Fill in this intake form so Tony can prepare for the session.
+                                If you haven't paid yet, book the {auditPrice} audit first and Stripe brings you back here.
+                                {" "}{creditLine(currency)}
                             </p>
                             <a
-                                href={auditPayUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href={AUDIT_PAY_URL}
                                 className="inline-block bg-orange-500 hover:bg-orange-400 text-black font-bold tracking-widest text-xs uppercase px-6 py-3 transition-colors"
                             >
                                 Book now
@@ -374,7 +370,7 @@ export default function Initialize() {
                         </div>
                     )}
                     <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 max-w-xl">
-                        This application is {TOTAL_STEPS} short steps and takes about {APPLICATION_MINUTES} minutes.
+                        This {formName} is {TOTAL_STEPS} short steps and takes about {APPLICATION_MINUTES} minutes.
                         When you submit, Tony reviews it and replies by email to book the session.
                     </p>
                     <h1 className="text-2xl md:text-4xl text-white font-bold tracking-tight mb-2 uppercase">
@@ -475,38 +471,21 @@ export default function Initialize() {
                                 );
                             })}
 
-                            {/* Contract Toggle — final step only */}
                             {currentStep === TOTAL_STEPS && (
-                                <div className="mt-16 pt-8 border-t border-white/5">
-                                    <div className="bg-orange-500/5 p-6 border border-orange-500/20 rounded-sm">
-                                        <p className="text-orange-500 text-sm font-bold tracking-wider mb-4 uppercase">
-                                            THE 90-DAY SYSTEM GUARANTEE
+                                <div className="mt-16 pt-8 border-t border-white/5 space-y-3 text-zinc-400 text-xs md:text-sm leading-relaxed max-w-xl">
+                                    {isAudit && (
+                                        <p>
+                                            {guaranteeLine(currency)} {refundWindowLine()}
                                         </p>
-                                        <p className="text-zinc-300 text-xs md:text-sm leading-relaxed mb-6">
-                                            By toggling this switch, you agree to the foundational system contract: If you execute your custom protocols with 90% or greater consistency over 90 days, and you do not hit your target, I will coach you for free until you do. If you fail to maintain 90% compliance, the guarantee is void.
-                                        </p>
-                                        <div className="flex items-center justify-between">
-                                            <span className="text-xs uppercase tracking-widest text-zinc-400">
-                                                Acknowledge & Accept Terms
-                                            </span>
-                                            <button
-                                                type="button"
-                                                onClick={() => setContractAgreed(!contractAgreed)}
-                                                className={`relative w-16 h-8 rounded-full transition-colors duration-300 outline-none focus:ring-2 focus:ring-orange-500/50 focus:ring-offset-2 focus:ring-offset-[#0A0A0A] ${contractAgreed
-                                                    ? "bg-orange-500 shadow-[0_0_15px_rgba(255,102,0,0.4)]"
-                                                    : "bg-white/10"
-                                                    }`}
-                                                data-testid="contract-toggle"
-                                            >
-                                                <span
-                                                    className={`absolute top-1 left-1 w-6 h-6 rounded-full bg-[#0A0A0A] transition-transform duration-300 flex items-center justify-center ${contractAgreed ? "translate-x-8" : "translate-x-0"
-                                                        }`}
-                                                >
-                                                    {contractAgreed && <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />}
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    )}
+                                    <p>{MONTHLY_TERMS_LINE}</p>
+                                    <p>
+                                        Full details are in the{" "}
+                                        <Link href="/refunds" className="text-orange-400 underline underline-offset-2 hover:text-orange-300">
+                                            refund policy
+                                        </Link>
+                                        .
+                                    </p>
                                 </div>
                             )}
                         </motion.div>
