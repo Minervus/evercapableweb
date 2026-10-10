@@ -36,6 +36,8 @@ export const GARY = {
   startingPoint: "Wanted a straight read on his habits, training and food together.",
   result: "More muscle and less body fat in time for his wedding. We still work together week to week.",
   steps: [
+    "We started by tracking his food, so we had a baseline to work from.",
+    "Then we found easy swaps to more nutrient-dense foods and snacks.",
     "In the 4 months before his wedding, we worked on building muscle and bringing his body fat down.",
     "Since the wedding, we work week to week so he holds onto what he built and keeps making steady gains.",
   ],
