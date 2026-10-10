@@ -11,7 +11,13 @@
  */
 import { EmailLink, LegalPage, LegalSection } from "@/components/LegalPage";
 import { useDisplayCurrency } from "@/lib/displayCurrency";
-import { MONTHLY_TERMS_LINE, creditRefundLine, guaranteeLine, refundWindowLine } from "@/lib/offer";
+import {
+  MONTHLY_TERMS_LINE,
+  ROADMAP_DELIVERY_LINE,
+  creditRefundLine,
+  guaranteeLine,
+  refundWindowLine,
+} from "@/lib/offer";
 
 export default function Refunds() {
   const currency = useDisplayCurrency();
@@ -24,7 +30,7 @@ export default function Refunds() {
     >
       <LegalSection title="Audit + Roadmap">
         <p>{guaranteeLine(currency)}</p>
-        <p>{refundWindowLine()}</p>
+        <p>{ROADMAP_DELIVERY_LINE} {refundWindowLine()}</p>
         <p>{creditRefundLine(currency)}</p>
         <p>
           To ask for a refund, email <EmailLink />.

@@ -4,7 +4,16 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AUDIT_PAY_URL } from "@/lib/auditPayment";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
-import { MONTHLY_TERMS_LINE, creditLine, guaranteeLine, INTAKE_MINUTES, refundWindowLine } from "@/lib/offer";
+import {
+    AUDIT_FORMAT_LINE,
+    AUDIT_INTAKE_LINE,
+    MONTHLY_TERMS_LINE,
+    ROADMAP_DELIVERY_LINE,
+    creditLine,
+    guaranteeLine,
+    INTAKE_MINUTES,
+    refundWindowLine,
+} from "@/lib/offer";
 import { watchCanonical } from "@/lib/sectionRoutes";
 import { SITE_BASE_URL } from "@shared/articleSeo";
 
@@ -357,8 +366,8 @@ export default function Initialize() {
                     {isAudit && currentStep === 1 && (
                         <div className="mb-8 max-w-xl border border-orange-500/30 bg-orange-500/5 px-5 py-5">
                             <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-4">
-                                If you just paid on Stripe, you're in the right place. Fill in this intake form so Tony can prepare for the session.
-                                If you haven't paid yet, book the {auditPrice} audit first and Stripe brings you back here.
+                                If you just paid on Stripe, you're in the right place. {AUDIT_INTAKE_LINE} {AUDIT_FORMAT_LINE} {ROADMAP_DELIVERY_LINE}
+                                {" "}If you haven't paid yet, book the {auditPrice} audit first and Stripe brings you back here.
                                 {" "}{creditLine(currency)}
                             </p>
                             <a
