@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { useDisplayCurrency } from "@/lib/displayCurrency";
-import { AUDIT_MINUTES, creditLine, guaranteeLine } from "@/lib/offer";
+import { AUDIT_BOOKING_LINE, AUDIT_MINUTES, INTAKE_MINUTES, creditLine, guaranteeLine } from "@/lib/offer";
 
 export function Contact() {
   const currency = useDisplayCurrency();
@@ -39,8 +39,8 @@ export function Contact() {
           </Link>
 
           <p className="mt-8 text-sm text-zinc-500">
-            Next step is a short form about how you eat now — about 5 minutes. I'll email you to
-            book the session.
+            Next step is a short form about how you eat now, about {INTAKE_MINUTES} minutes.{" "}
+            {AUDIT_BOOKING_LINE}
           </p>
           <p className="mt-2 text-sm text-zinc-500">{guaranteeLine(currency)}</p>
           <p className="mt-4 text-sm text-zinc-500">

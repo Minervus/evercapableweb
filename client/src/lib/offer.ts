@@ -71,14 +71,20 @@ export const ROADMAP_WORKING_DAYS = 2;
 /**
  * How the audit runs, stated once. /audit, /refunds, /terms, the homepage FAQ,
  * Pricing, the intake form and the prerendered /audit shell all read these.
- * How soon the call can be booked is not known yet, so nothing here says.
+ * Cal.com takes bookings at least 7 days out so Tony can review the intake first.
  */
 export function auditPayLine(currency: DisplayCurrency | null): string {
   return `Pay the ${money(AUDIT_PRICE, currency)} on Stripe and it sends you straight to the intake form.`;
 }
 
-export const AUDIT_INTAKE_LINE =
-  "Before the call, you fill in the intake form and share your numbers so I'm prepared.";
+export const AUDIT_INTAKE_LINE = "You fill in the intake form and share your numbers.";
+
+export const BOOKING_NOTICE = "at least a week out so I can review your numbers first";
+
+export const AUDIT_BOOKING_LINE = `Then you book your call ${BOOKING_NOTICE}.`;
+
+/** Under the Book your call button on the intake form's confirmation screen. */
+export const BOOKING_PICK_LINE = `Pick a time ${BOOKING_NOTICE}.`;
 
 export const AUDIT_FORMAT_LINE =
   "The audit is a video call followed by a walk-through of your roadmap.";
@@ -86,14 +92,20 @@ export const AUDIT_FORMAT_LINE =
 export const ROADMAP_DELIVERY_LINE = `I email you the roadmap within ${ROADMAP_WORKING_DAYS} working days of the call. Weekends don't count.`;
 
 export function auditProcessLine(currency: DisplayCurrency | null): string {
-  return [auditPayLine(currency), AUDIT_INTAKE_LINE, AUDIT_FORMAT_LINE, ROADMAP_DELIVERY_LINE].join(" ");
+  return [
+    auditPayLine(currency),
+    AUDIT_INTAKE_LINE,
+    AUDIT_BOOKING_LINE,
+    AUDIT_FORMAT_LINE,
+    ROADMAP_DELIVERY_LINE,
+  ].join(" ");
 }
 
 export function auditProcessFaq(currency: DisplayCurrency | null) {
   return { question: "How does the audit work?", answer: auditProcessLine(currency) };
 }
 
-export const AUDIT_INTAKE_DETAIL = `${AUDIT_INTAKE_LINE} It takes about ${INTAKE_MINUTES} minutes, and I email you to book a time.`;
+export const AUDIT_INTAKE_DETAIL = `${AUDIT_INTAKE_LINE} It takes about ${INTAKE_MINUTES} minutes.`;
 
 /** What the audit actually is, so a visitor can picture it before paying. */
 export function auditSteps(currency: DisplayCurrency | null) {
@@ -107,8 +119,12 @@ export function auditSteps(currency: DisplayCurrency | null) {
       detail: AUDIT_INTAKE_DETAIL,
     },
     {
+      label: "You book your call",
+      detail: AUDIT_BOOKING_LINE,
+    },
+    {
       label: "We talk",
-      detail: `${AUDIT_FORMAT_LINE} We go through a normal week of your meals.`,
+      detail: `${AUDIT_FORMAT_LINE} The call is ${AUDIT_MINUTES} minutes, and we go through a normal week of your meals.`,
     },
     {
       label: "You get the roadmap",

@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, useSearch } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AUDIT_PAY_URL } from "@/lib/auditPayment";
+import { AUDIT_BOOKING_URL, AUDIT_PAY_URL } from "@/lib/auditPayment";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 import {
+    AUDIT_BOOKING_LINE,
     AUDIT_FORMAT_LINE,
     AUDIT_INTAKE_LINE,
+    BOOKING_PICK_LINE,
     MONTHLY_TERMS_LINE,
     ROADMAP_DELIVERY_LINE,
     creditLine,
@@ -294,9 +296,23 @@ export default function Initialize() {
                         Tony has your {formName}.
                     </h1>
 
-                    <p className="mb-4 leading-relaxed text-zinc-300">
-                        He reviews it and replies by email to book the session.
-                    </p>
+                    {isAudit ? (
+                        <div className="mb-8">
+                            <a
+                                href={AUDIT_BOOKING_URL}
+                                className="inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-400 text-black font-bold tracking-widest text-sm uppercase px-8 py-4 transition-colors shadow-xl shadow-orange-500/20"
+                                data-testid="button-book-call"
+                            >
+                                Book your call
+                                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                            </a>
+                            <p className="mt-3 text-sm leading-relaxed text-zinc-300">{BOOKING_PICK_LINE}</p>
+                        </div>
+                    ) : (
+                        <p className="mb-4 leading-relaxed text-zinc-300">
+                            He reviews it and replies by email to book the session.
+                        </p>
+                    )}
 
                     {isAudit && (
                         <p className="mb-6 leading-relaxed text-zinc-400">
@@ -366,7 +382,7 @@ export default function Initialize() {
                     {isAudit && currentStep === 1 && (
                         <div className="mb-8 max-w-xl border border-orange-500/30 bg-orange-500/5 px-5 py-5">
                             <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-4">
-                                If you just paid on Stripe, you're in the right place. {AUDIT_INTAKE_LINE} {AUDIT_FORMAT_LINE} {ROADMAP_DELIVERY_LINE}
+                                If you just paid on Stripe, you're in the right place. {AUDIT_INTAKE_LINE} {AUDIT_BOOKING_LINE} {AUDIT_FORMAT_LINE} {ROADMAP_DELIVERY_LINE}
                                 {" "}If you haven't paid yet, book the {auditPrice} audit first and Stripe brings you back here.
                                 {" "}{creditLine(currency)}
                             </p>
@@ -380,7 +396,9 @@ export default function Initialize() {
                     )}
                     <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 max-w-xl">
                         This {formName} is {TOTAL_STEPS} short steps and takes about {APPLICATION_MINUTES} minutes.
-                        When you submit, Tony reviews it and replies by email to book the session.
+                        {isAudit
+                            ? "When you submit, you book your call on the next screen."
+                            : "When you submit, Tony reviews it and replies by email to book the session."}
                     </p>
                     <h1 className="text-2xl md:text-4xl text-white font-bold tracking-tight mb-2 uppercase">
                         {currentStep === 1 ? "Contact Details" : STEP_LABELS[currentStep - 1]}

@@ -149,7 +149,7 @@ export function Pricing() {
           <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight mb-6 text-center">
             What the audit involves
           </h3>
-          <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {auditSteps(currency).map((step, i) => (
               <li
                 key={step.label}

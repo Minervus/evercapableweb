@@ -10,6 +10,7 @@ import { AUDIT_PAY_URL } from "@/lib/auditPayment";
 import { CHRISTIAN, CHRISTIAN_RESULT } from "@/lib/clientStories";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 import {
+  AUDIT_BOOKING_LINE,
   AUDIT_FORMAT_LINE,
   AUDIT_INTAKE_DETAIL,
   AUDIT_MINUTES,
@@ -75,7 +76,7 @@ function auditFaqs(currency: DisplayCurrency | null): FaqItem[] {
       question: "What if I need to reschedule?",
       // TODO(tony): add a notice period if you want one (e.g. 24 hours). None is stated anywhere yet.
       answer:
-        "We set the time over email, so reply to that email and we'll find another time that works.",
+        "You book the call on Cal.com. If you need a different time, email me and we'll find another one that works.",
     },
     {
       question: "How do refunds work?",
@@ -84,7 +85,7 @@ function auditFaqs(currency: DisplayCurrency | null): FaqItem[] {
     {
       question: "Does my time zone matter?",
       answer:
-        "The session is online, so you can join from anywhere. The intake form asks for your time zone, and I use it to book a time that suits where you are.",
+        "The session is online, so you can join from anywhere. The booking page shows the available times in your own time zone.",
     },
     {
       question: "Which currency do I pay in?",
@@ -135,10 +136,10 @@ function IntakeCard({ currency, className = "" }: { currency: DisplayCurrency | 
         </div>
         <div className="min-w-0">
           <p className="text-orange-500 font-mono text-[10px] uppercase tracking-[0.2em] mb-1.5">
-            After you book
+            After you pay
           </p>
           <p className="text-zinc-200 text-sm leading-relaxed">
-            {auditPayLine(currency)} {AUDIT_INTAKE_DETAIL}
+            {auditPayLine(currency)} {AUDIT_INTAKE_DETAIL} {AUDIT_BOOKING_LINE}
           </p>
         </div>
       </div>
@@ -307,7 +308,7 @@ export default function Audit() {
               <div className="mt-10 flex flex-col items-center">
                 <PayButton label="Book now" />
                 <p className="mt-4 text-zinc-400 text-sm leading-relaxed max-w-sm">
-                  After you book, Stripe takes you to the <IntakeLink>intake form</IntakeLink> so I can prepare. I'll email you to set the session.
+                  After you pay, Stripe takes you to the <IntakeLink>intake form</IntakeLink>. {AUDIT_BOOKING_LINE}
                 </p>
               </div>
             </motion.div>
@@ -525,7 +526,7 @@ export default function Audit() {
               Ready to stop guessing?
             </h2>
             <p className="text-zinc-400 text-lg leading-[1.8]">
-              Pay {price} for the Audit + Roadmap and you go straight to the intake form so I can prepare. I'll email you to set the session.
+              Pay {price} for the Audit + Roadmap and you go straight to the intake form. {AUDIT_BOOKING_LINE}
             </p>
           </motion.div>
         </section>

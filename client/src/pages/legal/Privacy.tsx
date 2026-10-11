@@ -2,15 +2,19 @@
  * DRAFT: needs Tony's or a lawyer's review before it is relied on.
  *
  * Written in plain language from what the site does today: the Formspree intake
- * form (/initialize), MailerLite email signups, the Stripe payment link, and the
- * Google Analytics and Metricool scripts in client/index.html. It makes no claim
- * about which privacy law applies.
+ * form (/initialize), MailerLite email signups, the Stripe payment link, the
+ * Cal.com booking page for the audit call, and the Google Analytics and
+ * Metricool scripts in client/index.html. It makes no claim about which
+ * privacy law applies.
  *
  * TODO(tony): confirm or fill in
  *   - how long intake answers and email-list details are kept;
  *   - the name of the coaching app provider behind EverCapable;
  *   - that you never see card numbers on Stripe payments;
  *   - whether anyone else (an assistant, a VA) can read client information.
+ *
+ * TODO(tony): Cal.com retention. How long Cal.com keeps booking details, and
+ * whether you delete past bookings, is still unchecked against its terms.
  */
 import { EmailLink, LegalPage, LegalSection } from "@/components/LegalPage";
 
@@ -27,6 +31,12 @@ export default function Privacy() {
         </p>
         <p>
           The form is sent through Formspree, a form service that passes your answers on to me. I use them to prepare for your session and to coach you.
+        </p>
+      </LegalSection>
+
+      <LegalSection title="Booking your call">
+        <p>
+          You book the audit call through Cal.com, a scheduling service. When you book, Cal.com receives your name and email. It also receives your answer to the question on the booking page, and passes these details on to me so the call is set up.
         </p>
       </LegalSection>
 
