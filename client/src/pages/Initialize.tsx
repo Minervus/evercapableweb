@@ -395,7 +395,7 @@ export default function Initialize() {
                         </div>
                     )}
                     <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 max-w-xl">
-                        This {formName} is {TOTAL_STEPS} short steps and takes about {APPLICATION_MINUTES} minutes.
+                        This {formName} is {TOTAL_STEPS} short steps and takes about {APPLICATION_MINUTES} minutes.{" "}
                         {isAudit
                             ? "When you submit, you book your call on the next screen."
                             : "When you submit, Tony reviews it and replies by email to book the session."}
