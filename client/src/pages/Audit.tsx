@@ -10,11 +10,16 @@ import { AUDIT_PAY_URL } from "@/lib/auditPayment";
 import { CHRISTIAN, CHRISTIAN_RESULT } from "@/lib/clientStories";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 import {
+  AUDIT_BOOKING_LINE,
+  AUDIT_FORMAT_LINE,
+  AUDIT_INTAKE_DETAIL,
   AUDIT_MINUTES,
   AUDIT_PRICE,
   COACHING_SUMMARY,
   HABITS_SUMMARY,
-  INTAKE_MINUTES,
+  ROADMAP_DELIVERY_LINE,
+  auditPayLine,
+  auditProcessFaq,
   auditSteps,
   creditLine,
   creditRefundLine,
@@ -66,11 +71,12 @@ const fadeIn = {
 /* ─── FAQ ────────────────────────────────────────────────────────────────── */
 function auditFaqs(currency: DisplayCurrency | null): FaqItem[] {
   return [
+    auditProcessFaq(currency),
     {
       question: "What if I need to reschedule?",
       // TODO(tony): add a notice period if you want one (e.g. 24 hours). None is stated anywhere yet.
       answer:
-        "We set the time over email, so reply to that email and we'll find another time that works.",
+        "You book the call on Cal.com. If you need a different time, email me and we'll find another one that works.",
     },
     {
       question: "How do refunds work?",
@@ -79,11 +85,7 @@ function auditFaqs(currency: DisplayCurrency | null): FaqItem[] {
     {
       question: "Does my time zone matter?",
       answer:
-        "The session is online, so you can join from anywhere. The intake form asks for your time zone, and I use it to book a time that suits where you are.",
-    },
-    {
-      question: "Which currency do I pay in?",
-      answer: `The page shows ${money(AUDIT_PRICE, "NZD")} or ${money(AUDIT_PRICE, "CAD")} depending on where you're browsing from. Book now opens a Stripe checkout priced in NZD with a CAD option. Stripe may also offer the price converted to your local currency, and you pick the one you want before paying.`,
+        "The session is online, so you can join from anywhere. The booking page shows the available times in your own time zone.",
     },
   ];
 }
@@ -119,7 +121,7 @@ function lowerFirst(text: string) {
 }
 
 /** The step after paying. Sits directly under each main Book now button. */
-function IntakeCard({ className = "" }: { className?: string }) {
+function IntakeCard({ currency, className = "" }: { currency: DisplayCurrency | null; className?: string }) {
   return (
     <div
       className={`rounded-md border border-orange-500/40 bg-orange-500/[0.07] px-5 py-5 text-left ${className}`}
@@ -130,10 +132,10 @@ function IntakeCard({ className = "" }: { className?: string }) {
         </div>
         <div className="min-w-0">
           <p className="text-orange-500 font-mono text-[10px] uppercase tracking-[0.2em] mb-1.5">
-            After you book
+            After you pay
           </p>
           <p className="text-zinc-200 text-sm leading-relaxed">
-            Once you pay, Stripe takes you straight to the intake form so I can prepare. It takes about {INTAKE_MINUTES} minutes, and then I email you to book a time.
+            {auditPayLine(currency)} {AUDIT_INTAKE_DETAIL} {AUDIT_BOOKING_LINE}
           </p>
         </div>
       </div>
@@ -229,12 +231,12 @@ export default function Audit() {
               </h1>
 
               <p className="text-xl text-zinc-300 leading-[1.75] mb-10 max-w-[520px]">
-                One {AUDIT_MINUTES}-minute session. You leave with a 4 to 6 week food roadmap, one habit at a time.
+                One {AUDIT_MINUTES}-minute session. You get a 4 to 6 week food roadmap, one habit at a time.
               </p>
 
               <PayButton label="Book now" />
               <p className="mt-3 text-zinc-500 text-xs tracking-wide">Checkout is on Stripe.</p>
-              <IntakeCard className="mt-6 max-w-[480px]" />
+              <IntakeCard currency={currency} className="mt-6 max-w-[480px]" />
               <OfferNotes currency={currency} className="mt-6 max-w-[480px]" />
             </motion.div>
 
@@ -292,7 +294,7 @@ export default function Audit() {
 
               <div className="space-y-6 text-zinc-300 text-[1.05rem] leading-[1.8]">
                 <p>
-                  We look at how your energy responds to the way you eat on a normal week with the kids. You leave with a <strong className="text-white">food roadmap</strong> written for that week, aimed at the afternoon energy you want back.
+                  We look at how your energy responds to the way you eat on a normal week with the kids. You get a <strong className="text-white">food roadmap</strong> written for that week, aimed at the afternoon energy you want back.
                 </p>
                 <p>
                   I will help you keep a way of eating that still works when the week gets messy. <strong className="text-white">Steady afternoon energy</strong> comes first.
@@ -302,7 +304,7 @@ export default function Audit() {
               <div className="mt-10 flex flex-col items-center">
                 <PayButton label="Book now" />
                 <p className="mt-4 text-zinc-400 text-sm leading-relaxed max-w-sm">
-                  After you book, Stripe takes you to the <IntakeLink>intake form</IntakeLink> so I can prepare. I'll email you to set the session.
+                  After you pay, Stripe takes you to the <IntakeLink>intake form</IntakeLink>. {AUDIT_BOOKING_LINE}
                 </p>
               </div>
             </motion.div>
@@ -334,8 +336,8 @@ export default function Audit() {
               },
               {
                 number: "03",
-                title: "Leave with the next habit",
-                body: "You leave with a 4 to 6 week roadmap and one habit to practice first.",
+                title: "Pick the first habit",
+                body: `We pick the one habit to practice first, and it goes into your 4 to 6 week roadmap. ${ROADMAP_DELIVERY_LINE}`,
                 Icon: GitMerge,
               },
             ].map((item) => (
@@ -520,7 +522,7 @@ export default function Audit() {
               Ready to stop guessing?
             </h2>
             <p className="text-zinc-400 text-lg leading-[1.8]">
-              Pay {price} for the Audit + Roadmap and you go straight to the intake form so I can prepare. I'll email you to set the session.
+              Pay {price} for the Audit + Roadmap and you go straight to the intake form. {AUDIT_BOOKING_LINE}
             </p>
           </motion.div>
         </section>
@@ -556,7 +558,8 @@ export default function Audit() {
                 {[
                   "One-off nutrition and lifestyle review",
                   "Personal 4 to 6 week food and habit roadmap",
-                  "One session, then a plan you use on your own",
+                  AUDIT_FORMAT_LINE,
+                  ROADMAP_DELIVERY_LINE,
                 ].map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-zinc-200 text-sm leading-relaxed">
                     <span className="w-5 h-5 rounded-full bg-orange-500/15 border border-orange-500/30 flex items-center justify-center shrink-0">
@@ -573,7 +576,7 @@ export default function Audit() {
               <div className="flex flex-col items-center gap-3 text-center">
                 <PayButton label="Book now" />
                 <p className="text-zinc-500 text-xs">Checkout is on Stripe.</p>
-                <IntakeCard className="mt-3 w-full" />
+                <IntakeCard currency={currency} className="mt-3 w-full" />
               </div>
             </div>
           </motion.div>

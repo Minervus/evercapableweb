@@ -17,6 +17,7 @@ import {
   HABITS_PRICE,
   HABITS_SUMMARY,
   MONTHLY_TERMS_LINE,
+  auditProcessLine,
   creditLine,
   creditRefundLine,
   guaranteeLine,
@@ -36,11 +37,12 @@ export default function Terms() {
         <p>
           The Audit + Roadmap is {money(AUDIT_PRICE, currency)}, paid once. It's one {AUDIT_MINUTES}-minute session and a 4 to 6 week food roadmap you then use on your own.
         </p>
+        <p>{auditProcessLine(currency)}</p>
         <p>
           Nutrition Habits is {money(HABITS_PRICE, currency)} a month: {HABITS_SUMMARY.toLowerCase()} 1:1 Nutrition Coaching is {money(COACHING_PRICE, currency)} a month: {COACHING_SUMMARY.charAt(0).toLowerCase() + COACHING_SUMMARY.slice(1)}
         </p>
         <p>
-          Prices show in NZD or CAD depending on where you're browsing from. The audit is paid through Stripe, which may also offer the price converted to your local currency at checkout. {creditLine(currency)}
+          The audit is paid through Stripe. {creditLine(currency)}
         </p>
       </LegalSection>
 
