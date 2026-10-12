@@ -64,7 +64,7 @@ const faqs = (currency: DisplayCurrency | null) => [
   {
     question: "Do you take clients outside New Zealand and Canada?",
     answer:
-      "Yes. Coaching is fully online, so where you are only affects the check-in timing, and that's flexible. Prices are shown in NZD or CAD depending on where you're browsing from; if you're somewhere else, you'll see the amount without a currency label — just ask and I'll confirm which one you'd be charged in.",
+      "Yes. Coaching is fully online, so where you are only affects the check-in timing, and that's flexible.",
   },
   {
     question: "Are you a dietitian?",

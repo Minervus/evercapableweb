@@ -215,7 +215,7 @@ export async function prerenderArticles() {
       `<nav aria-label="Site"><a href="/">Home</a> <a href="/journal">Journal</a></nav>`,
       `<h1>${escapeHtmlText(`${AUDIT_H1_LEAD} ${AUDIT_H1_REST}`)}</h1>`,
       `<p>${escapeHtmlText(AUDIT_DESCRIPTION)}</p>`,
-      `<p>$${AUDIT_PRICE} NZD, with a CAD option at checkout: <a href="${AUDIT_PAY_URL}">Book now</a></p>`,
+      `<p>$${AUDIT_PRICE} NZD: <a href="${AUDIT_PAY_URL}">Book now</a></p>`,
       `<h2>From booking to roadmap</h2>`,
       `<ol>${auditSteps(null)
         .map((step) => `<li><h3>${escapeHtmlText(step.label)}</h3><p>${escapeHtmlText(step.detail)}</p></li>`)

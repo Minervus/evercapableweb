@@ -87,10 +87,6 @@ function auditFaqs(currency: DisplayCurrency | null): FaqItem[] {
       answer:
         "The session is online, so you can join from anywhere. The booking page shows the available times in your own time zone.",
     },
-    {
-      question: "Which currency do I pay in?",
-      answer: `The page shows ${money(AUDIT_PRICE, "NZD")} or ${money(AUDIT_PRICE, "CAD")} depending on where you're browsing from. Book now opens a Stripe checkout priced in NZD with a CAD option. Stripe may also offer the price converted to your local currency, and you pick the one you want before paying.`,
-    },
   ];
 }
 
