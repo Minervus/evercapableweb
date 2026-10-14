@@ -19,8 +19,11 @@ export const REFUND_WINDOW_DAYS = 7;
 /** How many 1:1 seats are currently open. Edit this one number. */
 export const SPOTS_OPEN: number = 4;
 
-/** The month the open spots refer to, e.g. "November". */
-export const SPOTS_MONTH = "November";
+/**
+ * The month the open spots refer to. Update both fields together each month.
+ * Once the month has passed, the line drops the month instead of naming a stale one.
+ */
+export const SPOTS_FOR = { month: "November", year: 2026 };
 
 /** Minutes in the audit session. Matches the /audit page. */
 export const AUDIT_MINUTES = 60;
@@ -61,8 +64,26 @@ export function creditRefundLine(currency: DisplayCurrency | null): string {
 export const MONTHLY_TERMS_LINE =
   "Habits and 1:1 are month to month, and you can cancel any time before your next billing date. There are no refunds for part of a month.";
 
-export function spotsLine(): string {
-  return `${SPOTS_OPEN} 1:1 ${SPOTS_OPEN === 1 ? "spot" : "spots"} open for ${SPOTS_MONTH}.`;
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+
+const NUMBER_WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
+
+/** True until the end of SPOTS_FOR's month (local time). */
+function spotsMonthIsCurrent(now: Date): boolean {
+  const monthIndex = MONTHS.indexOf(SPOTS_FOR.month);
+  if (monthIndex === -1) return false;
+  return now < new Date(SPOTS_FOR.year, monthIndex + 1, 1);
+}
+
+/** "Four 1:1 spots open for November." Spelled out so "4 1:1" can't read as "41:1". */
+export function spotsLine(now: Date = new Date()): string {
+  const count = NUMBER_WORDS[SPOTS_OPEN] ?? String(SPOTS_OPEN);
+  const noun = SPOTS_OPEN === 1 ? "spot" : "spots";
+  const month = spotsMonthIsCurrent(now) ? ` for ${SPOTS_FOR.month}` : "";
+  return `${count} 1:1 ${noun} open${month}.`;
 }
 
 /** Working days after the call that the roadmap is emailed. Weekends don't count. */

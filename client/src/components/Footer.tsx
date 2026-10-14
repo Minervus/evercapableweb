@@ -29,14 +29,14 @@ export function Footer() {
           >
             <img
               src={logoIconDark}
-              alt="Tony Nguyen Fit"
+              alt=""
               width={40}
               height={40}
               className="h-10 w-auto hidden dark:block"
             />
             <img
               src={logoIconLight}
-              alt="Tony Nguyen Fit"
+              alt=""
               width={40}
               height={40}
               className="h-10 w-auto block dark:hidden"

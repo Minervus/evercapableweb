@@ -29,6 +29,12 @@ export function buildJournalRedirectRules(slugs: string[]): string {
     "/protocol/ /audit.html 200!",
   );
 
+  // A missing build file (an old tab asking for last deploy's assets/*.js) must 404.
+  // Without this the SPA fallback answers with index.html and a 200, the script
+  // fails to parse, and the page renders blank. Not forced, so files that exist
+  // are still served as normal.
+  rules.push("/assets/* /404.html 404");
+
   // SPA fallback must live in _redirects (after journal rules).
   rules.push("/* /index.html 200");
 

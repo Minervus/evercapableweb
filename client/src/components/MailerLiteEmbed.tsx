@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { KICKSTARTER_NAME } from "@shared/kickstarterPage";
 
 const MAILERLITE_ACCOUNT = "2511092";
 const MAILERLITE_FORM = "50U4BI";
@@ -103,6 +104,10 @@ function siteFormCss(id: string): string {
     ${root} .ml-form-fieldRow {
       margin-bottom: 12px !important;
     }
+    ${root} .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit {
+      float: none !important;
+      margin: 0 0 20px !important;
+    }
     ${root} .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button.primary {
       background-color: #f97316 !important;
       border-color: #f97316 !important;
@@ -125,9 +130,17 @@ function siteFormCss(id: string): string {
   `;
 }
 
+/**
+ * The heading MailerLite serves ("Free 12-week fat loss kickstarter") predates the
+ * energy framing. Shown in place of it until the form itself is renamed in MailerLite.
+ */
+const FORM_HEADING = `Free ${KICKSTARTER_NAME}`;
+
 function applySiteFormTheme(root: HTMLElement) {
   const container = root.querySelector<HTMLElement>(".ml-form-embedContainer");
   if (!container?.id) return;
+  const heading = container.querySelector<HTMLElement>(".ml-form-embedContent h4");
+  if (heading && heading.textContent?.trim() !== FORM_HEADING) heading.textContent = FORM_HEADING;
   const existing = root.querySelector<HTMLStyleElement>("style[data-kickstarter-theme]");
   const css = siteFormCss(container.id);
   if (existing) {

@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { AUDIT_PAY_URL } from "@/lib/auditPayment";
 
 /**
  * The hero used to run four stock gym clips (pull-ups, barbell plates) behind
@@ -72,26 +73,27 @@ export function Hero() {
               transition={{ duration: 0.3, delay: 0.15 }}
               className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4"
             >
-              <Link href="/initialize?plan=audit" className="w-full sm:w-auto">
-                <Button
-                  size="lg"
-                  className="gap-2 bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none w-full sm:w-auto min-w-[230px] min-h-[56px] text-sm md:text-base rounded-full shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all font-bold font-mono uppercase tracking-tight"
-                  data-testid="button-hero-cta-primary"
-                >
+              {/* Pay first: Stripe sends people to the intake form after checkout. */}
+              <Button
+                asChild
+                size="lg"
+                className="gap-2 bg-[#FF9500] hover:bg-[#FF9500]/90 text-white border-none w-full sm:w-auto min-w-[230px] min-h-[56px] text-sm md:text-base rounded-full shadow-[0_0_15px_rgba(255,149,0,0.3)] hover:shadow-[0_0_25px_rgba(255,149,0,0.6)] transition-all font-bold font-mono uppercase tracking-tight"
+              >
+                <a href={AUDIT_PAY_URL} data-testid="button-hero-cta-primary">
                   Get your roadmap
-                  <ArrowRight className="w-5 h-5" />
-                </Button>
-              </Link>
-              <Link href="/pricing" className="w-full sm:w-auto">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="gap-2 bg-transparent hover:bg-white/10 text-white border-white/30 w-full sm:w-auto min-w-[200px] min-h-[56px] text-sm md:text-base rounded-full transition-all font-bold font-mono uppercase tracking-tight"
-                  data-testid="button-hero-cta-secondary"
-                >
+                  <ArrowRight className="w-5 h-5" aria-hidden="true" />
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="gap-2 bg-transparent hover:bg-white/10 text-white [border-color:rgba(255,255,255,0.3)] w-full sm:w-auto min-w-[200px] min-h-[56px] text-sm md:text-base rounded-full transition-all font-bold font-mono uppercase tracking-tight"
+              >
+                <Link href="/pricing" data-testid="button-hero-cta-secondary">
                   See the offers
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </motion.div>
 
             <motion.div
@@ -118,7 +120,8 @@ export function Hero() {
               alt="Tony Nguyen lifting his son up on the waterfront"
               width={768}
               height={1024}
-              fetchPriority="high"
+              // React 18 only passes the lowercase attribute through (and warns on fetchPriority).
+              {...{ fetchpriority: "high" }}
               className="w-full max-w-sm mx-auto rounded-2xl object-cover shadow-2xl shadow-black/60"
             />
           </motion.div>

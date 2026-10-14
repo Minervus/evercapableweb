@@ -67,7 +67,7 @@ export function Coach() {
             >
               I stopped training for the mirror and started training for{" "}
               <strong>Sustainability</strong> and{" "}
-              <strong>Long-term Longevity</strong>, the next 40 years.
+              <strong>Longevity</strong>, the next 40 years.
             </p>
 
             <p data-testid="text-coach-evercapable">

@@ -16,6 +16,7 @@ import {
   spotsLine,
 } from "@/lib/offer";
 import { reveal, revealAt } from "@/lib/reveal";
+import { AUDIT_PAY_URL } from "@/lib/auditPayment";
 
 const resultMarkers = [
   {
@@ -56,7 +57,8 @@ const plans: Plan[] = [
     cadence: () => "one-off",
     summary: AUDIT_FORMAT_LINE,
     cta: "Get your roadmap",
-    href: "/initialize?plan=audit",
+    // Pay first: Stripe sends people to the intake form after checkout.
+    href: AUDIT_PAY_URL,
     testId: "button-offer-audit",
     featured: true,
   },
@@ -72,7 +74,7 @@ const plans: Plan[] = [
   },
   {
     id: "coaching",
-    name: "1:1 Coaching",
+    name: "1:1 Nutrition Coaching",
     price: COACHING_PRICE,
     cadence: () => "per month",
     summary: COACHING_SUMMARY,
@@ -114,6 +116,27 @@ function CellMark({ value }: { value: Cell }) {
     );
   }
   return <span className="text-zinc-300 text-xs leading-snug">{value}</span>;
+}
+
+/** One link per CTA. External hrefs (Stripe) get a plain <a>; site routes use the router. */
+function CtaLink({ href, className, testId, children }: {
+  href: string;
+  className: string;
+  testId?: string;
+  children: React.ReactNode;
+}) {
+  if (/^https?:/.test(href)) {
+    return (
+      <a href={href} className={className} data-testid={testId}>
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className} data-testid={testId}>
+      {children}
+    </Link>
+  );
 }
 
 export function Pricing() {
@@ -224,18 +247,17 @@ export function Pricing() {
                     key={plan.id}
                     className={`p-4 border-l border-zinc-800 ${plan.featured ? "bg-orange-500/[0.04]" : ""}`}
                   >
-                    <Link href={plan.href}>
-                      <button
-                        className={`w-full py-3 font-bold tracking-widest text-[11px] uppercase rounded-sm transition-colors ${
-                          plan.featured
-                            ? "bg-orange-500 hover:bg-orange-400 text-white"
-                            : "border border-zinc-600 text-zinc-200 hover:border-orange-500 hover:text-orange-400"
-                        }`}
-                        data-testid={plan.testId}
-                      >
-                        {plan.cta}
-                      </button>
-                    </Link>
+                    <CtaLink
+                      href={plan.href}
+                      className={`block w-full py-3 text-center font-bold tracking-widest text-[11px] uppercase rounded-sm transition-colors ${
+                        plan.featured
+                          ? "bg-orange-500 hover:bg-orange-400 text-white"
+                          : "border border-zinc-600 text-zinc-200 hover:border-orange-500 hover:text-orange-400"
+                      }`}
+                      testId={plan.testId}
+                    >
+                      {plan.cta}
+                    </CtaLink>
                   </td>
                 ))}
               </tr>
@@ -281,18 +303,17 @@ export function Pricing() {
                 })}
               </ul>
 
-              <Link href={plan.href}>
-                <button
-                  className={`mt-6 w-full py-3.5 font-bold tracking-widest text-[11px] uppercase rounded-sm transition-colors ${
-                    plan.featured
-                      ? "bg-orange-500 hover:bg-orange-400 text-white"
-                      : "border border-zinc-600 text-zinc-200 hover:border-orange-500 hover:text-orange-400"
-                  }`}
-                  data-testid={`${plan.testId}-mobile`}
-                >
-                  {plan.cta}
-                </button>
-              </Link>
+              <CtaLink
+                href={plan.href}
+                className={`mt-6 block w-full py-3.5 text-center font-bold tracking-widest text-[11px] uppercase rounded-sm transition-colors ${
+                  plan.featured
+                    ? "bg-orange-500 hover:bg-orange-400 text-white"
+                    : "border border-zinc-600 text-zinc-200 hover:border-orange-500 hover:text-orange-400"
+                }`}
+                testId={`${plan.testId}-mobile`}
+              >
+                {plan.cta}
+              </CtaLink>
             </motion.div>
           ))}
         </div>
@@ -329,11 +350,12 @@ export function Pricing() {
           <p className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto">
             One session. A 4–6 week plan. {creditLine(currency)}
           </p>
-          <Link href="/initialize?plan=audit">
-            <button className="inline-block bg-orange-500 hover:bg-orange-400 text-white font-bold tracking-widest text-sm uppercase px-12 py-5 rounded-sm transition-colors shadow-xl shadow-orange-500/20">
-              Get your roadmap
-            </button>
-          </Link>
+          <a
+            href={AUDIT_PAY_URL}
+            className="inline-block bg-orange-500 hover:bg-orange-400 text-white font-bold tracking-widest text-sm uppercase px-12 py-5 rounded-sm transition-colors shadow-xl shadow-orange-500/20"
+          >
+            Get your roadmap
+          </a>
         </motion.div>
       </motion.div>
     </section>

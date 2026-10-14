@@ -7,6 +7,7 @@ import logoIconLight from "@assets/tn-logo-on-white-128.png";
 
 import { useLocation } from "wouter";
 import { scrollToSectionId, sectionIdForPath } from "@/lib/sectionRoutes";
+import { AUDIT_PAY_URL } from "@/lib/auditPayment";
 
 type NavLink =
   | { href: string; label: string; submenu?: never }
@@ -95,14 +96,14 @@ export function Header() {
           >
             <img
               src={logoIconDark}
-              alt="Tony Nguyen Fit"
+              alt=""
               width={24}
               height={24}
               className="h-6 w-auto hidden dark:block"
             />
             <img
               src={logoIconLight}
-              alt="Tony Nguyen Fit"
+              alt=""
               width={24}
               height={24}
               className="h-6 w-auto block dark:hidden"
@@ -129,12 +130,9 @@ export function Header() {
                 </a>
               ) : null,
             )}
+            {/* Pay first: Stripe sends people to the intake form after checkout. */}
             <a
-              href="/initialize?plan=audit"
-              onClick={(e) => {
-                e.preventDefault();
-                followNav("/initialize?plan=audit");
-              }}
+              href={AUDIT_PAY_URL}
               className="bg-orange-500 hover:bg-orange-400 text-white text-sm font-bold rounded-full px-5 py-2 transition-colors whitespace-nowrap"
               data-testid="link-navdesktop-cta"
             >
