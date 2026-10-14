@@ -64,9 +64,8 @@ export function LatestArticles() {
             <span className="text-zinc-500 font-mono text-sm animate-pulse">Loading articles…</span>
           </div>
         ) : isError || !articles || articles.length === 0 ? (
-          <div className="text-center py-20 bg-zinc-900/50 rounded-2xl border border-white/5">
-            <p className="text-zinc-500">Currently unable to load the latest articles. Please check back later.</p>
-          </div>
+          // No error message on a sales page: the journal link below is enough.
+          null
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
             {articles.map((article, index) => {
@@ -98,13 +97,15 @@ export function LatestArticles() {
                         )}
                       </div>
 
-                      <Link href={`/journal/${article.slug}`}>
-                        <a className="inline-flex items-center mt-auto text-sm font-bold text-zinc-300 hover:text-white group/link transition-colors pt-4 border-t border-white/5">
-                          Read full article
-                          <span className="ml-2 transform group-hover/link:translate-x-1 transition-transform text-orange-500">
-                            →
-                          </span>
-                        </a>
+                      <Link
+                        href={`/journal/${article.slug}`}
+                        className="inline-flex items-center mt-auto text-sm font-bold text-zinc-300 hover:text-white group/link transition-colors pt-4 border-t border-white/5"
+                      >
+                        Read full article
+                        <span className="sr-only">: {article.title}</span>
+                        <span aria-hidden="true" className="ml-2 transform group-hover/link:translate-x-1 transition-transform text-orange-500">
+                          →
+                        </span>
                       </Link>
                     </CardContent>
                   </Card>
@@ -122,10 +123,11 @@ export function LatestArticles() {
           transition={{ duration: 0.3, delay: 0.1 }}
           className="flex justify-center md:justify-start"
         >
-          <Link href="/journal">
-            <a className="inline-flex items-center justify-center px-8 py-4 bg-white text-zinc-950 font-bold rounded hover:bg-orange-500 hover:text-white transition-colors duration-300">
-              Read All Articles in the Journal
-            </a>
+          <Link
+            href="/journal"
+            className="inline-flex items-center justify-center px-8 py-4 bg-white text-zinc-950 font-bold rounded hover:bg-orange-500 hover:text-white transition-colors duration-300"
+          >
+            Read All Articles in the Journal
           </Link>
         </motion.div>
       </div>

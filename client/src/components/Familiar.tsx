@@ -72,11 +72,11 @@ export function Familiar() {
                                     <RefreshCcw size={24} strokeWidth={1.25} color="#FF6600" className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,102,0,0.8)]" />
                                 </div>
                                 <span className="font-mono text-white text-base font-bold tracking-wide">
-                                    The Same 10 lbs, Over and Over
+                                    The Same 5 kg, Over and Over
                                 </span>
                             </div>
                             <p className="text-zinc-400 text-sm md:text-base leading-relaxed text-center flex-grow">
-                                You lose the same 10 pounds just to gain it right back the exact minute work or life gets stressful.
+                                You lose the same 5 kg (about 10 lb) just to gain it right back the exact minute work or life gets stressful.
                             </p>
                         </motion.div>
 

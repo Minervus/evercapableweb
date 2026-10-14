@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { Link } from "wouter";
+import { AUDIT_PAY_URL } from "@/lib/auditPayment";
 import { useDisplayCurrency } from "@/lib/displayCurrency";
-import { AUDIT_BOOKING_LINE, AUDIT_MINUTES, INTAKE_MINUTES, creditLine, guaranteeLine } from "@/lib/offer";
+import { AUDIT_BOOKING_LINE, AUDIT_MINUTES, INTAKE_MINUTES, auditPayLine, creditLine, guaranteeLine } from "@/lib/offer";
 
 export function Contact() {
   const currency = useDisplayCurrency();
@@ -27,20 +27,20 @@ export function Contact() {
             One {AUDIT_MINUTES}-minute nutrition session. A plan you can use. {creditLine(currency)}
           </p>
 
-          <Link href="/initialize?plan=audit">
-            <Button
-              size="lg"
-              className="w-full sm:w-auto bg-[#FF6600] hover:bg-[#FF6600]/90 text-black font-mono font-bold tracking-widest uppercase px-12 h-16 text-sm md:text-base rounded-none shadow-[0_0_20px_rgba(255,149,0,0.3)] hover:shadow-[0_0_30px_rgba(255,149,0,0.5)] transition-all"
-              data-testid="button-final-apply"
-            >
+          <Button
+            asChild
+            size="lg"
+            className="w-full sm:w-auto bg-[#FF6600] hover:bg-[#FF6600]/90 text-black font-mono font-bold tracking-widest uppercase px-12 h-16 text-sm md:text-base rounded-none shadow-[0_0_20px_rgba(255,149,0,0.3)] hover:shadow-[0_0_30px_rgba(255,149,0,0.5)] transition-all"
+          >
+            <a href={AUDIT_PAY_URL} data-testid="button-final-apply">
               Get your roadmap
-              <ArrowRight className="w-5 h-5 ml-3" />
-            </Button>
-          </Link>
+              <ArrowRight className="w-5 h-5 ml-3" aria-hidden="true" />
+            </a>
+          </Button>
 
           <p className="mt-8 text-sm text-zinc-500">
-            Next step is a short form about how you eat now, about {INTAKE_MINUTES} minutes.{" "}
-            {AUDIT_BOOKING_LINE}
+            {auditPayLine(currency)} It's a short form about how you eat now, about {INTAKE_MINUTES}{" "}
+            minutes. {AUDIT_BOOKING_LINE}
           </p>
           <p className="mt-2 text-sm text-zinc-500">{guaranteeLine(currency)}</p>
           <p className="mt-4 text-sm text-zinc-500">

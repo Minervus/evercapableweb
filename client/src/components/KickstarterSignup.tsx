@@ -28,7 +28,7 @@ export function KickstarterSignup() {
             </a>
           </Link>
         </p>
-        <MailerLiteEmbed />
+        <MailerLiteEmbed appearance="site" />
       </div>
     </section>
   );

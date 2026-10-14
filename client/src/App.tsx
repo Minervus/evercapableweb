@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import Home from "@/pages/home";
 import Initialize from "@/pages/Initialize";
 import NotFound from "@/pages/not-found";
@@ -66,9 +67,11 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
             <Toaster />
-            <WouterRouter base={routerBase()}>
-              <Router />
-            </WouterRouter>
+            <ErrorBoundary>
+              <WouterRouter base={routerBase()}>
+                <Router />
+              </WouterRouter>
+            </ErrorBoundary>
           </TooltipProvider>
         </QueryClientProvider>
       </ThemeProvider>

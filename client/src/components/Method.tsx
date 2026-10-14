@@ -14,7 +14,7 @@ const phases = [
     icon: Dumbbell,
     title: "Check in every week",
     timeframe: "Weekly",
-    outcome: "You track food in the coaching app and can ask questions in the weekly check-in. I review your inputs and send written adjustments. On 1:1, I also send a video deep dive for the week ahead.",
+    outcome: "You check in weekly in the coaching app, tracking food as much as you can keep up, and ask questions there. I review what you send and reply with written adjustments. On 1:1, I also send a video deep dive for the week ahead.",
     benefit: "The plan moves with your week. No waiting a month to find out something isn't working.",
   },
   {
@@ -22,7 +22,7 @@ const phases = [
     title: "Keep the change",
     timeframe: "Ongoing",
     outcome: "We build habits that survive travel, kids, and late dinners — so the weight change doesn't bounce back.",
-    benefit: "Training stays optional support for strength, energy, and longevity. Food does the heavy lifting.",
+    benefit: "I recommend training for longevity, mobility, and function, but it's optional and it isn't where we start. Food does the heavy lifting.",
   },
 ];
 
@@ -49,7 +49,7 @@ export function Method() {
               Most coaching leads with workouts and treats food as a PDF on the side. That falls apart the first week you're tired, travelling, or just cooking for other people.
             </p>
             <p>
-              I start with nutrition: a food strategy that fits your life, then a weekly loop — you track food in the coaching app, ask questions in the check-in, and I send written adjustments. On 1:1, I add video deep dives. Strength work is there when you want more energy and a body that lasts — not as a second job.
+              I start with nutrition: a food strategy that fits your life, then a weekly loop — you check in through the coaching app, tracking food as much as you can keep up, and I send written adjustments. On 1:1, I add video deep dives. Strength work is there when you want more energy and a body that lasts — not as a second job.
             </p>
             <p className="text-orange-500 font-medium pt-4">
               No extreme diets. No two-hour gym sessions. Just practical adjustments you can keep.

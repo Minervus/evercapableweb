@@ -23,4 +23,5 @@
 /journal/how-to-stop-snacking-after-work/ /journal/how-to-stop-snacking-after-work.html 200!
 /protocol /audit.html 200!
 /protocol/ /audit.html 200!
+/assets/* /404.html 404
 /* /index.html 200
