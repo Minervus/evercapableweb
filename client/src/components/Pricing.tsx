@@ -25,7 +25,7 @@ const resultMarkers = [
   },
   {
     title: "Weekly course-correction",
-    description: "You track food in the coaching app. I send written adjustments each week.",
+    description: "You check in each week in the coaching app. I send written adjustments.",
   },
   {
     title: "Energy that lasts the day",
@@ -90,12 +90,12 @@ type Cell = boolean | string;
 const comparison: { label: string; cells: [Cell, Cell, Cell] }[] = [
   { label: "60-minute nutrition session", cells: [true, false, false] },
   { label: "4–6 week food roadmap", cells: [true, false, "Rewritten as life changes"] },
-  { label: "Track food in the coaching app", cells: [false, "Weekly", "Weekly"] },
+  { label: "Check in through the coaching app", cells: [false, "Weekly", "Weekly"] },
   { label: "Written adjustments each week", cells: [false, true, true] },
   { label: "Questions answered in the check-in", cells: [false, true, true] },
   { label: "Video deep dive each week", cells: [false, false, true] },
   { label: "Priority messaging between check-ins", cells: [false, false, true] },
-  { label: "Training support", cells: [false, "Optional, light", "Optional, fuller"] },
+  { label: "Training guidance", cells: [false, "Optional, light", "Optional, fuller"] },
 ];
 
 function CellMark({ value }: { value: Cell }) {

@@ -24,7 +24,7 @@ export function DataSection() {
                                 A simple picture of food, energy, and consistency
                             </h2>
                             <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
-                                Weekly coaching works better when we can see the week. You track food in the coaching app; I review it and send written adjustments. On 1:1, I also send a video deep dive. Wearables can add sleep and energy context if you have them.
+                                Weekly coaching works better when we can see the week. Tracking your food in the coaching app gives us the clearest picture, as much as you can keep up. I review what you send and reply with written adjustments. On 1:1, I also send a video deep dive. Wearables can add sleep and energy context if you have them.
                             </p>
                             <p className="text-zinc-400 text-sm mt-8 mb-8">
                                 Connects with Oura, Apple Health, Garmin and Google Fit — optional, and only if you already wear something.
