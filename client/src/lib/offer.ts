@@ -26,7 +26,7 @@ export const SPOTS_MONTH = "November";
 export const AUDIT_MINUTES = 60;
 
 /** Minutes the intake form at /initialize takes. Matches that page. */
-export const INTAKE_MINUTES = 8;
+export const INTAKE_MINUTES = 10;
 
 /** One-line plain descriptions of the monthly plans, shared with Pricing. */
 export const HABITS_SUMMARY = "Weekly check-ins and written adjustments.";
