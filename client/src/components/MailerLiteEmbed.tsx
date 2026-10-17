@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { KICKSTARTER_NAME } from "@shared/kickstarterPage";
 
 const MAILERLITE_ACCOUNT = "2511092";
-const MAILERLITE_FORM = "50U4BI";
+const DEFAULT_FORM = "50U4BI";
 const MAILERLITE_SRC = "https://assets.mailerlite.com/js/universal.js";
 
 type MailerLiteFn = ((...args: unknown[]) => unknown) & {
@@ -35,17 +35,43 @@ function ensureUniversalScript() {
  * that mounts after that scan needs the same form payload if its container
  * is still empty.
  */
-function requestEmbeddedForm() {
+function requestEmbeddedForm(form: string) {
   const script = document.createElement("script");
   script.async = true;
-  script.dataset.mlForm = MAILERLITE_FORM;
+  script.dataset.mlForm = form;
   script.src =
-    `https://assets.mailerlite.com/jsonp/${MAILERLITE_ACCOUNT}/forms/${MAILERLITE_FORM}` +
+    `https://assets.mailerlite.com/jsonp/${MAILERLITE_ACCOUNT}/forms/${form}` +
     `?callback=ml.fn.renderEmbeddedForm&cache=${Date.now()}`;
   document.body.appendChild(script);
 }
 
-function siteFormCss(id: string): string {
+/**
+ * The compact variant sits inside a box that already carries its own heading
+ * and border, so the form's own title, description and frame are dropped.
+ */
+function compactFormCss(root: string): string {
+  return `
+    ${root} .ml-form-embedWrapper.embedForm {
+      background-color: transparent !important;
+      border: 0 !important;
+    }
+    ${root} .ml-form-embedWrapper .ml-form-embedBody,
+    ${root} .ml-form-embedWrapper .ml-form-successBody {
+      padding: 0 !important;
+    }
+    ${root} .ml-form-embedContent {
+      display: none !important;
+    }
+    ${root} .ml-form-successContent h4 {
+      font-size: 1.05rem !important;
+    }
+    ${root} .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit {
+      margin: 0 !important;
+    }
+  `;
+}
+
+function siteFormCss(id: string, compact: boolean): string {
   const root = `#${CSS.escape(id)}.ml-form-embedContainer`;
   return `
     ${root} .ml-form-embedWrapper.embedForm {
@@ -127,22 +153,29 @@ function siteFormCss(id: string): string {
       background-color: #fb923c !important;
       border-color: #fb923c !important;
     }
+    ${compact ? compactFormCss(root) : ""}
   `;
 }
 
 /**
- * The heading MailerLite serves ("Free 12-week fat loss kickstarter") predates the
- * energy framing. Shown in place of it until the form itself is renamed in MailerLite.
+ * The heading MailerLite serves for the Kickstarter form ("Free 12-week fat loss
+ * kickstarter") predates the energy framing. Shown in place of it until the form
+ * itself is renamed in MailerLite.
  */
-const FORM_HEADING = `Free ${KICKSTARTER_NAME}`;
+const FORM_HEADINGS: Record<string, string> = {
+  [DEFAULT_FORM]: `Free ${KICKSTARTER_NAME}`,
+};
 
-function applySiteFormTheme(root: HTMLElement) {
+function applySiteFormTheme(root: HTMLElement, form: string, compact: boolean) {
   const container = root.querySelector<HTMLElement>(".ml-form-embedContainer");
   if (!container?.id) return;
+  const formHeading = FORM_HEADINGS[form];
   const heading = container.querySelector<HTMLElement>(".ml-form-embedContent h4");
-  if (heading && heading.textContent?.trim() !== FORM_HEADING) heading.textContent = FORM_HEADING;
+  if (formHeading && heading && heading.textContent?.trim() !== formHeading) {
+    heading.textContent = formHeading;
+  }
   const existing = root.querySelector<HTMLStyleElement>("style[data-kickstarter-theme]");
-  const css = siteFormCss(container.id);
+  const css = siteFormCss(container.id, compact);
   if (existing) {
     if (existing.textContent !== css) existing.textContent = css;
     return;
@@ -153,14 +186,28 @@ function applySiteFormTheme(root: HTMLElement) {
   root.appendChild(style);
 }
 
+/** How long a form gets to render before `onEmpty` fires. */
+const EMPTY_AFTER_MS = 10000;
+
 export function MailerLiteEmbed({
   className = "",
   appearance = "default",
+  form = DEFAULT_FORM,
+  compact = false,
+  onEmpty,
 }: {
   className?: string;
   appearance?: "default" | "site";
+  /** MailerLite embedded form slug, from the form's embed code. */
+  form?: string;
+  /** Drops the form's own title and frame, for use inside a box that has them. */
+  compact?: boolean;
+  /** Fires once if MailerLite has not rendered the form in time, e.g. an unpublished form. */
+  onEmpty?: () => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const onEmptyRef = useRef(onEmpty);
+  onEmptyRef.current = onEmpty;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -170,18 +217,24 @@ export function MailerLiteEmbed({
 
     const themeObserver =
       appearance === "site"
-        ? new MutationObserver(() => applySiteFormTheme(container))
+        ? new MutationObserver(() => applySiteFormTheme(container, form, compact))
         : null;
     if (themeObserver) {
       themeObserver.observe(container, { childList: true, subtree: true });
     }
+
+    const emptyTimer = window.setTimeout(() => {
+      if (container.isConnected && !container.querySelector(".ml-form-embedContainer")) {
+        onEmptyRef.current?.();
+      }
+    }, EMPTY_AFTER_MS);
 
     let requested = false;
     let retryTimer = 0;
     const started = Date.now();
     const timer = window.setInterval(() => {
       if (appearance === "site" && container.childElementCount > 0) {
-        applySiteFormTheme(container);
+        applySiteFormTheme(container, form, compact);
       }
       if (container.childElementCount > 0 || Date.now() - started > 8000) {
         window.clearInterval(timer);
@@ -197,11 +250,11 @@ export function MailerLiteEmbed({
       window.clearInterval(timer);
 
       const alreadyRequested = Array.from(document.scripts).some((script) =>
-        script.src.includes(`/jsonp/${MAILERLITE_ACCOUNT}/forms/${MAILERLITE_FORM}`),
+        script.src.includes(`/jsonp/${MAILERLITE_ACCOUNT}/forms/${form}`),
       );
 
       if (!alreadyRequested) {
-        requestEmbeddedForm();
+        requestEmbeddedForm(form);
         return;
       }
 
@@ -209,7 +262,7 @@ export function MailerLiteEmbed({
       // (or the first scan missed it), fill the still-empty container once.
       retryTimer = window.setTimeout(() => {
         if (container.isConnected && container.childElementCount === 0) {
-          requestEmbeddedForm();
+          requestEmbeddedForm(form);
         }
       }, 1200);
     }, 200);
@@ -217,15 +270,18 @@ export function MailerLiteEmbed({
     return () => {
       window.clearInterval(timer);
       window.clearTimeout(retryTimer);
+      window.clearTimeout(emptyTimer);
       themeObserver?.disconnect();
     };
-  }, [appearance]);
+  }, [appearance, form, compact]);
+
+  const sizing = compact ? "min-h-[7rem]" : "mx-auto max-w-[440px] min-h-[20rem]";
 
   return (
     <div
       ref={containerRef}
-      className={`ml-embedded mx-auto w-full max-w-[440px] min-h-[20rem] overflow-visible ${className}`.trim()}
-      data-form={MAILERLITE_FORM}
+      className={`ml-embedded w-full ${sizing} overflow-visible ${className}`.trim()}
+      data-form={form}
     />
   );
 }

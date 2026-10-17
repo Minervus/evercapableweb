@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from 'lucide-react';
 import { ARTICLE_SEO_GROQ } from '@shared/articleSeo';
 import { ArticleSeo } from '@/components/ArticleSeo';
+import { WeeklyJournalSignup } from '@/components/WeeklyJournalSignup';
 
 // Custom components for rendering Portable Text from Sanity
 const portableTextComponents = {
@@ -143,6 +144,8 @@ export default function Article() {
             )}
           </div>
         </motion.div>
+
+        <WeeklyJournalSignup />
       </div>
     </article>
   );
