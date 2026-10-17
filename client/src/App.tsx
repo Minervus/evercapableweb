@@ -24,11 +24,15 @@ import TDEE from "@/pages/TDEE";
  * Where the app is mounted. "" on tonynguyenfit.com, which is how it has always
  * run; non-empty only when the built site is served from a subdirectory (a
  * staging path or a preview host), where wouter would otherwise match no route.
+ *
+ * Read from this module's own URL (`<base>/assets/*.js` when built, `/src/App.tsx`
+ * in dev), not the page URL: on a deep link such as /journal/<slug> the page's
+ * directory is /journal, which would strip the route down to /<slug>.
  */
 function routerBase(): string {
-  if (typeof document === "undefined") return "";
-  const dir = new URL(".", document.baseURI).pathname.replace(/\/+$/, "");
-  return dir === "" ? "" : dir;
+  const root = new URL("..", import.meta.url);
+  if (!root.protocol.startsWith("http")) return "";
+  return root.pathname.replace(/\/+$/, "");
 }
 
 function HomeSectionAlias() {
