@@ -18,7 +18,7 @@ export function KickstarterSignup() {
           Not ready to pay for anything yet?
         </h2>
         <p className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
-          Twelve weekly emails, one food action each. Written for the same parents I coach — no
+          Twelve weekly emails, one food action each. Written for the same parents I coach. No
           charge, and you can unsubscribe in a click.
         </p>
         <p className="mt-3 mb-8">
