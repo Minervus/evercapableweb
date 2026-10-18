@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from 'lucide-react';
 import { ARTICLE_SEO_GROQ } from '@shared/articleSeo';
 import { ArticleSeo } from '@/components/ArticleSeo';
+import { KickstarterSignup } from '@/components/KickstarterSignup';
 import { WeeklyJournalSignup } from '@/components/WeeklyJournalSignup';
 
 // Custom components for rendering Portable Text from Sanity
@@ -144,7 +145,13 @@ export default function Article() {
             )}
           </div>
         </motion.div>
+      </div>
 
+      <div className="mt-16">
+        <KickstarterSignup />
+      </div>
+
+      <div className="max-w-3xl mx-auto px-6">
         <WeeklyJournalSignup />
       </div>
     </article>
