@@ -9,7 +9,7 @@
  *
  * TODO(tony): confirm or fill in
  *   - how long intake answers and email-list details are kept;
- *   - the name of the coaching app provider behind EverCapable;
+ *   - how long Coach Catalyst keeps coaching messages and food logs;
  *   - that you never see card numbers on Stripe payments;
  *   - whether anyone else (an assistant, a VA) can read client information.
  *
@@ -60,7 +60,7 @@ export default function Privacy() {
 
       <LegalSection title="Coaching">
         <p>
-          If you join Habits or 1:1, you log food and send check-ins through the coaching app, which runs under the EverCapable name. What you share there is used for your coaching.
+          If you join 1:1 coaching, you use Coach Catalyst. You log food and send feedback there. Messages between the fortnightly deep-dive videos stay in Coach Catalyst too. I use what you share to coach you.
         </p>
       </LegalSection>
 

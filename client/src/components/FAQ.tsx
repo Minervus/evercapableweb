@@ -6,6 +6,9 @@ import {
 } from "@/components/ui/accordion";
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 import {
+  COACHING_APP,
+  COACHING_DELIVERY,
+  COACHING_PRICE,
   CREDIT_WINDOW_DAYS,
   MONTHLY_TERMS_LINE,
   auditProcessFaq,
@@ -17,13 +20,13 @@ import {
 
 const faqs = (currency: DisplayCurrency | null) => [
   {
-    question: "What's the difference between the three offers?",
-    answer: `Audit + Roadmap (${money(149, currency)}) is a one-off diagnostic and a 4–6 week plan — no ongoing chat, and no weekly app loop. Nutrition Habits (${money(149, currency)}/month) is a weekly check-in in the coaching app, Q&A in the check-in, and written adjustments from me. 1:1 Nutrition Coaching (${money(279, currency)}/month) is the same weekly check-in, plus video deep dives with specific adjustments, priority messaging, fuller roadmap updates, and training guidance if you want it. Spots for 1:1 are capped.`,
+    question: "What's the difference between the audit and 1:1 coaching?",
+    answer: `Audit + Roadmap (${money(149, currency)}) is a one-off video call and a 4 to 6 week food plan. I email the roadmap within 2 working days of the call. 1:1 coaching (${money(COACHING_PRICE, currency)} a month) is ongoing. ${COACHING_DELIVERY} It runs in ${COACHING_APP}. Spots for 1:1 are capped.`,
   },
   auditProcessFaq(currency),
   {
-    question: "What do I send each week?",
-    answer: "On Habits and 1:1, you check in weekly in the coaching app and can ask questions there. Tracking your food gives me the clearest picture, so I'll encourage it, but how much you track depends on what you can keep up. I review what you send and reply with written adjustments. 1:1 adds video deep dives, priority chat, and fuller roadmap updates when life changes. The audit is one-off — no weekly app loop.",
+    question: "What do I send between the fortnightly videos?",
+    answer: `On 1:1 you message me in ${COACHING_APP} between the fortnightly deep-dive videos. Food tracking gives me the clearest picture of your week, and how much you track depends on what you can keep up. I use what you send in the next video, where I adjust your plan and walk you through it. The audit is a one-off video call and a roadmap.`,
   },
   {
     question: "Do I have to track my food?",
@@ -35,7 +38,7 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
   {
     question: "Do I have to train?",
-    answer: "No. Nutrition is where I start, because for busy parents it's where most of the change comes from. I do recommend training for longevity, mobility, and staying able to do the things you want to do as you get older, and I can give you guidance on it. It just isn't my main service, and it's never a requirement. On Habits that guidance is light. On 1:1 we can go further if it helps.",
+    answer: "No. Nutrition is where I start, because for busy parents it's where most of the change comes from. I can include training guidance in a fortnightly deep-dive video when you want it. Training is never a requirement.",
   },
   {
     question: "Am I going to be starving?",
@@ -43,7 +46,7 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
   {
     question: "If I start with the audit, can I join a monthly offer later?",
-    answer: `Yes. ${creditLine(currency)} After ${CREDIT_WINDOW_DAYS} days the audit still stands on its own — there's just no credit.`,
+    answer: `Yes. ${creditLine(currency)} After ${CREDIT_WINDOW_DAYS} days the credit has closed, and the audit still stands on its own.`,
   },
   {
     question: "I'm on a GLP-1 medication. Can you help?",
@@ -58,12 +61,12 @@ const faqs = (currency: DisplayCurrency | null) => [
   {
     question: "How much time does this take each week?",
     answer:
-      "The weekly check-in takes about 10 minutes to fill in, and reading the adjustments I send back takes a few more. If you track food, that's a few minutes a day on top. Training is optional — if you want it, we'll fit it to the time you actually have, not an ideal week.",
+      "The fortnightly deep-dive video is the main time together. Messaging between videos takes as long as your question needs. If you track food, that is a few minutes a day. If you want training, we fit it to the time you actually have.",
   },
   {
     question: "How fast will I see results?",
     answer:
-      "Energy usually shifts first, often inside the first two to three weeks, because it responds to how and when you eat. Weight moves more slowly and less tidily — some weeks nothing, then a drop. Anyone promising a fixed number by a fixed date is guessing. What I'll commit to is that you'll know each week whether the plan is working and what to change.",
+      "Energy usually shifts first, often inside the first two to three weeks, because it responds to how and when you eat. Weight moves more slowly and less tidily. Some fortnights nothing, then a drop. Anyone promising a fixed number by a fixed date is guessing. What I will commit to is a fortnightly deep-dive video that tells you how your plan is going and what to change.",
   },
   {
     question: "How do cancelling and refunds work?",
@@ -72,7 +75,7 @@ const faqs = (currency: DisplayCurrency | null) => [
   {
     question: "Do you take clients outside New Zealand and Canada?",
     answer:
-      "Yes. Coaching is fully online, so where you are only affects the check-in timing, and that's flexible.",
+      "Yes. Coaching is fully online. Where you live only changes when messages land, and that stays flexible.",
   },
   {
     question: "Are you a dietitian?",
@@ -81,23 +84,23 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
   {
     question: "Is there a 90-day lock-in?",
-    answer: `No. ${MONTHLY_TERMS_LINE} For 1:1 I recommend about 90 days so the weekly rhythm has time to stick. The audit is one-off with no ongoing commitment.`,
+    answer: `No. ${MONTHLY_TERMS_LINE} For 1:1 I recommend about 90 days so the fortnightly videos have time to show what is working for you. The audit is a one-off with no ongoing commitment.`,
   },
   {
     question: "Is coaching online?",
-    answer: "Yes. Coaching is online, so we can work together wherever you are. Weekly check-ins work across timezones.",
+    answer: "Yes. Coaching is online, so we can work together wherever you are. Fortnightly deep-dive videos and messages work across time zones.",
   },
   {
     question: "Do I need a wearable?",
-    answer: "No. A watch or ring can add useful context, but your weekly check-in, plus whatever food tracking you can keep up, is enough for useful written adjustments — and, on 1:1, a video deep dive.",
+    answer: "No. A watch or ring can add useful context. Your food tracking and the feedback you send are enough for the fortnightly deep-dive video.",
   },
   {
     question: "Why are 1:1 spots capped?",
-    answer: "1:1 includes video deep dives, priority messaging, and fuller roadmap updates. I keep that roster small so those replies stay thoughtful. Habits uses the same weekly check-in with written adjustments and Q&A — still me, just a lighter tier.",
+    answer: "Each fortnightly deep-dive video is about your data and your feedback. I keep that roster small so the video stays specific to you.",
   },
   {
     question: "Why not just use a generic tracker?",
-    answer: "A generic tracker is just a log. Here, I review what you send each week and reply with written adjustments — plus video deep dives on 1:1. Tracking is one input, not the whole program, and you never get a leftover meal plan sitting in a PDF.",
+    answer: "A generic tracker stores a log. On 1:1 I use your data and your feedback in a fortnightly deep-dive video that adjusts your plan and walks you through it. You can message me between videos.",
   },
 ];
 
@@ -114,7 +117,7 @@ type FAQProps = {
 export function FAQ({
   items: itemsProp,
   heading = "Frequently Asked Questions",
-  intro = "Straight answers about the offers, weekly check-ins, and how we work together.",
+  intro = "Straight answers about the audit and 1:1 coaching.",
   className = "py-16 md:py-24 bg-black",
 }: FAQProps = {}) {
   const currency = useDisplayCurrency();

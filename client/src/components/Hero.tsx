@@ -42,7 +42,7 @@ export function Hero() {
               transition={{ duration: 0.3 }}
               className="font-mono text-orange-500 uppercase tracking-wider text-xs md:text-sm font-medium mb-4"
             >
-              Weekly nutrition coaching for busy parents 35–50
+              Nutrition coaching for busy parents 35–50
             </motion.p>
 
             <motion.h1
@@ -62,9 +62,8 @@ export function Hero() {
               className="text-lg md:text-xl text-zinc-300 mb-10 max-w-xl mx-auto md:mx-0 leading-relaxed"
               data-testid="text-hero-subheadline"
             >
-              We look at how you actually eat, build a food strategy that survives work and kids,
-              and adjust it together every week. Training is there to support it, not to take over
-              your calendar.
+              We look at how you actually eat and build a food strategy around work and the kids.
+              1:1 coaching follows with a fortnightly deep-dive video on your data and feedback.
             </motion.p>
 
             <motion.div

@@ -12,10 +12,9 @@ import { money, useDisplayCurrency } from "@/lib/displayCurrency";
 import {
   AUDIT_MINUTES,
   AUDIT_PRICE,
+  COACHING_APP,
+  COACHING_DELIVERY,
   COACHING_PRICE,
-  COACHING_SUMMARY,
-  HABITS_PRICE,
-  HABITS_SUMMARY,
   MONTHLY_TERMS_LINE,
   auditProcessLine,
   creditLine,
@@ -39,22 +38,22 @@ export default function Terms() {
         </p>
         <p>{auditProcessLine(currency)}</p>
         <p>
-          Nutrition Habits is {money(HABITS_PRICE, currency)} a month: {HABITS_SUMMARY.toLowerCase()} 1:1 Nutrition Coaching is {money(COACHING_PRICE, currency)} a month: {COACHING_SUMMARY.charAt(0).toLowerCase() + COACHING_SUMMARY.slice(1)}
+          1:1 Nutrition Coaching is {money(COACHING_PRICE, currency)} a month. {COACHING_DELIVERY} It runs in {COACHING_APP}.
         </p>
         <p>
           The audit is paid through Stripe. {creditLine(currency)}
         </p>
       </LegalSection>
 
-      <LegalSection title="Monthly plans and cancelling">
+      <LegalSection title="Cancelling 1:1 coaching">
         <p>
-          {MONTHLY_TERMS_LINE} To cancel, email <EmailLink />. There's no notice period and no exit fee.
+          {MONTHLY_TERMS_LINE} To cancel, email <EmailLink /> before your next billing date. There's no notice period and no exit fee. A month that has already been billed is not refunded in part.
         </p>
       </LegalSection>
 
       <LegalSection title="Refunds">
         <p>
-          {guaranteeLine(currency)} {refundWindowLine()} {creditRefundLine(currency)} Habits and 1:1 have no guarantee. The details are on the{" "}
+          {guaranteeLine(currency)} {refundWindowLine()} {creditRefundLine(currency)} 1:1 coaching has no guarantee. The details are on the{" "}
           <Link href="/refunds" className="text-orange-400 hover:text-orange-300 underline underline-offset-2">
             refund policy
           </Link>{" "}
@@ -73,7 +72,7 @@ export default function Terms() {
 
       <LegalSection title="Results">
         <p>
-          Everyone's body and week are different, so I can't promise a set amount of weight by a set date. What I can do is coach you honestly from what you tell me, so please be open in the intake form and your check-ins.
+          Everyone's body and week are different, so I can't promise a set amount of weight by a set date. What I can do is coach you honestly from what you tell me, so please be open in the intake form and in the messages you send.
         </p>
       </LegalSection>
 

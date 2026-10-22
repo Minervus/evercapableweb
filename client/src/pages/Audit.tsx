@@ -15,8 +15,8 @@ import {
   AUDIT_INTAKE_DETAIL,
   AUDIT_MINUTES,
   AUDIT_PRICE,
+  COACHING_APP,
   COACHING_SUMMARY,
-  HABITS_SUMMARY,
   ROADMAP_DELIVERY_LINE,
   auditPayLine,
   auditProcessFaq,
@@ -149,8 +149,7 @@ function OfferNotes({ currency, className = "" }: { currency: DisplayCurrency | 
     <div className={`space-y-2 text-xs leading-[1.75] text-zinc-400 ${className}`}>
       <p>
         <span className="text-zinc-200 font-semibold">{creditLine(currency)}</span>{" "}
-        <PlanLink>Habits</PlanLink> is {lowerFirst(HABITS_SUMMARY)}{" "}
-        <PlanLink>1:1</PlanLink> is {lowerFirst(COACHING_SUMMARY)}
+        <PlanLink>1:1 coaching</PlanLink> is {lowerFirst(COACHING_SUMMARY)} It runs in {COACHING_APP}.
       </p>
       <p>
         <span className="text-zinc-200 font-semibold">{guaranteeLine(currency)}</span>{" "}

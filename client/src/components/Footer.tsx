@@ -61,7 +61,7 @@ export function Footer() {
             </nav>
 
             <p className="text-xs text-zinc-600 max-w-xs text-left md:text-right">
-              Social and the coaching app run under EverCapable. Same coach, same programs.
+              1:1 coaching runs in Coach Catalyst. Social accounts still use the EverCapable name.
             </p>
 
             <div className="flex items-center gap-2">

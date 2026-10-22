@@ -9,6 +9,9 @@ import {
     AUDIT_FORMAT_LINE,
     AUDIT_INTAKE_LINE,
     BOOKING_PICK_LINE,
+    COACHING_APP,
+    COACHING_DELIVERY,
+    COACHING_PRICE,
     MONTHLY_TERMS_LINE,
     ROADMAP_DELIVERY_LINE,
     creditLine,
@@ -23,8 +26,7 @@ import { CONTACT_EMAIL } from "@/components/LegalPage";
 function planLabels(currency: DisplayCurrency | null): Record<string, string> {
     return {
         audit: `AUDIT + ROADMAP (${money(149, currency)})`,
-        habits: `NUTRITION HABITS (${money(149, currency)} / Month)`,
-        coaching: `1:1 NUTRITION COACHING (${money(279, currency)} / Month)`,
+        coaching: `1:1 NUTRITION COACHING (${money(COACHING_PRICE, currency)} / Month)`,
     };
 }
 
@@ -270,7 +272,9 @@ function isAsked(q: Question, data: Record<string, string>) {
 export default function Initialize() {
     const searchString = useSearch();
     const params = new URLSearchParams(searchString);
-    const planKey = params.get("plan") ?? "audit";
+    const requestedPlan = params.get("plan") ?? "audit";
+    // Retired ?plan=habits bookmarks open 1:1 coaching.
+    const planKey = requestedPlan === "habits" ? "coaching" : requestedPlan;
     const currency = useDisplayCurrency();
     const labels = planLabels(currency);
     const planLabel = labels[planKey] ?? labels.audit;
@@ -487,6 +491,13 @@ export default function Initialize() {
             {/* Form Container */}
             <div className="max-w-3xl mx-auto px-6 pt-32 pb-16 relative z-10">
                 <div className="mb-12">
+                    {!isAudit && currentStep === 1 && (
+                        <div className="mb-8 max-w-xl border border-white/10 bg-white/5 px-5 py-5">
+                            <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
+                                1:1 coaching is {money(COACHING_PRICE, currency)} a month. {COACHING_DELIVERY} It runs in {COACHING_APP}. {MONTHLY_TERMS_LINE} {creditLine(currency)}
+                            </p>
+                        </div>
+                    )}
                     {isAudit && currentStep === 1 && (
                         <div className="mb-8 max-w-xl border border-orange-500/30 bg-orange-500/5 px-5 py-5">
                             <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-4">

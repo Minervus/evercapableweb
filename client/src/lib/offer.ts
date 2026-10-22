@@ -7,8 +7,10 @@ import { money, type DisplayCurrency } from "@/lib/displayCurrency";
  */
 
 export const AUDIT_PRICE = 149;
-export const HABITS_PRICE = 149;
 export const COACHING_PRICE = 279;
+
+/** Where 1:1 coaching runs. */
+export const COACHING_APP = "Coach Catalyst";
 
 /** Days after the audit that the credit stays open. */
 export const CREDIT_WINDOW_DAYS = 14;
@@ -31,23 +33,29 @@ export const AUDIT_MINUTES = 60;
 /** Minutes the intake form at /initialize takes. Matches that page. */
 export const INTAKE_MINUTES = 10;
 
-/** One-line plain descriptions of the monthly plans, shared with Pricing. */
-export const HABITS_SUMMARY = "Weekly check-ins and written adjustments.";
-export const COACHING_SUMMARY = "Everything in Habits, plus weekly video deep dives.";
+/** One-line description of 1:1 coaching, shared with Pricing and the audit page. */
+export const COACHING_SUMMARY =
+  "A fortnightly deep-dive video on your data and feedback, with messaging between videos.";
 
 /**
- * The credit, stated once, in one wording.
- * Previously this appeared ~10 times as both "covers your first month"
- * and "$149 off month one" — which are the same offer.
+ * How 1:1 coaching is delivered. Shared by the FAQ, terms, and the homepage
+ * so the fortnightly video is described the same way everywhere.
  */
-export function creditLine(currency: DisplayCurrency | null): string {
-  return `Your ${money(AUDIT_PRICE, currency)} audit is credited to whichever plan you join within ${CREDIT_WINDOW_DAYS} days.`;
+export const COACHING_DELIVERY =
+  "Every fortnight I record a deep-dive video on your data and feedback. The video adjusts your plan and walks you through it. Messaging between videos is included.";
+
+/**
+ * The credit, stated once, in this exact wording.
+ * The $149 stays unlabelled so CAD and NZD visitors read the same sentence.
+ */
+export function creditLine(_currency?: DisplayCurrency | null): string {
+  return `Your $${AUDIT_PRICE} audit is credited to your first month of 1:1 coaching if you join within ${CREDIT_WINDOW_DAYS} days.`;
 }
 
 /**
- * The only guarantee on the site, and it covers the audit alone. Habits and
- * 1:1 have none. Keep refund wording to these helpers so no page promises
- * results, refunds once the credit is used, or "if you're not satisfied".
+ * The only guarantee on the site, and it covers the audit alone. 1:1 coaching
+ * has none. Keep refund wording to these helpers so no page promises results,
+ * refunds once the credit is used, or "if you're not satisfied".
  */
 export function guaranteeLine(currency: DisplayCurrency | null): string {
   return `If the roadmap isn't useful, tell me within ${REFUND_WINDOW_DAYS} days of receiving it and I'll refund the ${money(AUDIT_PRICE, currency)}.`;
@@ -58,11 +66,11 @@ export function refundWindowLine(): string {
 }
 
 export function creditRefundLine(currency: DisplayCurrency | null): string {
-  return `Once the ${money(AUDIT_PRICE, currency)} is credited to Habits or 1:1, it can't be refunded.`;
+  return `Once the ${money(AUDIT_PRICE, currency)} audit is credited to 1:1 coaching, it can't be refunded.`;
 }
 
 export const MONTHLY_TERMS_LINE =
-  "Habits and 1:1 are month to month, and you can cancel any time before your next billing date. There are no refunds for part of a month.";
+  "1:1 coaching is month to month. You can cancel any time before the next billing date, with no partial-month refunds.";
 
 const MONTHS = [
   "January", "February", "March", "April", "May", "June",
