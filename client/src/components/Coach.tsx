@@ -83,19 +83,19 @@ export function Coach() {
             </p>
 
             <p data-testid="text-coach-mission">
-              I coach online, and I start with food: weekly check-ins, a food
-              strategy that fits real life, and practical adjustments. Strength
-              training is there to support your energy — no 2-hour gym sessions,
-              no crash diets.
+              I coach online, and I start with food. On 1:1, every fortnight I
+              record a deep-dive video on your data and feedback. That video
+              adjusts your plan and walks you through it. You can
+              message me between videos.
             </p>
 
             <p
               data-testid="text-coach-goal"
               className="text-foreground font-medium"
             >
-              No guesswork — just weekly habits that help you stay healthy,
-              stay strong, and stay present. Short challenges fail because they
-              have an end date. My goal is to help <b>you</b> stay capable for life.
+              The fortnightly deep-dive video is about your week, so the plan
+              stays specific to you. Short challenges fail because they have an
+              end date. My goal is to help <b>you</b> stay capable for life.
             </p>
           </div>
 

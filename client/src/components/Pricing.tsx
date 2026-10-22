@@ -1,18 +1,20 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Check, Minus } from "lucide-react";
-import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
+import { money, useDisplayCurrency } from "@/lib/displayCurrency";
 import {
   AUDIT_FORMAT_LINE,
   AUDIT_PRICE,
   auditSteps,
+  AUDIT_INCLUDED_LINE,
+  COACHING_APP,
+  COACHING_CADENCE,
   COACHING_PRICE,
-  HABITS_PRICE,
   COACHING_SUMMARY,
+  FIRST_PLAN_LINE,
   creditLine,
   MONTHLY_TERMS_LINE,
   guaranteeLine,
-  HABITS_SUMMARY,
   spotsLine,
 } from "@/lib/offer";
 import { reveal, revealAt } from "@/lib/reveal";
@@ -24,8 +26,9 @@ const resultMarkers = [
     description: "A food strategy you can keep — not another short burst that snaps back.",
   },
   {
-    title: "Weekly course-correction",
-    description: "You check in each week in the coaching app. I send written adjustments.",
+    title: "Fortnightly deep-dive video",
+    description:
+      "Every fortnight I record a video on your data and feedback. It adjusts your plan and walks you through it.",
   },
   {
     title: "Energy that lasts the day",
@@ -63,20 +66,10 @@ const plans: Plan[] = [
     featured: true,
   },
   {
-    id: "habits",
-    name: "Nutrition Habits",
-    price: HABITS_PRICE,
-    cadence: () => "per month",
-    summary: HABITS_SUMMARY,
-    cta: "Start weekly habits",
-    href: "/initialize?plan=habits",
-    testId: "button-offer-habits",
-  },
-  {
     id: "coaching",
     name: "1:1 Nutrition Coaching",
     price: COACHING_PRICE,
-    cadence: () => "per month",
+    cadence: () => COACHING_CADENCE,
     summary: COACHING_SUMMARY,
     cta: "Apply for coaching",
     href: "/initialize?plan=coaching",
@@ -87,15 +80,14 @@ const plans: Plan[] = [
 /** `true` = included, `false` = not included, string = included with a caveat. */
 type Cell = boolean | string;
 
-const comparison: { label: string; cells: [Cell, Cell, Cell] }[] = [
-  { label: "60-minute nutrition session", cells: [true, false, false] },
-  { label: "4–6 week food roadmap", cells: [true, false, "Rewritten as life changes"] },
-  { label: "Check in through the coaching app", cells: [false, "Weekly", "Weekly"] },
-  { label: "Written adjustments each week", cells: [false, true, true] },
-  { label: "Questions answered in the check-in", cells: [false, true, true] },
-  { label: "Video deep dive each week", cells: [false, false, true] },
-  { label: "Priority messaging between check-ins", cells: [false, false, true] },
-  { label: "Training guidance", cells: [false, "Optional, light", "Optional, fuller"] },
+const comparison: { label: string; cells: [Cell, Cell] }[] = [
+  { label: "60-minute nutrition session", cells: [true, true] },
+  { label: "4 to 6 week food roadmap", cells: [true, "Your first plan"] },
+  { label: "Fortnightly deep-dive video", cells: [false, true] },
+  { label: "Video uses your data and feedback", cells: [false, true] },
+  { label: "Plan adjusted in that video", cells: [false, true] },
+  { label: "Messaging between videos", cells: [false, true] },
+  { label: `Runs in ${COACHING_APP}`, cells: [false, true] },
 ];
 
 function CellMark({ value }: { value: Cell }) {
@@ -147,13 +139,13 @@ export function Pricing() {
       <motion.div {...reveal} id="protocol-tiers" className="max-w-[1100px] mx-auto px-6">
         <div className="mb-10 text-center">
           <p className="text-xs text-zinc-500 font-mono uppercase tracking-widest">
-            Three ways to work together
+            Two ways to work together
           </p>
           <h2 className="mt-3 text-3xl md:text-4xl font-bold text-white tracking-tight">
-            Start with a roadmap. Stay for weekly coaching.
+            Start with a roadmap. Continue with 1:1 coaching.
           </h2>
           <p className="mt-4 text-zinc-400 text-base md:text-lg max-w-2xl mx-auto">
-            Most people start with the audit: one session, a plan, no monthly commitment.
+            {AUDIT_INCLUDED_LINE} {FIRST_PLAN_LINE}
           </p>
         </div>
 
@@ -191,7 +183,7 @@ export function Pricing() {
         {/* Comparison table — desktop */}
         <motion.div {...reveal} className="hidden md:block mb-6 overflow-hidden rounded-xl border border-zinc-800">
           <table className="w-full border-collapse text-sm" data-testid="table-plan-comparison">
-            <caption className="sr-only">Compare the three coaching options</caption>
+            <caption className="sr-only">Compare the audit and 1:1 coaching</caption>
             <thead>
               <tr className="bg-zinc-900">
                 <th scope="col" className="text-left font-medium text-zinc-500 p-5 w-[34%]">
@@ -295,7 +287,7 @@ export function Pricing() {
                       <span>
                         {row.label}
                         {typeof cell === "string" && (
-                          <span className="text-zinc-500"> — {cell.toLowerCase()}</span>
+                          <span className="text-zinc-500">: {cell.toLowerCase()}</span>
                         )}
                       </span>
                     </li>
@@ -319,8 +311,8 @@ export function Pricing() {
         </div>
 
         <p className="text-center text-zinc-500 text-sm mb-16">
-          {spotsLine()} For 1:1 I suggest giving it about 90 days so the weekly rhythm has time to
-          stick. It's month to month from the first payment.
+          {spotsLine()} For 1:1 I suggest about 90 days so the fortnightly videos can show what is
+          working for you. Billing starts with the first payment and runs {COACHING_CADENCE}.
         </p>
 
         <motion.div {...reveal} className="mb-20 max-w-4xl mx-auto">

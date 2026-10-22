@@ -12,16 +12,16 @@ const phases = [
   },
   {
     icon: Dumbbell,
-    title: "Check in every week",
-    timeframe: "Weekly",
-    outcome: "You check in weekly in the coaching app, tracking food as much as you can keep up, and ask questions there. I review what you send and reply with written adjustments. On 1:1, I also send a video deep dive for the week ahead.",
-    benefit: "The plan moves with your week. No waiting a month to find out something isn't working.",
+    title: "Fortnightly deep-dive video",
+    timeframe: "Fortnightly",
+    outcome: "Every fortnight I record a deep-dive video on your data and feedback. The video adjusts your plan and walks you through it. You can message me in Coach Catalyst between videos.",
+    benefit: "You hear what changed in your plan, and why, while the fortnight is still fresh.",
   },
   {
     icon: ShieldCheck,
     title: "Keep the change",
     timeframe: "Ongoing",
-    outcome: "We build habits that survive travel, kids, and late dinners — so the weight change doesn't bounce back.",
+    outcome: "The way you eat holds up through travel and late dinners, so the weight change stays.",
     benefit: "I recommend training for longevity, mobility, and function, but it's optional and it isn't where we start. Food does the heavy lifting.",
   },
 ];
@@ -49,10 +49,10 @@ export function Method() {
               Most coaching leads with workouts and treats food as a PDF on the side. That falls apart the first week you're tired, travelling, or just cooking for other people.
             </p>
             <p>
-              I start with nutrition: a food strategy that fits your life, then a weekly loop — you check in through the coaching app, tracking food as much as you can keep up, and I send written adjustments. On 1:1, I add video deep dives. Strength work is there when you want more energy and a body that lasts — not as a second job.
+              I start with nutrition and a food strategy that fits your life. On 1:1 coaching, every fortnight I record a deep-dive video on your data and feedback. That video adjusts your plan and walks you through it. Messaging between videos is included, and the coaching runs in Coach Catalyst.
             </p>
             <p className="text-orange-500 font-medium pt-4">
-              No extreme diets. No two-hour gym sessions. Just practical adjustments you can keep.
+              Practical adjustments you can keep on a full week.
             </p>
           </div>
         </motion.div>
@@ -66,10 +66,10 @@ export function Method() {
           className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            A simple weekly rhythm
+            A simple fortnightly rhythm
           </h2>
           <p className="text-zinc-500 text-base md:text-lg">
-            Here's how we work together — online, week by week.
+            Here is how 1:1 coaching works, online and fortnight by fortnight.
           </p>
         </motion.div>
 

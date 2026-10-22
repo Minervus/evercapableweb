@@ -9,7 +9,7 @@
  *
  * TODO(tony): confirm or fill in
  *   - how long intake answers and email-list details are kept;
- *   - the name of the coaching app provider behind EverCapable;
+ *   - how long Coach Catalyst keeps coaching messages and food logs;
  *   - that you never see card numbers on Stripe payments;
  *   - whether anyone else (an assistant, a VA) can read client information.
  *
@@ -27,7 +27,7 @@ export default function Privacy() {
     >
       <LegalSection title="The intake form">
         <p>
-          After you book, the intake form asks for your name, email and time zone, along with details about your health and habits. That covers your age, weight and height, your training history, past diets, how you track food, dietary restrictions, goals, injuries, sleep and stress, anything a doctor is currently managing, and, if you choose to answer, any history of disordered eating.
+          After you book, the intake form asks for your name, email and time zone, along with details about your health and how you eat. That covers your age, weight and height, your training history, past diets, how you track food, dietary restrictions, goals, injuries, sleep and stress, anything a doctor is currently managing, and, if you choose to answer, any history of disordered eating.
         </p>
         <p>
           The form is sent through Formspree, a form service that passes your answers on to me. I use them to prepare for your session and to coach you.
@@ -60,7 +60,7 @@ export default function Privacy() {
 
       <LegalSection title="Coaching">
         <p>
-          If you join Habits or 1:1, you log food and send check-ins through the coaching app, which runs under the EverCapable name. What you share there is used for your coaching.
+          If you join 1:1 coaching, you use Coach Catalyst. You log food and send feedback there. Messages between the fortnightly deep-dive videos stay in Coach Catalyst too. I use what you share to coach you.
         </p>
       </LegalSection>
 
