@@ -27,7 +27,7 @@ export default function Privacy() {
     >
       <LegalSection title="The intake form">
         <p>
-          After you book, the intake form asks for your name, email and time zone, along with details about your health and habits. That covers your age, weight and height, your training history, past diets, how you track food, dietary restrictions, goals, injuries, sleep and stress, anything a doctor is currently managing, and, if you choose to answer, any history of disordered eating.
+          After you book, the intake form asks for your name, email and time zone, along with details about your health and how you eat. That covers your age, weight and height, your training history, past diets, how you track food, dietary restrictions, goals, injuries, sleep and stress, anything a doctor is currently managing, and, if you choose to answer, any history of disordered eating.
         </p>
         <p>
           The form is sent through Formspree, a form service that passes your answers on to me. I use them to prepare for your session and to coach you.

@@ -6,9 +6,12 @@ import {
   AUDIT_FORMAT_LINE,
   AUDIT_PRICE,
   auditSteps,
+  AUDIT_INCLUDED_LINE,
   COACHING_APP,
+  COACHING_CADENCE,
   COACHING_PRICE,
   COACHING_SUMMARY,
+  FIRST_PLAN_LINE,
   creditLine,
   MONTHLY_TERMS_LINE,
   guaranteeLine,
@@ -66,7 +69,7 @@ const plans: Plan[] = [
     id: "coaching",
     name: "1:1 Nutrition Coaching",
     price: COACHING_PRICE,
-    cadence: () => "per month",
+    cadence: () => COACHING_CADENCE,
     summary: COACHING_SUMMARY,
     cta: "Apply for coaching",
     href: "/initialize?plan=coaching",
@@ -78,8 +81,8 @@ const plans: Plan[] = [
 type Cell = boolean | string;
 
 const comparison: { label: string; cells: [Cell, Cell] }[] = [
-  { label: "60-minute nutrition session", cells: [true, false] },
-  { label: "4 to 6 week food roadmap", cells: [true, false] },
+  { label: "60-minute nutrition session", cells: [true, true] },
+  { label: "4 to 6 week food roadmap", cells: [true, "Your first plan"] },
   { label: "Fortnightly deep-dive video", cells: [false, true] },
   { label: "Video uses your data and feedback", cells: [false, true] },
   { label: "Plan adjusted in that video", cells: [false, true] },
@@ -142,7 +145,7 @@ export function Pricing() {
             Start with a roadmap. Continue with 1:1 coaching.
           </h2>
           <p className="mt-4 text-zinc-400 text-base md:text-lg max-w-2xl mx-auto">
-            Most people start with the audit: one session and a plan, paid once.
+            {AUDIT_INCLUDED_LINE} {FIRST_PLAN_LINE}
           </p>
         </div>
 
@@ -309,7 +312,7 @@ export function Pricing() {
 
         <p className="text-center text-zinc-500 text-sm mb-16">
           {spotsLine()} For 1:1 I suggest about 90 days so the fortnightly videos can show what is
-          working for you. It's month to month from the first payment.
+          working for you. Billing starts with the first payment and runs {COACHING_CADENCE}.
         </p>
 
         <motion.div {...reveal} className="mb-20 max-w-4xl mx-auto">

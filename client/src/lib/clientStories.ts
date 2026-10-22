@@ -14,7 +14,7 @@ export const CHRISTIAN = {
   steps: [
     "We started by tracking his food, so he could see how he really ate.",
     "Then we found the easy changes and tracked those for a couple of weeks.",
-    "As those started to work, we slowly layered in more habits to crowd out the ones keeping his weight and energy stuck.",
+    "As those started to work, we slowly layered in more changes to crowd out what was keeping his weight and energy stuck.",
     "Once that held, we moved to more specific changes for his running as he trained for a half marathon.",
   ],
 } as const;
@@ -33,7 +33,7 @@ export const CHRISTIAN_RESULT = `${CHRISTIAN.weight}, ${CHRISTIAN.energy}.`;
  */
 export const GARY = {
   timeframe: "Over 4 months of coaching",
-  startingPoint: "Wanted a straight read on his habits, training and food together.",
+  startingPoint: "Wanted a straight read on his training and food together.",
   result: "More muscle and less body fat in time for his wedding. We still work together week to week.",
   steps: [
     "We started by tracking his food, so we had a baseline to work from.",

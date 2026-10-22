@@ -34,7 +34,7 @@ export const KICKSTARTER_WEEKS = [
     range: "Weeks 7–12",
     title: "Make it stick",
     topics: [
-      "Habits that stick",
+      "Eating that sticks",
       "Food environment",
       "Carbs without fear",
       "Fibre",

@@ -58,7 +58,7 @@ export function DataSection() {
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-semibold text-white mb-1">Consistency over perfection</h3>
-                                    <p className="text-zinc-400">Focus on trends and consistency to build sustainable habits.</p>
+                                    <p className="text-zinc-400">Focus on trends and consistency so the way you eat lasts.</p>
                                 </div>
                             </div>
                         </div>

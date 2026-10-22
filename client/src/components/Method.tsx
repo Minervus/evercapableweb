@@ -21,7 +21,7 @@ const phases = [
     icon: ShieldCheck,
     title: "Keep the change",
     timeframe: "Ongoing",
-    outcome: "We build habits that survive travel, kids, and late dinners — so the weight change doesn't bounce back.",
+    outcome: "The way you eat holds up through travel and late dinners, so the weight change stays.",
     benefit: "I recommend training for longevity, mobility, and function, but it's optional and it isn't where we start. Food does the heavy lifting.",
   },
 ];

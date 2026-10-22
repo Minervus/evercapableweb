@@ -49,8 +49,18 @@ export const COACHING_DELIVERY =
  * The $149 stays unlabelled so CAD and NZD visitors read the same sentence.
  */
 export function creditLine(_currency?: DisplayCurrency | null): string {
-  return `Your $${AUDIT_PRICE} audit is credited to your first month of 1:1 coaching if you join within ${CREDIT_WINDOW_DAYS} days.`;
+  return `Your $${AUDIT_PRICE} audit is credited to your first 4 weeks of 1:1 coaching if you join within ${CREDIT_WINDOW_DAYS} days.`;
 }
+
+/** Shown where the audit and 1:1 are compared. The $149 stays unlabelled. */
+export const AUDIT_INCLUDED_LINE =
+  `Try the audit for $${AUDIT_PRICE}, or join coaching and the audit's included.`;
+
+/** On 1:1 the roadmap from that audit is the plan you start with. */
+export const FIRST_PLAN_LINE = "On 1:1, the roadmap is your first plan.";
+
+/** Cadence shown next to the 1:1 price. */
+export const COACHING_CADENCE = "every 4 weeks";
 
 /**
  * The only guarantee on the site, and it covers the audit alone. 1:1 coaching
@@ -65,12 +75,12 @@ export function refundWindowLine(): string {
   return `The ${REFUND_WINDOW_DAYS} days start on the day I email you the roadmap.`;
 }
 
-export function creditRefundLine(currency: DisplayCurrency | null): string {
-  return `Once the ${money(AUDIT_PRICE, currency)} audit is credited to 1:1 coaching, it can't be refunded.`;
+export function creditRefundLine(_currency?: DisplayCurrency | null): string {
+  return "The 7-day refund on the audit ends once you join 1:1 coaching.";
 }
 
 export const MONTHLY_TERMS_LINE =
-  "1:1 coaching is month to month. You can cancel any time before the next billing date, with no partial-month refunds.";
+  `1:1 coaching is billed ${COACHING_CADENCE}. You can cancel any time before the next billing date, with no partial-period refunds.`;
 
 const MONTHS = [
   "January", "February", "March", "April", "May", "June",

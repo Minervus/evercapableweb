@@ -13,8 +13,10 @@ import {
   AUDIT_MINUTES,
   AUDIT_PRICE,
   COACHING_APP,
+  COACHING_CADENCE,
   COACHING_DELIVERY,
   COACHING_PRICE,
+  FIRST_PLAN_LINE,
   MONTHLY_TERMS_LINE,
   auditProcessLine,
   creditLine,
@@ -38,7 +40,7 @@ export default function Terms() {
         </p>
         <p>{auditProcessLine(currency)}</p>
         <p>
-          1:1 Nutrition Coaching is {money(COACHING_PRICE, currency)} a month. {COACHING_DELIVERY} It runs in {COACHING_APP}.
+          1:1 Nutrition Coaching is {money(COACHING_PRICE, currency)} {COACHING_CADENCE}. {COACHING_DELIVERY} It runs in {COACHING_APP}. The audit is included. {FIRST_PLAN_LINE}
         </p>
         <p>
           The audit is paid through Stripe. {creditLine(currency)}
@@ -47,7 +49,7 @@ export default function Terms() {
 
       <LegalSection title="Cancelling 1:1 coaching">
         <p>
-          {MONTHLY_TERMS_LINE} To cancel, email <EmailLink /> before your next billing date. There's no notice period and no exit fee. A month that has already been billed is not refunded in part.
+          {MONTHLY_TERMS_LINE} To cancel, email <EmailLink /> before your next billing date. There's no notice period and no exit fee.
         </p>
       </LegalSection>
 

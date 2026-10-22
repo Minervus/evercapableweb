@@ -4,7 +4,7 @@ import { CHRISTIAN, CHRISTIAN_RESULT, GARY } from "@/lib/clientStories";
 import { reveal, revealAt } from "@/lib/reveal";
 
 /**
- * One result and one testimonial isn't much proof at $279/month, so this holds
+ * One result and one testimonial isn't much proof at $279 every 4 weeks, so this holds
  * a list rather than two bespoke sections.
  *
  * TODO(tony): aim for 4–6 entries. Each needs a starting point, a timeframe,

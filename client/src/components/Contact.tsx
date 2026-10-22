@@ -21,7 +21,7 @@ export function Contact() {
             Ready when you are
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6">
-            Get a 4–6 week roadmap before you commit to monthly coaching.
+            Get a 4–6 week roadmap before you commit to 1:1 coaching.
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto mb-12 text-lg md:text-xl font-light leading-relaxed">
             One {AUDIT_MINUTES}-minute nutrition session. A plan you can use. {creditLine(currency)}

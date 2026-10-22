@@ -15,8 +15,10 @@ import {
   AUDIT_INTAKE_DETAIL,
   AUDIT_MINUTES,
   AUDIT_PRICE,
+  AUDIT_INCLUDED_LINE,
   COACHING_APP,
   COACHING_SUMMARY,
+  FIRST_PLAN_LINE,
   ROADMAP_DELIVERY_LINE,
   auditPayLine,
   auditProcessFaq,
@@ -147,6 +149,10 @@ function IntakeCard({ currency, className = "" }: { currency: DisplayCurrency | 
 function OfferNotes({ currency, className = "" }: { currency: DisplayCurrency | null; className?: string }) {
   return (
     <div className={`space-y-2 text-xs leading-[1.75] text-zinc-400 ${className}`}>
+      <p>
+        <span className="text-zinc-200 font-semibold">{AUDIT_INCLUDED_LINE}</span>{" "}
+        {FIRST_PLAN_LINE}
+      </p>
       <p>
         <span className="text-zinc-200 font-semibold">{creditLine(currency)}</span>{" "}
         <PlanLink>1:1 coaching</PlanLink> is {lowerFirst(COACHING_SUMMARY)} It runs in {COACHING_APP}.

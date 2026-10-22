@@ -79,7 +79,7 @@
 ### Pricing Cards
 - 3 columns with equal height cards
 - "Most Popular" badge on middle tier (absolute positioning)
-- Pricing: large number with /month, feature list with checkmarks
+- Pricing: large number with every 4 weeks, feature list with checkmarks
 - Distinct visual hierarchy: price prominent, features listed cleanly
 - CTA button at card bottom (mt-auto for alignment)
 

@@ -7,8 +7,10 @@ import {
 import { money, useDisplayCurrency, type DisplayCurrency } from "@/lib/displayCurrency";
 import {
   COACHING_APP,
+  COACHING_CADENCE,
   COACHING_DELIVERY,
   COACHING_PRICE,
+  FIRST_PLAN_LINE,
   CREDIT_WINDOW_DAYS,
   MONTHLY_TERMS_LINE,
   auditProcessFaq,
@@ -21,7 +23,7 @@ import {
 const faqs = (currency: DisplayCurrency | null) => [
   {
     question: "What's the difference between the audit and 1:1 coaching?",
-    answer: `Audit + Roadmap (${money(149, currency)}) is a one-off video call and a 4 to 6 week food plan. I email the roadmap within 2 working days of the call. 1:1 coaching (${money(COACHING_PRICE, currency)} a month) is ongoing. ${COACHING_DELIVERY} It runs in ${COACHING_APP}. Spots for 1:1 are capped.`,
+    answer: `Audit + Roadmap (${money(149, currency)}) is a one-off video call and a 4 to 6 week food plan. I email the roadmap within 2 working days of the call. 1:1 coaching (${money(COACHING_PRICE, currency)} ${COACHING_CADENCE}) includes that audit. ${FIRST_PLAN_LINE} ${COACHING_DELIVERY} It runs in ${COACHING_APP}. Spots for 1:1 are capped.`,
   },
   auditProcessFaq(currency),
   {
@@ -30,11 +32,11 @@ const faqs = (currency: DisplayCurrency | null) => [
   },
   {
     question: "Do I have to track my food?",
-    answer: "No, but it helps more than almost anything else. Tracking shows what's actually happening rather than what we think is happening, and most people learn a lot from the first couple of weeks of it. It isn't make or break, though. If weighing and logging every meal won't last in your life, we find a level that will, like logging a few days a week or just keeping an eye on protein. The habits are the goal. Tracking is a tool for building them.",
+    answer: "No, but it helps more than almost anything else. Tracking shows what's actually happening rather than what we think is happening, and most people learn a lot from the first couple of weeks of it. It isn't make or break, though. If weighing and logging every meal won't last in your life, we find a level that will, like logging a few days a week or just keeping an eye on protein. The way you eat is the goal. Tracking is a tool for building it.",
   },
   {
     question: "Do I have to eat nothing but kale salads?",
-    answer: "No. A plan built on food you don't like lasts about a week. We start with what you already eat, like the family dinners, Friday pizza, and snacks in the car, and change a few habits at a time: a bit more protein at breakfast, a portion adjusted at dinner, a go-to lunch that keeps you going through the afternoon. The aim is a way of eating you could keep up for years, not a strict phase you're counting down to the end of. If you like kale, great. If you don't, you never have to eat it.",
+    answer: "No. A plan built on food you don't like lasts about a week. We start with what you already eat, like the family dinners, Friday pizza, and snacks in the car, and change one part of a meal at a time, like more protein at breakfast. The aim is a way of eating you could keep up for years, not a strict phase you're counting down to the end of. If you like kale, great. If you don't, you never have to eat it.",
   },
   {
     question: "Do I have to train?",
@@ -45,7 +47,7 @@ const faqs = (currency: DisplayCurrency | null) => [
     answer: "No. Being hungry all the time is the fastest way to quit, so we avoid it on purpose. We set portions you can live with, lean on protein and fiber to keep you full, and adjust if hunger creeps up. Weight still moves, just at a pace you can keep.",
   },
   {
-    question: "If I start with the audit, can I join a monthly offer later?",
+    question: "If I start with the audit, can I join 1:1 coaching later?",
     answer: `Yes. ${creditLine(currency)} After ${CREDIT_WINDOW_DAYS} days the credit has closed, and the audit still stands on its own.`,
   },
   {
@@ -80,7 +82,7 @@ const faqs = (currency: DisplayCurrency | null) => [
   {
     question: "Are you a dietitian?",
     answer:
-      "No. I'm a certified nutrition coach (Precision Nutrition Level 1) and a certified personal trainer (ISSA). I coach habits and food strategy, with training guidance where it helps. I don't diagnose, treat, or prescribe, and I don't write medical nutrition therapy for a diagnosed condition. If you have one — diabetes, heart disease, a pregnancy, a GLP-1 prescription, anything your doctor is managing — I'll work alongside them rather than around them, and I'll say so when something belongs with them rather than me.",
+      "No. I'm a certified nutrition coach (Precision Nutrition Level 1) and a certified personal trainer (ISSA). I coach food strategy, with training guidance where it helps. I don't diagnose, treat, or prescribe, and I don't write medical nutrition therapy for a diagnosed condition. If you have one — diabetes, heart disease, a pregnancy, a GLP-1 prescription, anything your doctor is managing — I'll work alongside them rather than around them, and I'll say so when something belongs with them rather than me.",
   },
   {
     question: "Is there a 90-day lock-in?",

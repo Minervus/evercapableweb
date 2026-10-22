@@ -40,7 +40,7 @@ export default function Refunds() {
       <LegalSection title="1:1 coaching">
         <p>{MONTHLY_TERMS_LINE}</p>
         <p>
-          To cancel, email <EmailLink /> before your next billing date. Cancelling stops the next charge. A month that has already been billed is not refunded in part.
+          To cancel, email <EmailLink /> before your next billing date. Cancelling stops the next charge.
         </p>
       </LegalSection>
     </LegalPage>
